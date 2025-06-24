@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gaia/app.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gaia/config.dart';
+import 'package:gaia/shared/core/network/config.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
