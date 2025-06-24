@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "DEV",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--dart-define=ENV=dev"
+      ]
+    },
+    {
+      "name": "PRODUCTION",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--dart-define=ENV=prod"
+      ]
+    },
+    {
+      "name": "anusapati (release mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    }
+  ]
+}
