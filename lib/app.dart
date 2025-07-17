@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/features/login/presentation/login_screen.dart';
+import 'package:gaia/features/login/login_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
