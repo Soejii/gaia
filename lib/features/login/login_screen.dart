@@ -3,8 +3,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/login/widgets/password_form.dart';
 import 'package:gaia/features/login/widgets/username_form.dart';
-import 'package:gaia/shared/utils/app_colors.dart';
-import 'package:gaia/shared/utils/assets_helper.dart';
+import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/shared/core/constant/assets_helper.dart';
 
 class LoginScreen extends HookWidget {
   const LoginScreen({super.key});
