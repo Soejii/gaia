@@ -21,8 +21,9 @@ class LoginNotifier extends _$LoginNotifier {
 
     try {
       final repo = ref.read(loginRepositoryProvider);
-      final result = await repo.login(username: username, password: password);
-      state = AsyncData(result); // Set success state
+      state = await AsyncValue.guard(
+        () => repo.login(username: username, password: password),
+      );
     } catch (e, st) {
       state = AsyncError(e, st); // Set error state
     }

@@ -2,17 +2,18 @@ import 'package:dio/dio.dart';
 import 'package:gaia/features/login/data/models/login_model.dart';
 import 'package:gaia/features/login/domain/entities/login_entity.dart';
 import 'package:gaia/features/login/domain/repositories/login_repository.dart';
+import 'package:gaia/shared/core/infrastructure/auth/auth_local_datasource.dart';
 import 'package:logger/web.dart';
-
-import '../../../../../shared/core/infrastructure/network/api_client.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   final Dio _dio;
+  final AuthLocalDatasource _storage;
 
-  LoginRepositoryImpl({Dio? dio})
-      : _dio = dio ??
-            ApiClient.build(
-                baseUrl: 'https://demo.sidigs.com/api', token: null);
+  LoginRepositoryImpl({
+    required Dio dio,
+    required AuthLocalDatasource storage,
+  })  : _dio = dio,
+        _storage = storage;
 
   @override
   Future<LoginEntity> login({
@@ -32,6 +33,11 @@ class LoginRepositoryImpl implements LoginRepository {
 
       final json = response.data as Map<String, dynamic>;
       final model = LoginResponseModel.fromJson(json['data']).toEntity();
+
+      await _storage.saveTokens(
+        access: model.token,
+        refresh: model.token,
+      );
       return model;
     } catch (e) {
       // For now: crash visibly
