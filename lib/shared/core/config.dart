@@ -10,7 +10,7 @@ class ConfigEnvironments {
   static final List<Map<String, String>> _availableEnvironments = [
     {
       'env': Environments.DEV,
-      'baseUrl': '',
+      'baseUrl': 'https://demo.sidigs.com/api/student',
     },
     {
       'env': Environments.PRODUCTION,

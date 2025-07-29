@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/login/domain/entities/login_entity.dart';
 import 'package:gaia/features/login/presentation/providers/login_notifier.dart';
 import 'package:gaia/features/login/presentation/widgets/password_form.dart';
 import 'package:gaia/features/login/presentation/widgets/username_form.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
+import 'package:gaia/shared/core/infrastructure/routes/route_path.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LoginScreen extends HookConsumerWidget {
@@ -18,6 +21,20 @@ class LoginScreen extends HookConsumerWidget {
 
     final loginState = ref.watch(loginNotifierProvider);
     final loginNotifier = ref.read(loginNotifierProvider.notifier);
+
+    ref.listen<AsyncValue<LoginEntity?>>(
+      loginNotifierProvider,
+      (prev, next) {
+        print('object');
+        if (next.hasValue && next.value != null) {
+          context.go(RoutePath.home); // jump away
+        } else if (next.hasError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(next.error.toString())),
+          );
+        }
+      },
+    );
 
     return Scaffold(
       backgroundColor: Colors.white,

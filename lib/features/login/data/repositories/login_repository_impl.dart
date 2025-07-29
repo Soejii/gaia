@@ -22,7 +22,7 @@ class LoginRepositoryImpl implements LoginRepository {
   }) async {
     try {
       final response = await _dio.post(
-        '/student/login',
+        '/login',
         data: {
           'username': username,
           'password': password,

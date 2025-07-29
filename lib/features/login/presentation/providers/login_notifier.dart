@@ -1,4 +1,5 @@
 import 'package:gaia/features/login/domain/entities/login_entity.dart';
+import 'package:gaia/shared/core/infrastructure/auth/auth_state_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'login_repository_provider.dart';
 
@@ -19,13 +20,12 @@ class LoginNotifier extends _$LoginNotifier {
     // Set state to loading
     state = const AsyncLoading();
 
-    try {
-      final repo = ref.read(loginRepositoryProvider);
-      state = await AsyncValue.guard(
-        () => repo.login(username: username, password: password),
-      );
-    } catch (e, st) {
-      state = AsyncError(e, st); // Set error state
+    final repo = ref.read(loginRepositoryProvider);
+    if (state.hasValue) {
+      ref.invalidate(authStateProvider); // 🔑 tell auth to re-check
     }
+    state = await AsyncValue.guard(
+      () => repo.login(username: username, password: password),
+    );
   }
 }
