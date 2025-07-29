@@ -17,15 +17,22 @@ class LoginNotifier extends _$LoginNotifier {
     required String username,
     required String password,
   }) async {
-    // Set state to loading
+    // 1. set loading
     state = const AsyncLoading();
 
     final repo = ref.read(loginRepositoryProvider);
-    if (state.hasValue) {
-      ref.invalidate(authStateProvider); // 🔑 tell auth to re-check
-    }
-    state = await AsyncValue.guard(
+
+    // 2. run the request, capture the result (or error)
+    final result = await AsyncValue.guard(
       () => repo.login(username: username, password: password),
     );
+
+    // 3. update state once
+    state = result;
+
+    // 4. if success → flip auth flag
+    result.whenData((_) {
+      ref.read(authStateProvider.notifier).setAuthenticated();
+    });
   }
 }
