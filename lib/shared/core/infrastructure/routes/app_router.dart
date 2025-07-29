@@ -6,6 +6,8 @@ import 'package:gaia/features/home/presentation/home_screen.dart';
 import 'package:gaia/features/login/presentation/screen/login_screen.dart';
 import 'package:gaia/shared/core/infrastructure/auth/auth_state_provider.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_path.dart';
+import 'package:gaia/shared/screens/error_screen.dart';
+import 'package:gaia/shared/screens/not_found_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -46,7 +48,15 @@ GoRouter appRouter(Ref ref) {
         name: 'login',
         builder: (context, state) => const LoginScreen(),
       ),
+      GoRoute(
+        path: '*', // fuck-all catch some tomfoolery shit
+        name: 'notFound',
+        builder: (context, state) => const NotFoundScreen(),
+      ),
     ],
+    errorBuilder: (context, state) => ErrorScreen(
+      error: state.error ?? Exception('Unknown router error'),
+    ),
     debugLogDiagnostics: kDebugMode,
   );
 }
