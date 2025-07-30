@@ -2,7 +2,10 @@ class AssetsHelper {
   static String imgLogo = img("img_logo.png");
   static String imgLogoName = img("img_logo_name.png");
 
-  // static String icHome = icon('ic_home.svg');
+  static String icHome = icon('ic_beranda_home.svg');
+  static String icActivity = icon('ic_activity_home.svg');
+  static String icChat = icon('ic_chat_home.svg');
+  static String icProfile = icon('ic_profile_home.svg');
 
   static String icon(String name) {
     return "assets/icons/$name";
