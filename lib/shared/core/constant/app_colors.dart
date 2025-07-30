@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static Color mainColorSidigs = const Color.fromRGBO(0, 154, 222, 1);
-  static Color inactiveColor = const Color.fromRGBO(133, 139, 166, 1);
-  static Color secondaryText = const Color.fromRGBO(82, 103, 137, 1);
-  static Color mainText = const Color.fromRGBO(4, 23, 53, 1);
+  static const Color mainColorSidigs = Color.fromRGBO(0, 154, 222, 1);
+  static const Color inactiveColor = Color.fromRGBO(133, 139, 166, 1);
+  static const Color secondaryText = Color.fromRGBO(82, 103, 137, 1);
+  static const Color mainText =  Color.fromRGBO(4, 23, 53, 1);
 
-  static List<BoxShadow> shadow = [
+  static const List<BoxShadow> shadow =  [
     BoxShadow(
-      color: Colors.black.withOpacity(0.08),
-      blurRadius: 6,
-      offset: const Offset(0, 3),
-    ),
-    BoxShadow(
-      color: Colors.black.withOpacity(0.03),
-      blurRadius: 2,
-      offset: const Offset(0, 1),
+      color:  Color.fromRGBO(0, 0, 0, 0.25),
+      offset:  Offset(0, 4),
+      blurRadius: 4,
+      spreadRadius: 0, 
     ),
   ];
 
-  static LinearGradient mainColorGradient = const LinearGradient(
+  static const LinearGradient mainColorGradient =  LinearGradient(
     colors: [
       Color.fromRGBO(28, 178, 255, 1),
       Color.fromRGBO(90, 199, 255, 1),
@@ -27,7 +23,6 @@ class AppColors {
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );
-
 }
 
 class HexColor extends Color {
