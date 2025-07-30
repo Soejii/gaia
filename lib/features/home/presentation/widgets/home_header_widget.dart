@@ -12,7 +12,7 @@ class HomeHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 340.h,
+      height: 360.h,
       child: Stack(
         children: [
           const HeaderBackground(),

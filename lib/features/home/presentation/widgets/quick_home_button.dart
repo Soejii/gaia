@@ -24,18 +24,20 @@ class QuickHomeButton extends StatelessWidget {
             context.push(path);
           },
           child: Container(
-            width: 40,
-            height: 40,
+            width: 50,
+            height: 50,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                gradient: AppColors.mainColorGradient),
-            // child: Padding(
-            //   padding: const EdgeInsets.all(7.35),
-            //   child: SvgPicture.asset(
-            //     '',
-            //     height: 25,
-            //   ),
-            // ),
+              borderRadius: BorderRadius.circular(10),
+              gradient: const LinearGradient(
+                colors: [
+                  Color.fromRGBO(210, 239, 255, 1),
+                  Color.fromRGBO(255, 255, 255, 0),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+            child: Image.asset(icon),
           ),
         ),
         SizedBox(
