@@ -80,6 +80,14 @@ class LoginScreen extends HookConsumerWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: AppColors.mainColorSidigs,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.15),
+                        offset: Offset(0, 5), // x = 0, y = -5
+                        blurRadius: 0,
+                        spreadRadius: 0,
+                      ),
+                    ],
                   ),
                   child: Center(
                     child: Text(

@@ -26,46 +26,36 @@ class PasswordForm extends HookWidget {
             ),
           ),
           SizedBox(height: 4.h),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: 48.h,
-                width: 48.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: const Color.fromRGBO(0, 0, 0, 0.10),
-                    width: 1.w,
-                  ),
-                ),
-                child: Center(
-                  child: Icon(
-                    Icons.lock,
-                    color: AppColors.secondaryText,
-                  ),
-                ),
+          Container(
+            height: 48.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                color: const Color.fromRGBO(0, 0, 0, 0.10),
+                width: 1.w,
               ),
-              Expanded(
-                child: Container(
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
                   height: 48.h,
+                  width: 48.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    border: Border(
-                      right: BorderSide(
-                        color: const Color.fromRGBO(0, 0, 0, 0.10),
-                        width: 1.w,
-                      ),
-                      top: BorderSide(
-                        color: const Color.fromRGBO(0, 0, 0, 0.10),
-                        width: 1.w,
-                      ),
-                      bottom: BorderSide(
-                        color: const Color.fromRGBO(0, 0, 0, 0.10),
-                        width: 1.w,
-                      ),
+                    border: Border.all(
+                      color: const Color.fromRGBO(0, 0, 0, 0.10),
+                      width: 1.w,
                     ),
                   ),
+                  child: Center(
+                    child: Icon(
+                      Icons.lock,
+                      color: AppColors.secondaryText,
+                    ),
+                  ),
+                ),
+                Expanded(
                   child: TextField(
                     obscureText: isObscure.value,
                     controller: controller,
@@ -101,8 +91,8 @@ class PasswordForm extends HookWidget {
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
