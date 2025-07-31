@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/profile/presentation/providers/profile_controller.dart';
 import 'package:gaia/features/profile/presentation/widgets/profile_menu_widget.dart';
 import 'package:gaia/features/profile/presentation/widgets/user_avatar_profile_widget.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
