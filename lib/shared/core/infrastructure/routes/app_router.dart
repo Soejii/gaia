@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gaia/app/bottom_navigation_shell.dart';
 import 'package:gaia/features/home/presentation/home_screen.dart';
 import 'package:gaia/features/login/presentation/screen/login_screen.dart';
+import 'package:gaia/features/profile/presentation/profile_screen.dart';
 import 'package:gaia/shared/core/infrastructure/auth/auth_state_provider.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_path.dart';
 import 'package:gaia/shared/screens/error_screen.dart';
@@ -37,6 +38,15 @@ GoRouter appRouter(Ref ref) {
                 path: RoutePath.home,
                 name: 'home',
                 pageBuilder: (_, __) => const MaterialPage(child: HomeScreen()),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: RoutePath.profile,
+                name: 'profile',
+                pageBuilder: (_, __) => const MaterialPage(child: ProfileScreen()),
               ),
             ],
           ),
