@@ -12,32 +12,43 @@ class ProfileScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final profileAsync = ref.watch(profileControllerProvider);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBarWidget(
         title: 'Profil',
         leadingIcon: false,
       ),
-      body: ListView(
-        children: [
-          SizedBox(height: 56.h),
-          const UserAvatarProfileWidget(),
-          SizedBox(height: 38.h),
-          const ProfileMenuWidget(),
-          SizedBox(height: 30.h),
-          Center(
-            child: Text(
-              'App Version 1.0.0',
-              style: TextStyle(
-                fontFamily: 'OpenSans',
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w400,
-                color: AppColors.secondaryText,
+      body: profileAsync.when(
+        error: (e, _) => Center(child: Text('Error: $e')),
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        data: (data) => ListView(
+          children: [
+            SizedBox(height: 56.h),
+            UserAvatarProfileWidget(
+              imgUrl: data.imgUrl,
+              name: data.name,
+              className: data.className,
+            ),
+            SizedBox(height: 38.h),
+            const ProfileMenuWidget(),
+            SizedBox(height: 30.h),
+            Center(
+              child: Text(
+                'App Version 1.0.0',
+                style: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.secondaryText,
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 30.h),
-        ],
+            SizedBox(height: 30.h),
+          ],
+        ),
       ),
     );
   }

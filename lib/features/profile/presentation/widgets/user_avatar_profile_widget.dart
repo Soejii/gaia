@@ -4,7 +4,15 @@ import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
 class UserAvatarProfileWidget extends StatelessWidget {
-  const UserAvatarProfileWidget({super.key});
+  const UserAvatarProfileWidget({
+    super.key,
+    required this.imgUrl,
+    required this.name,
+    required this.className,
+  });
+  final String imgUrl;
+  final String name;
+  final String className;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +33,7 @@ class UserAvatarProfileWidget extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(144),
             child: Image.network(
-              '',
+              imgUrl,
               errorBuilder: (context, error, stackTrace) => Image.asset(
                 AssetsHelper.imgProfilePlaceholder,
               ),
@@ -36,7 +44,7 @@ class UserAvatarProfileWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Text(
-            'Rafi Mahadika Sujianto',
+            name,
             textAlign: TextAlign.center,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -51,7 +59,7 @@ class UserAvatarProfileWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Text(
-            'Kelas: XII-RPL 1',
+            'Kelas: $className',
             textAlign: TextAlign.center,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
