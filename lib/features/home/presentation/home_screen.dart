@@ -14,30 +14,32 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: ListView(
-        children: [
-          const HomeHeaderWidget(),
-          const DividerCard(),
-          SizedBox(height: 16.h),
-          const DigitalMagazinesCard(imgUrl: ''),
-          SizedBox(height: 16.h),
-          const AnnouncementWidget(imgUrl: ''),
-          SizedBox(height: 16.h),
-          const RubricEntertainmentWidget(imgUrl: ''),
-          SizedBox(height: 16.h),
-          const DividerCard(),
-          SizedBox(height: 16.h),
-          const NewestExamWidget(),
-          SizedBox(height: 16.h),
-          const DividerCard(),
-          SizedBox(height: 16.h),
-          const NewestQuizWidget(),
-          SizedBox(height: 16.h),
-          const DividerCard(),
-          SizedBox(height: 120.h),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: ListView(
+          children: [
+            const HomeHeaderWidget(),
+            const DividerCard(),
+            SizedBox(height: 16.h),
+            const DigitalMagazinesCard(imgUrl: ''),
+            SizedBox(height: 16.h),
+            const AnnouncementWidget(imgUrl: ''),
+            SizedBox(height: 16.h),
+            const RubricEntertainmentWidget(imgUrl: ''),
+            SizedBox(height: 16.h),
+            const DividerCard(),
+            SizedBox(height: 16.h),
+            const NewestExamWidget(),
+            SizedBox(height: 16.h),
+            const DividerCard(),
+            SizedBox(height: 16.h),
+            const NewestQuizWidget(),
+            SizedBox(height: 16.h),
+            const DividerCard(),
+            SizedBox(height: 120.h),
+          ],
+        ),
       ),
     );
   }
