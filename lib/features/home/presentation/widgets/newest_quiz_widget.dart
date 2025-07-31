@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/home/presentation/widgets/quiz_card.dart';
-import 'package:gaia/features/home/presentation/widgets/task_card.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class NewestQuizWidget extends StatelessWidget {
