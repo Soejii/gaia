@@ -9,11 +9,11 @@ part of 'profile_model.dart';
 _$ProfileModelImpl _$$ProfileModelImplFromJson(Map<String, dynamic> json) =>
     _$ProfileModelImpl(
       id: (json['id'] as num).toInt(),
-      nis: json['nis'] as String,
-      nisn: json['nisn'] as String,
-      name: json['name'] as String,
-      photo: json['photo'] as String,
-      gender: json['gender'] as String,
+      nis: json['nis'] as String?,
+      nisn: json['nisn'] as String?,
+      name: json['name'] as String?,
+      photo: json['photo'] as String?,
+      gender: json['gender'] as String?,
     );
 
 Map<String, dynamic> _$$ProfileModelImplToJson(_$ProfileModelImpl instance) =>

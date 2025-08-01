@@ -23,15 +23,15 @@ mixin _$ProfileModel {
   @JsonKey(name: "id")
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "nis")
-  String get nis => throw _privateConstructorUsedError;
+  String? get nis => throw _privateConstructorUsedError;
   @JsonKey(name: "nisn")
-  String get nisn => throw _privateConstructorUsedError;
+  String? get nisn => throw _privateConstructorUsedError;
   @JsonKey(name: "name")
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: "photo")
-  String get photo => throw _privateConstructorUsedError;
+  String? get photo => throw _privateConstructorUsedError;
   @JsonKey(name: "gender")
-  String get gender => throw _privateConstructorUsedError;
+  String? get gender => throw _privateConstructorUsedError;
 
   /// Serializes this ProfileModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,11 +51,11 @@ abstract class $ProfileModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "id") int id,
-      @JsonKey(name: "nis") String nis,
-      @JsonKey(name: "nisn") String nisn,
-      @JsonKey(name: "name") String name,
-      @JsonKey(name: "photo") String photo,
-      @JsonKey(name: "gender") String gender});
+      @JsonKey(name: "nis") String? nis,
+      @JsonKey(name: "nisn") String? nisn,
+      @JsonKey(name: "name") String? name,
+      @JsonKey(name: "photo") String? photo,
+      @JsonKey(name: "gender") String? gender});
 }
 
 /// @nodoc
@@ -74,37 +74,37 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
   @override
   $Res call({
     Object? id = null,
-    Object? nis = null,
-    Object? nisn = null,
-    Object? name = null,
-    Object? photo = null,
-    Object? gender = null,
+    Object? nis = freezed,
+    Object? nisn = freezed,
+    Object? name = freezed,
+    Object? photo = freezed,
+    Object? gender = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      nis: null == nis
+      nis: freezed == nis
           ? _value.nis
           : nis // ignore: cast_nullable_to_non_nullable
-              as String,
-      nisn: null == nisn
+              as String?,
+      nisn: freezed == nisn
           ? _value.nisn
           : nisn // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
+              as String?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      photo: null == photo
+              as String?,
+      photo: freezed == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
-              as String,
-      gender: null == gender
+              as String?,
+      gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -119,11 +119,11 @@ abstract class _$$ProfileModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "id") int id,
-      @JsonKey(name: "nis") String nis,
-      @JsonKey(name: "nisn") String nisn,
-      @JsonKey(name: "name") String name,
-      @JsonKey(name: "photo") String photo,
-      @JsonKey(name: "gender") String gender});
+      @JsonKey(name: "nis") String? nis,
+      @JsonKey(name: "nisn") String? nisn,
+      @JsonKey(name: "name") String? name,
+      @JsonKey(name: "photo") String? photo,
+      @JsonKey(name: "gender") String? gender});
 }
 
 /// @nodoc
@@ -140,37 +140,37 @@ class __$$ProfileModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? nis = null,
-    Object? nisn = null,
-    Object? name = null,
-    Object? photo = null,
-    Object? gender = null,
+    Object? nis = freezed,
+    Object? nisn = freezed,
+    Object? name = freezed,
+    Object? photo = freezed,
+    Object? gender = freezed,
   }) {
     return _then(_$ProfileModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      nis: null == nis
+      nis: freezed == nis
           ? _value.nis
           : nis // ignore: cast_nullable_to_non_nullable
-              as String,
-      nisn: null == nisn
+              as String?,
+      nisn: freezed == nisn
           ? _value.nisn
           : nisn // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
+              as String?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      photo: null == photo
+              as String?,
+      photo: freezed == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
-              as String,
-      gender: null == gender
+              as String?,
+      gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -180,11 +180,11 @@ class __$$ProfileModelImplCopyWithImpl<$Res>
 class _$ProfileModelImpl implements _ProfileModel {
   const _$ProfileModelImpl(
       {@JsonKey(name: "id") required this.id,
-      @JsonKey(name: "nis") required this.nis,
-      @JsonKey(name: "nisn") required this.nisn,
-      @JsonKey(name: "name") required this.name,
-      @JsonKey(name: "photo") required this.photo,
-      @JsonKey(name: "gender") required this.gender});
+      @JsonKey(name: "nis") this.nis,
+      @JsonKey(name: "nisn") this.nisn,
+      @JsonKey(name: "name") this.name,
+      @JsonKey(name: "photo") this.photo,
+      @JsonKey(name: "gender") this.gender});
 
   factory _$ProfileModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProfileModelImplFromJson(json);
@@ -194,19 +194,19 @@ class _$ProfileModelImpl implements _ProfileModel {
   final int id;
   @override
   @JsonKey(name: "nis")
-  final String nis;
+  final String? nis;
   @override
   @JsonKey(name: "nisn")
-  final String nisn;
+  final String? nisn;
   @override
   @JsonKey(name: "name")
-  final String name;
+  final String? name;
   @override
   @JsonKey(name: "photo")
-  final String photo;
+  final String? photo;
   @override
   @JsonKey(name: "gender")
-  final String gender;
+  final String? gender;
 
   @override
   String toString() {
@@ -249,13 +249,12 @@ class _$ProfileModelImpl implements _ProfileModel {
 
 abstract class _ProfileModel implements ProfileModel {
   const factory _ProfileModel(
-          {@JsonKey(name: "id") required final int id,
-          @JsonKey(name: "nis") required final String nis,
-          @JsonKey(name: "nisn") required final String nisn,
-          @JsonKey(name: "name") required final String name,
-          @JsonKey(name: "photo") required final String photo,
-          @JsonKey(name: "gender") required final String gender}) =
-      _$ProfileModelImpl;
+      {@JsonKey(name: "id") required final int id,
+      @JsonKey(name: "nis") final String? nis,
+      @JsonKey(name: "nisn") final String? nisn,
+      @JsonKey(name: "name") final String? name,
+      @JsonKey(name: "photo") final String? photo,
+      @JsonKey(name: "gender") final String? gender}) = _$ProfileModelImpl;
 
   factory _ProfileModel.fromJson(Map<String, dynamic> json) =
       _$ProfileModelImpl.fromJson;
@@ -265,19 +264,19 @@ abstract class _ProfileModel implements ProfileModel {
   int get id;
   @override
   @JsonKey(name: "nis")
-  String get nis;
+  String? get nis;
   @override
   @JsonKey(name: "nisn")
-  String get nisn;
+  String? get nisn;
   @override
   @JsonKey(name: "name")
-  String get name;
+  String? get name;
   @override
   @JsonKey(name: "photo")
-  String get photo;
+  String? get photo;
   @override
   @JsonKey(name: "gender")
-  String get gender;
+  String? get gender;
 
   /// Create a copy of ProfileModel
   /// with the given fields replaced by the non-null parameter values.

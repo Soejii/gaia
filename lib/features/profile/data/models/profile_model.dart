@@ -8,11 +8,11 @@ part 'profile_model.freezed.dart';
 class ProfileModel with _$ProfileModel {
   const factory ProfileModel({
     @JsonKey(name: "id") required int id,
-    @JsonKey(name: "nis") required String nis,
-    @JsonKey(name: "nisn") required String nisn,
-    @JsonKey(name: "name") required String name,
-    @JsonKey(name: "photo") required String photo,
-    @JsonKey(name: "gender") required String gender,
+    @JsonKey(name: "nis")  String? nis,
+    @JsonKey(name: "nisn")  String? nisn,
+    @JsonKey(name: "name")  String? name,
+    @JsonKey(name: "photo")  String? photo,
+    @JsonKey(name: "gender")  String? gender,
   }) = _ProfileModel;
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) =>
@@ -22,8 +22,8 @@ class ProfileModel with _$ProfileModel {
 extension ProfileModelMapper on ProfileModel {
   ProfileEntity toEntity() => ProfileEntity(
         userId: id,
-        name: name,
+        name: name ?? '-',
         className: '-',
-        imgUrl: photo,
+        imgUrl: photo ?? '',
       );
 }
