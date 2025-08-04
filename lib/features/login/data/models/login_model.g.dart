@@ -12,6 +12,9 @@ _$LoginResponseModelImpl _$$LoginResponseModelImplFromJson(
       accessToken: json['access_token'] as String,
       tokenType: json['token_type'] as String,
       expiresIn: json['expires_in'] as String,
+      school: json['school'] == null
+          ? null
+          : SchoolModel.fromJson(json['school'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$LoginResponseModelImplToJson(
@@ -20,4 +23,5 @@ Map<String, dynamic> _$$LoginResponseModelImplToJson(
       'access_token': instance.accessToken,
       'token_type': instance.tokenType,
       'expires_in': instance.expiresIn,
+      'school': instance.school,
     };

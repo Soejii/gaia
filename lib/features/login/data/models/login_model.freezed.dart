@@ -26,6 +26,7 @@ mixin _$LoginResponseModel {
   String get tokenType => throw _privateConstructorUsedError;
   @JsonKey(name: 'expires_in')
   String get expiresIn => throw _privateConstructorUsedError;
+  SchoolModel? get school => throw _privateConstructorUsedError;
 
   /// Serializes this LoginResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,7 +47,10 @@ abstract class $LoginResponseModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'access_token') String accessToken,
       @JsonKey(name: 'token_type') String tokenType,
-      @JsonKey(name: 'expires_in') String expiresIn});
+      @JsonKey(name: 'expires_in') String expiresIn,
+      SchoolModel? school});
+
+  $SchoolModelCopyWith<$Res>? get school;
 }
 
 /// @nodoc
@@ -67,6 +71,7 @@ class _$LoginResponseModelCopyWithImpl<$Res, $Val extends LoginResponseModel>
     Object? accessToken = null,
     Object? tokenType = null,
     Object? expiresIn = null,
+    Object? school = freezed,
   }) {
     return _then(_value.copyWith(
       accessToken: null == accessToken
@@ -81,7 +86,25 @@ class _$LoginResponseModelCopyWithImpl<$Res, $Val extends LoginResponseModel>
           ? _value.expiresIn
           : expiresIn // ignore: cast_nullable_to_non_nullable
               as String,
+      school: freezed == school
+          ? _value.school
+          : school // ignore: cast_nullable_to_non_nullable
+              as SchoolModel?,
     ) as $Val);
+  }
+
+  /// Create a copy of LoginResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SchoolModelCopyWith<$Res>? get school {
+    if (_value.school == null) {
+      return null;
+    }
+
+    return $SchoolModelCopyWith<$Res>(_value.school!, (value) {
+      return _then(_value.copyWith(school: value) as $Val);
+    });
   }
 }
 
@@ -96,7 +119,11 @@ abstract class _$$LoginResponseModelImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'access_token') String accessToken,
       @JsonKey(name: 'token_type') String tokenType,
-      @JsonKey(name: 'expires_in') String expiresIn});
+      @JsonKey(name: 'expires_in') String expiresIn,
+      SchoolModel? school});
+
+  @override
+  $SchoolModelCopyWith<$Res>? get school;
 }
 
 /// @nodoc
@@ -115,6 +142,7 @@ class __$$LoginResponseModelImplCopyWithImpl<$Res>
     Object? accessToken = null,
     Object? tokenType = null,
     Object? expiresIn = null,
+    Object? school = freezed,
   }) {
     return _then(_$LoginResponseModelImpl(
       accessToken: null == accessToken
@@ -129,6 +157,10 @@ class __$$LoginResponseModelImplCopyWithImpl<$Res>
           ? _value.expiresIn
           : expiresIn // ignore: cast_nullable_to_non_nullable
               as String,
+      school: freezed == school
+          ? _value.school
+          : school // ignore: cast_nullable_to_non_nullable
+              as SchoolModel?,
     ));
   }
 }
@@ -139,7 +171,8 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
   const _$LoginResponseModelImpl(
       {@JsonKey(name: 'access_token') required this.accessToken,
       @JsonKey(name: 'token_type') required this.tokenType,
-      @JsonKey(name: 'expires_in') required this.expiresIn});
+      @JsonKey(name: 'expires_in') required this.expiresIn,
+      this.school});
 
   factory _$LoginResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginResponseModelImplFromJson(json);
@@ -153,10 +186,12 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
   @override
   @JsonKey(name: 'expires_in')
   final String expiresIn;
+  @override
+  final SchoolModel? school;
 
   @override
   String toString() {
-    return 'LoginResponseModel(accessToken: $accessToken, tokenType: $tokenType, expiresIn: $expiresIn)';
+    return 'LoginResponseModel(accessToken: $accessToken, tokenType: $tokenType, expiresIn: $expiresIn, school: $school)';
   }
 
   @override
@@ -169,13 +204,14 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
             (identical(other.tokenType, tokenType) ||
                 other.tokenType == tokenType) &&
             (identical(other.expiresIn, expiresIn) ||
-                other.expiresIn == expiresIn));
+                other.expiresIn == expiresIn) &&
+            (identical(other.school, school) || other.school == school));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, accessToken, tokenType, expiresIn);
+      Object.hash(runtimeType, accessToken, tokenType, expiresIn, school);
 
   /// Create a copy of LoginResponseModel
   /// with the given fields replaced by the non-null parameter values.
@@ -196,10 +232,10 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
 
 abstract class _LoginResponseModel implements LoginResponseModel {
   const factory _LoginResponseModel(
-          {@JsonKey(name: 'access_token') required final String accessToken,
-          @JsonKey(name: 'token_type') required final String tokenType,
-          @JsonKey(name: 'expires_in') required final String expiresIn}) =
-      _$LoginResponseModelImpl;
+      {@JsonKey(name: 'access_token') required final String accessToken,
+      @JsonKey(name: 'token_type') required final String tokenType,
+      @JsonKey(name: 'expires_in') required final String expiresIn,
+      final SchoolModel? school}) = _$LoginResponseModelImpl;
 
   factory _LoginResponseModel.fromJson(Map<String, dynamic> json) =
       _$LoginResponseModelImpl.fromJson;
@@ -213,6 +249,8 @@ abstract class _LoginResponseModel implements LoginResponseModel {
   @override
   @JsonKey(name: 'expires_in')
   String get expiresIn;
+  @override
+  SchoolModel? get school;
 
   /// Create a copy of LoginResponseModel
   /// with the given fields replaced by the non-null parameter values.

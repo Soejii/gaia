@@ -19,6 +19,7 @@ mixin _$LoginEntity {
   String get token => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get expiresIn => throw _privateConstructorUsedError;
+  SchoolEntity? get schoolEntity => throw _privateConstructorUsedError;
 
   /// Create a copy of LoginEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,13 @@ abstract class $LoginEntityCopyWith<$Res> {
           LoginEntity value, $Res Function(LoginEntity) then) =
       _$LoginEntityCopyWithImpl<$Res, LoginEntity>;
   @useResult
-  $Res call({String token, String type, String expiresIn});
+  $Res call(
+      {String token,
+      String type,
+      String expiresIn,
+      SchoolEntity? schoolEntity});
+
+  $SchoolEntityCopyWith<$Res>? get schoolEntity;
 }
 
 /// @nodoc
@@ -54,6 +61,7 @@ class _$LoginEntityCopyWithImpl<$Res, $Val extends LoginEntity>
     Object? token = null,
     Object? type = null,
     Object? expiresIn = null,
+    Object? schoolEntity = freezed,
   }) {
     return _then(_value.copyWith(
       token: null == token
@@ -68,7 +76,25 @@ class _$LoginEntityCopyWithImpl<$Res, $Val extends LoginEntity>
           ? _value.expiresIn
           : expiresIn // ignore: cast_nullable_to_non_nullable
               as String,
+      schoolEntity: freezed == schoolEntity
+          ? _value.schoolEntity
+          : schoolEntity // ignore: cast_nullable_to_non_nullable
+              as SchoolEntity?,
     ) as $Val);
+  }
+
+  /// Create a copy of LoginEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SchoolEntityCopyWith<$Res>? get schoolEntity {
+    if (_value.schoolEntity == null) {
+      return null;
+    }
+
+    return $SchoolEntityCopyWith<$Res>(_value.schoolEntity!, (value) {
+      return _then(_value.copyWith(schoolEntity: value) as $Val);
+    });
   }
 }
 
@@ -80,7 +106,14 @@ abstract class _$$LoginEntityImplCopyWith<$Res>
       __$$LoginEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String token, String type, String expiresIn});
+  $Res call(
+      {String token,
+      String type,
+      String expiresIn,
+      SchoolEntity? schoolEntity});
+
+  @override
+  $SchoolEntityCopyWith<$Res>? get schoolEntity;
 }
 
 /// @nodoc
@@ -99,6 +132,7 @@ class __$$LoginEntityImplCopyWithImpl<$Res>
     Object? token = null,
     Object? type = null,
     Object? expiresIn = null,
+    Object? schoolEntity = freezed,
   }) {
     return _then(_$LoginEntityImpl(
       token: null == token
@@ -113,6 +147,10 @@ class __$$LoginEntityImplCopyWithImpl<$Res>
           ? _value.expiresIn
           : expiresIn // ignore: cast_nullable_to_non_nullable
               as String,
+      schoolEntity: freezed == schoolEntity
+          ? _value.schoolEntity
+          : schoolEntity // ignore: cast_nullable_to_non_nullable
+              as SchoolEntity?,
     ));
   }
 }
@@ -121,7 +159,10 @@ class __$$LoginEntityImplCopyWithImpl<$Res>
 
 class _$LoginEntityImpl implements _LoginEntity {
   const _$LoginEntityImpl(
-      {required this.token, required this.type, required this.expiresIn});
+      {required this.token,
+      required this.type,
+      required this.expiresIn,
+      this.schoolEntity});
 
   @override
   final String token;
@@ -129,10 +170,12 @@ class _$LoginEntityImpl implements _LoginEntity {
   final String type;
   @override
   final String expiresIn;
+  @override
+  final SchoolEntity? schoolEntity;
 
   @override
   String toString() {
-    return 'LoginEntity(token: $token, type: $type, expiresIn: $expiresIn)';
+    return 'LoginEntity(token: $token, type: $type, expiresIn: $expiresIn, schoolEntity: $schoolEntity)';
   }
 
   @override
@@ -143,11 +186,14 @@ class _$LoginEntityImpl implements _LoginEntity {
             (identical(other.token, token) || other.token == token) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.expiresIn, expiresIn) ||
-                other.expiresIn == expiresIn));
+                other.expiresIn == expiresIn) &&
+            (identical(other.schoolEntity, schoolEntity) ||
+                other.schoolEntity == schoolEntity));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, token, type, expiresIn);
+  int get hashCode =>
+      Object.hash(runtimeType, token, type, expiresIn, schoolEntity);
 
   /// Create a copy of LoginEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -162,7 +208,8 @@ abstract class _LoginEntity implements LoginEntity {
   const factory _LoginEntity(
       {required final String token,
       required final String type,
-      required final String expiresIn}) = _$LoginEntityImpl;
+      required final String expiresIn,
+      final SchoolEntity? schoolEntity}) = _$LoginEntityImpl;
 
   @override
   String get token;
@@ -170,6 +217,8 @@ abstract class _LoginEntity implements LoginEntity {
   String get type;
   @override
   String get expiresIn;
+  @override
+  SchoolEntity? get schoolEntity;
 
   /// Create a copy of LoginEntity
   /// with the given fields replaced by the non-null parameter values.

@@ -25,7 +25,6 @@ class RefreshTokenInterceptor extends Interceptor {
         final refreshed = await _refreshToken();               // call /refresh
         await _storage.saveTokens(
           access: refreshed.access,
-          refresh: refreshed.refresh,
         );
       } catch (_) {
         await _storage.clear();                                // force logout
@@ -50,17 +49,15 @@ class RefreshTokenInterceptor extends Interceptor {
   }
 
   Future<_TokenPair> _refreshToken() async {
-    final refresh = await _storage.readRefreshToken();
-    final res = await _dio.post('/auth/refresh', data: {'refresh_token': refresh});
+    final refresh = await _storage.readAccessToken();
+    final res = await _dio.get('refresh', data: {'refresh_token': refresh});
     return _TokenPair(
       access: res.data['access_token'] as String,
-      refresh: res.data['refresh_token'] as String,
     );
   }
 }
 
 class _TokenPair {
-  _TokenPair({required this.access, required this.refresh});
+  _TokenPair({required this.access});
   final String access;
-  final String refresh;
 }
