@@ -1,4 +1,5 @@
 import 'package:gaia/features/login/presentation/providers/login_providers.dart';
+import 'package:gaia/shared/core/infrastructure/auth/auth_state_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'login_controller.g.dart';
@@ -19,6 +20,10 @@ class LoginController extends _$LoginController {
         final usecase = ref.read(postLoginProvider);
         await usecase.login(username, password);
       },
+    );
+
+    state.whenData(
+      (value) => ref.read(authStateProvider.notifier).setAuthenticated(),
     );
   }
 }
