@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/profile/presentation/providers/profile_controller.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class UserInfoColumn extends StatelessWidget {
+class UserInfoColumn extends ConsumerWidget {
   const UserInfoColumn({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userInfo = ref.watch(profileControllerProvider);
     return Positioned(
       top: 75,
       left: 100.w,
@@ -16,7 +19,7 @@ class UserInfoColumn extends StatelessWidget {
         children: [
           Text(
             // User name
-            'RAFI MAHADIKA SUJIANTO',
+            userInfo.valueOrNull?.name ?? '-',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -31,7 +34,7 @@ class UserInfoColumn extends StatelessWidget {
           ),
           Text(
             // School Name
-            'SMK TELKOM MALANG',
+            '',
             style: TextStyle(
               fontFamily: 'OpenSans',
               color: Colors.white,

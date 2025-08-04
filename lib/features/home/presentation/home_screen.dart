@@ -7,13 +7,12 @@ import 'package:gaia/features/home/presentation/widgets/home_header_widget.dart'
 import 'package:gaia/features/home/presentation/widgets/newest_exam_widget.dart';
 import 'package:gaia/features/home/presentation/widgets/newest_quiz_widget.dart';
 import 'package:gaia/features/home/presentation/widgets/rubric_entertainment_widget.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeScreen extends HookConsumerWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,

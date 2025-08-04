@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/profile/presentation/providers/profile_controller.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
-class UserAvatarWidget extends StatelessWidget {
-  const UserAvatarWidget({super.key, required this.imgurl});
-  final String imgurl;
+class UserAvatarWidget extends ConsumerWidget {
+  const UserAvatarWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final imgUrl = ref.watch(
+      profileControllerProvider.select(
+        (value) => value.valueOrNull?.imgUrl,
+      ),
+    );
     return Positioned(
       top: 75,
       left: 25.w,
@@ -20,8 +26,7 @@ class UserAvatarWidget extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         child: CircleAvatar(
-          foregroundImage:
-              NetworkImage(imgurl),
+          foregroundImage: NetworkImage(imgUrl ?? ''),
           backgroundImage: AssetImage(
             AssetsHelper.imgProfilePlaceholder,
           ),
