@@ -5,13 +5,13 @@ import 'package:gaia/shared/core/infrastructure/auth/auth_local_datasource.dart'
 
 class LoginRepositoryImpl implements LoginRepository {
   final LoginRemoteDatasource _datasource;
-  final AuthLocalDatasource _local;
-  LoginRepositoryImpl(this._datasource, this._local);
+  final AuthLocalDatasource _localDatasource;
+  LoginRepositoryImpl(this._datasource, this._localDatasource);
 
   @override
   Future<LoginEntity> login(String username, String password) async {
     final entity = await _datasource.login(username, password);
-    await _local.saveTokens(access: entity.token);
+    await _localDatasource.saveTokens(access: entity.token);
     return entity;
   }
 }

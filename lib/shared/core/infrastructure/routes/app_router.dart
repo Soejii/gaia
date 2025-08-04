@@ -16,12 +16,15 @@ part 'app_router.g.dart';
 
 @riverpod
 GoRouter appRouter(Ref ref) {
-  final auth = ref.watch(authStateProvider);
+  final authAsync = ref.watch(authStateProvider);
 
   return GoRouter(
     initialLocation: RoutePath.login,
     redirect: (context, state) {
-      final loggedIn = auth == AuthStatus.authenticated;
+      if (authAsync.isLoading) return null;
+      if (authAsync.hasError) return RoutePath.login;
+
+      final loggedIn = authAsync.value == AuthStatus.authenticated;
       final atLogin = state.matchedLocation == RoutePath.login;
 
       if (!loggedIn && !atLogin) return RoutePath.login;
@@ -46,7 +49,8 @@ GoRouter appRouter(Ref ref) {
               GoRoute(
                 path: RoutePath.profile,
                 name: 'profile',
-                pageBuilder: (_, __) => const MaterialPage(child: ProfileScreen()),
+                pageBuilder: (_, __) =>
+                    const MaterialPage(child: ProfileScreen()),
               ),
             ],
           ),
