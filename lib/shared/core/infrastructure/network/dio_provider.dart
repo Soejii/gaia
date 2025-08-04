@@ -29,7 +29,11 @@ Dio dio(Ref ref) {
   final dio = ApiClient.build(baseUrl: baseUrl,token: null);
   dio.interceptors.addAll([
     AuthInterceptor(storage),
-    RefreshTokenInterceptor(dio, storage),
+    RefreshTokenInterceptor(
+      dio: dio,
+      storage: ref.read(authLocalDatasourceProvider),
+      read: ref
+    ),
   ]);
   return dio;
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:gaia/shared/core/infrastructure/network/dio_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -10,13 +12,25 @@ class AuthState extends _$AuthState {
   @override
   Future<AuthStatus> build() async {
     final storage = ref.read(authLocalDatasourceProvider);
-    final token = await storage.readAccessToken();
-    return token == null
-        ? AuthStatus.unauthenticated
-        : AuthStatus.authenticated;
+    final dio = ref.read(dioProvider);
+
+    final cached = await storage.readAccessToken();
+    if (cached == null) return AuthStatus.unauthenticated;
+
+    try {
+      final res =
+          await dio.get('/refresh-token', data: {'refresh_token': cached});
+      await storage.saveTokens(access: res.data['data']['access_token']);
+      log('SAVED');
+      return AuthStatus.authenticated;
+    } catch (_) {
+      await storage.clear();
+      log('CLEARED');
+      return AuthStatus.unauthenticated;
+    }
   }
 
-  Future<void> setAuthenticated(String token) async {
+  Future<void> setAuthenticated() async {
     state = const AsyncData(AuthStatus.authenticated);
   }
 

@@ -1,18 +1,28 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gaia/shared/core/infrastructure/auth/auth_local_datasource.dart';
+import 'package:gaia/shared/core/infrastructure/auth/auth_state_provider.dart';
 
 class RefreshTokenInterceptor extends Interceptor {
-  RefreshTokenInterceptor(this._dio, this._storage);
+  RefreshTokenInterceptor({
+    required Dio dio,
+    required AuthLocalDatasource storage,
+    required Ref read,
+  })  : _dio = dio,
+        _storage = storage,
+        _ref = read;
 
   final Dio _dio;
   final AuthLocalDatasource _storage;
+  final Ref _ref;
 
   bool _refreshing = false;
   Completer<void>? _refreshCompleter;
 
   @override
-  Future<void> onError(DioException err, ErrorInterceptorHandler handler) async {
+  Future<void> onError(
+      DioException err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode != 401 ||
         err.requestOptions.extra['retry'] == true) {
       return super.onError(err, handler);
@@ -22,18 +32,20 @@ class RefreshTokenInterceptor extends Interceptor {
       _refreshing = true;
       _refreshCompleter = Completer();
       try {
-        final refreshed = await _refreshToken();               // call /refresh
+        final refreshed = await _refreshToken();
         await _storage.saveTokens(
-          access: refreshed.access,
+          access: refreshed,
         );
+        _ref.read(authStateProvider.notifier).setAuthenticated();
       } catch (_) {
-        await _storage.clear();                                // force logout
+        _ref.read(authStateProvider.notifier).logout();
+        await _storage.clear();
       } finally {
         _refreshing = false;
         _refreshCompleter?.complete();
       }
     } else {
-      await _refreshCompleter?.future;                         // wait turn
+      await _refreshCompleter?.future;
     }
 
     // retry original
@@ -48,16 +60,8 @@ class RefreshTokenInterceptor extends Interceptor {
     }
   }
 
-  Future<_TokenPair> _refreshToken() async {
-    final refresh = await _storage.readAccessToken();
-    final res = await _dio.get('refresh', data: {'refresh_token': refresh});
-    return _TokenPair(
-      access: res.data['access_token'] as String,
-    );
+  Future<String> _refreshToken() async {
+    final res = await _dio.get('/refresh-token');
+    return res.data['data']['access_token'] as String;
   }
-}
-
-class _TokenPair {
-  _TokenPair({required this.access});
-  final String access;
 }
