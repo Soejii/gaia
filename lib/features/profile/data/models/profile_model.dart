@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gaia/features/profile/domain/entities/profile_entity.dart';
 
 part 'profile_model.g.dart';
 part 'profile_model.freezed.dart';
@@ -19,11 +18,4 @@ class ProfileModel with _$ProfileModel {
       _$ProfileModelFromJson(json);
 }
 
-extension ProfileModelMapper on ProfileModel {
-  ProfileEntity toEntity() => ProfileEntity(
-        userId: id,
-        name: name ?? '-',
-        className: '-',
-        imgUrl: photo ?? '',
-      );
-}
+

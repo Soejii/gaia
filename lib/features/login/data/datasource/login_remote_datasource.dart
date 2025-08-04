@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:gaia/features/login/data/mappers/login_mapper.dart';
 import 'package:gaia/features/login/data/models/login_model.dart';
 import 'package:gaia/features/login/domain/entities/login_entity.dart';
 

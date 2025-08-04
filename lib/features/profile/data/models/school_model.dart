@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gaia/features/profile/domain/entities/school_entity.dart';
 
 part 'school_model.freezed.dart';
 part 'school_model.g.dart';
@@ -26,19 +25,3 @@ class SchoolModel with _$SchoolModel {
       _$SchoolModelFromJson(json);
 }
 
-extension SchoolEntityMapper on SchoolModel {
-  SchoolEntity toEntity() => SchoolEntity(
-        id: id,
-        name: name ?? '-',
-        address: address ?? '-',
-        description: description ?? '-',
-        email: email ?? '-',
-        facebook: facebook ?? '-',
-        instagram: instagram ?? '-',
-        phone: phone ?? '-',
-        photo: photo ?? '-',
-        registrationNumber: registrationNumber ?? '-',
-        website: website ?? '-',
-        youtube: youtube ?? '-',
-      );
-}

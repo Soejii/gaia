@@ -2,7 +2,6 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gaia/features/profile/data/models/school_model.dart';
-import '../../domain/entities/login_entity.dart';
 
 part 'login_model.freezed.dart';
 part 'login_model.g.dart';
@@ -18,15 +17,4 @@ class LoginResponseModel with _$LoginResponseModel {
 
   factory LoginResponseModel.fromJson(Map<String, dynamic> json) =>
       _$LoginResponseModelFromJson(json);
-}
-
-extension LoginResponseMapper on LoginResponseModel {
-  LoginEntity toEntity() {
-    return LoginEntity(
-      token: accessToken,
-      type: tokenType,
-      expiresIn: expiresIn,
-      schoolEntity: school?.toEntity(),
-    );
-  }
 }
