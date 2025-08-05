@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gaia/features/profile/domain/entities/school_entity.dart';
+import 'package:gaia/features/school/domain/entities/school_entity.dart';
 
 part 'login_entity.freezed.dart';
 

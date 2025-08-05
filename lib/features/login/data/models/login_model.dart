@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gaia/features/profile/data/models/school_model.dart';
+import 'package:gaia/features/school/data/models/school_model.dart';
 
 part 'login_model.freezed.dart';
 part 'login_model.g.dart';
