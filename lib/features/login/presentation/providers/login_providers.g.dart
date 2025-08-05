@@ -43,21 +43,21 @@ final loginRepositoryProvider = AutoDisposeProvider<LoginRepository>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef LoginRepositoryRef = AutoDisposeProviderRef<LoginRepository>;
-String _$postLoginHash() => r'dac7b225673e29cb45e55e06dd98e3b47b2f1ee5';
+String _$loginUsecaseHash() => r'a7112ebb3991b603828956421053e8ea47336842';
 
-/// See also [postLogin].
-@ProviderFor(postLogin)
-final postLoginProvider = AutoDisposeProvider<PostLogin>.internal(
-  postLogin,
-  name: r'postLoginProvider',
+/// See also [loginUsecase].
+@ProviderFor(loginUsecase)
+final loginUsecaseProvider = AutoDisposeProvider<LoginUsecase>.internal(
+  loginUsecase,
+  name: r'loginUsecaseProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$postLoginHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$loginUsecaseHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef PostLoginRef = AutoDisposeProviderRef<PostLogin>;
+typedef LoginUsecaseRef = AutoDisposeProviderRef<LoginUsecase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

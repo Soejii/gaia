@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gaia/features/login/data/datasource/login_remote_datasource.dart';
 import 'package:gaia/features/login/data/login_repository_impl.dart';
 import 'package:gaia/features/login/domain/login_repository.dart';
-import 'package:gaia/features/login/domain/usecase/post_login.dart';
+import 'package:gaia/features/login/domain/usecase/login_usecase.dart';
 import 'package:gaia/shared/core/infrastructure/network/dio_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -26,6 +26,6 @@ LoginRepository loginRepository(Ref ref) {
 }
 
 @riverpod
-PostLogin postLogin(Ref ref) {
-  return PostLogin(ref.watch(loginRepositoryProvider));
+LoginUsecase loginUsecase(Ref ref) {
+  return LoginUsecase(ref.watch(loginRepositoryProvider));
 }

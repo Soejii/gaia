@@ -6,6 +6,7 @@ import 'package:gaia/features/login/presentation/widgets/password_form.dart';
 import 'package:gaia/features/login/presentation/widgets/username_form.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
+import 'package:gaia/shared/core/types/failure.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -19,10 +20,30 @@ class LoginScreen extends HookConsumerWidget {
 
     final loginController = ref.watch(loginControllerProvider);
 
+    ref.listen(
+      loginControllerProvider,
+      (previous, next) {
+        next.whenOrNull(
+          error: (error, stackTrace) {
+            if (error is UnauthorizedFailure) {
+              print('ss');
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    'Username/Password Salah',
+                  ),
+                ),
+              );
+            }
+          },
+        );
+      },
+    );
+
     return Scaffold(
       backgroundColor: Colors.white,
-      body: loginController.when(
-        data: (_) => ListView(
+      body: loginController.maybeWhen(
+        orElse: () => ListView(
           children: [
             SizedBox(height: 130.h),
             Center(
@@ -57,8 +78,8 @@ class LoginScreen extends HookConsumerWidget {
                       passwordController.text.isEmpty) {
                   } else {
                     ref.read(loginControllerProvider.notifier).login(
-                          username: usernameController.text.trim(),
-                          password: passwordController.text.trim(),
+                          usernameController.text.trim(),
+                          passwordController.text.trim(),
                         );
                   }
                 },
@@ -91,9 +112,6 @@ class LoginScreen extends HookConsumerWidget {
               ),
             ),
           ],
-        ),
-        error: (error, stackTrace) => Center(
-          child: Text('Login failed: $error , $stackTrace'),
         ),
         loading: () => const Center(
           child: CircularProgressIndicator(),
