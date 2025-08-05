@@ -9,6 +9,7 @@ part 'school_controller.g.dart';
 class SchoolController extends _$SchoolController {
   @override
   Future<Result<SchoolEntity>> build() {
+    ref.keepAlive();
     final usecase = ref.read(getSchoolUseCaseProvider);
     return usecase.getSchool();
   }

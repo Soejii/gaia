@@ -26,11 +26,18 @@ class LoginScreen extends HookConsumerWidget {
         next.whenOrNull(
           error: (error, stackTrace) {
             if (error is UnauthorizedFailure) {
-              print('ss');
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Text(
                     'Username/Password Salah',
+                  ),
+                ),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    '$error',
                   ),
                 ),
               );

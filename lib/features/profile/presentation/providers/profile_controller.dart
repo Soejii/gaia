@@ -6,7 +6,8 @@ part 'profile_controller.g.dart';
 @riverpod
 class ProfileController extends _$ProfileController {
   @override
-  Future<ProfileEntity> build()  {
+  Future<ProfileEntity> build() {
+    ref.keepAlive();
     final usecase = ref.read(getProfileProvider);
     return usecase();
   }
