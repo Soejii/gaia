@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/profile/presentation/providers/profile_controller.dart';
+import 'package:gaia/features/school/presentation/providers/school_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class UserInfoColumn extends ConsumerWidget {
@@ -8,7 +9,25 @@ class UserInfoColumn extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userInfo = ref.watch(profileControllerProvider);
+    final userAsync = ref.watch(profileControllerProvider);
+    final schoolAsync = ref.watch(schoolControllerProvider);
+
+    // Extract user name safely
+    final userName = userAsync.when(
+      data: (u) => u.name,
+      loading: () => '…',
+      error: (_, __) => '-',
+    );
+
+    // Extract school name, unwrapping Result
+    final schoolName = schoolAsync.when(
+      data: (result) => result.fold(
+        (err) => '---',
+        (data) => data.name ?? '-',
+      ),
+      loading: () => '…',
+      error: (_, __) => '-',
+    );
     return Positioned(
       top: 75,
       left: 100.w,
@@ -19,7 +38,7 @@ class UserInfoColumn extends ConsumerWidget {
         children: [
           Text(
             // User name
-            userInfo.valueOrNull?.name ?? '-',
+            userName,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -34,7 +53,7 @@ class UserInfoColumn extends ConsumerWidget {
           ),
           Text(
             // School Name
-            '',
+            schoolName,
             style: TextStyle(
               fontFamily: 'OpenSans',
               color: Colors.white,
