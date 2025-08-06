@@ -1,21 +1,29 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class SchoolEntity {
+  final int id;
+  final String name;
+  final String photo;
+  final String address;
+  final String phone;
+  final String email;
+  final String website;
+  final String facebook;
+  final String instagram;
+  final String youtube;
+  final String description;
+  final String registrationNumber;
 
-part 'school_entity.freezed.dart';
-
-@freezed
-class SchoolEntity with _$SchoolEntity {
-  const factory SchoolEntity({
-    required int id,
-    String? name,
-    String? photo,
-    String? address,
-    String? phone,
-    String? email,
-    String? website,
-    String? facebook,
-    String? instagram,
-    String? youtube,
-    String? description,
-    String? registrationNumber,
-  }) = _SchoolEntity;
+  SchoolEntity({
+    required this.id,
+    required this.name,
+    required this.photo,
+    required this.address,
+    required this.phone,
+    required this.email,
+    required this.website,
+    required this.facebook,
+    required this.instagram,
+    required this.youtube,
+    required this.description,
+    required this.registrationNumber,
+  });
 }

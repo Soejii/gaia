@@ -1,13 +1,13 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class ProfileEntity {
+  final int userId;
+  final String name;
+  final String className;
+  final String imgUrl;
 
-part 'profile_entity.freezed.dart';
-
-@freezed
-class ProfileEntity with _$ProfileEntity {
-  const factory ProfileEntity({
-    required int userId,
-    required String name,
-    required String className,
-    required String imgUrl,
-  }) = _ProfileEntity;
+  ProfileEntity({
+    required this.userId,
+    required this.name,
+    required this.className,
+    required this.imgUrl,
+  });
 }
