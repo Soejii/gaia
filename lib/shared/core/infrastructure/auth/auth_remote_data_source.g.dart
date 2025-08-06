@@ -1,26 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'school_controller.dart';
+part of 'auth_remote_data_source.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$schoolControllerHash() => r'50b478113c74cc52ddaa81980063b91115edcd1a';
+String _$authRemoteDataSourceHash() =>
+    r'111774415636cd6b737e8306457009f807e27324';
 
-/// See also [SchoolController].
-@ProviderFor(SchoolController)
-final schoolControllerProvider =
-    AutoDisposeAsyncNotifierProvider<SchoolController, SchoolEntity>.internal(
-  SchoolController.new,
-  name: r'schoolControllerProvider',
+/// See also [authRemoteDataSource].
+@ProviderFor(authRemoteDataSource)
+final authRemoteDataSourceProvider =
+    AutoDisposeProvider<AuthRemoteDataSource>.internal(
+  authRemoteDataSource,
+  name: r'authRemoteDataSourceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$schoolControllerHash,
+      : _$authRemoteDataSourceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SchoolController = AutoDisposeAsyncNotifier<SchoolEntity>;
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef AuthRemoteDataSourceRef = AutoDisposeProviderRef<AuthRemoteDataSource>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

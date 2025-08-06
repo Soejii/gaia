@@ -23,3 +23,13 @@ class Err<T> extends Result<T> {
   @override
   R fold<R>(R Function(Failure) onErr, R Function(T) onOk) => onErr(failure);
 }
+
+Future<Result<T>> guard<T>(Future<T> Function() task) async {
+  try {
+    final value = await task();
+    return Ok(value);
+  } catch (e, st) {
+    if (e is Failure) return Err(e);
+    return Err(UnknownFailure(e, stackTrace: st));
+  }
+}

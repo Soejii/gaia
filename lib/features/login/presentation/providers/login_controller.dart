@@ -1,5 +1,6 @@
 import 'package:gaia/features/login/domain/entities/login_entity.dart';
 import 'package:gaia/features/login/presentation/providers/login_providers.dart';
+import 'package:gaia/shared/core/infrastructure/auth/auth_local_data_source.dart';
 import 'package:gaia/shared/core/infrastructure/auth/auth_state_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -18,7 +19,8 @@ class LoginController extends _$LoginController {
     res.fold(
       (failure) => state = AsyncError(failure, StackTrace.current),
       (entity) {
-        ref.read(authStateProvider.notifier).setAuthenticated();
+        ref.read(authStateProvider.notifier).setAuthenticated(entity.token);
+        ref.read(authLocalDataSourceProvider).saveTokens(access: entity.token);
         state = AsyncData(entity);
       },
     );

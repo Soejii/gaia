@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/profile/presentation/providers/profile_controller.dart';
 import 'package:gaia/features/school/presentation/providers/school_controller.dart';
+import 'package:gaia/shared/core/types/failure.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class UserInfoColumn extends ConsumerWidget {
@@ -19,15 +20,6 @@ class UserInfoColumn extends ConsumerWidget {
       error: (_, __) => '-',
     );
 
-    // Extract school name, unwrapping Result
-    final schoolName = schoolAsync.when(
-      data: (result) => result.fold(
-        (err) => '---',
-        (data) => data.name ?? '-',
-      ),
-      loading: () => '…',
-      error: (_, __) => '-',
-    );
     return Positioned(
       top: 75,
       left: 100.w,
@@ -52,8 +44,11 @@ class UserInfoColumn extends ConsumerWidget {
             height: 2.h,
           ),
           Text(
-            // School Name
-            schoolName,
+            schoolAsync.when(
+              data: (data) => data.name,
+              error: (error, stackTrace) => error is NetworkFailure ? 'Offline' : 'Gagal Mengambil Data',
+              loading: () => '...',
+            ),
             style: TextStyle(
               fontFamily: 'OpenSans',
               color: Colors.white,

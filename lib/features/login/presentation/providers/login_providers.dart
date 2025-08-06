@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gaia/features/login/data/datasource/login_remote_datasource.dart';
+import 'package:gaia/features/login/data/datasource/login_remote_data_source.dart';
 import 'package:gaia/features/login/data/login_repository_impl.dart';
 import 'package:gaia/features/login/domain/login_repository.dart';
 import 'package:gaia/features/login/domain/usecase/login_usecase.dart';
@@ -9,20 +9,15 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'login_providers.g.dart';
 
 @riverpod
-LoginRemoteDatasource loginRemoteDatasource(Ref ref) {
-  return LoginRemoteDatasource(ref.watch(dioProvider));
+LoginRemoteDataSource loginRemoteDatasource(Ref ref) {
+  return LoginRemoteDataSource(ref.watch(dioProvider));
 }
 
 @riverpod
 LoginRepository loginRepository(Ref ref) {
-  return LoginRepositoryImpl(
-    ref.watch(
-      loginRemoteDatasourceProvider,
-    ),
-    ref.watch(
-      authLocalDatasourceProvider,
-    ),
-  );
+  return LoginRepositoryImpl(ref.watch(
+    loginRemoteDatasourceProvider,
+  ));
 }
 
 @riverpod

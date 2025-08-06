@@ -27,5 +27,6 @@ class CancelledFailure extends Failure {
 
 class UnknownFailure extends Failure {
   final Object error;
-  const UnknownFailure(this.error);
+  final StackTrace stackTrace;
+  const UnknownFailure(this.error, {required this.stackTrace});
 }

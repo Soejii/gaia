@@ -1,42 +1,37 @@
-import 'dart:developer';
-
-import 'package:gaia/shared/core/infrastructure/network/dio_provider.dart';
+import 'package:gaia/shared/core/infrastructure/auth/auth_remote_data_source.dart';
+import 'package:gaia/shared/core/infrastructure/auth/auth_session_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 part 'auth_state_provider.g.dart';
 
-enum AuthStatus { authenticated, unauthenticated }
+enum AuthStatus { unauthenticated, authenticated }
 
 @riverpod
 class AuthState extends _$AuthState {
   @override
   Future<AuthStatus> build() async {
-    final storage = ref.read(authLocalDatasourceProvider);
-    final dio = ref.read(dioProvider);
+    final session = ref.read(authSessionProvider);
+    final remote = ref.read(authRemoteDataSourceProvider);
 
-    final cached = await storage.readAccessToken();
+    final cached = await session.readToken();
     if (cached == null) return AuthStatus.unauthenticated;
 
     try {
-      final res =
-          await dio.get('/refresh-token', data: {'refresh_token': cached});
-      await storage.saveTokens(access: res.data['data']['access_token']);
-      log('SAVED');
+      final newToken = await remote.refresh(cached);
+      await session.saveToken(newToken);
       return AuthStatus.authenticated;
-    } catch (_) {
-      await storage.clear();
-      log('CLEARED');
+    } catch (e) {
+      await session.clear();
       return AuthStatus.unauthenticated;
     }
   }
 
-  Future<void> setAuthenticated() async {
+  Future<void> setAuthenticated(String token) async {
+    await ref.read(authSessionProvider).saveToken(token);
     state = const AsyncData(AuthStatus.authenticated);
   }
 
   Future<void> logout() async {
-    final storage = ref.read(authLocalDatasourceProvider);
-    storage.clear();
+    await ref.read(authSessionProvider).clear();
     state = const AsyncData(AuthStatus.unauthenticated);
   }
 }

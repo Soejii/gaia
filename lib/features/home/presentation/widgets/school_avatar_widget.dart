@@ -9,32 +9,30 @@ class SchoolAvatarWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final schoolInfo = ref.watch(schoolControllerProvider);
-
-    final imgUrl = schoolInfo.when(
-      data: (data) => data.fold(
-        (err) => '',
-        (data) => data.photo ?? '',
-      ),
-      error: (error, stackTrace) => '',
-      loading: () => '',
-    );
+    final schoolAsync = ref.watch(schoolControllerProvider);
 
     return Positioned(
       right: 25.w,
       top: 75,
       child: SizedBox(
-        height: 56.h,
-        width: 56.h,
-        child: CircleAvatar(
-          foregroundImage: NetworkImage(
-            imgUrl,
-          ),
-          backgroundImage: AssetImage(
-            AssetsHelper.imgProfilePlaceholder,
-          ),
-        ),
-      ),
+          height: 56.h,
+          width: 56.h,
+          child: schoolAsync.when(
+            data: (data) => CircleAvatar(
+              foregroundImage: NetworkImage(
+                data.photo,
+              ),
+              backgroundImage: AssetImage(
+                AssetsHelper.imgProfilePlaceholder,
+              ),
+            ),
+            error: (error, stackTrace) => CircleAvatar(
+              backgroundImage: AssetImage(
+                AssetsHelper.imgProfilePlaceholder,
+              ),
+            ),
+            loading: () => const CircularProgressIndicator(),
+          )),
     );
   }
 }

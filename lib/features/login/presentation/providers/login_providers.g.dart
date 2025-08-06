@@ -7,12 +7,12 @@ part of 'login_providers.dart';
 // **************************************************************************
 
 String _$loginRemoteDatasourceHash() =>
-    r'35b74aeaa69310b4873d27f6302da16470a62358';
+    r'67a78d6cdf0b4b645391d2aaa825f5af34dc94e4';
 
 /// See also [loginRemoteDatasource].
 @ProviderFor(loginRemoteDatasource)
 final loginRemoteDatasourceProvider =
-    AutoDisposeProvider<LoginRemoteDatasource>.internal(
+    AutoDisposeProvider<LoginRemoteDataSource>.internal(
   loginRemoteDatasource,
   name: r'loginRemoteDatasourceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -25,8 +25,8 @@ final loginRemoteDatasourceProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef LoginRemoteDatasourceRef
-    = AutoDisposeProviderRef<LoginRemoteDatasource>;
-String _$loginRepositoryHash() => r'bdc4746eb215c5de5ae3b29302019c4aa2dfff02';
+    = AutoDisposeProviderRef<LoginRemoteDataSource>;
+String _$loginRepositoryHash() => r'd52d745ea908a1f1c631dafca94cc94b9696bce8';
 
 /// See also [loginRepository].
 @ProviderFor(loginRepository)
