@@ -14,11 +14,6 @@ class UserInfoColumn extends ConsumerWidget {
     final schoolAsync = ref.watch(schoolControllerProvider);
 
     // Extract user name safely
-    final userName = userAsync.when(
-      data: (u) => u.name,
-      loading: () => '…',
-      error: (_, __) => '-',
-    );
 
     return Positioned(
       top: 75,
@@ -30,7 +25,12 @@ class UserInfoColumn extends ConsumerWidget {
         children: [
           Text(
             // User name
-            userName,
+            userAsync.when(
+              data: (u) => u.name,
+              loading: () => '...',
+              error: (error, stackTrace) =>
+                  error is NetworkFailure ? 'Offline' : '$stackTrace',
+            ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -46,7 +46,8 @@ class UserInfoColumn extends ConsumerWidget {
           Text(
             schoolAsync.when(
               data: (data) => data.name,
-              error: (error, stackTrace) => error is NetworkFailure ? 'Offline' : 'Gagal Mengambil Data',
+              error: (error, stackTrace) =>
+                  error is NetworkFailure ? 'Offline' : 'Gagal Mengambil Data',
               loading: () => '...',
             ),
             style: TextStyle(
