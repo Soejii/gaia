@@ -18,9 +18,9 @@ class LoginController extends _$LoginController {
 
     res.fold(
       (failure) => state = AsyncError(failure, StackTrace.current),
-      (entity) {
-        ref.read(authStateProvider.notifier).setAuthenticated(entity.token);
-        ref.read(authLocalDataSourceProvider).saveTokens(access: entity.token);
+      (entity)async {
+       await ref.read(authStateProvider.notifier).setAuthenticated(entity.token);
+        // ref.read(authLocalDataSourceProvider).saveTokens(access: entity.token);
         state = AsyncData(entity);
       },
     );
