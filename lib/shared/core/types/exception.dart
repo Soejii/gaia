@@ -5,7 +5,6 @@ extension Exception on DioException {
   /// Convert any DioException to a typed [Failure] the rest of
   /// your app understands. Keep ALL Dio details boxed in here.
   Failure toFailure() {
-    // 1️⃣ Pure connectivity issues (no HTTP response yet)
     switch (type) {
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.receiveTimeout:
@@ -16,11 +15,9 @@ extension Exception on DioException {
       case DioExceptionType.cancel:
         return const CancelledFailure();
       default:
-        // fall through and try HTTP mapping
         break;
     }
 
-    // 2️⃣ We got an HTTP response; map on status code
     final status = response?.statusCode ?? -1;
 
     switch (status) {
