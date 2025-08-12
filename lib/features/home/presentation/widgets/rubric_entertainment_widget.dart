@@ -42,7 +42,7 @@ class RubricEntertainmentWidget extends StatelessWidget {
             ],
           ),
           SizedBox(height: 10.h),
-          AnnouncementCard(imgUrl: imgUrl),
+          // AnnouncementCard(imgUrl: imgUrl),
         ],
       ),
     );

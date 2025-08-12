@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 16.h),
             const DigitalMagazinesCard(imgUrl: ''),
             SizedBox(height: 16.h),
-            const AnnouncementWidget(imgUrl: ''),
+            const AnnouncementWidget(),
             SizedBox(height: 16.h),
             const RubricEntertainmentWidget(imgUrl: ''),
             SizedBox(height: 16.h),

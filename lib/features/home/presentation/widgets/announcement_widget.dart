@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/announcement/presentation/providers/announcement_controller.dart';
 import 'package:gaia/features/home/presentation/widgets/announcement_card.dart';
+import 'package:gaia/features/home/presentation/widgets/announcement_error_card.dart';
+import 'package:gaia/features/home/presentation/widgets/announcement_skeleton_card.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
-class AnnouncementWidget extends StatelessWidget {
-  const AnnouncementWidget({super.key, required this.imgUrl});
-  final String imgUrl;
+class AnnouncementWidget extends ConsumerWidget {
+  const AnnouncementWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final announcementAsync = ref.watch(announcementControllerProvider);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Column(
@@ -42,7 +46,16 @@ class AnnouncementWidget extends StatelessWidget {
             ],
           ),
           SizedBox(height: 10.h),
-          AnnouncementCard(imgUrl: imgUrl),
+          announcementAsync.when(
+            data: (data) => data.length > 1
+                ? AnnouncementCard(entity: data[0])
+                : const SizedBox.shrink(),
+            error: (e, _) => AnnouncementErrorCard(
+              error: e,
+              onRetry: () => ref.invalidate(announcementControllerProvider),
+            ),
+            loading: () => const AnnouncementSkeletonCard(),
+          ),
         ],
       ),
     );

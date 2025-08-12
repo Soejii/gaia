@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/announcement/domain/entites/announcement_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
 class AnnouncementCard extends StatelessWidget {
-  const AnnouncementCard({super.key,required this.imgUrl});
-  final String imgUrl;
+  const AnnouncementCard({super.key,required this.entity});
+  final AnnouncementEntity entity;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class AnnouncementCard extends StatelessWidget {
               topRight: Radius.circular(15),
             ),
             child: Image.network(
-              imgUrl,
+              entity.photo,
               errorBuilder: (context, error, stackTrace) => Image.asset(
                 AssetsHelper.imgAnnouncementPlaceholder,
               ),
@@ -41,7 +42,7 @@ class AnnouncementCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Pelaksaan Ujian akhir semester',
+                    entity.title,
                     style: TextStyle(
                       fontFamily: 'OpenSans',
                       fontSize: 12.sp,
@@ -50,7 +51,7 @@ class AnnouncementCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '27 Agustus 2025',
+                    entity.date,
                     style: TextStyle(
                       fontFamily: 'OpenSans',
                       fontSize: 10.sp,
@@ -59,7 +60,8 @@ class AnnouncementCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis turpis morbi ut. Enim convallis pulvinar commodo egestas. ',
+                    entity.desc,
+                    maxLines: 2,
                     style: TextStyle(
                       fontFamily: 'OpenSans',
                       fontSize: 10.sp,
