@@ -2,5 +2,5 @@ import 'package:gaia/features/announcement/domain/entites/announcement_entity.da
 import 'package:gaia/shared/core/types/result.dart';
 
 abstract class AnnouncementRepository {
-  Future<Result<AnnouncementEntity>> getListAnnouncement();
+  Future<Result<List<AnnouncementEntity>>> getListAnnouncement();
 }

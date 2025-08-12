@@ -8,10 +8,15 @@ class AnnouncementRemoteDataSource {
   final Dio _dio;
   AnnouncementRemoteDataSource(this._dio);
 
-  Future<AnnouncementEntity> getListAnnouncement() async {
+  Future<List<AnnouncementEntity>> getListAnnouncement() async {
     try {
-      final res = await _dio.get('announcement/list');
-      return AnnouncementModel.fromJson(res.data['data']).toEntity();
+      final res = await _dio.get('/announcement/list');
+      final data = (res.data as Map<String, dynamic>)['data'] as List<dynamic>;
+      return data
+          .map((e) => AnnouncementModel.fromJson(
+                Map<String, dynamic>.from(e as Map),
+              ).toEntity())
+          .toList(growable: false);
     } on DioException catch (e) {
       throw e.toFailure();
     }
