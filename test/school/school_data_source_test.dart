@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gaia/features/school/data/datasource/school_remote_data_source.dart';
 import 'package:gaia/features/school/domain/entities/school_entity.dart';
+import 'package:gaia/shared/core/types/failure.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockDio extends Mock implements Dio {}
@@ -90,10 +91,7 @@ void main() {
       await expectLater(
         future,
         throwsA(
-          isA<DioException>()
-              .having((e) => e.response?.data['message'],
-                  'Message containing Unauthorized', 'unauthorized')
-              .having((e) => e.response?.statusCode, '401 bad auth', 401),
+          isA<UnauthorizedFailure>()
         ),
       );
 
