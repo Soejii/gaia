@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gaia/features/school/data/datasource/school_remote_data_source.dart';
-import 'package:gaia/features/school/domain/entities/school_entity.dart';
-import 'package:gaia/shared/core/types/failure.dart';
+import 'package:gaia/features/school/data/models/school_model.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockDio extends Mock implements Dio {}
@@ -53,7 +52,7 @@ void main() {
       final res = await remoteDataSource.getSchool();
 
       //Assert
-      expect(res, isA<SchoolEntity>());
+      expect(res, isA<SchoolModel>());
       expect(res.id, 42);
       expect(res.name, 'SMK TELKOM MALANG');
 
@@ -91,7 +90,9 @@ void main() {
       await expectLater(
         future,
         throwsA(
-          isA<UnauthorizedFailure>()
+          isA<DioException>()
+          .having((e) => e.response?.statusCode, 'Status Code', 401)
+          .having((e) => e.response?.data['message'], 'Data Message', 'unauthorized'),
         ),
       );
 

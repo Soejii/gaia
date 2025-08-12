@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gaia/features/profile/data/datasource/profile_remote_datasource.dart';
-import 'package:gaia/features/profile/domain/entities/profile_entity.dart';
-import 'package:gaia/shared/core/types/failure.dart';
+import 'package:gaia/features/profile/data/models/profile_model.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockDio extends Mock implements Dio {}
@@ -46,7 +45,7 @@ void main() {
       final res = await remoteDatasource.getProfile();
 
       //Assert
-      expect(res, isA<ProfileEntity>());
+      expect(res, isA<ProfileModel>());
       expect(res.name, 'Rafi Mahadika');
       verify(
         () => dio.get('/profile'),
@@ -81,7 +80,12 @@ void main() {
       //Assert
       await expectLater(
         future,
-        throwsA(isA<UnauthorizedFailure>()),
+        throwsA(
+          isA<DioException>()
+              .having((e) => e.response?.statusCode, 'Status Code', 401)
+              .having((e) => e.response?.data['message'], 'Data Message',
+                  'unauthorized'),
+        ),
       );
 
       verify(
