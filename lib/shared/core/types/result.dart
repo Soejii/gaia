@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:gaia/shared/core/types/exception.dart';
 import 'package:gaia/shared/core/types/failure.dart';
 
 sealed class Result<T> {
@@ -28,8 +30,11 @@ Future<Result<T>> guard<T>(Future<T> Function() task) async {
   try {
     final value = await task();
     return Ok(value);
-  } catch (e, st) {
-    if (e is Failure) return Err(e);
+  } on Failure catch (f) {
+    return Err(f);
+  } on DioException catch (e, st) {
+    return Err(e.toFailure(stackTrace: st)); 
+  } on Exception catch (e, st) {
     return Err(UnknownFailure(e, stackTrace: st));
   }
 }
