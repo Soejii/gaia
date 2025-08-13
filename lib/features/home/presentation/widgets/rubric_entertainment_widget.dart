@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/features/home/presentation/widgets/announcement_card.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class RubricEntertainmentWidget extends StatelessWidget {

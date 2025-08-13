@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/announcement/presentation/providers/announcement_controller.dart';
-import 'package:gaia/features/home/presentation/widgets/announcement_card.dart';
-import 'package:gaia/features/home/presentation/widgets/announcement_error_card.dart';
-import 'package:gaia/features/home/presentation/widgets/announcement_skeleton_card.dart';
+import 'package:gaia/features/announcement/presentation/widgets/announcement_card.dart';
+import 'package:gaia/features/announcement/presentation/widgets/announcement_error_card.dart';
+import 'package:gaia/features/announcement/presentation/widgets/announcement_skeleton_card.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class AnnouncementWidget extends ConsumerWidget {
