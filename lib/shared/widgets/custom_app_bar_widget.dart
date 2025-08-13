@@ -8,12 +8,12 @@ class CustomAppBarWidget extends StatelessWidget
   final String title;
   final bool leadingIcon;
 
-  const CustomAppBarWidget(
-      {Key? key,
-      required this.title,
-      required this.leadingIcon,
-      Widget? bottom})
-      : super(key: key);
+  const CustomAppBarWidget({
+    super.key,
+    required this.title,
+    required this.leadingIcon,
+    Widget? bottom,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,7 +44,7 @@ class CustomAppBarWidget extends StatelessWidget
             ? IconButton(
                 icon: const Icon(
                   Icons.arrow_back,
-                  color: AppColors.mainText,
+                  color: Colors.white,
                 ),
                 onPressed: () {
                   context.pop();
