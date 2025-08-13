@@ -6,7 +6,8 @@ import 'package:gaia/features/announcement/presentation/widgets/detail_announcem
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 
 class DetailAnnouncementScreen extends ConsumerWidget {
-  const DetailAnnouncementScreen({super.key});
+  const DetailAnnouncementScreen({super.key, required this.id});
+  final int id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
