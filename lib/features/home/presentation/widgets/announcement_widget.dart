@@ -47,7 +47,7 @@ class AnnouncementWidget extends ConsumerWidget {
           ),
           SizedBox(height: 10.h),
           announcementAsync.when(
-            data: (data) => data.length > 1
+            data: (data) => data.isNotEmpty
                 ? AnnouncementCard(entity: data[0])
                 : const SizedBox.shrink(),
             error: (e, _) => AnnouncementErrorCard(
