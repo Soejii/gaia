@@ -15,11 +15,14 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_router.g.dart';
 
+final _rootKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+
 @riverpod
 GoRouter appRouter(Ref ref) {
   final authAsync = ref.watch(authStateProvider);
 
   return GoRouter(
+    navigatorKey: _rootKey,
     initialLocation: RoutePath.login,
     redirect: (context, state) {
       if (authAsync.isLoading) return null;
@@ -44,6 +47,7 @@ GoRouter appRouter(Ref ref) {
                 pageBuilder: (_, __) => const MaterialPage(child: HomeScreen()),
                 routes: [
                   GoRoute(
+                    parentNavigatorKey: _rootKey,
                     path: RoutePath.listAnnouncement,
                     name: 'list-announcement',
                     builder: (context, state) => const ListAnnouncementScreen(),
