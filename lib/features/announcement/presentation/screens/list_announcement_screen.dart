@@ -23,8 +23,11 @@ class ListAnnouncementScreen extends ConsumerWidget {
             return ListView.builder(
               itemCount: data.length,
               physics: const AlwaysScrollableScrollPhysics(),
-              itemBuilder: (context, index) => AnnouncementCard(
-                entity: data[index],
+              itemBuilder: (context, index) => Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+                child: AnnouncementCard(
+                  entity: data[index],
+                ),
               ),
             );
           } else {
