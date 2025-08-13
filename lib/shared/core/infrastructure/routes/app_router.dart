@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gaia/app/bottom_navigation_shell.dart';
+import 'package:gaia/features/announcement/presentation/screens/list_announcement_screen.dart';
 import 'package:gaia/features/home/presentation/home_screen.dart';
 import 'package:gaia/features/login/presentation/screen/login_screen.dart';
 import 'package:gaia/features/profile/presentation/profile_screen.dart';
@@ -41,6 +42,13 @@ GoRouter appRouter(Ref ref) {
                 path: RoutePath.home,
                 name: 'home',
                 pageBuilder: (_, __) => const MaterialPage(child: HomeScreen()),
+                routes: [
+                  GoRoute(
+                    path: RoutePath.listAnnouncement,
+                    name: 'list-announcement',
+                    builder: (context, state) => const ListAnnouncementScreen(),
+                  ),
+                ],
               ),
             ],
           ),

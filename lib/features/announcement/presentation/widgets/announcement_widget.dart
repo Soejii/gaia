@@ -6,6 +6,8 @@ import 'package:gaia/features/announcement/presentation/widgets/announcement_car
 import 'package:gaia/features/announcement/presentation/widgets/announcement_error_card.dart';
 import 'package:gaia/features/announcement/presentation/widgets/announcement_skeleton_card.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/shared/core/infrastructure/routes/route_path.dart';
+import 'package:go_router/go_router.dart';
 
 class AnnouncementWidget extends ConsumerWidget {
   const AnnouncementWidget({super.key});
@@ -32,7 +34,9 @@ class AnnouncementWidget extends ConsumerWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.pushNamed('list-announcement');
+                },
                 child: Text(
                   'Lihat Semua',
                   style: TextStyle(
