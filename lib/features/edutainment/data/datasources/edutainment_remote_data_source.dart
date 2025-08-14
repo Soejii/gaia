@@ -14,7 +14,8 @@ class EdutainmentRemoteDataSource {
         'page': page,
       },
     );
-    final data = (res.data as Map<String, dynamic>)['data'] as List<dynamic>;
+    final data =
+        (res.data as Map<String, dynamic>)['data']['data'] as List<dynamic>;
     return data
         .map(
           (e) => EdutainmentModel.fromJson(
