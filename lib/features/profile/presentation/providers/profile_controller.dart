@@ -4,11 +4,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'profile_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class ProfileController extends _$ProfileController {
   @override
   Future<ProfileEntity> build() async {
-    ref.keepAlive();
     final res = await ref.read(getProfileProvider).getProfile();
 
     return res.fold(

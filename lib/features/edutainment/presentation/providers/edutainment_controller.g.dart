@@ -7,11 +7,11 @@ part of 'edutainment_controller.dart';
 // **************************************************************************
 
 String _$edutainmentControllerHash() =>
-    r'a61e15a8697685189bf52d97ad98fb4a4b04ffeb';
+    r'37ad84375fcefb3122caac355fd735baf04e7d16';
 
 /// See also [EdutainmentController].
 @ProviderFor(EdutainmentController)
-final edutainmentControllerProvider = AutoDisposeAsyncNotifierProvider<
+final edutainmentControllerProvider = AsyncNotifierProvider<
     EdutainmentController, List<EdutainmentEntity>>.internal(
   EdutainmentController.new,
   name: r'edutainmentControllerProvider',
@@ -22,7 +22,6 @@ final edutainmentControllerProvider = AutoDisposeAsyncNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$EdutainmentController
-    = AutoDisposeAsyncNotifier<List<EdutainmentEntity>>;
+typedef _$EdutainmentController = AsyncNotifier<List<EdutainmentEntity>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

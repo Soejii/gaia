@@ -7,11 +7,11 @@ part of 'announcement_controller.dart';
 // **************************************************************************
 
 String _$announcementControllerHash() =>
-    r'71f7c2fe0a8adbcb2e0c5b77bc359a19f73c23c0';
+    r'137fb978a74884fdf0a014787a56045b06929a1f';
 
 /// See also [AnnouncementController].
 @ProviderFor(AnnouncementController)
-final announcementControllerProvider = AutoDisposeAsyncNotifierProvider<
+final announcementControllerProvider = AsyncNotifierProvider<
     AnnouncementController, List<AnnouncementEntity>>.internal(
   AnnouncementController.new,
   name: r'announcementControllerProvider',
@@ -22,7 +22,6 @@ final announcementControllerProvider = AutoDisposeAsyncNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$AnnouncementController
-    = AutoDisposeAsyncNotifier<List<AnnouncementEntity>>;
+typedef _$AnnouncementController = AsyncNotifier<List<AnnouncementEntity>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

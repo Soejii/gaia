@@ -4,11 +4,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'announcement_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class AnnouncementController extends _$AnnouncementController {
   @override
   Future<List<AnnouncementEntity>> build() async {
-    ref.keepAlive();
     final usecase = ref.read(getListAnnouncementUsecaseProvider);
     final res = await usecase.getListAnnouncement();
 

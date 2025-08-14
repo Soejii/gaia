@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'edutainment_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class EdutainmentController extends _$EdutainmentController {
   int _page = 1;
   String? _type;

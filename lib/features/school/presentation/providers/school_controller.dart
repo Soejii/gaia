@@ -4,11 +4,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'school_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class SchoolController extends _$SchoolController {
   @override
   Future<SchoolEntity> build() async {
-    ref.keepAlive();
     final usecase = ref.read(getSchoolUseCaseProvider);
     final res = await usecase.getSchool();
 
