@@ -50,6 +50,7 @@ GoRouter appRouter(Ref ref) {
                   GoRoute(
                     path: 'announcements',
                     name: RouteName.listAnnouncement,
+                    parentNavigatorKey: _rootKey,
                     builder: (_, __) => const ListAnnouncementScreen(),
                   ),
                   GoRoute(
