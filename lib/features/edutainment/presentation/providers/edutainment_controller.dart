@@ -11,6 +11,7 @@ class EdutainmentController extends _$EdutainmentController {
 
   @override
   Future<List<EdutainmentEntity>> build() async {
+    ref.keepAlive();
     _page = 1;
     _type = 'all';
     return _fetch(_type!, _page);
@@ -33,7 +34,7 @@ class EdutainmentController extends _$EdutainmentController {
       final items = await _fetch(_type!, 1);
       state = AsyncValue.data(items);
     } catch (e, st) {
-      state =  AsyncValue<List<EdutainmentEntity>>.error(e, st)
+      state = AsyncValue<List<EdutainmentEntity>>.error(e, st)
           .copyWithPrevious(state);
     }
   }

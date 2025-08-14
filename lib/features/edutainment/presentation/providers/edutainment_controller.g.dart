@@ -7,7 +7,7 @@ part of 'edutainment_controller.dart';
 // **************************************************************************
 
 String _$edutainmentControllerHash() =>
-    r'7c959cff1fdb22db306ea2fc2d978964e3a86698';
+    r'a61e15a8697685189bf52d97ad98fb4a4b04ffeb';
 
 /// See also [EdutainmentController].
 @ProviderFor(EdutainmentController)

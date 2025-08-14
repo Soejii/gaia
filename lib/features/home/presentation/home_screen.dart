@@ -17,6 +17,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: ListView(
+          physics: const AlwaysScrollableScrollPhysics(),
           children: [
             const HomeHeaderWidget(),
             const DividerCard(),
