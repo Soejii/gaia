@@ -28,6 +28,9 @@ class DigitalMagazinesCard extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Container(
+            constraints: BoxConstraints(
+              minHeight: 180.h,
+            ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               boxShadow: AppColors.shadow,
