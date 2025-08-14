@@ -19,4 +19,11 @@ class AnnouncementRepositoryImpl implements AnnouncementRepository {
               .toList();
         },
       );
+  @override
+  Future<Result<AnnouncementEntity>> getDetail(int id) => guard(
+        () async {
+          final model = await _dataSource.getDetailAnnouncement(id);
+          return model.toEntity();
+        },
+      );
 }

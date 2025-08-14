@@ -66,5 +66,25 @@ final getListAnnouncementUsecaseProvider =
 // ignore: unused_element
 typedef GetListAnnouncementUsecaseRef
     = AutoDisposeProviderRef<GetListAnnouncementUsecase>;
+String _$getDetailAnnouncementUsecaseHash() =>
+    r'49a3eea8bcd557a863535b62d616cf54b8baf350';
+
+/// See also [getDetailAnnouncementUsecase].
+@ProviderFor(getDetailAnnouncementUsecase)
+final getDetailAnnouncementUsecaseProvider =
+    AutoDisposeProvider<GetDetailAnnouncementUsecase>.internal(
+  getDetailAnnouncementUsecase,
+  name: r'getDetailAnnouncementUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getDetailAnnouncementUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetDetailAnnouncementUsecaseRef
+    = AutoDisposeProviderRef<GetDetailAnnouncementUsecase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

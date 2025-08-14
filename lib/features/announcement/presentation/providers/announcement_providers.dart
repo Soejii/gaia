@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gaia/features/announcement/data/announcement_repository_impl.dart';
 import 'package:gaia/features/announcement/data/datasource/announcement_remote_data_source.dart';
 import 'package:gaia/features/announcement/domain/announcement_repository.dart';
+import 'package:gaia/features/announcement/domain/usecase/get_detail_announcement_usecase.dart';
 import 'package:gaia/features/announcement/domain/usecase/get_list_announcement_usecase.dart';
 import 'package:gaia/shared/core/infrastructure/network/dio_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -30,5 +31,12 @@ GetListAnnouncementUsecase getListAnnouncementUsecase(Ref ref) {
     ref.watch(
       announcementRepositoryProvider,
     ),
+  );
+}
+
+@riverpod
+GetDetailAnnouncementUsecase getDetailAnnouncementUsecase(Ref ref) {
+  return GetDetailAnnouncementUsecase(
+    ref.watch(announcementRepositoryProvider),
   );
 }

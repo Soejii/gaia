@@ -3,7 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class DetailAnnouncementContent extends StatelessWidget {
-  const DetailAnnouncementContent({super.key});
+  const DetailAnnouncementContent({
+    super.key,
+    required this.title,
+    required this.date,
+    required this.desc,
+  });
+  final String title;
+  final String date;
+  final String desc;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +21,7 @@ class DetailAnnouncementContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Rapat Bulanan Sidigs anjay',
+           title,
             style: TextStyle(
               fontFamily: 'OpenSans',
               fontSize: 14.sp,

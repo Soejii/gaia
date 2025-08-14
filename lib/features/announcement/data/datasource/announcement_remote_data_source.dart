@@ -16,4 +16,11 @@ class AnnouncementRemoteDataSource {
         )
         .toList(growable: false);
   }
+
+  Future<AnnouncementModel> getDetailAnnouncement(int id) async {
+    final res = await _dio.get('/announcement/get-detail',
+        queryParameters: {'announcement_id': id});
+    final data = AnnouncementModel.fromJson(res.data['data']);
+    return data;
+  }
 }
