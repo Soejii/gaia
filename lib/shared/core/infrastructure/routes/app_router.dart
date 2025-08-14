@@ -7,6 +7,7 @@ import 'package:gaia/features/announcement/presentation/screens/list_announcemen
 import 'package:gaia/features/home/presentation/home_screen.dart';
 import 'package:gaia/features/login/presentation/screen/login_screen.dart';
 import 'package:gaia/features/profile/presentation/profile_screen.dart';
+import 'package:gaia/features/schedule/presentation/screens/schedule_screen.dart';
 import 'package:gaia/shared/core/infrastructure/auth/auth_state_provider.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:gaia/shared/screens/error_screen.dart';
@@ -63,6 +64,12 @@ GoRouter appRouter(Ref ref) {
                         id: int.parse(id),
                       );
                     },
+                  ),
+                  GoRoute(
+                    path: 'schedule',
+                    name: RouteName.schedule,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, __) => const ScheduleScreen(),
                   ),
                 ],
               ),

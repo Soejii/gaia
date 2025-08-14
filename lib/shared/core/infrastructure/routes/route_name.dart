@@ -4,4 +4,5 @@ class RouteName {
   static const listAnnouncement = 'list-announcement';
   static const detailAnnouncement = 'detail-announcement';
   static const profile = 'profile';
+  static const schedule = 'schedule';
 }
