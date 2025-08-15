@@ -23,7 +23,6 @@ class AssetsHelper {
   static String imgFisika = img("img_fisika.png");
   static String imgBiologi = img("img_biologi.png");
   static String imgSejarah = img("img_sejarah.png");
-
   static String imgTidakAdaPelajaran = img("img_tidak_ada_pelajaran.png");
 
   static String icHome = icon('ic_beranda_home.svg');

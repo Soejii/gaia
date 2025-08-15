@@ -44,3 +44,13 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
+
+# Metadata files
+.metadata
+.packages
+.dart_tool/package_config.json
+
+# Gradle Kotlin DSL files
+*.gradle.kts
+build.gradle.kts
+settings.gradle.kts

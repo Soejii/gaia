@@ -19,7 +19,6 @@ class ScheduleEmptyState extends StatelessWidget {
         children: [
           Image.asset(
             AssetsHelper.imgTidakAdaPelajaran,
-          
             width: 200.w,
           ),
           SizedBox(

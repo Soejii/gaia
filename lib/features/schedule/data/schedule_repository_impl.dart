@@ -11,8 +11,35 @@ class ScheduleRepositoryImpl implements ScheduleRepository {
   @override
   Future<Result<List<ScheduleEntity>>> getScheduleByDay(DayOfWeek dayOfWeek) => guard(
         () async {
-          final models = await _dataSource.getScheduleByDay(dayOfWeek);
-          return models.map((model) => model.toEntity()).toList();
+          final dayString = _getDayString(dayOfWeek);
+          final models = await _dataSource.getScheduleByDay(dayString);
+          return models
+              .map(
+                (model) => model.toEntity(),
+              )
+              .toList();
         },
       );
+
+  String _getDayString(DayOfWeek dayOfWeek) {
+    switch (dayOfWeek) {
+      case DayOfWeek.monday:
+        return 'senin';
+      case DayOfWeek.tuesday:
+        return 'selasa';
+      case DayOfWeek.wednesday:
+        return 'rabu';
+      case DayOfWeek.thursday:
+        return 'kamis';
+      case DayOfWeek.friday:
+        return 'jumat';
+      case DayOfWeek.saturday:
+        return 'sabtu';
+      case DayOfWeek.sunday:
+        return 'minggu';
+    }
+  }
 }
+
+
+

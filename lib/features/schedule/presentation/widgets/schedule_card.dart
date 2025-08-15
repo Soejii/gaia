@@ -18,7 +18,7 @@ class ScheduleCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.mainColorSidigs,
         borderRadius: BorderRadius.circular(20.r),
-        boxShadow: AppColors.scheduleCardShadow,
+        boxShadow: AppColors.shadow,
       ),
       child: Row(
         children: [
@@ -28,7 +28,14 @@ class ScheduleCard extends StatelessWidget {
             margin: EdgeInsets.all(16.r),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.r),
-              gradient: AppColors.scheduleCardGradient,
+              gradient: const LinearGradient(
+                colors: [
+                  Color(0xFFC9EEFF),
+                  Color(0xFFFFFFFF),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
               boxShadow: AppColors.shadow,
             ),
             child: schedule.subjectImage.isNotEmpty

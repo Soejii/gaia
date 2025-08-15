@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/home/presentation/widgets/quick_home_button.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
+import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 
 class QuickHomeGrid extends StatelessWidget {
   const QuickHomeGrid({super.key});

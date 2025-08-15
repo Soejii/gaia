@@ -1,19 +1,17 @@
-import 'package:gaia/features/schedule/data/models/schedule_model.dart';
 import 'package:gaia/features/schedule/domain/entities/schedule_entity.dart';
+import 'package:gaia/features/schedule/data/models/schedule_model.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
 extension ScheduleEntityMapper on ScheduleModel {
-  ScheduleEntity toEntity() {
-    return ScheduleEntity(
-      id: id.toString(),
-      subjectName: subject.name,
-      teacherName: teacher.name,
-      startTime: startTime,
-      endTime: endTime,
-      dayOfWeek: _mapDayOfWeek(day),
-      subjectImage: _mapSubjectImage(subject.iconCode),
-    );
-  }
+  ScheduleEntity toEntity() => ScheduleEntity(
+        id: id.toString(),
+        subjectName: subject.name,
+        teacherName: teacher.name,
+        startTime: startTime,
+        endTime: endTime,
+        dayOfWeek: _mapDayOfWeek(day),
+        subjectImage: _mapSubjectImage(subject.iconCode),
+      );
 
   DayOfWeek _mapDayOfWeek(String day) {
     switch (day.toLowerCase()) {

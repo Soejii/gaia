@@ -27,33 +27,10 @@ class AppColors {
     end: Alignment.centerRight,
   );
 
-  static const LinearGradient cardGradient = LinearGradient(
-    colors: [
-      Color(0xFFC9EEFF),
-      Color(0xFFFFFFFF),
-    ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
 
 
-  static const LinearGradient scheduleCardGradient = LinearGradient(
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-    colors: [
-      Color(0xFFC9EEFF),
-      Color(0xFFFFFFFF), 
-    ],
-  );
 
-  static const List<BoxShadow> scheduleCardShadow = [
-    BoxShadow(
-      color: Color(0x33009ADE), // #009ADE33
-      offset: Offset(0, 5), // y: 5
-      blurRadius: 7, // blur: 7
-      spreadRadius: 0,
-    ),
-  ];
+  
 }
 
 class HexColor extends Color {
