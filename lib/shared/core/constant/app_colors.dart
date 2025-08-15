@@ -17,6 +17,7 @@ class AppColors {
     ),
   ];
 
+
   static const LinearGradient mainColorGradient = LinearGradient(
     colors: [
       Color.fromRGBO(28, 178, 255, 1),
@@ -25,6 +26,11 @@ class AppColors {
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );
+
+
+
+
+  
 }
 
 class HexColor extends Color {
