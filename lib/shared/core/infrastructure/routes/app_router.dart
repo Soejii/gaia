@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gaia/app/bottom_navigation_shell.dart';
 import 'package:gaia/features/announcement/presentation/screens/detail_announcement_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/list_announcement_screen.dart';
+import 'package:gaia/features/edutainment/presentation/screens/list_edutainment_screen.dart';
 import 'package:gaia/features/home/presentation/home_screen.dart';
 import 'package:gaia/features/login/presentation/screen/login_screen.dart';
 import 'package:gaia/features/profile/presentation/profile_screen.dart';
@@ -48,7 +49,7 @@ GoRouter appRouter(Ref ref) {
                 pageBuilder: (_, __) => const MaterialPage(child: HomeScreen()),
                 routes: [
                   GoRoute(
-                    path: 'announcements',
+                    path: 'list-announcements',
                     name: RouteName.listAnnouncement,
                     parentNavigatorKey: _rootKey,
                     builder: (_, __) => const ListAnnouncementScreen(),
@@ -64,6 +65,11 @@ GoRouter appRouter(Ref ref) {
                       );
                     },
                   ),
+                  GoRoute(
+                    path: 'list-edutaiment',
+                    name: RouteName.listEdutainment,
+                    builder: (context, state) => const ListEdutainmentScreen(),
+                  )
                 ],
               ),
             ],

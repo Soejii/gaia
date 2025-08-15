@@ -6,6 +6,7 @@ import 'package:gaia/features/announcement/presentation/widgets/announcement_ske
 import 'package:gaia/features/edutainment/presentation/providers/edutainment_controller.dart';
 import 'package:gaia/features/edutainment/presentation/widgets/edutainment_card.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:go_router/go_router.dart';
 
 class RubricEntertainmentWidget extends ConsumerWidget {
   const RubricEntertainmentWidget({super.key});
@@ -32,7 +33,9 @@ class RubricEntertainmentWidget extends ConsumerWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.pushNamed('list-edutainment');
+                },
                 child: Text(
                   'Lihat Semua',
                   style: TextStyle(
@@ -46,7 +49,7 @@ class RubricEntertainmentWidget extends ConsumerWidget {
             ],
           ),
           SizedBox(height: 10.h),
-         edutainmentAsync.when(
+          edutainmentAsync.when(
             data: (data) => data.isNotEmpty
                 ? EdutainmentCard(entity: data[0])
                 : const SizedBox.shrink(),
@@ -61,5 +64,3 @@ class RubricEntertainmentWidget extends ConsumerWidget {
     );
   }
 }
-
-
