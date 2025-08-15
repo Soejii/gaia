@@ -1,5 +1,5 @@
 import 'package:gaia/features/schedule/domain/entities/schedule_entity.dart';
-import 'package:gaia/features/schedule/presentation/providers/schedule_provider.dart';
+import 'package:gaia/features/schedule/presentation/providers/schedule_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'schedule_controller.g.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../shared/core/constant/app_colors.dart';
+import '../../../../shared/core/constant/assets_helper.dart';
 
 class ScheduleEmptyState extends StatelessWidget {
   final String day;
@@ -17,7 +18,7 @@ class ScheduleEmptyState extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            'assets/images/img_tidak_ada_pelajaran.png',
+            AssetsHelper.imgTidakAdaPelajaran,
           
             width: 200.w,
           ),
@@ -30,8 +31,6 @@ class ScheduleEmptyState extends StatelessWidget {
               fontFamily: 'Open Sans',
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
-              height: 1.0,
-              letterSpacing: 0,
               color: AppColors.secondaryText,
             ),
             textAlign: TextAlign.center,
@@ -43,8 +42,6 @@ class ScheduleEmptyState extends StatelessWidget {
               fontFamily: 'Open Sans',
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
-              height: 1.0,
-              letterSpacing: 0,
               color: AppColors.secondaryText,
             ),
             textAlign: TextAlign.center,

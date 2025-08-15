@@ -6,7 +6,7 @@ import 'package:gaia/features/schedule/domain/usecase/get_schedule_by_day_usecas
 import 'package:gaia/shared/core/infrastructure/network/dio_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'schedule_provider.g.dart';
+part 'schedule_providers.g.dart';
 
 @riverpod
 ScheduleRemoteDataSource scheduleRemoteDataSource(Ref ref) {

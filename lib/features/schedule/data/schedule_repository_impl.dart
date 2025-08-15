@@ -11,9 +11,7 @@ class ScheduleRepositoryImpl implements ScheduleRepository {
   @override
   Future<Result<List<ScheduleEntity>>> getScheduleByDay(DayOfWeek dayOfWeek) => guard(
         () async {
-          // Untuk development, pakai dummy data
-          // Untuk production, ganti ke _dataSource.getScheduleByDay(dayOfWeek)
-          final models = await _dataSource.getScheduleByDayDummy(dayOfWeek);
+          final models = await _dataSource.getScheduleByDay(dayOfWeek);
           return models.map((model) => model.toEntity()).toList();
         },
       );

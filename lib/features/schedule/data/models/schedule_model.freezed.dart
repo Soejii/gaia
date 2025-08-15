@@ -20,19 +20,14 @@ ScheduleModel _$ScheduleModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ScheduleModel {
-  String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'subject_name')
-  String get subjectName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'teacher_name')
-  String get teacherName => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get day => throw _privateConstructorUsedError;
   @JsonKey(name: 'start_time')
   String get startTime => throw _privateConstructorUsedError;
   @JsonKey(name: 'end_time')
   String get endTime => throw _privateConstructorUsedError;
-  @JsonKey(name: 'day_of_week')
-  String get dayOfWeek => throw _privateConstructorUsedError;
-  @JsonKey(name: 'subject_image')
-  String get subjectImage => throw _privateConstructorUsedError;
+  SubjectModel get subject => throw _privateConstructorUsedError;
+  TeacherModel get teacher => throw _privateConstructorUsedError;
 
   /// Serializes this ScheduleModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,13 +46,15 @@ abstract class $ScheduleModelCopyWith<$Res> {
       _$ScheduleModelCopyWithImpl<$Res, ScheduleModel>;
   @useResult
   $Res call(
-      {String id,
-      @JsonKey(name: 'subject_name') String subjectName,
-      @JsonKey(name: 'teacher_name') String teacherName,
+      {int id,
+      String day,
       @JsonKey(name: 'start_time') String startTime,
       @JsonKey(name: 'end_time') String endTime,
-      @JsonKey(name: 'day_of_week') String dayOfWeek,
-      @JsonKey(name: 'subject_image') String subjectImage});
+      SubjectModel subject,
+      TeacherModel teacher});
+
+  $SubjectModelCopyWith<$Res> get subject;
+  $TeacherModelCopyWith<$Res> get teacher;
 }
 
 /// @nodoc
@@ -76,25 +73,20 @@ class _$ScheduleModelCopyWithImpl<$Res, $Val extends ScheduleModel>
   @override
   $Res call({
     Object? id = null,
-    Object? subjectName = null,
-    Object? teacherName = null,
+    Object? day = null,
     Object? startTime = null,
     Object? endTime = null,
-    Object? dayOfWeek = null,
-    Object? subjectImage = null,
+    Object? subject = null,
+    Object? teacher = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      subjectName: null == subjectName
-          ? _value.subjectName
-          : subjectName // ignore: cast_nullable_to_non_nullable
-              as String,
-      teacherName: null == teacherName
-          ? _value.teacherName
-          : teacherName // ignore: cast_nullable_to_non_nullable
+              as int,
+      day: null == day
+          ? _value.day
+          : day // ignore: cast_nullable_to_non_nullable
               as String,
       startTime: null == startTime
           ? _value.startTime
@@ -104,15 +96,35 @@ class _$ScheduleModelCopyWithImpl<$Res, $Val extends ScheduleModel>
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
               as String,
-      dayOfWeek: null == dayOfWeek
-          ? _value.dayOfWeek
-          : dayOfWeek // ignore: cast_nullable_to_non_nullable
-              as String,
-      subjectImage: null == subjectImage
-          ? _value.subjectImage
-          : subjectImage // ignore: cast_nullable_to_non_nullable
-              as String,
+      subject: null == subject
+          ? _value.subject
+          : subject // ignore: cast_nullable_to_non_nullable
+              as SubjectModel,
+      teacher: null == teacher
+          ? _value.teacher
+          : teacher // ignore: cast_nullable_to_non_nullable
+              as TeacherModel,
     ) as $Val);
+  }
+
+  /// Create a copy of ScheduleModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SubjectModelCopyWith<$Res> get subject {
+    return $SubjectModelCopyWith<$Res>(_value.subject, (value) {
+      return _then(_value.copyWith(subject: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ScheduleModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TeacherModelCopyWith<$Res> get teacher {
+    return $TeacherModelCopyWith<$Res>(_value.teacher, (value) {
+      return _then(_value.copyWith(teacher: value) as $Val);
+    });
   }
 }
 
@@ -125,13 +137,17 @@ abstract class _$$ScheduleModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      @JsonKey(name: 'subject_name') String subjectName,
-      @JsonKey(name: 'teacher_name') String teacherName,
+      {int id,
+      String day,
       @JsonKey(name: 'start_time') String startTime,
       @JsonKey(name: 'end_time') String endTime,
-      @JsonKey(name: 'day_of_week') String dayOfWeek,
-      @JsonKey(name: 'subject_image') String subjectImage});
+      SubjectModel subject,
+      TeacherModel teacher});
+
+  @override
+  $SubjectModelCopyWith<$Res> get subject;
+  @override
+  $TeacherModelCopyWith<$Res> get teacher;
 }
 
 /// @nodoc
@@ -148,25 +164,20 @@ class __$$ScheduleModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? subjectName = null,
-    Object? teacherName = null,
+    Object? day = null,
     Object? startTime = null,
     Object? endTime = null,
-    Object? dayOfWeek = null,
-    Object? subjectImage = null,
+    Object? subject = null,
+    Object? teacher = null,
   }) {
     return _then(_$ScheduleModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      subjectName: null == subjectName
-          ? _value.subjectName
-          : subjectName // ignore: cast_nullable_to_non_nullable
-              as String,
-      teacherName: null == teacherName
-          ? _value.teacherName
-          : teacherName // ignore: cast_nullable_to_non_nullable
+              as int,
+      day: null == day
+          ? _value.day
+          : day // ignore: cast_nullable_to_non_nullable
               as String,
       startTime: null == startTime
           ? _value.startTime
@@ -176,14 +187,14 @@ class __$$ScheduleModelImplCopyWithImpl<$Res>
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
               as String,
-      dayOfWeek: null == dayOfWeek
-          ? _value.dayOfWeek
-          : dayOfWeek // ignore: cast_nullable_to_non_nullable
-              as String,
-      subjectImage: null == subjectImage
-          ? _value.subjectImage
-          : subjectImage // ignore: cast_nullable_to_non_nullable
-              as String,
+      subject: null == subject
+          ? _value.subject
+          : subject // ignore: cast_nullable_to_non_nullable
+              as SubjectModel,
+      teacher: null == teacher
+          ? _value.teacher
+          : teacher // ignore: cast_nullable_to_non_nullable
+              as TeacherModel,
     ));
   }
 }
@@ -193,24 +204,19 @@ class __$$ScheduleModelImplCopyWithImpl<$Res>
 class _$ScheduleModelImpl implements _ScheduleModel {
   const _$ScheduleModelImpl(
       {required this.id,
-      @JsonKey(name: 'subject_name') required this.subjectName,
-      @JsonKey(name: 'teacher_name') required this.teacherName,
+      required this.day,
       @JsonKey(name: 'start_time') required this.startTime,
       @JsonKey(name: 'end_time') required this.endTime,
-      @JsonKey(name: 'day_of_week') required this.dayOfWeek,
-      @JsonKey(name: 'subject_image') required this.subjectImage});
+      required this.subject,
+      required this.teacher});
 
   factory _$ScheduleModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ScheduleModelImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
-  @JsonKey(name: 'subject_name')
-  final String subjectName;
-  @override
-  @JsonKey(name: 'teacher_name')
-  final String teacherName;
+  final String day;
   @override
   @JsonKey(name: 'start_time')
   final String startTime;
@@ -218,15 +224,13 @@ class _$ScheduleModelImpl implements _ScheduleModel {
   @JsonKey(name: 'end_time')
   final String endTime;
   @override
-  @JsonKey(name: 'day_of_week')
-  final String dayOfWeek;
+  final SubjectModel subject;
   @override
-  @JsonKey(name: 'subject_image')
-  final String subjectImage;
+  final TeacherModel teacher;
 
   @override
   String toString() {
-    return 'ScheduleModel(id: $id, subjectName: $subjectName, teacherName: $teacherName, startTime: $startTime, endTime: $endTime, dayOfWeek: $dayOfWeek, subjectImage: $subjectImage)';
+    return 'ScheduleModel(id: $id, day: $day, startTime: $startTime, endTime: $endTime, subject: $subject, teacher: $teacher)';
   }
 
   @override
@@ -235,23 +239,18 @@ class _$ScheduleModelImpl implements _ScheduleModel {
         (other.runtimeType == runtimeType &&
             other is _$ScheduleModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.subjectName, subjectName) ||
-                other.subjectName == subjectName) &&
-            (identical(other.teacherName, teacherName) ||
-                other.teacherName == teacherName) &&
+            (identical(other.day, day) || other.day == day) &&
             (identical(other.startTime, startTime) ||
                 other.startTime == startTime) &&
             (identical(other.endTime, endTime) || other.endTime == endTime) &&
-            (identical(other.dayOfWeek, dayOfWeek) ||
-                other.dayOfWeek == dayOfWeek) &&
-            (identical(other.subjectImage, subjectImage) ||
-                other.subjectImage == subjectImage));
+            (identical(other.subject, subject) || other.subject == subject) &&
+            (identical(other.teacher, teacher) || other.teacher == teacher));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, subjectName, teacherName,
-      startTime, endTime, dayOfWeek, subjectImage);
+  int get hashCode =>
+      Object.hash(runtimeType, id, day, startTime, endTime, subject, teacher);
 
   /// Create a copy of ScheduleModel
   /// with the given fields replaced by the non-null parameter values.
@@ -271,26 +270,20 @@ class _$ScheduleModelImpl implements _ScheduleModel {
 
 abstract class _ScheduleModel implements ScheduleModel {
   const factory _ScheduleModel(
-          {required final String id,
-          @JsonKey(name: 'subject_name') required final String subjectName,
-          @JsonKey(name: 'teacher_name') required final String teacherName,
-          @JsonKey(name: 'start_time') required final String startTime,
-          @JsonKey(name: 'end_time') required final String endTime,
-          @JsonKey(name: 'day_of_week') required final String dayOfWeek,
-          @JsonKey(name: 'subject_image') required final String subjectImage}) =
-      _$ScheduleModelImpl;
+      {required final int id,
+      required final String day,
+      @JsonKey(name: 'start_time') required final String startTime,
+      @JsonKey(name: 'end_time') required final String endTime,
+      required final SubjectModel subject,
+      required final TeacherModel teacher}) = _$ScheduleModelImpl;
 
   factory _ScheduleModel.fromJson(Map<String, dynamic> json) =
       _$ScheduleModelImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
-  @JsonKey(name: 'subject_name')
-  String get subjectName;
-  @override
-  @JsonKey(name: 'teacher_name')
-  String get teacherName;
+  String get day;
   @override
   @JsonKey(name: 'start_time')
   String get startTime;
@@ -298,11 +291,9 @@ abstract class _ScheduleModel implements ScheduleModel {
   @JsonKey(name: 'end_time')
   String get endTime;
   @override
-  @JsonKey(name: 'day_of_week')
-  String get dayOfWeek;
+  SubjectModel get subject;
   @override
-  @JsonKey(name: 'subject_image')
-  String get subjectImage;
+  TeacherModel get teacher;
 
   /// Create a copy of ScheduleModel
   /// with the given fields replaced by the non-null parameter values.

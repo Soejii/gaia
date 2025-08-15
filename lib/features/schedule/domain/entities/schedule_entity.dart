@@ -1,22 +1,24 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class ScheduleEntity {
+  final String id;
+  final String subjectName;
+  final String teacherName;
+  final String startTime;
+  final String endTime;
+  final DayOfWeek dayOfWeek;
+  final String subjectImage;
 
-part 'schedule_entity.freezed.dart';
-
-@freezed
-class ScheduleEntity with _$ScheduleEntity {
-  const factory ScheduleEntity({
-    required String id,
-    required String subjectName,
-    required String teacherName,
-    required String startTime,
-    required String endTime,
-    required DayOfWeek dayOfWeek,
-    required String subjectImage, 
-  }) =_ScheduleEntity;
-  
+  const ScheduleEntity({
+    required this.id,
+    required this.subjectName,
+    required this.teacherName,
+    required this.startTime,
+    required this.endTime,
+    required this.dayOfWeek,
+    required this.subjectImage,
+  });
 }
 
-enum DayOfWeek{
+enum DayOfWeek {
   monday,
   tuesday,
   wednesday,
@@ -27,7 +29,7 @@ enum DayOfWeek{
 
   String get displayName {
     switch (this) {
-        case DayOfWeek.monday:
+      case DayOfWeek.monday:
         return 'Senin';
       case DayOfWeek.tuesday:
         return 'Selasa';
@@ -44,7 +46,6 @@ enum DayOfWeek{
     }
   }
 
-  
   static List<DayOfWeek> get weekDays => [
         DayOfWeek.monday,
         DayOfWeek.tuesday,
@@ -55,4 +56,3 @@ enum DayOfWeek{
         DayOfWeek.sunday,
       ];
 }
-

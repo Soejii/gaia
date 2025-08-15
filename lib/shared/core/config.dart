@@ -14,7 +14,7 @@ class ConfigEnvironments {
     },
     {
       'env': Environments.PRODUCTION,
-      'baseUrl': 'https://demo.sidigs.com/api/student',
+      'baseUrl': '',
     },
   ];
 

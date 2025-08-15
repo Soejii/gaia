@@ -16,6 +16,16 @@ class AssetsHelper {
   static String imgHomeButtonKeuangan = img("img_home_keuangan.png");
   static String imgHomeButtonCbt = img("img_home_keuangan.png");
 
+
+  static String imgIpa = img("img_ipa.png");
+  static String imgMatematika = img("img_matematika.png");
+  static String imgIndonesia = img("img_Indonesia.png");
+  static String imgFisika = img("img_fisika.png");
+  static String imgBiologi = img("img_biologi.png");
+  static String imgSejarah = img("img_sejarah.png");
+
+  static String imgTidakAdaPelajaran = img("img_tidak_ada_pelajaran.png");
+
   static String icHome = icon('ic_beranda_home.svg');
   static String icActivity = icon('ic_activity_home.svg');
   static String icChat = icon('ic_chat_home.svg');
