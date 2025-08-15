@@ -27,6 +27,13 @@ EdutainmentRepository edutainmentRepository(Ref ref) {
 }
 
 @riverpod
+class EdutainmentTabIndex extends _$EdutainmentTabIndex {
+  @override
+  int build() => 0;
+  void set(int newIndex) => state = newIndex;
+}
+
+@riverpod
 GetListEdutainmentUsecase getListEdutainmentUsecase(Ref ref) {
   return GetListEdutainmentUsecase(
     ref.watch(

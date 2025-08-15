@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/announcement/presentation/widgets/announcement_error_card.dart';
 import 'package:gaia/features/announcement/presentation/widgets/announcement_skeleton_card.dart';
+import 'package:gaia/features/edutainment/domain/type/edutainment_type.dart';
 import 'package:gaia/features/edutainment/presentation/providers/edutainment_controller.dart';
 import 'package:gaia/features/edutainment/presentation/widgets/edutainment_card.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
@@ -13,7 +14,8 @@ class RubricEntertainmentWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final edutainmentAsync = ref.watch(edutainmentControllerProvider);
+    final edutainmentAsync =
+        ref.watch(edutainmentControllerProvider(EdutainmentType.all));
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Column(
@@ -50,8 +52,8 @@ class RubricEntertainmentWidget extends ConsumerWidget {
           ),
           SizedBox(height: 10.h),
           edutainmentAsync.when(
-            data: (data) => data.isNotEmpty
-                ? EdutainmentCard(entity: data[0])
+            data: (data) => data.items.isNotEmpty
+                ? EdutainmentCard(entity: data.items[0])
                 : const SizedBox.shrink(),
             error: (e, _) => AnnouncementErrorCard(
               error: e,

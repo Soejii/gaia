@@ -66,5 +66,22 @@ final getListEdutainmentUsecaseProvider =
 // ignore: unused_element
 typedef GetListEdutainmentUsecaseRef
     = AutoDisposeProviderRef<GetListEdutainmentUsecase>;
+String _$edutainmentTabIndexHash() =>
+    r'ca2670e84d1e5cd3b08f3114ae1ea7d8f1c93502';
+
+/// See also [EdutainmentTabIndex].
+@ProviderFor(EdutainmentTabIndex)
+final edutainmentTabIndexProvider =
+    AutoDisposeNotifierProvider<EdutainmentTabIndex, int>.internal(
+  EdutainmentTabIndex.new,
+  name: r'edutainmentTabIndexProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$edutainmentTabIndexHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$EdutainmentTabIndex = AutoDisposeNotifier<int>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

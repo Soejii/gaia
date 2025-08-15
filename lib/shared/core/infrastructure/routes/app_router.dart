@@ -66,6 +66,7 @@ GoRouter appRouter(Ref ref) {
                     },
                   ),
                   GoRoute(
+                    parentNavigatorKey: _rootKey,
                     path: 'list-edutaiment',
                     name: RouteName.listEdutainment,
                     builder: (context, state) => const ListEdutainmentScreen(),

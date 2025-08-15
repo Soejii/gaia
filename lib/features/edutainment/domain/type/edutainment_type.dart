@@ -10,6 +10,11 @@ extension GetEdutainmentType on EdutainmentType {
         EdutainmentType.school => 'school',
         EdutainmentType.sidigs => 'sidigs'
       };
+  String get name => switch (this) {
+        EdutainmentType.all => 'Semua',
+        EdutainmentType.school => 'Sekolah',
+        EdutainmentType.sidigs => 'SIDIGS'
+      };
 }
 
 const edutainmentTypes = [
