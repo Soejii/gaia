@@ -6,7 +6,7 @@ import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
   const env =
-      String.fromEnvironment('ENV', defaultValue: Environments.PRODUCTION);
+      String.fromEnvironment('ENV', defaultValue: Environments.DEV);
   debugPrint('✅ Running in ENV: $env');
   initializeDateFormatting('id_ID').then(
     (value) => runApp(
