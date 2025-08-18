@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailEdutainmentContent extends StatelessWidget {
   const DetailEdutainmentContent({
@@ -14,6 +15,14 @@ class DetailEdutainmentContent extends StatelessWidget {
   final String date;
   final String desc;
   final String link;
+
+  Future<void> launchLink(String link) async {
+    final uri = Uri.parse(link);
+    await launchUrl(
+      uri,
+      mode: LaunchMode.externalApplication,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,14 +59,20 @@ class DetailEdutainmentContent extends StatelessWidget {
               color: AppColors.mainText,
             ),
           ),
-          Text(
-            link,
-            style: TextStyle(
-              fontFamily: 'OpenSans',
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w400,
-              color: const Color.fromRGBO(24, 157, 205, 1),
-              decoration: TextDecoration.underline,
+          SizedBox(height: 17.h),
+          GestureDetector(
+            onTap: () async {
+              await launchLink(link);
+            },
+            child: Text(
+              link,
+              style: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w400,
+                color: const Color.fromRGBO(24, 157, 205, 1),
+                decoration: TextDecoration.underline,
+              ),
             ),
           ),
         ],
