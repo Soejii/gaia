@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/announcement/presentation/providers/announcement_controller.dart';
 import 'package:gaia/features/announcement/presentation/widgets/announcement_card.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 
 class ListAnnouncementScreen extends ConsumerWidget {
@@ -31,17 +31,7 @@ class ListAnnouncementScreen extends ConsumerWidget {
               ),
             );
           } else {
-            return Center(
-              child: Text(
-                'Wah Pengumuman Tidak Ditemukan',
-                style: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.secondaryText,
-                ),
-              ),
-            );
+            return const DataNotFoundScreen(dataType: 'Pengumuman');
           }
         },
         error: (error, stackTrace) {

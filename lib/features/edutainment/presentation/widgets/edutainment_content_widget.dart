@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/edutainment/domain/type/edutainment_type.dart';
 import 'package:gaia/features/edutainment/presentation/providers/edutainment_controller.dart';
 import 'package:gaia/features/edutainment/presentation/widgets/edutainment_card.dart';
+import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class EdutainmentContentWidget extends HookConsumerWidget {
@@ -61,7 +62,7 @@ class EdutainmentContentWidget extends HookConsumerWidget {
             ),
           );
         } else {
-          return const Center(child: Text('Tidak ada edutainment'));
+          return const DataNotFoundScreen(dataType: 'Edutainment');
         }
       },
       error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
