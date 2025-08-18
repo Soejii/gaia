@@ -20,6 +20,7 @@ _$SchoolModelImpl _$$SchoolModelImplFromJson(Map<String, dynamic> json) =>
       youtube: json['youtube'] as String?,
       description: json['description'] as String?,
       registrationNumber: json['registration_number'] as String?,
+      accreditation: json['accreditation'] as String?,
     );
 
 Map<String, dynamic> _$$SchoolModelImplToJson(_$SchoolModelImpl instance) =>
@@ -36,4 +37,5 @@ Map<String, dynamic> _$$SchoolModelImplToJson(_$SchoolModelImpl instance) =>
       'youtube': instance.youtube,
       'description': instance.description,
       'registration_number': instance.registrationNumber,
+      'accreditation': instance.accreditation,
     };
