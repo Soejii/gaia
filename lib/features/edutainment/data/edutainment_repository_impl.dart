@@ -24,4 +24,14 @@ class EdutainmentRepositoryImpl implements EdutainmentRepository {
               .toList();
         },
       );
+
+  @override
+  Future<Result<EdutainmentEntity>> getDetailEdutainment({required int id}) {
+    return guard(
+      () async {
+        final model = await _dataSource.getDetailEdutainment(id);
+        return model.toEntity();
+      },
+    );
+  }
 }

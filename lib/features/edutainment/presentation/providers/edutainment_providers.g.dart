@@ -66,6 +66,26 @@ final getListEdutainmentUsecaseProvider =
 // ignore: unused_element
 typedef GetListEdutainmentUsecaseRef
     = AutoDisposeProviderRef<GetListEdutainmentUsecase>;
+String _$getDetailEdutainmentUsecaseHash() =>
+    r'0fd2b7cbffcf02870e72571f38d876aa626d2278';
+
+/// See also [getDetailEdutainmentUsecase].
+@ProviderFor(getDetailEdutainmentUsecase)
+final getDetailEdutainmentUsecaseProvider =
+    AutoDisposeProvider<GetDetailEdutainmentUsecase>.internal(
+  getDetailEdutainmentUsecase,
+  name: r'getDetailEdutainmentUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getDetailEdutainmentUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetDetailEdutainmentUsecaseRef
+    = AutoDisposeProviderRef<GetDetailEdutainmentUsecase>;
 String _$edutainmentTabIndexHash() =>
     r'ca2670e84d1e5cd3b08f3114ae1ea7d8f1c93502';
 

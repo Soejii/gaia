@@ -4,4 +4,5 @@ import 'package:gaia/shared/core/types/result.dart';
 
 abstract class EdutainmentRepository {
   Future<Result<List<EdutainmentEntity>>> getListEdutainment({required EdutainmentType type, int page = 1});
+    Future<Result<EdutainmentEntity>> getDetailEdutainment({required int id});
 }

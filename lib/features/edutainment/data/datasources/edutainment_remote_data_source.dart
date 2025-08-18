@@ -24,4 +24,10 @@ class EdutainmentRemoteDataSource {
         )
         .toList(growable: false);
   }
+
+  Future<EdutainmentModel> getDetailEdutainment(int id) async {
+    final res = await _dio.get('/magazines/$id');
+    final data = EdutainmentModel.fromJson(res.data['data']);
+    return data;
+  }
 }
