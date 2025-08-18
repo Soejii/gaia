@@ -62,9 +62,20 @@ class SchoolInformationContent extends StatelessWidget {
                   value: school.website,
                 ),
                 SizedBox(height: 16.h),
-                SchoolSectionLabel(label: 'Social Media'),
-                SizedBox(height: 8.h),
-                SchoolSocialMediaBox(school: school),
+                SchoolInfoSection(
+                  label: 'Instagram',
+                  value: school.instagram,
+                ),
+                 SizedBox(height: 16.h),
+                SchoolInfoSection(
+                  label: 'Facebook',
+                  value: school.facebook,
+                ),
+                                 SizedBox(height: 16.h),
+                 SchoolInfoSection(
+                  label: 'Youtube',
+                  value: school.youtube,
+                ),
                 SizedBox(height: 20.h),
               ],
             ),
