@@ -19,6 +19,13 @@ class ActivityScreen extends HookConsumerWidget {
       initialIndex: ref.watch(activityTabIndexProvider),
     );
 
+    ref.listen(
+      activityTabIndexProvider,
+      (previous, next) {
+        tabController.index = next;
+      },
+    );
+
     useEffect(
       () {
         void onChange() {
@@ -36,6 +43,7 @@ class ActivityScreen extends HookConsumerWidget {
       },
       [tabController],
     );
+
     return Scaffold(
       appBar: const CustomAppBarWidget(
         title: 'Aktifitas',
