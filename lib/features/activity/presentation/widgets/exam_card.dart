@@ -5,8 +5,8 @@ import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:gaia/shared/utils/date_helper.dart';
 
-class QuizCard extends StatelessWidget {
-  const QuizCard({super.key, required this.entity});
+class ExamCard extends StatelessWidget {
+  const ExamCard({super.key, required this.entity});
   final ExamEntity entity;
 
   @override
@@ -15,14 +15,7 @@ class QuizCard extends StatelessWidget {
       height: 96.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient: const LinearGradient(
-          colors: [
-            Color.fromRGBO(117, 39, 149, 1),
-            Color.fromRGBO(143, 83, 165, 1),
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
+        gradient: AppColors.mainColorGradient,
         boxShadow: AppColors.shadow,
       ),
       child: Padding(
@@ -37,7 +30,7 @@ class QuizCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 gradient: const LinearGradient(
                   colors: [
-                    Color.fromRGBO(237, 190, 255, 1),
+                    Color.fromRGBO(201, 238, 255, 1),
                     Color.fromRGBO(255, 255, 255, 1),
                   ],
                   begin: Alignment.topCenter,
@@ -49,7 +42,7 @@ class QuizCard extends StatelessWidget {
                   height: 56.h,
                   width: 56.h,
                   child: Image.asset(
-                    AssetsHelper.imgQuiz,
+                    AssetsHelper.imgTask,
                   ),
                 ),
               ),
@@ -102,7 +95,8 @@ class QuizCard extends StatelessWidget {
       ),
     );
   }
-    Widget _circle(
+
+  Widget _circle(
     String status,
   ) {
     switch (status) {
