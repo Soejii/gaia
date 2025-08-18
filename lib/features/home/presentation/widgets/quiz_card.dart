@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/activity/domain/entities/exam_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
+import 'package:gaia/shared/utils/date_helper.dart';
 
 class QuizCard extends StatelessWidget {
-  const QuizCard({super.key});
+  const QuizCard({super.key, required this.entity});
+  final ExamEntity entity;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +61,7 @@ class QuizCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Bahasa Indonesia',
+                    entity.subjectName ?? 'Mapel Tidak Ditemukan',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -69,7 +72,7 @@ class QuizCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Menganalisis bahasa indonesia didalam alquran',
+                    entity.title ?? '---',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -80,7 +83,7 @@ class QuizCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '27 November 2025',
+                    formatIndoDate(entity.date),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -93,29 +96,133 @@ class QuizCard extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              width: 64.h,
-              height: 64.h,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.white, width: 6.w),
-                color: AppColors.green,
-              ),
-              child: Center(
-                child: Text(
-                  'Kerjakan',
-                  style: TextStyle(
-                    fontFamily: 'OpenSans',
-                    fontSize: 10.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            _circle(entity.status.name)
           ],
         ),
       ),
     );
+  }
+    Widget _circle(
+    String status,
+  ) {
+    switch (status) {
+      case 'done':
+        return Container(
+          width: 64.h,
+          height: 64.h,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.white, width: 6.w),
+            color: AppColors.green,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Score',
+                style: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                '${entity.score ?? 0}',
+                style: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        );
+      case 'notDone':
+        return Container(
+          width: 64.h,
+          height: 64.h,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.white, width: 6.w),
+            color: AppColors.green,
+          ),
+          child: Center(
+            child: Text(
+              'Kerjakan',
+              style: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        );
+      case 'review':
+        return Container(
+          width: 64.h,
+          height: 64.h,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.white, width: 6.w),
+            color: const Color.fromRGBO(255, 122, 0, 1),
+          ),
+          child: Center(
+            child: Text(
+              'Review',
+              style: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        );
+      case 'process':
+        return Container(
+          width: 64.h,
+          height: 64.h,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.white, width: 6.w),
+            color: AppColors.green,
+          ),
+          child: Center(
+            child: Text(
+              'Dalam Proses',
+              style: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        );
+      default:
+        return Container(
+          width: 64.h,
+          height: 64.h,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.white, width: 6.w),
+            color: AppColors.green,
+          ),
+          child: Center(
+            child: Text(
+              'Kerjakan',
+              style: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 10.sp,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        );
+    }
   }
 }
