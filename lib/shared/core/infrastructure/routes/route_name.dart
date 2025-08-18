@@ -7,4 +7,5 @@ class RouteName {
   static const detailEdutainment = 'detail-edutainment';
   static const profile = 'profile';
   static const schedule = 'schedule';
+  static const schoolInformation = 'school-information';
 }

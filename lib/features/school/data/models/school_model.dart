@@ -19,6 +19,7 @@ class SchoolModel with _$SchoolModel {
     String? youtube,
     String? description,
     String? registrationNumber,
+    String? accreditation,
   }) = _SchoolModel;
 
   factory SchoolModel.fromJson(Map<String, dynamic> json) =>

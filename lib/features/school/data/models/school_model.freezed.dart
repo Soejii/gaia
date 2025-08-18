@@ -32,6 +32,7 @@ mixin _$SchoolModel {
   String? get youtube => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get registrationNumber => throw _privateConstructorUsedError;
+  String? get accreditation => throw _privateConstructorUsedError;
 
   /// Serializes this SchoolModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -61,7 +62,8 @@ abstract class $SchoolModelCopyWith<$Res> {
       String? instagram,
       String? youtube,
       String? description,
-      String? registrationNumber});
+      String? registrationNumber,
+      String? accreditation});
 }
 
 /// @nodoc
@@ -91,6 +93,7 @@ class _$SchoolModelCopyWithImpl<$Res, $Val extends SchoolModel>
     Object? youtube = freezed,
     Object? description = freezed,
     Object? registrationNumber = freezed,
+    Object? accreditation = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -141,6 +144,10 @@ class _$SchoolModelCopyWithImpl<$Res, $Val extends SchoolModel>
           ? _value.registrationNumber
           : registrationNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      accreditation: freezed == accreditation
+          ? _value.accreditation
+          : accreditation // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -165,7 +172,8 @@ abstract class _$$SchoolModelImplCopyWith<$Res>
       String? instagram,
       String? youtube,
       String? description,
-      String? registrationNumber});
+      String? registrationNumber,
+      String? accreditation});
 }
 
 /// @nodoc
@@ -193,6 +201,7 @@ class __$$SchoolModelImplCopyWithImpl<$Res>
     Object? youtube = freezed,
     Object? description = freezed,
     Object? registrationNumber = freezed,
+    Object? accreditation = freezed,
   }) {
     return _then(_$SchoolModelImpl(
       id: null == id
@@ -243,6 +252,10 @@ class __$$SchoolModelImplCopyWithImpl<$Res>
           ? _value.registrationNumber
           : registrationNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      accreditation: freezed == accreditation
+          ? _value.accreditation
+          : accreditation // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -263,7 +276,8 @@ class _$SchoolModelImpl implements _SchoolModel {
       this.instagram,
       this.youtube,
       this.description,
-      this.registrationNumber});
+      this.registrationNumber,
+      this.accreditation});
 
   factory _$SchoolModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SchoolModelImplFromJson(json);
@@ -292,10 +306,12 @@ class _$SchoolModelImpl implements _SchoolModel {
   final String? description;
   @override
   final String? registrationNumber;
+  @override
+  final String? accreditation;
 
   @override
   String toString() {
-    return 'SchoolModel(id: $id, name: $name, photo: $photo, address: $address, phone: $phone, email: $email, website: $website, facebook: $facebook, instagram: $instagram, youtube: $youtube, description: $description, registrationNumber: $registrationNumber)';
+    return 'SchoolModel(id: $id, name: $name, photo: $photo, address: $address, phone: $phone, email: $email, website: $website, facebook: $facebook, instagram: $instagram, youtube: $youtube, description: $description, registrationNumber: $registrationNumber, accreditation: $accreditation)';
   }
 
   @override
@@ -318,7 +334,9 @@ class _$SchoolModelImpl implements _SchoolModel {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.registrationNumber, registrationNumber) ||
-                other.registrationNumber == registrationNumber));
+                other.registrationNumber == registrationNumber) &&
+            (identical(other.accreditation, accreditation) ||
+                other.accreditation == accreditation));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -336,7 +354,8 @@ class _$SchoolModelImpl implements _SchoolModel {
       instagram,
       youtube,
       description,
-      registrationNumber);
+      registrationNumber,
+      accreditation);
 
   /// Create a copy of SchoolModel
   /// with the given fields replaced by the non-null parameter values.
@@ -367,7 +386,8 @@ abstract class _SchoolModel implements SchoolModel {
       final String? instagram,
       final String? youtube,
       final String? description,
-      final String? registrationNumber}) = _$SchoolModelImpl;
+      final String? registrationNumber,
+      final String? accreditation}) = _$SchoolModelImpl;
 
   factory _SchoolModel.fromJson(Map<String, dynamic> json) =
       _$SchoolModelImpl.fromJson;
@@ -396,6 +416,8 @@ abstract class _SchoolModel implements SchoolModel {
   String? get description;
   @override
   String? get registrationNumber;
+  @override
+  String? get accreditation;
 
   /// Create a copy of SchoolModel
   /// with the given fields replaced by the non-null parameter values.

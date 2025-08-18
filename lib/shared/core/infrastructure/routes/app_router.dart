@@ -10,6 +10,7 @@ import 'package:gaia/features/home/presentation/home_screen.dart';
 import 'package:gaia/features/login/presentation/screen/login_screen.dart';
 import 'package:gaia/features/profile/presentation/profile_screen.dart';
 import 'package:gaia/features/schedule/presentation/screens/schedule_screen.dart';
+import 'package:gaia/features/school/presentation/screens/school_information_screen.dart';
 import 'package:gaia/shared/core/infrastructure/auth/auth_state_provider.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:gaia/shared/screens/error_screen.dart';
@@ -103,6 +104,14 @@ GoRouter appRouter(Ref ref) {
                 name: RouteName.profile,
                 pageBuilder: (_, __) =>
                     const MaterialPage(child: ProfileScreen()),
+                routes: [
+                  GoRoute(
+                    path: 'school-information',
+                    name: RouteName.schoolInformation,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, __) => const SchoolInformationScreen(),
+                  ),
+                ],
               ),
             ],
           ),

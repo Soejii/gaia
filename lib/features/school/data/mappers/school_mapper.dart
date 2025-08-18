@@ -18,5 +18,6 @@ extension SchoolEntityMapper on SchoolModel {
         registrationNumber: registrationNumber ?? '-',
         website: website ?? '-',
         youtube: youtube ?? '-',
+        accreditation: accreditation ?? '-',
       );
 }
