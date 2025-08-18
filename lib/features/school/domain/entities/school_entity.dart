@@ -11,6 +11,7 @@ class SchoolEntity {
   final String youtube;
   final String description;
   final String registrationNumber;
+  final String accreditation;
 
   SchoolEntity({
     required this.id,
@@ -25,5 +26,6 @@ class SchoolEntity {
     required this.youtube,
     required this.description,
     required this.registrationNumber,
+    required this.accreditation,
   });
 }
