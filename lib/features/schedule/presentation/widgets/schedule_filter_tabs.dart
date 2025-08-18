@@ -15,7 +15,7 @@ class ScheduleFilterTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         boxShadow: AppColors.shadow,
       ),
@@ -26,12 +26,12 @@ class ScheduleFilterTabs extends StatelessWidget {
         labelColor: Colors.white,
         unselectedLabelColor: AppColors.mainColorSidigs,
         labelStyle: TextStyle(
-          fontFamily: 'Open Sans',
+          fontFamily: 'OpenSans',
           fontSize: 12.sp,
           fontWeight: FontWeight.w600,
         ),
         unselectedLabelStyle: TextStyle(
-          fontFamily: 'Open Sans',
+          fontFamily: 'OpenSans',
           fontSize: 12.sp,
           fontWeight: FontWeight.w600,
         ),
@@ -61,7 +61,7 @@ class ScheduleFilterTabs extends StatelessWidget {
                       day,
                       style: TextStyle(
                         color: isSelected ? Colors.white : AppColors.mainColorSidigs,
-                        fontFamily: 'Open Sans',
+                        fontFamily: 'OpenSans',
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
                       ),

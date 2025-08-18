@@ -71,7 +71,7 @@ class ScheduleCard extends StatelessWidget {
                   Text(
                     schedule.subjectName,
                     style: TextStyle(
-                      fontFamily: 'Open Sans',
+                      fontFamily: 'OpenSans',
                       fontSize: 18.sp,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
@@ -81,7 +81,7 @@ class ScheduleCard extends StatelessWidget {
                   Text(
                     schedule.teacherName,
                     style: TextStyle(
-                      fontFamily: 'Open Sans',
+                      fontFamily: 'OpenSans',
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
@@ -91,7 +91,7 @@ class ScheduleCard extends StatelessWidget {
                   Text(
                     '${schedule.startTime}-${schedule.endTime} WIB',
                     style: TextStyle(
-                      fontFamily: 'Open Sans',
+                      fontFamily: 'OpenSans',
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,

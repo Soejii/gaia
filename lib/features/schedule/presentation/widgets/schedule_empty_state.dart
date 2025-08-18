@@ -27,7 +27,7 @@ class ScheduleEmptyState extends StatelessWidget {
           Text(
             'Wah, Hari ini tidak ada jadwal...',
             style: TextStyle(
-              fontFamily: 'Open Sans',
+              fontFamily: 'OpenSans',
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
               color: AppColors.secondaryText,
@@ -38,7 +38,7 @@ class ScheduleEmptyState extends StatelessWidget {
           Text(
             'Kamu bisa belajar sendiri di rumah',
             style: TextStyle(
-              fontFamily: 'Open Sans',
+              fontFamily: 'OpenSans',
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
               color: AppColors.secondaryText,
