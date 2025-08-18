@@ -64,5 +64,21 @@ final getListExamUsecaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef GetListExamUsecaseRef = AutoDisposeProviderRef<GetListExamUsecase>;
+String _$activityTabIndexHash() => r'92c40e35b746d84e26f86823ddbb7424eec346a1';
+
+/// See also [ActivityTabIndex].
+@ProviderFor(ActivityTabIndex)
+final activityTabIndexProvider =
+    AutoDisposeNotifierProvider<ActivityTabIndex, int>.internal(
+  ActivityTabIndex.new,
+  name: r'activityTabIndexProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$activityTabIndexHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$ActivityTabIndex = AutoDisposeNotifier<int>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

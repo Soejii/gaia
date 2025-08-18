@@ -1,13 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'activity_controller.dart';
+part of 'exam_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$activityControllerHash() =>
-    r'6bdf0dc50e088ef46161ada85f1202482f26a18e';
+String _$examControllerHash() => r'b4df037138792d368a03b376e380a3460772a1e9';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,7 +29,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$ActivityController
+abstract class _$ExamController
     extends BuildlessAutoDisposeNotifier<AsyncValue<Paged<ExamEntity>>> {
   late final ExamType type;
 
@@ -39,27 +38,27 @@ abstract class _$ActivityController
   );
 }
 
-/// See also [ActivityController].
-@ProviderFor(ActivityController)
-const activityControllerProvider = ActivityControllerFamily();
+/// See also [ExamController].
+@ProviderFor(ExamController)
+const examControllerProvider = ExamControllerFamily();
 
-/// See also [ActivityController].
-class ActivityControllerFamily extends Family<AsyncValue<Paged<ExamEntity>>> {
-  /// See also [ActivityController].
-  const ActivityControllerFamily();
+/// See also [ExamController].
+class ExamControllerFamily extends Family<AsyncValue<Paged<ExamEntity>>> {
+  /// See also [ExamController].
+  const ExamControllerFamily();
 
-  /// See also [ActivityController].
-  ActivityControllerProvider call(
+  /// See also [ExamController].
+  ExamControllerProvider call(
     ExamType type,
   ) {
-    return ActivityControllerProvider(
+    return ExamControllerProvider(
       type,
     );
   }
 
   @override
-  ActivityControllerProvider getProviderOverride(
-    covariant ActivityControllerProvider provider,
+  ExamControllerProvider getProviderOverride(
+    covariant ExamControllerProvider provider,
   ) {
     return call(
       provider.type,
@@ -78,30 +77,30 @@ class ActivityControllerFamily extends Family<AsyncValue<Paged<ExamEntity>>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'activityControllerProvider';
+  String? get name => r'examControllerProvider';
 }
 
-/// See also [ActivityController].
-class ActivityControllerProvider extends AutoDisposeNotifierProviderImpl<
-    ActivityController, AsyncValue<Paged<ExamEntity>>> {
-  /// See also [ActivityController].
-  ActivityControllerProvider(
+/// See also [ExamController].
+class ExamControllerProvider extends AutoDisposeNotifierProviderImpl<
+    ExamController, AsyncValue<Paged<ExamEntity>>> {
+  /// See also [ExamController].
+  ExamControllerProvider(
     ExamType type,
   ) : this._internal(
-          () => ActivityController()..type = type,
-          from: activityControllerProvider,
-          name: r'activityControllerProvider',
+          () => ExamController()..type = type,
+          from: examControllerProvider,
+          name: r'examControllerProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$activityControllerHash,
-          dependencies: ActivityControllerFamily._dependencies,
+                  : _$examControllerHash,
+          dependencies: ExamControllerFamily._dependencies,
           allTransitiveDependencies:
-              ActivityControllerFamily._allTransitiveDependencies,
+              ExamControllerFamily._allTransitiveDependencies,
           type: type,
         );
 
-  ActivityControllerProvider._internal(
+  ExamControllerProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -115,7 +114,7 @@ class ActivityControllerProvider extends AutoDisposeNotifierProviderImpl<
 
   @override
   AsyncValue<Paged<ExamEntity>> runNotifierBuild(
-    covariant ActivityController notifier,
+    covariant ExamController notifier,
   ) {
     return notifier.build(
       type,
@@ -123,10 +122,10 @@ class ActivityControllerProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  Override overrideWith(ActivityController Function() create) {
+  Override overrideWith(ExamController Function() create) {
     return ProviderOverride(
       origin: this,
-      override: ActivityControllerProvider._internal(
+      override: ExamControllerProvider._internal(
         () => create()..type = type,
         from: from,
         name: null,
@@ -139,14 +138,14 @@ class ActivityControllerProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  AutoDisposeNotifierProviderElement<ActivityController,
+  AutoDisposeNotifierProviderElement<ExamController,
       AsyncValue<Paged<ExamEntity>>> createElement() {
-    return _ActivityControllerProviderElement(this);
+    return _ExamControllerProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is ActivityControllerProvider && other.type == type;
+    return other is ExamControllerProvider && other.type == type;
   }
 
   @override
@@ -160,19 +159,18 @@ class ActivityControllerProvider extends AutoDisposeNotifierProviderImpl<
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin ActivityControllerRef
+mixin ExamControllerRef
     on AutoDisposeNotifierProviderRef<AsyncValue<Paged<ExamEntity>>> {
   /// The parameter `type` of this provider.
   ExamType get type;
 }
 
-class _ActivityControllerProviderElement
-    extends AutoDisposeNotifierProviderElement<ActivityController,
-        AsyncValue<Paged<ExamEntity>>> with ActivityControllerRef {
-  _ActivityControllerProviderElement(super.provider);
+class _ExamControllerProviderElement extends AutoDisposeNotifierProviderElement<
+    ExamController, AsyncValue<Paged<ExamEntity>>> with ExamControllerRef {
+  _ExamControllerProviderElement(super.provider);
 
   @override
-  ExamType get type => (origin as ActivityControllerProvider).type;
+  ExamType get type => (origin as ExamControllerProvider).type;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

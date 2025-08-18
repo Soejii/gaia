@@ -6,10 +6,10 @@ import 'package:gaia/features/activity/presentation/providers/activity_providers
 import 'package:gaia/shared/presentation/paged.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'activity_controller.g.dart';
+part 'exam_controller.g.dart';
 
 @riverpod
-class ActivityController extends _$ActivityController {
+class ExamController extends _$ExamController {
   Timer? _ttl; // for optional TTL keepAlive
   KeepAliveLink? _link;
 

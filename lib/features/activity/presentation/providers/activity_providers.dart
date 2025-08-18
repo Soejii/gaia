@@ -29,3 +29,10 @@ GetListExamUsecase getListExamUsecase(Ref ref) {
     ref.watch(activityRepositoryProvider),
   );
 }
+
+@riverpod
+class ActivityTabIndex extends _$ActivityTabIndex {
+  @override
+  int build() => 0;
+  void set(int newIndex) => state = newIndex;
+}
