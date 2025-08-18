@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/edutainment/domain/entities/edutainment_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
+import 'package:go_router/go_router.dart';
 
 class EdutainmentCard extends StatelessWidget {
   const EdutainmentCard({super.key, required this.entity});
@@ -12,10 +13,10 @@ class EdutainmentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // context.pushNamed(
-        //   'detail-announcement',
-        //   pathParameters: {'id': entity.id.toString()},
-        // );
+        context.pushNamed(
+          'detail-edutainment',
+          pathParameters: {'id': entity.id.toString()},
+        );
       },
       child: Container(
         decoration: const BoxDecoration(
@@ -33,6 +34,16 @@ class EdutainmentCard extends StatelessWidget {
                 errorBuilder: (context, error, stackTrace) => Image.asset(
                   AssetsHelper.imgAnnouncementPlaceholder,
                 ),
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Container(
+                    height: 200.h,
+                    color: Colors.white,
+                    child: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                },
               ),
             ),
             Container(

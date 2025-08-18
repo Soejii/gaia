@@ -37,6 +37,16 @@ class UserAvatarProfileWidget extends StatelessWidget {
               errorBuilder: (context, error, stackTrace) => Image.asset(
                 AssetsHelper.imgProfilePlaceholder,
               ),
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Container(
+                    height: 200.h,
+                    color: Colors.white,
+                    child: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                },
             ),
           ),
         ),

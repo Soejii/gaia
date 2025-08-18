@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gaia/app/bottom_navigation_shell.dart';
 import 'package:gaia/features/announcement/presentation/screens/detail_announcement_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/list_announcement_screen.dart';
+import 'package:gaia/features/edutainment/presentation/screens/detail_edutainment_screen.dart';
+import 'package:gaia/features/edutainment/presentation/screens/list_edutainment_screen.dart';
 import 'package:gaia/features/home/presentation/home_screen.dart';
 import 'package:gaia/features/login/presentation/screen/login_screen.dart';
 import 'package:gaia/features/profile/presentation/profile_screen.dart';
@@ -49,7 +51,7 @@ GoRouter appRouter(Ref ref) {
                 pageBuilder: (_, __) => const MaterialPage(child: HomeScreen()),
                 routes: [
                   GoRoute(
-                    path: 'announcements',
+                    path: 'list-announcements',
                     name: RouteName.listAnnouncement,
                     parentNavigatorKey: _rootKey,
                     builder: (_, __) => const ListAnnouncementScreen(),
@@ -61,6 +63,23 @@ GoRouter appRouter(Ref ref) {
                     builder: (_, state) {
                       final id = state.pathParameters['id']!;
                       return DetailAnnouncementScreen(
+                        id: int.parse(id),
+                      );
+                    },
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: _rootKey,
+                    path: 'list-edutaiment',
+                    name: RouteName.listEdutainment,
+                    builder: (context, state) => const ListEdutainmentScreen(),
+                  ),
+                  GoRoute(
+                    path: 'edutainment/:id',
+                    name: RouteName.detailEdutainment,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, state) {
+                      final id = state.pathParameters['id']!;
+                      return DetailEdutainmentScreen(
                         id: int.parse(id),
                       );
                     },
