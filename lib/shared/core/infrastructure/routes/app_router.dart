@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gaia/app/bottom_navigation_shell.dart';
+import 'package:gaia/features/activity/presentation/screen/activity_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/detail_announcement_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/list_announcement_screen.dart';
 import 'package:gaia/features/edutainment/presentation/screens/detail_edutainment_screen.dart';
@@ -91,6 +92,18 @@ GoRouter appRouter(Ref ref) {
                     builder: (_, __) => const ScheduleScreen(),
                   ),
                 ],
+              ),
+            ],
+          ),
+
+          // ACTIVITY BRANCH
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/activity',
+                name: RouteName.activity,
+                pageBuilder: (_, __) =>
+                    const MaterialPage(child: ActivityScreen()),
               ),
             ],
           ),
