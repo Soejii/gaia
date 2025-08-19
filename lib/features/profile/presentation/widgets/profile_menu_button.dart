@@ -18,7 +18,7 @@ class ProfileMenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(path);
+        context.pushNamed(path);
       },
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),

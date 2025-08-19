@@ -26,7 +26,7 @@ class QuickHomeGrid extends StatelessWidget {
         icon: AssetsHelper.imgHomeButtonKehadiran,
       ),
       QuickHomeButton(
-        path: '/home/schedule',
+        path: 'schedule',
         label: 'Jadwal Pelajaran',
         icon: AssetsHelper.imgHomeButtonJadwal,
       ),

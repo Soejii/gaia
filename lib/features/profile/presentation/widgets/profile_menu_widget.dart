@@ -10,7 +10,7 @@ class ProfileMenuWidget extends StatelessWidget {
       ProfileMenuData(icon: Icons.person, label: 'Informasi Akun', path: ''),
       ProfileMenuData(icon: Icons.lock, label: 'Ubah Kata Sandi', path: ''),
       ProfileMenuData(icon: Icons.help, label: 'Bantuan', path: ''),
-      ProfileMenuData(icon: Icons.info, label: 'Informasi Sekolah', path: '/profile/school-information'),
+      ProfileMenuData(icon: Icons.info, label: 'Informasi Sekolah', path: 'school-information'),
       ProfileMenuData(icon: Icons.shield, label: 'Kebijakan Privasi', path: ''),
       ProfileMenuData(icon: Icons.logout, label: 'Logout', path: ''),
     ];

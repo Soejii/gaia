@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/school/domain/entities/school_entity.dart';
 import 'package:gaia/features/school/presentation/widgets/school_profile_avatar.dart';
 import 'package:gaia/features/school/presentation/widgets/school_info_section.dart';
-import 'package:gaia/features/school/presentation/widgets/school_section_label.dart';
-import 'package:gaia/features/school/presentation/widgets/school_social_media_box.dart';
 
 class SchoolInformationContent extends StatelessWidget {
   final SchoolEntity school;
@@ -19,7 +17,7 @@ class SchoolInformationContent extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: 49),
+          SizedBox(height: 49.h),
           SchoolProfileAvatar(photoUrl: school.photo),
           SizedBox(height: 37.h),
           Padding(

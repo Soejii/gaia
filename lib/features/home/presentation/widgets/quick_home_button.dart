@@ -21,7 +21,7 @@ class QuickHomeButton extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            context.push(path);
+            context.pushNamed(path);
           },
           child: Container(
             width: 50,
