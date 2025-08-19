@@ -203,14 +203,14 @@ class ExamCard extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(color: Colors.white, width: 6.w),
-            color: AppColors.green,
+            color: Colors.red,
           ),
           child: Center(
             child: Text(
-              'Kerjakan',
+              'ERROR',
               style: TextStyle(
                 fontFamily: 'OpenSans',
-                fontSize: 10.sp,
+                fontSize: 12.sp,
                 fontWeight: FontWeight.w600,
                 color: Colors.white,
               ),
