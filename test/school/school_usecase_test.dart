@@ -44,6 +44,7 @@ void main() {
             youtube: 'youtube',
             description: 'description',
             registrationNumber: 'registrationNumber',
+            accreditation: 'accreditation',
           ),
         ),
       );

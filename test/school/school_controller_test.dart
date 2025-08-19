@@ -36,6 +36,7 @@ void main() {
           youtube: 'youtube',
           description: 'description',
           registrationNumber: 'registrationNumber',
+          accreditation: 'accreditation',
         ),
       );
       addTearDown(sandbox.dispose);
@@ -63,6 +64,7 @@ void main() {
             youtube: 'youtube',
             description: 'description',
             registrationNumber: 'registrationNumber',
+            accreditation: 'accreditation',
           ),
         ),
       );
@@ -94,7 +96,7 @@ void main() {
       );
 
       //Act
-      final fut = sandbox.read(schoolControllerProvider.future); 
+      final fut = sandbox.read(schoolControllerProvider.future);
 
       //Assert
       await expectLater(fut, throwsA(isA<UnauthorizedFailure>()));
