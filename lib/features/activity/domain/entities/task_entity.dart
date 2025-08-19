@@ -19,5 +19,6 @@ class TaskEntity {
 enum TaskStatus {
   submitted,
   assigned,
+  review,
   unknown,
 }

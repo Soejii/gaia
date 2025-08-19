@@ -5,9 +5,9 @@ extension TaskMapper on TaskModel {
   TaskEntity toEntity() => TaskEntity(
         id: id,
         subjectName: subject,
-        title: title ,
-        date: date ?? '-' ,
-        score: score  ,
+        title: title,
+        date: date ?? '-',
+        score: score,
         status: getStatus(),
       );
 
@@ -16,7 +16,7 @@ extension TaskMapper on TaskModel {
       case 'diberikan':
         return TaskStatus.assigned;
       case 'dikumpulkan':
-        return TaskStatus.submitted;
+        return (score == null) ? TaskStatus.review : TaskStatus.submitted;
       default:
         return TaskStatus.unknown;
     }

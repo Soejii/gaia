@@ -6,6 +6,7 @@ import 'package:gaia/features/activity/domain/type/exam_type.dart';
 import 'package:gaia/features/activity/presentation/providers/activity_providers.dart';
 import 'package:gaia/features/activity/presentation/widgets/activity_tab_bar_widget.dart';
 import 'package:gaia/features/activity/presentation/widgets/exam_content_widget.dart';
+import 'package:gaia/features/activity/presentation/widgets/task_content_widget.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -56,11 +57,11 @@ class ActivityScreen extends HookConsumerWidget {
           Expanded(
             child: TabBarView(
               controller: tabController,
-              children: [
-                const ExamContentWidget(type: ExamType.exam),
-                const ExamContentWidget(type: ExamType.quiz),
-                const ExamContentWidget(type: ExamType.cbt),
-                Container(),
+              children: const [
+                ExamContentWidget(type: ExamType.exam),
+                ExamContentWidget(type: ExamType.quiz),
+                ExamContentWidget(type: ExamType.cbt),
+                TaskContentWidget(),
               ],
             ),
           ),
