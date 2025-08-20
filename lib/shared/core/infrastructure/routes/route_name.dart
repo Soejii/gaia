@@ -9,4 +9,5 @@ class RouteName {
   static const schedule = 'schedule';
   static const activity = 'activity';
   static const schoolInformation = 'school-information';
+    static const accountInformation = 'account-information';
 }
