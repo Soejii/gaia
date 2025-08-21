@@ -7,6 +7,8 @@ class AppColors {
   static const Color mainText = Color.fromRGBO(4, 23, 53, 1);
 
   static const Color green = Color.fromRGBO(90, 175, 85, 1);
+  static const Color successColor = Color.fromRGBO(76, 175, 80, 1);
+  static const Color errorColor = Color.fromRGBO(244, 67, 54, 1);
 
   static const List<BoxShadow> shadow = [
     BoxShadow(
