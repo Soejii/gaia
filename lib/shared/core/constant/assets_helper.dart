@@ -16,22 +16,32 @@ class AssetsHelper {
   static String imgHomeButtonKeuangan = img("img_home_keuangan.png");
   static String imgHomeButtonCbt = img("img_home_keuangan.png");
 
+  static String imgSubjectIpa = img("img_subject_kimia.png");
+  static String imgSubjectIps = img("img_subject_ips.png");
+  static String imgSubjectMatematika = img("img_subject_matematika.png");
+  static String imgSubjectIndonesia = img("img_subject_Indonesia.png");
+  static String imgSubjectFisika = img("img_subject_fisika.png");
+  static String imgSubjectBiologi = img("img_subject_biologi.png");
+  static String imgSubjectSejarah = img("img_subject_sejarah.png");
+  static String imgSubjectPai = img("img_subject_pai.png");
+  static String imgSubjectKimia = img("img_subject_kimia.png");
+  static String imgSubjectTik = img("img_subject_tik.png");
+  static String imgSubjectSeni = img("img_subject_seni.png");
+  static String imgSubjectKewarganegaraan =
+      img("img_subject_kewarganegaraan.png");
+  static String imgSubjectEkonomi = img("img_subject_ekonomi.png");
+  static String imgSubjectInggris = img("img_subject_inggris.png");
+  static String imgSubjectGeografi = img("img_subject_geografi.png");
+  static String imgSubjectPlaceholder = img("img_subject_placeholder.png");
 
-  static String imgIpa = img("img_ipa.png");
-  static String imgMatematika = img("img_matematika.png");
-  static String imgIndonesia = img("img_Indonesia.png");
-  static String imgFisika = img("img_fisika.png");
-  static String imgBiologi = img("img_biologi.png");
-  static String imgSejarah = img("img_sejarah.png");
   static String imgTidakAdaPelajaran = img("img_tidak_ada_pelajaran.png");
 
-  static String imgDataNotFound= img('img_data_not_found.png');
-  
+  static String imgDataNotFound = img('img_data_not_found.png');
+
   static String icHome = icon('ic_beranda_home.svg');
   static String icActivity = icon('ic_activity_home.svg');
   static String icChat = icon('ic_chat_home.svg');
   static String icProfile = icon('ic_profile_home.svg');
-
 
   static String icon(String name) {
     return "assets/icons/$name";
