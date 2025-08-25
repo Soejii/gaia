@@ -5,12 +5,12 @@ import 'package:gaia/shared/core/constant/assets_helper.dart';
 extension ScheduleEntityMapper on ScheduleModel {
   ScheduleEntity toEntity() => ScheduleEntity(
         id: id.toString(),
-        subjectName: subject.name,
+        subjectName: subject.name ?? '-',
         teacherName: teacher.name,
         startTime: startTime,
         endTime: endTime,
         dayOfWeek: _mapDayOfWeek(day),
-        subjectImage: _mapSubjectImage(subject.iconCode),
+        subjectImage: _mapSubjectImage(subject.iconCode ?? ''),
       );
 
   DayOfWeek _mapDayOfWeek(String day) {

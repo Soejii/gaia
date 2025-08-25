@@ -20,9 +20,9 @@ SubjectModel _$SubjectModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SubjectModel {
-  String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'icon_code')
-  String get iconCode => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get iconCode => throw _privateConstructorUsedError;
 
   /// Serializes this SubjectModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $SubjectModelCopyWith<$Res> {
           SubjectModel value, $Res Function(SubjectModel) then) =
       _$SubjectModelCopyWithImpl<$Res, SubjectModel>;
   @useResult
-  $Res call({String name, @JsonKey(name: 'icon_code') String iconCode});
+  $Res call({int id, String? name, String? iconCode});
 }
 
 /// @nodoc
@@ -58,18 +58,23 @@ class _$SubjectModelCopyWithImpl<$Res, $Val extends SubjectModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? iconCode = null,
+    Object? id = null,
+    Object? name = freezed,
+    Object? iconCode = freezed,
   }) {
     return _then(_value.copyWith(
-      name: null == name
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      iconCode: null == iconCode
+              as String?,
+      iconCode: freezed == iconCode
           ? _value.iconCode
           : iconCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -82,7 +87,7 @@ abstract class _$$SubjectModelImplCopyWith<$Res>
       __$$SubjectModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, @JsonKey(name: 'icon_code') String iconCode});
+  $Res call({int id, String? name, String? iconCode});
 }
 
 /// @nodoc
@@ -98,40 +103,46 @@ class __$$SubjectModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? iconCode = null,
+    Object? id = null,
+    Object? name = freezed,
+    Object? iconCode = freezed,
   }) {
     return _then(_$SubjectModelImpl(
-      name: null == name
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      iconCode: null == iconCode
+              as String?,
+      iconCode: freezed == iconCode
           ? _value.iconCode
           : iconCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$SubjectModelImpl implements _SubjectModel {
-  const _$SubjectModelImpl(
-      {required this.name, @JsonKey(name: 'icon_code') required this.iconCode});
+  const _$SubjectModelImpl({required this.id, this.name, this.iconCode});
 
   factory _$SubjectModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SubjectModelImplFromJson(json);
 
   @override
-  final String name;
+  final int id;
   @override
-  @JsonKey(name: 'icon_code')
-  final String iconCode;
+  final String? name;
+  @override
+  final String? iconCode;
 
   @override
   String toString() {
-    return 'SubjectModel(name: $name, iconCode: $iconCode)';
+    return 'SubjectModel(id: $id, name: $name, iconCode: $iconCode)';
   }
 
   @override
@@ -139,6 +150,7 @@ class _$SubjectModelImpl implements _SubjectModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SubjectModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.iconCode, iconCode) ||
                 other.iconCode == iconCode));
@@ -146,7 +158,7 @@ class _$SubjectModelImpl implements _SubjectModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, iconCode);
+  int get hashCode => Object.hash(runtimeType, id, name, iconCode);
 
   /// Create a copy of SubjectModel
   /// with the given fields replaced by the non-null parameter values.
@@ -166,18 +178,19 @@ class _$SubjectModelImpl implements _SubjectModel {
 
 abstract class _SubjectModel implements SubjectModel {
   const factory _SubjectModel(
-          {required final String name,
-          @JsonKey(name: 'icon_code') required final String iconCode}) =
-      _$SubjectModelImpl;
+      {required final int id,
+      final String? name,
+      final String? iconCode}) = _$SubjectModelImpl;
 
   factory _SubjectModel.fromJson(Map<String, dynamic> json) =
       _$SubjectModelImpl.fromJson;
 
   @override
-  String get name;
+  int get id;
   @override
-  @JsonKey(name: 'icon_code')
-  String get iconCode;
+  String? get name;
+  @override
+  String? get iconCode;
 
   /// Create a copy of SubjectModel
   /// with the given fields replaced by the non-null parameter values.

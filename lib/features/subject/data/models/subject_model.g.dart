@@ -8,12 +8,14 @@ part of 'subject_model.dart';
 
 _$SubjectModelImpl _$$SubjectModelImplFromJson(Map<String, dynamic> json) =>
     _$SubjectModelImpl(
-      name: json['name'] as String,
-      iconCode: json['icon_code'] as String,
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String?,
+      iconCode: json['icon_code'] as String?,
     );
 
 Map<String, dynamic> _$$SubjectModelImplToJson(_$SubjectModelImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'icon_code': instance.iconCode,
     };

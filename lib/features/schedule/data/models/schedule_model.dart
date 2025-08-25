@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'subject_model.dart';
+import 'package:gaia/features/subject/data/models/subject_model.dart';
 import 'teacher_model.dart';
 part 'schedule_model.freezed.dart';
 part 'schedule_model.g.dart';
