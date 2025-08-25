@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/features/activity/domain/entities/exam_entity.dart';
+import 'package:gaia/features/activity/domain/entities/task_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:gaia/shared/utils/date_helper.dart';
 
-class ExamCard extends StatelessWidget {
-  const ExamCard({super.key, required this.entity});
-  final ExamEntity entity;
+class TaskCard extends StatelessWidget {
+  const TaskCard({super.key, required this.entity});
+  final TaskEntity entity;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,14 @@ class ExamCard extends StatelessWidget {
       height: 96.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient: AppColors.mainColorGradient,
+        gradient: const LinearGradient(
+          colors: [
+            Color.fromRGBO(255, 169, 15, 1),
+            Color.fromRGBO(255, 191, 76, 1),
+          ],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        ),
         boxShadow: AppColors.shadow,
       ),
       child: Padding(
@@ -89,7 +96,7 @@ class ExamCard extends StatelessWidget {
                 ],
               ),
             ),
-            _circle(entity.status.name)
+            _circle(entity.status)
           ],
         ),
       ),
@@ -97,10 +104,10 @@ class ExamCard extends StatelessWidget {
   }
 
   Widget _circle(
-    String status,
+    TaskStatus status,
   ) {
     switch (status) {
-      case 'done':
+      case TaskStatus.submitted:
         return Container(
           width: 64.h,
           height: 64.h,
@@ -133,7 +140,7 @@ class ExamCard extends StatelessWidget {
             ],
           ),
         );
-      case 'notDone':
+      case TaskStatus.assigned:
         return Container(
           width: 64.h,
           height: 64.h,
@@ -147,14 +154,14 @@ class ExamCard extends StatelessWidget {
               'Kerjakan',
               style: TextStyle(
                 fontFamily: 'OpenSans',
-                fontSize: 14.sp,
+                fontSize: 11.sp,
                 fontWeight: FontWeight.w600,
                 color: Colors.white,
               ),
             ),
           ),
         );
-      case 'review':
+      case TaskStatus.review:
         return Container(
           width: 64.h,
           height: 64.h,
@@ -168,28 +175,7 @@ class ExamCard extends StatelessWidget {
               'Review',
               style: TextStyle(
                 fontFamily: 'OpenSans',
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        );
-      case 'process':
-        return Container(
-          width: 64.h,
-          height: 64.h,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: Colors.white, width: 6.w),
-            color: AppColors.green,
-          ),
-          child: Center(
-            child: Text(
-              'Dalam Proses',
-              style: TextStyle(
-                fontFamily: 'OpenSans',
-                fontSize: 14.sp,
+                fontSize: 11.sp,
                 fontWeight: FontWeight.w600,
                 color: Colors.white,
               ),
