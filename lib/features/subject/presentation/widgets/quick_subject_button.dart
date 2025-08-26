@@ -4,7 +4,16 @@ import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
 class QuickSubjectButton extends StatelessWidget {
-  const QuickSubjectButton({super.key});
+  const QuickSubjectButton({
+    super.key,
+    required this.id,
+    required this.iconCode,
+    required this.title,
+  });
+
+  final int id;
+  final String iconCode;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +40,14 @@ class QuickSubjectButton extends StatelessWidget {
               height: 80.h,
               width: 80.h,
               child: Image.asset(
-                AssetsHelper.imgSubjectKimia,
+                iconImage(iconCode),
               ),
             ),
           ),
         ),
         SizedBox(height: 4.h),
         Text(
-          'Kimia',
+          title,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
@@ -50,5 +59,44 @@ class QuickSubjectButton extends StatelessWidget {
         )
       ],
     );
+  }
+
+  String iconImage(String iconCode) {
+    switch (iconCode) {
+      case 'senbud':
+        return AssetsHelper.imgSubjectSeni;
+      case 'pai':
+        return AssetsHelper.imgSubjectPai;
+      case 'ipa':
+        return AssetsHelper.imgSubjectIpa;
+      case 'ekonomi':
+        return AssetsHelper.imgSubjectEkonomi;
+      case 'kimia':
+        return AssetsHelper.imgSubjectKimia;
+      case 'sosiologi':
+        return AssetsHelper.imgSubjectIps;
+      case 'ips':
+        return AssetsHelper.imgSubjectIps;
+      case 'geografi':
+        return AssetsHelper.imgSubjectGeografi;
+      case 'bind':
+        return AssetsHelper.imgSubjectIndonesia;
+      case 'tik':
+        return AssetsHelper.imgSubjectTik;
+      case 'mtk':
+        return AssetsHelper.imgSubjectMatematika;
+      case 'pkn':
+        return AssetsHelper.imgSubjectKewarganegaraan;
+      case 'fisika':
+        return AssetsHelper.imgSubjectFisika;
+      case 'biologi':
+        return AssetsHelper.imgSubjectBiologi;
+      case 'sejarah':
+        return AssetsHelper.imgSubjectSejarah;
+      case 'bing':
+        return AssetsHelper.imgSubjectInggris;
+      default:
+        return AssetsHelper.imgSubjectPlaceholder;
+    }
   }
 }

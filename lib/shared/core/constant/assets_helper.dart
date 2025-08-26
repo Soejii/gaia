@@ -19,7 +19,7 @@ class AssetsHelper {
   static String imgSubjectIpa = img("img_subject_kimia.png");
   static String imgSubjectIps = img("img_subject_ips.png");
   static String imgSubjectMatematika = img("img_subject_matematika.png");
-  static String imgSubjectIndonesia = img("img_subject_Indonesia.png");
+  static String imgSubjectIndonesia = img("img_subject_indonesia.png");
   static String imgSubjectFisika = img("img_subject_fisika.png");
   static String imgSubjectBiologi = img("img_subject_biologi.png");
   static String imgSubjectSejarah = img("img_subject_sejarah.png");
