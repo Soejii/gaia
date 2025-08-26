@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
 class DetailSubjectTitleCard extends StatelessWidget {
@@ -8,6 +9,7 @@ class DetailSubjectTitleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
           height: 72.h,
@@ -17,11 +19,12 @@ class DetailSubjectTitleCard extends StatelessWidget {
             gradient: const LinearGradient(
               colors: [
                 Color.fromRGBO(201, 238, 255, 1),
-                Color.fromRGBO(200, 238, 255, 0),
+                Color.fromRGBO(255, 255, 255, 1),
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
+            boxShadow: AppColors.shadow,
           ),
           child: Center(
             child: SizedBox(
@@ -34,28 +37,34 @@ class DetailSubjectTitleCard extends StatelessWidget {
           ),
         ),
         SizedBox(width: 16.w),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Bahasa Inggris',
-              style: TextStyle(
-                fontFamily: 'OpenSans',
-                fontSize: 24.sp,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Bahasa Indonesia anjay mabar',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
               ),
-            ),
-            Text(
-              '0 Modul | 0 Submodul | 0 Latihan Soal',
-              style: TextStyle(
-                fontFamily: 'OpenSans',
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
+              Text(
+                '0 Modul | 0 Submodul | 0 Latihan Soal',
+                maxLines: 2,
+                style: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         )
       ],
     );
