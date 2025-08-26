@@ -5,12 +5,12 @@ import 'package:gaia/shared/core/constant/assets_helper.dart';
 extension ScheduleEntityMapper on ScheduleModel {
   ScheduleEntity toEntity() => ScheduleEntity(
         id: id.toString(),
-        subjectName: subject.name,
+        subjectName: subject.name ?? '-',
         teacherName: teacher.name,
         startTime: startTime,
         endTime: endTime,
         dayOfWeek: _mapDayOfWeek(day),
-        subjectImage: _mapSubjectImage(subject.iconCode),
+        subjectImage: _mapSubjectImage(subject.iconCode ?? ''),
       );
 
   DayOfWeek _mapDayOfWeek(String day) {
@@ -37,20 +37,20 @@ extension ScheduleEntityMapper on ScheduleModel {
   String _mapSubjectImage(String iconCode) {
     switch (iconCode.toLowerCase()) {
       case 'biologi':
-        return AssetsHelper.imgBiologi;
+        return AssetsHelper.imgSubjectBiologi;
       case 'fisika':
-        return AssetsHelper.imgFisika;
+        return AssetsHelper.imgSubjectFisika;
       case 'matematika':
-        return AssetsHelper.imgMatematika;
+        return AssetsHelper.imgSubjectMatematika;
       case 'sejarah':
-        return AssetsHelper.imgSejarah;
+        return AssetsHelper.imgSubjectSejarah;
       case 'indonesia':
       case 'bahasa indonesia':
-        return AssetsHelper.imgIndonesia;
+        return AssetsHelper.imgSubjectIndonesia;
       case 'ipa':
-        return AssetsHelper.imgIpa;
+        return AssetsHelper.imgSubjectIpa;
       default:
-        return AssetsHelper.imgIpa;
+        return AssetsHelper.imgSubjectPlaceholder;
     }
   }
 }
