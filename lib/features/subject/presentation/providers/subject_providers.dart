@@ -28,3 +28,11 @@ GetListSubjectsUsecase getListSubjectsUsecase(Ref ref) {
     ref.watch(subjectRepositoryProvider),
   );
 }
+
+
+@riverpod
+class DetailSubjectTabIndex extends _$DetailSubjectTabIndex {
+  @override
+  int build() => 0;
+  void set(int newIndex) => state = newIndex;
+}

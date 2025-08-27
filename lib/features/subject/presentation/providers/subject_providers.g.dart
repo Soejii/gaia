@@ -64,5 +64,22 @@ final getListSubjectsUsecaseProvider =
 // ignore: unused_element
 typedef GetListSubjectsUsecaseRef
     = AutoDisposeProviderRef<GetListSubjectsUsecase>;
+String _$detailSubjectTabIndexHash() =>
+    r'3ea72ce6062d9d60a424b86927be35fe41add630';
+
+/// See also [DetailSubjectTabIndex].
+@ProviderFor(DetailSubjectTabIndex)
+final detailSubjectTabIndexProvider =
+    AutoDisposeNotifierProvider<DetailSubjectTabIndex, int>.internal(
+  DetailSubjectTabIndex.new,
+  name: r'detailSubjectTabIndexProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$detailSubjectTabIndexHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$DetailSubjectTabIndex = AutoDisposeNotifier<int>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
