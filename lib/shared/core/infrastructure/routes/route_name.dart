@@ -11,6 +11,7 @@ class RouteName {
   static const chooseSubject = 'choose-subject';
 
   static const profile = 'profile';
+  static const accountInformation = 'account-information';
 
   static const schedule = 'schedule';
 
