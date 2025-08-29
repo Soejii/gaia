@@ -6,8 +6,8 @@ class ChangePasswordFormField extends StatelessWidget {
   final TextEditingController controller;
   final String label;
   final String hintText;
-  final String? errorText;
   final bool obscureText;
+  final String? Function(String?)? validator;
 
   const ChangePasswordFormField({
     super.key,
@@ -15,7 +15,7 @@ class ChangePasswordFormField extends StatelessWidget {
     required this.label,
     required this.hintText,
     required this.obscureText,
-    this.errorText,
+    this.validator,
   });
 
   @override
@@ -37,15 +37,12 @@ class ChangePasswordFormField extends StatelessWidget {
           decoration: BoxDecoration(
             color: const Color(0xFFF9F9F9),
             borderRadius: BorderRadius.circular(10.r),
-            border: Border.all(
-              color: errorText != null ? Colors.red : Colors.transparent,
-              width: 1,
-            ),
           ),
           child: TextFormField(
             controller: controller,
             obscureText: obscureText,
             obscuringCharacter: '*',
+            validator: validator,
             style: TextStyle(
               color: AppColors.mainText,
               fontSize: 14.sp,
@@ -53,6 +50,14 @@ class ChangePasswordFormField extends StatelessWidget {
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.r),
+                borderSide: const BorderSide(color: Colors.red, width: 1),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.r),
+                borderSide: const BorderSide(color: Colors.red, width: 1),
+              ),
               hintText: hintText,
               hintStyle: TextStyle(
                 color: AppColors.inactiveColor,
@@ -63,17 +68,6 @@ class ChangePasswordFormField extends StatelessWidget {
             ),
           ),
         ),
-        if (errorText != null) ...[
-          SizedBox(height: 4.h),
-          Text(
-            errorText!,
-            style: TextStyle(
-              color: Colors.red,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ],
       ],
     );
   }
