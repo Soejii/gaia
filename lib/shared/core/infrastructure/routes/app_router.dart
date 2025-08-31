@@ -11,6 +11,7 @@ import 'package:gaia/features/home/presentation/home_screen.dart';
 import 'package:gaia/features/login/presentation/screen/login_screen.dart';
 import 'package:gaia/features/profile/presentation/screens/profile_screen.dart';
 import 'package:gaia/features/profile/presentation/screens/account_information_screen.dart';
+import 'package:gaia/features/profile/presentation/screens/change_password_screen.dart';
 import 'package:gaia/features/schedule/presentation/screens/schedule_screen.dart';
 import 'package:gaia/features/school/presentation/screens/school_information_screen.dart';
 import 'package:gaia/features/subject/presentation/screens/choose_subject_screen.dart';
@@ -137,6 +138,13 @@ GoRouter appRouter(Ref ref) {
                     name: RouteName.accountInformation,
                     parentNavigatorKey: _rootKey,
                     builder: (_, __) => const AccountInformationScreen(),
+                  ),
+                  GoRoute(
+                    path: 'change-password',
+                    name: RouteName.changePassword,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, __) => const ChangePasswordScreen(),
+                                    ),
                   ),
                 ],
               ),

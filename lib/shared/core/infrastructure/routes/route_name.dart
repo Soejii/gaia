@@ -7,7 +7,7 @@ class RouteName {
 
   static const listEdutainment = 'list-edutainment';
   static const detailEdutainment = 'detail-edutainment';
-
+    static const changePassword = 'change-password';
   static const chooseSubject = 'choose-subject';
 
   static const profile = 'profile';
@@ -18,4 +18,5 @@ class RouteName {
   static const activity = 'activity';
 
   static const schoolInformation = 'school-information';
+
 }

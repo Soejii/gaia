@@ -60,5 +60,25 @@ final getProfileProvider = AutoDisposeProvider<GetProfile>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef GetProfileRef = AutoDisposeProviderRef<GetProfile>;
+String _$changePasswordUsecaseHash() =>
+    r'ac7c3b454d6fa77351b6cbbe424ceb8a15b786ef';
+
+/// See also [changePasswordUsecase].
+@ProviderFor(changePasswordUsecase)
+final changePasswordUsecaseProvider =
+    AutoDisposeProvider<ChangePasswordUsecase>.internal(
+  changePasswordUsecase,
+  name: r'changePasswordUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$changePasswordUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef ChangePasswordUsecaseRef
+    = AutoDisposeProviderRef<ChangePasswordUsecase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
