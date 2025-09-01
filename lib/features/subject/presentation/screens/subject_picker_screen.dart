@@ -6,8 +6,8 @@ import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ChooseSubjectScreen extends ConsumerWidget {
-  const ChooseSubjectScreen({super.key});
+class SubjectPickerScreen extends ConsumerWidget {
+  const SubjectPickerScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

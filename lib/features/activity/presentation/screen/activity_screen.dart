@@ -56,10 +56,10 @@ class ActivityScreen extends HookConsumerWidget {
             child: TabBarView(
               controller: tabController,
               children: const [
-                ExamContentWidget(type: ExamType.exam),
-                ExamContentWidget(type: ExamType.quiz),
-                ExamContentWidget(type: ExamType.cbt),
-                TaskContentWidget(),
+                ActivityExamContentWidget(type: ExamType.exam),
+                ActivityExamContentWidget(type: ExamType.quiz),
+                ActivityExamContentWidget(type: ExamType.cbt),
+                ActivityTaskContentWidget(),
               ],
             ),
           ),

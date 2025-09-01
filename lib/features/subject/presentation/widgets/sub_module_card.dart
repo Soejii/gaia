@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
-class SubModulCard extends HookWidget {
-  const SubModulCard({super.key});
+class SubModuleCard extends HookWidget {
+  const SubModuleCard({super.key});
 
   @override
   Widget build(BuildContext context) {

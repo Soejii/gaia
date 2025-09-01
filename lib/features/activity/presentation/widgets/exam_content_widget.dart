@@ -8,8 +8,8 @@ import 'package:gaia/features/activity/presentation/widgets/quiz_card.dart';
 import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ExamContentWidget extends HookConsumerWidget {
-  const ExamContentWidget({super.key, required this.type});
+class ActivityExamContentWidget extends HookConsumerWidget {
+  const ActivityExamContentWidget({super.key, required this.type});
   final ExamType type;
 
   @override

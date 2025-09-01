@@ -6,8 +6,8 @@ import 'package:gaia/features/activity/presentation/widgets/task_card.dart';
 import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TaskContentWidget extends HookConsumerWidget {
-  const TaskContentWidget({super.key});
+class ActivityTaskContentWidget extends HookConsumerWidget {
+  const ActivityTaskContentWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

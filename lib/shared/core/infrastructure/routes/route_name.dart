@@ -8,7 +8,7 @@ class RouteName {
   static const listEdutainment = 'list-edutainment';
   static const detailEdutainment = 'detail-edutainment';
 
-  static const chooseSubject = 'choose-subject';
+  static const subjectPicker = 'subject-picker';
     static const detailSubject = 'detail-subject';
 
   static const profile = 'profile';

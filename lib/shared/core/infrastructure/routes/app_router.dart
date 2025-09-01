@@ -12,7 +12,7 @@ import 'package:gaia/features/login/presentation/screen/login_screen.dart';
 import 'package:gaia/features/profile/presentation/profile_screen.dart';
 import 'package:gaia/features/schedule/presentation/screens/schedule_screen.dart';
 import 'package:gaia/features/school/presentation/screens/school_information_screen.dart';
-import 'package:gaia/features/subject/presentation/screens/choose_subject_screen.dart';
+import 'package:gaia/features/subject/presentation/screens/subject_picker_screen.dart';
 import 'package:gaia/features/subject/presentation/screens/detail_subject_screen.dart';
 import 'package:gaia/shared/core/infrastructure/auth/auth_state_provider.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
@@ -95,10 +95,10 @@ GoRouter appRouter(Ref ref) {
                     builder: (_, __) => const ScheduleScreen(),
                   ),
                   GoRoute(
-                    path: 'choose-subject',
-                    name: RouteName.chooseSubject,
+                    path: 'subject-picker',
+                    name: RouteName.subjectPicker,
                     parentNavigatorKey: _rootKey,
-                    builder: (_, __) => const ChooseSubjectScreen(),
+                    builder: (_, __) => const SubjectPickerScreen(),
                     routes: [
                       GoRoute(
                     path: 'detail-subject/:id',

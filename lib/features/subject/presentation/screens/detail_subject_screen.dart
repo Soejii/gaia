@@ -5,7 +5,7 @@ import 'package:gaia/features/subject/presentation/widgets/detail_subject_app_ba
 import 'package:gaia/features/subject/presentation/widgets/detail_subject_tab_bar_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/exam_content_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/media_content_widget.dart';
-import 'package:gaia/features/subject/presentation/widgets/modul_content_widget.dart';
+import 'package:gaia/features/subject/presentation/widgets/module_content_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/quiz_content_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/task_content_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -61,8 +61,8 @@ class DetailSubjectScreen extends HookConsumerWidget {
             child: TabBarView(
               controller: tabController,
               children: const [
-                ModulContentWidget(),
-                ModulContentWidget(),
+                ModuleContentWidget(),
+                ModuleContentWidget(),
                 MediaContentWidget(),
                 SubjectExamContentWidget(),
                 SubjectQuizContentWidget(),
