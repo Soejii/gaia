@@ -122,32 +122,30 @@ GoRouter appRouter(Ref ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: '/profile',
-                name: RouteName.profile,
-                pageBuilder: (_, __) =>
-                    const MaterialPage(child: ProfileScreen()),
-                routes: [
-                  GoRoute(
-                    path: 'school-information',
-                    name: RouteName.schoolInformation,
-                    parentNavigatorKey: _rootKey,
-                    builder: (_, __) => const SchoolInformationScreen(),
-                  ),
-                  GoRoute(
-                    path: 'account-information',
-                    name: RouteName.accountInformation,
-                    parentNavigatorKey: _rootKey,
-                    builder: (_, __) => const AccountInformationScreen(),
-                  ),
-                  GoRoute(
-                    path: 'change-password',
-                    name: RouteName.changePassword,
-                    parentNavigatorKey: _rootKey,
-                    builder: (_, __) => const ChangePasswordScreen(),
-                                    ),
-                  ),
-                ],
-              ),
+                  path: '/profile',
+                  name: RouteName.profile,
+                  pageBuilder: (_, __) =>
+                      const MaterialPage(child: ProfileScreen()),
+                  routes: [
+                    GoRoute(
+                      path: 'school-information',
+                      name: RouteName.schoolInformation,
+                      parentNavigatorKey: _rootKey,
+                      builder: (_, __) => const SchoolInformationScreen(),
+                    ),
+                    GoRoute(
+                      path: 'account-information',
+                      name: RouteName.accountInformation,
+                      parentNavigatorKey: _rootKey,
+                      builder: (_, __) => const AccountInformationScreen(),
+                    ),
+                    GoRoute(
+                      path: 'change-password',
+                      name: RouteName.changePassword,
+                      parentNavigatorKey: _rootKey,
+                      builder: (_, __) => const ChangePasswordScreen(),
+                    ),
+                  ]),
             ],
           ),
         ],
