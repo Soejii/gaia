@@ -38,6 +38,13 @@ class AssetsHelper {
 
   static String imgTidakAdaPelajaran = img("img_tidak_ada_pelajaran.png");
 
+  static String imgMediaYoutube = img("img_media_youtube.png");
+  static String imgMediaWord = img("img_media_word.png");
+  static String imgMediaExcel = img("img_media_excel.png");
+  static String imgMediaPdf = img("img_media_pdf.png");
+  static String imgMediaPpt = img("img_media_ppt.png");
+  static String imgMediaVideo = img("img_media_video.png");
+
   static String imgDataNotFound = img('img_data_not_found.png');
 
   static String icHome = icon('ic_beranda_home.svg');
