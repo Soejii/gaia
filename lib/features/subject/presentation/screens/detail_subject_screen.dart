@@ -3,8 +3,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gaia/features/subject/presentation/providers/subject_providers.dart';
 import 'package:gaia/features/subject/presentation/widgets/detail_subject_app_bar_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/detail_subject_tab_bar_widget.dart';
+import 'package:gaia/features/subject/presentation/widgets/exam_content_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/media_content_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/modul_content_widget.dart';
+import 'package:gaia/features/subject/presentation/widgets/quiz_content_widget.dart';
+import 'package:gaia/features/subject/presentation/widgets/task_content_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DetailSubjectScreen extends HookConsumerWidget {
@@ -57,13 +60,13 @@ class DetailSubjectScreen extends HookConsumerWidget {
           Expanded(
             child: TabBarView(
               controller: tabController,
-              children: [
+              children: const [
                 ModulContentWidget(),
                 ModulContentWidget(),
                 MediaContentWidget(),
-                ModulContentWidget(),
-                ModulContentWidget(),
-                ModulContentWidget(),
+                SubjectExamContentWidget(),
+                SubjectQuizContentWidget(),
+                SubjectTaskContentWidget(),
               ],
             ),
           ),
