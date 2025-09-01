@@ -41,7 +41,7 @@ class DetailSubjectTabBarWidget extends ConsumerWidget {
             (e) {
               final index = e.key;
               final label = e.value;
-              final isSelected = tabController.index == index;
+              final isSelected = mainIndex == index;
               return Tab(
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),

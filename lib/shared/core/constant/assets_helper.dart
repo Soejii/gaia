@@ -33,6 +33,8 @@ class AssetsHelper {
   static String imgSubjectInggris = img("img_subject_inggris.png");
   static String imgSubjectGeografi = img("img_subject_geografi.png");
   static String imgSubjectPlaceholder = img("img_subject_placeholder.png");
+  static String imgSubjectModulActive = img("img_subject_modul_activate.png");
+  static String imgSubjectModulInactive = img("img_subject_modul_inactive.png");
 
   static String imgTidakAdaPelajaran = img("img_tidak_ada_pelajaran.png");
 
