@@ -6,7 +6,7 @@ import 'package:gaia/features/activity/presentation/widgets/task_card.dart';
 class SubjectTaskContentWidget extends StatelessWidget {
   const SubjectTaskContentWidget({super.key});
 
-   @override
+  @override
   Widget build(BuildContext context) {
     final entity = TaskEntity(
       id: 1,
@@ -16,14 +16,14 @@ class SubjectTaskContentWidget extends StatelessWidget {
       status: TaskStatus.submitted,
       score: 100,
     );
-    return ListView(
+    return ListView.separated(
       padding: EdgeInsets.symmetric(vertical: 12.h),
-      children: [
-        TaskCard(entity: entity),
-        TaskCard(entity: entity),
-        TaskCard(entity: entity),
-        TaskCard(entity: entity),
-      ],
+      itemCount: 4,
+      itemBuilder: (context, index) => Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        child: TaskCard(entity: entity),
+      ),
+      separatorBuilder: (context, index) => SizedBox(height: 12.h),
     );
   }
 }

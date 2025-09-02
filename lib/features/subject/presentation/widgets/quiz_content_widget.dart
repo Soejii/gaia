@@ -16,14 +16,14 @@ class SubjectQuizContentWidget extends StatelessWidget {
       status: ExamStatus.done,
       score: 100,
     );
-    return ListView(
+    return ListView.separated(
       padding: EdgeInsets.symmetric(vertical: 12.h),
-      children: [
-        QuizCard(entity: entity),
-        QuizCard(entity: entity),
-        QuizCard(entity: entity),
-        QuizCard(entity: entity),
-      ],
+      itemCount: 4,
+      itemBuilder: (context, index) => Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        child: QuizCard(entity: entity),
+      ),
+      separatorBuilder: (context, index) => SizedBox(height: 12.h),
     );
   }
 }
