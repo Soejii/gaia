@@ -116,13 +116,13 @@ GoRouter appRouter(Ref ref) {
                   ),
                   GoRoute(
                     path: 'list-discussion',
-                    name: RouteName.detailDiscussion,
+                    name: RouteName.listDiscussion,
                     parentNavigatorKey: _rootKey,
                     builder: (_, __) => Container(),
                     routes: [
                       GoRoute(
                         path: 'detail-discussion/:id',
-                        name: RouteName.detailSubject,
+                        name: RouteName.detailDiscussion,
                         parentNavigatorKey: _rootKey,
                         builder: (_, state) {
                           final id = state.pathParameters['id']!;
@@ -133,7 +133,7 @@ GoRouter appRouter(Ref ref) {
                       ),
                       GoRoute(
                         path: 'create-discussion',
-                        name: RouteName.detailSubject,
+                        name: RouteName.createDiscussion,
                         parentNavigatorKey: _rootKey,
                         builder: (_, state) {
                           return const CreateDiscussionScreen();

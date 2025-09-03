@@ -53,13 +53,15 @@ class CreateDiscussionScreen extends HookWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Container(
-              constraints: BoxConstraints(maxHeight: 56.h),
+              constraints: BoxConstraints(minHeight: 56.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: AppColors.secondaryText, width: 1),
               ),
               child: TextField(
                 controller: textController,
+                minLines: 2,
+                maxLines: 15,
                 style: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 14.sp,
@@ -74,8 +76,10 @@ class CreateDiscussionScreen extends HookWidget {
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
                     color: AppColors.mainText,
+                    fontStyle: FontStyle.italic,
                   ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 8.w,vertical: 10.h)
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
                 ),
               ),
             ),
@@ -91,8 +95,11 @@ class CreateDiscussionScreen extends HookWidget {
           child: Container(
             width: double.infinity,
             height: 56.h,
-            decoration: const BoxDecoration(
-                color: AppColors.mainColorSidigs, boxShadow: AppColors.shadow),
+            decoration: BoxDecoration(
+              color: AppColors.mainColorSidigs,
+              boxShadow: AppColors.shadow,
+              borderRadius: BorderRadius.circular(15),
+            ),
             child: Center(
               child: Text(
                 'Posting',
