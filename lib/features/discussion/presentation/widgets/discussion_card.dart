@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/features/discussion/presentation/widgets/comment_card.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
+import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
+import 'package:go_router/go_router.dart';
 
 class DiscussionCard extends StatelessWidget {
-  const DiscussionCard({super.key});
+  const DiscussionCard({super.key, required this.isDetail});
+  final bool isDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +121,14 @@ class DiscussionCard extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (!isDetail) {
+                    context.pushNamed(
+                    RouteName.detailDiscussion,
+                    pathParameters: {'id': '1'},
+                  );
+                  }
+                },
                 icon: const Icon(
                   Icons.comment,
                   color: AppColors.inactiveColor,
@@ -132,8 +141,6 @@ class DiscussionCard extends StatelessWidget {
             height: 1.h,
             color: const Color.fromRGBO(37, 119, 195, 0.1),
           ),
-          SizedBox(height: 10.h),
-          const CommentCard()
         ],
       ),
     );

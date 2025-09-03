@@ -28,11 +28,11 @@ class CreateDiscussionCard extends StatelessWidget {
             ),
           ),
           SizedBox(width: 12.w),
-          GestureDetector(
-            onTap: () {
-              context.pushNamed(RouteName.createDiscussion);
-            },
-            child: Expanded(
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                context.pushNamed(RouteName.createDiscussion);
+              },
               child: Container(
                 height: 48.h,
                 decoration: BoxDecoration(

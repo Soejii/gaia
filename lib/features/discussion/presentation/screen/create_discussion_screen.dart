@@ -12,6 +12,7 @@ class CreateDiscussionScreen extends HookWidget {
   Widget build(BuildContext context) {
     final textController = useTextEditingController();
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: const CustomAppBarWidget(
         title: 'Buat Diskusi',
         leadingIcon: true,
