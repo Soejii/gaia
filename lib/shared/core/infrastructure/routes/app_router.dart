@@ -5,6 +5,7 @@ import 'package:gaia/app/bottom_navigation_shell.dart';
 import 'package:gaia/features/activity/presentation/screen/activity_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/detail_announcement_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/list_announcement_screen.dart';
+import 'package:gaia/features/discussion/presentation/screen/create_discussion_screen.dart';
 import 'package:gaia/features/edutainment/presentation/screens/detail_edutainment_screen.dart';
 import 'package:gaia/features/edutainment/presentation/screens/list_edutainment_screen.dart';
 import 'package:gaia/features/home/presentation/home_screen.dart';
@@ -101,17 +102,44 @@ GoRouter appRouter(Ref ref) {
                     builder: (_, __) => const SubjectPickerScreen(),
                     routes: [
                       GoRoute(
-                    path: 'detail-subject/:id',
-                    name: RouteName.detailSubject,
-                    parentNavigatorKey: _rootKey,
-                    builder: (_, state) {
-                      final id = state.pathParameters['id']!;
-                      return DetailSubjectScreen(
-                        idSubject: int.parse(id),
-                      );
-                    },
+                        path: 'detail-subject/:id',
+                        name: RouteName.detailSubject,
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) {
+                          final id = state.pathParameters['id']!;
+                          return DetailSubjectScreen(
+                            idSubject: int.parse(id),
+                          );
+                        },
+                      ),
+                    ],
                   ),
-                    ]
+                  GoRoute(
+                    path: 'list-discussion',
+                    name: RouteName.detailDiscussion,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, __) => Container(),
+                    routes: [
+                      GoRoute(
+                        path: 'detail-discussion/:id',
+                        name: RouteName.detailSubject,
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) {
+                          final id = state.pathParameters['id']!;
+                          return DetailSubjectScreen(
+                            idSubject: int.parse(id),
+                          );
+                        },
+                      ),
+                      GoRoute(
+                        path: 'create-discussion',
+                        name: RouteName.detailSubject,
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) {
+                          return const CreateDiscussionScreen();
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
