@@ -5,6 +5,9 @@ import 'package:gaia/app/bottom_navigation_shell.dart';
 import 'package:gaia/features/activity/presentation/screen/activity_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/detail_announcement_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/list_announcement_screen.dart';
+import 'package:gaia/features/balances/domain/type/balance_type.dart';
+import 'package:gaia/features/balances/presentation/screens/balance_screen.dart';
+import 'package:gaia/features/balances/presentation/screens/balance_history_screen.dart';
 import 'package:gaia/features/edutainment/presentation/screens/detail_edutainment_screen.dart';
 import 'package:gaia/features/edutainment/presentation/screens/list_edutainment_screen.dart';
 import 'package:gaia/features/home/presentation/home_screen.dart';
@@ -28,7 +31,6 @@ final _rootKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 @riverpod
 GoRouter appRouter(Ref ref) {
   final authAsync = ref.watch(authStateProvider);
-
   return GoRouter(
     navigatorKey: _rootKey,
     initialLocation: '/login',
@@ -100,6 +102,25 @@ GoRouter appRouter(Ref ref) {
                     name: RouteName.chooseSubject,
                     parentNavigatorKey: _rootKey,
                     builder: (_, __) => const ChooseSubjectScreen(),
+                  ),
+                  GoRoute(
+                    path: 'balance',
+                    name: RouteName.balance,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, __) => const BalanceScreen(),
+                    routes: [
+                      GoRoute(
+                        path: 'balance-history',
+                        name: RouteName.balanceHistory,
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) {
+                          final type = state.uri.queryParameters['type'] == 'savings' 
+                              ? BalanceType.savings 
+                              : BalanceType.emoney;
+                          return BalanceHistoryScreen(type: type);
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
