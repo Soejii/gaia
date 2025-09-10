@@ -7,7 +7,7 @@ class GetEmoneyHistoryUsecase {
 
   GetEmoneyHistoryUsecase(this._repository);
 
-  Future<Result<List<EmoneyHistoryEntity>>> getEmoneyHistory() {
-    return _repository.getEmoneyHistory();
+  Future<Result<List<EmoneyHistoryEntity>>> getEmoneyHistory({int? page}) {
+    return _repository.getEmoneyHistory(page: page);
   }
 }
