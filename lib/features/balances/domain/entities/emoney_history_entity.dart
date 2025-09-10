@@ -1,21 +1,32 @@
 class EmoneyHistoryEntity {
-  final String amount;
-  final String date;
-  final String transaction;
-  final String status;
+  final int id;
+  final String? amount;
+  final String? date;
+  final TransactionType transactionType;
+  final TransactionStatus status;
 
   EmoneyHistoryEntity({
-    required this.amount,
-    required this.date,
-    required this.transaction,
+    required this.id,
+    this.amount,
+    this.date,
+    required this.transactionType,
     required this.status,
   });
-
-  bool get isTopup => transaction == 'topup';
-  bool get isCashout => transaction == 'cashout';
-  bool get isBillpay => transaction == 'bill_pay';
-
-  bool get isSuccess => status == 'success';
-  bool get isPending => status == 'pending';
-  bool get isFailed => status == 'failed';
 }
+
+enum TransactionStatus {
+  success,
+  pending,
+  failed,
+  unknown,
+}
+
+enum TransactionType {
+  topup,
+  cashout,
+  billPay,
+  canteenPay,
+  adminFee,
+  unknown,
+}
+

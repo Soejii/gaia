@@ -1,17 +1,17 @@
 class EmoneyEntity {
-  final String name;
-  final String cardId;
-  final String saldoEmoney;
-  final String totalTopup;
-  final String totalPayment;
-  final String totalCashout;
+  final String? name;
+  final String? cardId;
+  final String? saldoEmoney;
+  final String? totalTopup;
+  final String? totalPayment;
+  final String? totalCashout;
 
   EmoneyEntity({
-    required this.name,
-    required this.cardId,
-    required this.saldoEmoney,
-    required this.totalTopup,
-    required this.totalPayment,
-    required this.totalCashout,
+    this.name,
+    this.cardId,
+    this.saldoEmoney,
+    this.totalTopup,
+    this.totalPayment,
+    this.totalCashout,
   });
 }
