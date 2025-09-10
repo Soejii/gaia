@@ -64,6 +64,26 @@ final getEmoneyBalanceUsecaseProvider =
 // ignore: unused_element
 typedef GetEmoneyBalanceUsecaseRef
     = AutoDisposeProviderRef<GetEmoneyBalanceUsecase>;
+String _$getEmoneyHistoryUsecaseHash() =>
+    r'faefa926eb176ddd03d7260abfe01d82d5e0abb0';
+
+/// See also [getEmoneyHistoryUsecase].
+@ProviderFor(getEmoneyHistoryUsecase)
+final getEmoneyHistoryUsecaseProvider =
+    AutoDisposeProvider<GetEmoneyHistoryUsecase>.internal(
+  getEmoneyHistoryUsecase,
+  name: r'getEmoneyHistoryUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getEmoneyHistoryUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetEmoneyHistoryUsecaseRef
+    = AutoDisposeProviderRef<GetEmoneyHistoryUsecase>;
 String _$getSavingsBalanceUsecaseHash() =>
     r'7d6a54dad5f6c5f26416ee08539c0db236d4e46f';
 
@@ -84,6 +104,26 @@ final getSavingsBalanceUsecaseProvider =
 // ignore: unused_element
 typedef GetSavingsBalanceUsecaseRef
     = AutoDisposeProviderRef<GetSavingsBalanceUsecase>;
+String _$getSavingsHistoryUsecaseHash() =>
+    r'f86da0b039fae70c2c68b8aaa4b874d144d19242';
+
+/// See also [getSavingsHistoryUsecase].
+@ProviderFor(getSavingsHistoryUsecase)
+final getSavingsHistoryUsecaseProvider =
+    AutoDisposeProvider<GetSavingsHistoryUsecase>.internal(
+  getSavingsHistoryUsecase,
+  name: r'getSavingsHistoryUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getSavingsHistoryUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetSavingsHistoryUsecaseRef
+    = AutoDisposeProviderRef<GetSavingsHistoryUsecase>;
 String _$balanceTabIndexHash() => r'5586728a3b896c4aa98640b8dba7cc7e67bc06ea';
 
 /// See also [BalanceTabIndex].

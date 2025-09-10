@@ -4,6 +4,7 @@ import 'package:gaia/features/balances/domain/balance_repository.dart';
 import 'package:gaia/features/balances/domain/usecases/get_emoney_balance_usecase.dart';
 import 'package:gaia/features/balances/domain/usecases/get_emoney_history_usecase.dart';
 import 'package:gaia/features/balances/domain/usecases/get_savings_balance_usecase.dart';
+import 'package:gaia/features/balances/domain/usecases/get_savings_history_usecase.dart';
 import 'package:gaia/shared/core/infrastructure/network/dio_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -48,6 +49,13 @@ GetEmoneyHistoryUsecase getEmoneyHistoryUsecase(Ref ref) {
 @riverpod
 GetSavingsBalanceUsecase getSavingsBalanceUsecase(Ref ref) {
   return GetSavingsBalanceUsecase(
+    ref.watch(balanceRepositoryProvider),
+  );
+}
+
+@riverpod
+GetSavingsHistoryUsecase getSavingsHistoryUsecase(Ref ref) {
+  return GetSavingsHistoryUsecase(
     ref.watch(balanceRepositoryProvider),
   );
 }
