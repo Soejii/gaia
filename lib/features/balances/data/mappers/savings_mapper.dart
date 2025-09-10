@@ -5,8 +5,8 @@ extension SavingsMapper on SavingsModel {
   SavingsEntity toEntity() => SavingsEntity(
         name: name,
         cardId: cardId,
-        saldoTabungan: saldoTabungan,
-        totalDebit: totalDebit,
-        totalKredit: totalKredit,
+        saldoTabungan: saldoTopup,
+        totalDebit: totalCashout,
+        totalKredit: totalTopup
       );
 }
