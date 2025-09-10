@@ -20,7 +20,6 @@ EmoneyModel _$EmoneyModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$EmoneyModel {
-  int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get cardId => throw _privateConstructorUsedError;
   String? get saldoEmoney => throw _privateConstructorUsedError;
@@ -45,8 +44,7 @@ abstract class $EmoneyModelCopyWith<$Res> {
       _$EmoneyModelCopyWithImpl<$Res, EmoneyModel>;
   @useResult
   $Res call(
-      {int? id,
-      String? name,
+      {String? name,
       String? cardId,
       String? saldoEmoney,
       String? totalTopup,
@@ -69,7 +67,6 @@ class _$EmoneyModelCopyWithImpl<$Res, $Val extends EmoneyModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? name = freezed,
     Object? cardId = freezed,
     Object? saldoEmoney = freezed,
@@ -78,10 +75,6 @@ class _$EmoneyModelCopyWithImpl<$Res, $Val extends EmoneyModel>
     Object? totalCashout = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -119,8 +112,7 @@ abstract class _$$EmoneyModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      String? name,
+      {String? name,
       String? cardId,
       String? saldoEmoney,
       String? totalTopup,
@@ -141,7 +133,6 @@ class __$$EmoneyModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? name = freezed,
     Object? cardId = freezed,
     Object? saldoEmoney = freezed,
@@ -150,10 +141,6 @@ class __$$EmoneyModelImplCopyWithImpl<$Res>
     Object? totalCashout = freezed,
   }) {
     return _then(_$EmoneyModelImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -187,8 +174,7 @@ class __$$EmoneyModelImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$EmoneyModelImpl implements _EmoneyModel {
   const _$EmoneyModelImpl(
-      {this.id,
-      this.name,
+      {this.name,
       this.cardId,
       this.saldoEmoney,
       this.totalTopup,
@@ -198,8 +184,6 @@ class _$EmoneyModelImpl implements _EmoneyModel {
   factory _$EmoneyModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$EmoneyModelImplFromJson(json);
 
-  @override
-  final int? id;
   @override
   final String? name;
   @override
@@ -215,7 +199,7 @@ class _$EmoneyModelImpl implements _EmoneyModel {
 
   @override
   String toString() {
-    return 'EmoneyModel(id: $id, name: $name, cardId: $cardId, saldoEmoney: $saldoEmoney, totalTopup: $totalTopup, totalPayment: $totalPayment, totalCashout: $totalCashout)';
+    return 'EmoneyModel(name: $name, cardId: $cardId, saldoEmoney: $saldoEmoney, totalTopup: $totalTopup, totalPayment: $totalPayment, totalCashout: $totalCashout)';
   }
 
   @override
@@ -223,7 +207,6 @@ class _$EmoneyModelImpl implements _EmoneyModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EmoneyModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.cardId, cardId) || other.cardId == cardId) &&
             (identical(other.saldoEmoney, saldoEmoney) ||
@@ -238,7 +221,7 @@ class _$EmoneyModelImpl implements _EmoneyModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, cardId, saldoEmoney,
+  int get hashCode => Object.hash(runtimeType, name, cardId, saldoEmoney,
       totalTopup, totalPayment, totalCashout);
 
   /// Create a copy of EmoneyModel
@@ -259,8 +242,7 @@ class _$EmoneyModelImpl implements _EmoneyModel {
 
 abstract class _EmoneyModel implements EmoneyModel {
   const factory _EmoneyModel(
-      {final int? id,
-      final String? name,
+      {final String? name,
       final String? cardId,
       final String? saldoEmoney,
       final String? totalTopup,
@@ -270,8 +252,6 @@ abstract class _EmoneyModel implements EmoneyModel {
   factory _EmoneyModel.fromJson(Map<String, dynamic> json) =
       _$EmoneyModelImpl.fromJson;
 
-  @override
-  int? get id;
   @override
   String? get name;
   @override

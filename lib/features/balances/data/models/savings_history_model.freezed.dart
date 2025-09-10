@@ -20,11 +20,10 @@ SavingsHistoryModel _$SavingsHistoryModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SavingsHistoryModel {
-  int get id => throw _privateConstructorUsedError; // dari API response
+  int get id => throw _privateConstructorUsedError;
   String? get date => throw _privateConstructorUsedError;
   int? get amount => throw _privateConstructorUsedError;
-  int? get confirmed =>
-      throw _privateConstructorUsedError; // 1 = berhasil, 0 = gagal
+  int? get confirmed => throw _privateConstructorUsedError;
   String? get transaction => throw _privateConstructorUsedError;
 
   /// Serializes this SavingsHistoryModel to a JSON map.
@@ -165,14 +164,12 @@ class _$SavingsHistoryModelImpl implements _SavingsHistoryModel {
 
   @override
   final int id;
-// dari API response
   @override
   final String? date;
   @override
   final int? amount;
   @override
   final int? confirmed;
-// 1 = berhasil, 0 = gagal
   @override
   final String? transaction;
 
@@ -229,13 +226,13 @@ abstract class _SavingsHistoryModel implements SavingsHistoryModel {
       _$SavingsHistoryModelImpl.fromJson;
 
   @override
-  int get id; // dari API response
+  int get id;
   @override
   String? get date;
   @override
   int? get amount;
   @override
-  int? get confirmed; // 1 = berhasil, 0 = gagal
+  int? get confirmed;
   @override
   String? get transaction;
 
