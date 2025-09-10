@@ -20,12 +20,13 @@ EmoneyModel _$EmoneyModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$EmoneyModel {
-  String get name => throw _privateConstructorUsedError;
-  String get cardId => throw _privateConstructorUsedError;
-  String get saldoEmoney => throw _privateConstructorUsedError;
-  String get totalTopup => throw _privateConstructorUsedError;
-  String get totalPayment => throw _privateConstructorUsedError;
-  String get totalCashout => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get cardId => throw _privateConstructorUsedError;
+  String? get saldoEmoney => throw _privateConstructorUsedError;
+  String? get totalTopup => throw _privateConstructorUsedError;
+  String? get totalPayment => throw _privateConstructorUsedError;
+  String? get totalCashout => throw _privateConstructorUsedError;
 
   /// Serializes this EmoneyModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,12 +45,13 @@ abstract class $EmoneyModelCopyWith<$Res> {
       _$EmoneyModelCopyWithImpl<$Res, EmoneyModel>;
   @useResult
   $Res call(
-      {String name,
-      String cardId,
-      String saldoEmoney,
-      String totalTopup,
-      String totalPayment,
-      String totalCashout});
+      {int? id,
+      String? name,
+      String? cardId,
+      String? saldoEmoney,
+      String? totalTopup,
+      String? totalPayment,
+      String? totalCashout});
 }
 
 /// @nodoc
@@ -67,38 +69,43 @@ class _$EmoneyModelCopyWithImpl<$Res, $Val extends EmoneyModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? cardId = null,
-    Object? saldoEmoney = null,
-    Object? totalTopup = null,
-    Object? totalPayment = null,
-    Object? totalCashout = null,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? cardId = freezed,
+    Object? saldoEmoney = freezed,
+    Object? totalTopup = freezed,
+    Object? totalPayment = freezed,
+    Object? totalCashout = freezed,
   }) {
     return _then(_value.copyWith(
-      name: null == name
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      cardId: null == cardId
+              as String?,
+      cardId: freezed == cardId
           ? _value.cardId
           : cardId // ignore: cast_nullable_to_non_nullable
-              as String,
-      saldoEmoney: null == saldoEmoney
+              as String?,
+      saldoEmoney: freezed == saldoEmoney
           ? _value.saldoEmoney
           : saldoEmoney // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalTopup: null == totalTopup
+              as String?,
+      totalTopup: freezed == totalTopup
           ? _value.totalTopup
           : totalTopup // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalPayment: null == totalPayment
+              as String?,
+      totalPayment: freezed == totalPayment
           ? _value.totalPayment
           : totalPayment // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalCashout: null == totalCashout
+              as String?,
+      totalCashout: freezed == totalCashout
           ? _value.totalCashout
           : totalCashout // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -112,12 +119,13 @@ abstract class _$$EmoneyModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
-      String cardId,
-      String saldoEmoney,
-      String totalTopup,
-      String totalPayment,
-      String totalCashout});
+      {int? id,
+      String? name,
+      String? cardId,
+      String? saldoEmoney,
+      String? totalTopup,
+      String? totalPayment,
+      String? totalCashout});
 }
 
 /// @nodoc
@@ -133,38 +141,43 @@ class __$$EmoneyModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? cardId = null,
-    Object? saldoEmoney = null,
-    Object? totalTopup = null,
-    Object? totalPayment = null,
-    Object? totalCashout = null,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? cardId = freezed,
+    Object? saldoEmoney = freezed,
+    Object? totalTopup = freezed,
+    Object? totalPayment = freezed,
+    Object? totalCashout = freezed,
   }) {
     return _then(_$EmoneyModelImpl(
-      name: null == name
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      cardId: null == cardId
+              as String?,
+      cardId: freezed == cardId
           ? _value.cardId
           : cardId // ignore: cast_nullable_to_non_nullable
-              as String,
-      saldoEmoney: null == saldoEmoney
+              as String?,
+      saldoEmoney: freezed == saldoEmoney
           ? _value.saldoEmoney
           : saldoEmoney // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalTopup: null == totalTopup
+              as String?,
+      totalTopup: freezed == totalTopup
           ? _value.totalTopup
           : totalTopup // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalPayment: null == totalPayment
+              as String?,
+      totalPayment: freezed == totalPayment
           ? _value.totalPayment
           : totalPayment // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalCashout: null == totalCashout
+              as String?,
+      totalCashout: freezed == totalCashout
           ? _value.totalCashout
           : totalCashout // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -174,32 +187,35 @@ class __$$EmoneyModelImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$EmoneyModelImpl implements _EmoneyModel {
   const _$EmoneyModelImpl(
-      {required this.name,
-      required this.cardId,
-      required this.saldoEmoney,
-      required this.totalTopup,
-      required this.totalPayment,
-      required this.totalCashout});
+      {this.id,
+      this.name,
+      this.cardId,
+      this.saldoEmoney,
+      this.totalTopup,
+      this.totalPayment,
+      this.totalCashout});
 
   factory _$EmoneyModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$EmoneyModelImplFromJson(json);
 
   @override
-  final String name;
+  final int? id;
   @override
-  final String cardId;
+  final String? name;
   @override
-  final String saldoEmoney;
+  final String? cardId;
   @override
-  final String totalTopup;
+  final String? saldoEmoney;
   @override
-  final String totalPayment;
+  final String? totalTopup;
   @override
-  final String totalCashout;
+  final String? totalPayment;
+  @override
+  final String? totalCashout;
 
   @override
   String toString() {
-    return 'EmoneyModel(name: $name, cardId: $cardId, saldoEmoney: $saldoEmoney, totalTopup: $totalTopup, totalPayment: $totalPayment, totalCashout: $totalCashout)';
+    return 'EmoneyModel(id: $id, name: $name, cardId: $cardId, saldoEmoney: $saldoEmoney, totalTopup: $totalTopup, totalPayment: $totalPayment, totalCashout: $totalCashout)';
   }
 
   @override
@@ -207,6 +223,7 @@ class _$EmoneyModelImpl implements _EmoneyModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EmoneyModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.cardId, cardId) || other.cardId == cardId) &&
             (identical(other.saldoEmoney, saldoEmoney) ||
@@ -221,7 +238,7 @@ class _$EmoneyModelImpl implements _EmoneyModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, cardId, saldoEmoney,
+  int get hashCode => Object.hash(runtimeType, id, name, cardId, saldoEmoney,
       totalTopup, totalPayment, totalCashout);
 
   /// Create a copy of EmoneyModel
@@ -242,28 +259,31 @@ class _$EmoneyModelImpl implements _EmoneyModel {
 
 abstract class _EmoneyModel implements EmoneyModel {
   const factory _EmoneyModel(
-      {required final String name,
-      required final String cardId,
-      required final String saldoEmoney,
-      required final String totalTopup,
-      required final String totalPayment,
-      required final String totalCashout}) = _$EmoneyModelImpl;
+      {final int? id,
+      final String? name,
+      final String? cardId,
+      final String? saldoEmoney,
+      final String? totalTopup,
+      final String? totalPayment,
+      final String? totalCashout}) = _$EmoneyModelImpl;
 
   factory _EmoneyModel.fromJson(Map<String, dynamic> json) =
       _$EmoneyModelImpl.fromJson;
 
   @override
-  String get name;
+  int? get id;
   @override
-  String get cardId;
+  String? get name;
   @override
-  String get saldoEmoney;
+  String? get cardId;
   @override
-  String get totalTopup;
+  String? get saldoEmoney;
   @override
-  String get totalPayment;
+  String? get totalTopup;
   @override
-  String get totalCashout;
+  String? get totalPayment;
+  @override
+  String? get totalCashout;
 
   /// Create a copy of EmoneyModel
   /// with the given fields replaced by the non-null parameter values.

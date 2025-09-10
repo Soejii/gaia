@@ -7,10 +7,11 @@ part 'emoney_history_model.freezed.dart';
 class EmoneyHistoryModel with _$EmoneyHistoryModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory EmoneyHistoryModel({
-    required String amount,
-    required String date,
-    required String transaction,
-    required String status,
+    required int id,
+    String? amount,
+    String? date,
+    String? transaction,
+    String? status,
   }) = _EmoneyHistoryModel;
 
   factory EmoneyHistoryModel.fromJson(Map<String, dynamic> json) =>

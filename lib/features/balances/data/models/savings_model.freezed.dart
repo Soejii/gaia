@@ -20,11 +20,11 @@ SavingsModel _$SavingsModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SavingsModel {
-  String get name => throw _privateConstructorUsedError;
-  String get cardId => throw _privateConstructorUsedError;
-  String get saldoTabungan => throw _privateConstructorUsedError;
-  String get totalDebit => throw _privateConstructorUsedError;
-  String get totalKredit => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get cardId => throw _privateConstructorUsedError;
+  String? get saldoTopup => throw _privateConstructorUsedError;
+  String? get totalTopup => throw _privateConstructorUsedError;
+  String? get totalCashout => throw _privateConstructorUsedError;
 
   /// Serializes this SavingsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,11 +43,11 @@ abstract class $SavingsModelCopyWith<$Res> {
       _$SavingsModelCopyWithImpl<$Res, SavingsModel>;
   @useResult
   $Res call(
-      {String name,
-      String cardId,
-      String saldoTabungan,
-      String totalDebit,
-      String totalKredit});
+      {String? name,
+      String? cardId,
+      String? saldoTopup,
+      String? totalTopup,
+      String? totalCashout});
 }
 
 /// @nodoc
@@ -65,33 +65,33 @@ class _$SavingsModelCopyWithImpl<$Res, $Val extends SavingsModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? cardId = null,
-    Object? saldoTabungan = null,
-    Object? totalDebit = null,
-    Object? totalKredit = null,
+    Object? name = freezed,
+    Object? cardId = freezed,
+    Object? saldoTopup = freezed,
+    Object? totalTopup = freezed,
+    Object? totalCashout = freezed,
   }) {
     return _then(_value.copyWith(
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      cardId: null == cardId
+              as String?,
+      cardId: freezed == cardId
           ? _value.cardId
           : cardId // ignore: cast_nullable_to_non_nullable
-              as String,
-      saldoTabungan: null == saldoTabungan
-          ? _value.saldoTabungan
-          : saldoTabungan // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalDebit: null == totalDebit
-          ? _value.totalDebit
-          : totalDebit // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalKredit: null == totalKredit
-          ? _value.totalKredit
-          : totalKredit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      saldoTopup: freezed == saldoTopup
+          ? _value.saldoTopup
+          : saldoTopup // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalTopup: freezed == totalTopup
+          ? _value.totalTopup
+          : totalTopup // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalCashout: freezed == totalCashout
+          ? _value.totalCashout
+          : totalCashout // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -105,11 +105,11 @@ abstract class _$$SavingsModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
-      String cardId,
-      String saldoTabungan,
-      String totalDebit,
-      String totalKredit});
+      {String? name,
+      String? cardId,
+      String? saldoTopup,
+      String? totalTopup,
+      String? totalCashout});
 }
 
 /// @nodoc
@@ -125,33 +125,33 @@ class __$$SavingsModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? cardId = null,
-    Object? saldoTabungan = null,
-    Object? totalDebit = null,
-    Object? totalKredit = null,
+    Object? name = freezed,
+    Object? cardId = freezed,
+    Object? saldoTopup = freezed,
+    Object? totalTopup = freezed,
+    Object? totalCashout = freezed,
   }) {
     return _then(_$SavingsModelImpl(
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      cardId: null == cardId
+              as String?,
+      cardId: freezed == cardId
           ? _value.cardId
           : cardId // ignore: cast_nullable_to_non_nullable
-              as String,
-      saldoTabungan: null == saldoTabungan
-          ? _value.saldoTabungan
-          : saldoTabungan // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalDebit: null == totalDebit
-          ? _value.totalDebit
-          : totalDebit // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalKredit: null == totalKredit
-          ? _value.totalKredit
-          : totalKredit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      saldoTopup: freezed == saldoTopup
+          ? _value.saldoTopup
+          : saldoTopup // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalTopup: freezed == totalTopup
+          ? _value.totalTopup
+          : totalTopup // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalCashout: freezed == totalCashout
+          ? _value.totalCashout
+          : totalCashout // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -161,29 +161,29 @@ class __$$SavingsModelImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$SavingsModelImpl implements _SavingsModel {
   const _$SavingsModelImpl(
-      {required this.name,
-      required this.cardId,
-      required this.saldoTabungan,
-      required this.totalDebit,
-      required this.totalKredit});
+      {this.name,
+      this.cardId,
+      this.saldoTopup,
+      this.totalTopup,
+      this.totalCashout});
 
   factory _$SavingsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SavingsModelImplFromJson(json);
 
   @override
-  final String name;
+  final String? name;
   @override
-  final String cardId;
+  final String? cardId;
   @override
-  final String saldoTabungan;
+  final String? saldoTopup;
   @override
-  final String totalDebit;
+  final String? totalTopup;
   @override
-  final String totalKredit;
+  final String? totalCashout;
 
   @override
   String toString() {
-    return 'SavingsModel(name: $name, cardId: $cardId, saldoTabungan: $saldoTabungan, totalDebit: $totalDebit, totalKredit: $totalKredit)';
+    return 'SavingsModel(name: $name, cardId: $cardId, saldoTopup: $saldoTopup, totalTopup: $totalTopup, totalCashout: $totalCashout)';
   }
 
   @override
@@ -193,18 +193,18 @@ class _$SavingsModelImpl implements _SavingsModel {
             other is _$SavingsModelImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.cardId, cardId) || other.cardId == cardId) &&
-            (identical(other.saldoTabungan, saldoTabungan) ||
-                other.saldoTabungan == saldoTabungan) &&
-            (identical(other.totalDebit, totalDebit) ||
-                other.totalDebit == totalDebit) &&
-            (identical(other.totalKredit, totalKredit) ||
-                other.totalKredit == totalKredit));
+            (identical(other.saldoTopup, saldoTopup) ||
+                other.saldoTopup == saldoTopup) &&
+            (identical(other.totalTopup, totalTopup) ||
+                other.totalTopup == totalTopup) &&
+            (identical(other.totalCashout, totalCashout) ||
+                other.totalCashout == totalCashout));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, cardId, saldoTabungan, totalDebit, totalKredit);
+      runtimeType, name, cardId, saldoTopup, totalTopup, totalCashout);
 
   /// Create a copy of SavingsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -224,25 +224,25 @@ class _$SavingsModelImpl implements _SavingsModel {
 
 abstract class _SavingsModel implements SavingsModel {
   const factory _SavingsModel(
-      {required final String name,
-      required final String cardId,
-      required final String saldoTabungan,
-      required final String totalDebit,
-      required final String totalKredit}) = _$SavingsModelImpl;
+      {final String? name,
+      final String? cardId,
+      final String? saldoTopup,
+      final String? totalTopup,
+      final String? totalCashout}) = _$SavingsModelImpl;
 
   factory _SavingsModel.fromJson(Map<String, dynamic> json) =
       _$SavingsModelImpl.fromJson;
 
   @override
-  String get name;
+  String? get name;
   @override
-  String get cardId;
+  String? get cardId;
   @override
-  String get saldoTabungan;
+  String? get saldoTopup;
   @override
-  String get totalDebit;
+  String? get totalTopup;
   @override
-  String get totalKredit;
+  String? get totalCashout;
 
   /// Create a copy of SavingsModel
   /// with the given fields replaced by the non-null parameter values.

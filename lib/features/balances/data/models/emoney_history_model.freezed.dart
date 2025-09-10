@@ -20,10 +20,11 @@ EmoneyHistoryModel _$EmoneyHistoryModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$EmoneyHistoryModel {
-  String get amount => throw _privateConstructorUsedError;
-  String get date => throw _privateConstructorUsedError;
-  String get transaction => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String? get amount => throw _privateConstructorUsedError;
+  String? get date => throw _privateConstructorUsedError;
+  String? get transaction => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
 
   /// Serializes this EmoneyHistoryModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +42,12 @@ abstract class $EmoneyHistoryModelCopyWith<$Res> {
           EmoneyHistoryModel value, $Res Function(EmoneyHistoryModel) then) =
       _$EmoneyHistoryModelCopyWithImpl<$Res, EmoneyHistoryModel>;
   @useResult
-  $Res call({String amount, String date, String transaction, String status});
+  $Res call(
+      {int id,
+      String? amount,
+      String? date,
+      String? transaction,
+      String? status});
 }
 
 /// @nodoc
@@ -59,28 +65,33 @@ class _$EmoneyHistoryModelCopyWithImpl<$Res, $Val extends EmoneyHistoryModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? amount = null,
-    Object? date = null,
-    Object? transaction = null,
-    Object? status = null,
+    Object? id = null,
+    Object? amount = freezed,
+    Object? date = freezed,
+    Object? transaction = freezed,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
-      amount: null == amount
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-      date: null == date
+              as String?,
+      date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
-      transaction: null == transaction
+              as String?,
+      transaction: freezed == transaction
           ? _value.transaction
           : transaction // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
+              as String?,
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -93,7 +104,12 @@ abstract class _$$EmoneyHistoryModelImplCopyWith<$Res>
       __$$EmoneyHistoryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String amount, String date, String transaction, String status});
+  $Res call(
+      {int id,
+      String? amount,
+      String? date,
+      String? transaction,
+      String? status});
 }
 
 /// @nodoc
@@ -109,28 +125,33 @@ class __$$EmoneyHistoryModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? amount = null,
-    Object? date = null,
-    Object? transaction = null,
-    Object? status = null,
+    Object? id = null,
+    Object? amount = freezed,
+    Object? date = freezed,
+    Object? transaction = freezed,
+    Object? status = freezed,
   }) {
     return _then(_$EmoneyHistoryModelImpl(
-      amount: null == amount
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-      date: null == date
+              as String?,
+      date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
-      transaction: null == transaction
+              as String?,
+      transaction: freezed == transaction
           ? _value.transaction
           : transaction // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
+              as String?,
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -140,26 +161,29 @@ class __$$EmoneyHistoryModelImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$EmoneyHistoryModelImpl implements _EmoneyHistoryModel {
   const _$EmoneyHistoryModelImpl(
-      {required this.amount,
-      required this.date,
-      required this.transaction,
-      required this.status});
+      {required this.id,
+      this.amount,
+      this.date,
+      this.transaction,
+      this.status});
 
   factory _$EmoneyHistoryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$EmoneyHistoryModelImplFromJson(json);
 
   @override
-  final String amount;
+  final int id;
   @override
-  final String date;
+  final String? amount;
   @override
-  final String transaction;
+  final String? date;
   @override
-  final String status;
+  final String? transaction;
+  @override
+  final String? status;
 
   @override
   String toString() {
-    return 'EmoneyHistoryModel(amount: $amount, date: $date, transaction: $transaction, status: $status)';
+    return 'EmoneyHistoryModel(id: $id, amount: $amount, date: $date, transaction: $transaction, status: $status)';
   }
 
   @override
@@ -167,6 +191,7 @@ class _$EmoneyHistoryModelImpl implements _EmoneyHistoryModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EmoneyHistoryModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.transaction, transaction) ||
@@ -177,7 +202,7 @@ class _$EmoneyHistoryModelImpl implements _EmoneyHistoryModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, amount, date, transaction, status);
+      Object.hash(runtimeType, id, amount, date, transaction, status);
 
   /// Create a copy of EmoneyHistoryModel
   /// with the given fields replaced by the non-null parameter values.
@@ -198,22 +223,25 @@ class _$EmoneyHistoryModelImpl implements _EmoneyHistoryModel {
 
 abstract class _EmoneyHistoryModel implements EmoneyHistoryModel {
   const factory _EmoneyHistoryModel(
-      {required final String amount,
-      required final String date,
-      required final String transaction,
-      required final String status}) = _$EmoneyHistoryModelImpl;
+      {required final int id,
+      final String? amount,
+      final String? date,
+      final String? transaction,
+      final String? status}) = _$EmoneyHistoryModelImpl;
 
   factory _EmoneyHistoryModel.fromJson(Map<String, dynamic> json) =
       _$EmoneyHistoryModelImpl.fromJson;
 
   @override
-  String get amount;
+  int get id;
   @override
-  String get date;
+  String? get amount;
   @override
-  String get transaction;
+  String? get date;
   @override
-  String get status;
+  String? get transaction;
+  @override
+  String? get status;
 
   /// Create a copy of EmoneyHistoryModel
   /// with the given fields replaced by the non-null parameter values.

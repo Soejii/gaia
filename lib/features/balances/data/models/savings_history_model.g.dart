@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'emoney_history_model.dart';
+part of 'savings_history_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$EmoneyHistoryModelImpl _$$EmoneyHistoryModelImplFromJson(
+_$SavingsHistoryModelImpl _$$SavingsHistoryModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$EmoneyHistoryModelImpl(
+    _$SavingsHistoryModelImpl(
       id: (json['id'] as num).toInt(),
-      amount: json['amount'] as String?,
       date: json['date'] as String?,
+      amount: (json['amount'] as num?)?.toInt(),
+      confirmed: (json['confirmed'] as num?)?.toInt(),
       transaction: json['transaction'] as String?,
-      status: json['status'] as String?,
     );
 
-Map<String, dynamic> _$$EmoneyHistoryModelImplToJson(
-        _$EmoneyHistoryModelImpl instance) =>
+Map<String, dynamic> _$$SavingsHistoryModelImplToJson(
+        _$SavingsHistoryModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'amount': instance.amount,
       'date': instance.date,
+      'amount': instance.amount,
+      'confirmed': instance.confirmed,
       'transaction': instance.transaction,
-      'status': instance.status,
     };

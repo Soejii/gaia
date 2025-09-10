@@ -8,16 +8,18 @@ part of 'emoney_model.dart';
 
 _$EmoneyModelImpl _$$EmoneyModelImplFromJson(Map<String, dynamic> json) =>
     _$EmoneyModelImpl(
-      name: json['name'] as String,
-      cardId: json['card_id'] as String,
-      saldoEmoney: json['saldo_emoney'] as String,
-      totalTopup: json['total_topup'] as String,
-      totalPayment: json['total_payment'] as String,
-      totalCashout: json['total_cashout'] as String,
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      cardId: json['card_id'] as String?,
+      saldoEmoney: json['saldo_emoney'] as String?,
+      totalTopup: json['total_topup'] as String?,
+      totalPayment: json['total_payment'] as String?,
+      totalCashout: json['total_cashout'] as String?,
     );
 
 Map<String, dynamic> _$$EmoneyModelImplToJson(_$EmoneyModelImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'card_id': instance.cardId,
       'saldo_emoney': instance.saldoEmoney,
