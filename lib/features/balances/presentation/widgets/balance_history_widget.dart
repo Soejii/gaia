@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/features/balances/domain/entities/emoney_history_entity.dart';
 import 'package:gaia/features/balances/domain/type/balance_type.dart';
 import 'package:gaia/features/balances/presentation/providers/emoney_history_controller.dart';
-import 'package:gaia/features/balances/presentation/widgets/transaction_history_item_widget.dart';
-import 'package:gaia/features/balances/presentation/widgets/balance_history_state_widget.dart';
+import 'package:gaia/features/balances/presentation/providers/savings_history_controller.dart';
+import 'package:gaia/features/balances/presentation/widgets/balance_history_item_widget.dart';
+import 'package:gaia/features/balances/presentation/mappers/balance_type_ui_mapper.dart';
+import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
+import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -35,8 +37,12 @@ class BalanceHistoryWidget extends ConsumerWidget {
             ),
             TextButton(
               onPressed: () {
-                final typeParam = type == BalanceType.emoney ? 'emoney' : 'savings';
-                context.push('/home/balance/balance-history?type=$typeParam');
+                context.pushNamed(
+                  RouteName.balanceHistory,
+                  queryParameters: {
+                    'type': BalanceTypeUIMapper.getRouteParameter(type)
+                  },
+                );
               },
               style: TextButton.styleFrom(
                 padding: EdgeInsets.zero,
@@ -55,87 +61,102 @@ class BalanceHistoryWidget extends ConsumerWidget {
           ],
         ),
         SizedBox(height: 16.h),
-        _buildHistoryContent(ref),
+        if (type == BalanceType.emoney) ...[
+          Consumer(
+            builder: (context, ref, child) {
+              final historyState = ref.watch(emoneyHistoryControllerProvider);
+
+              return historyState.when(
+                data: (pagedData) {
+                  final historyList = pagedData.items;
+                  if (historyList.isEmpty) {
+                    return const DataNotFoundScreen(
+                        dataType: 'Riwayat Transaksi');
+                  }
+
+                  final limitValue = itemLimit ?? historyList.length;
+                  final displayList = limitValue < historyList.length
+                      ? historyList.take(limitValue).toList()
+                      : historyList;
+
+                  return Column(
+                    children: displayList.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final item = entry.value;
+
+                      return Column(
+                        children: [
+                          BalanceHistoryItemWidget.emoney(emoneyItem: item),
+                          if (index < displayList.length - 1)
+                            Container(
+                              height: 1.h,
+                              color: Colors.black.withValues(alpha: 0.1),
+                              margin: EdgeInsets.symmetric(vertical: 10.h),
+                            ),
+                        ],
+                      );
+                    }).toList(),
+                  );
+                },
+                loading: () => SizedBox(
+                  height: 200.h,
+                  child: const Center(child: CircularProgressIndicator()),
+                ),
+                error: (error, stack) =>
+                    const DataNotFoundScreen(dataType: 'Riwayat Transaksi'),
+              );
+            },
+          ),
+        ] else if (type == BalanceType.savings) ...[
+          Consumer(
+            builder: (context, ref, child) {
+              final historyState = ref.watch(savingsHistoryControllerProvider);
+
+              return historyState.when(
+                data: (pagedData) {
+                  final historyList = pagedData.items;
+                  if (historyList.isEmpty) {
+                    return const DataNotFoundScreen(
+                        dataType: 'Riwayat Tabungan');
+                  }
+
+                  final limitValue = itemLimit ?? historyList.length;
+                  final displayList = limitValue < historyList.length
+                      ? historyList.take(limitValue).toList()
+                      : historyList;
+
+                  return Column(
+                    children: displayList.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final item = entry.value;
+
+                      return Column(
+                        children: [
+                        BalanceHistoryItemWidget.savings(savingsItem: item),
+                          if (index < displayList.length - 1)
+                            Container(
+                              height: 1.h,
+                              color: Colors.black.withValues(alpha: 0.1),
+                              margin: EdgeInsets.symmetric(vertical: 10.h),
+                            ),
+                        ],
+                      );
+                    }).toList(),
+                  );
+                },
+                loading: () => SizedBox(
+                  height: 200.h,
+                  child: const Center(child: CircularProgressIndicator()),
+                ),
+                error: (error, stack) =>
+                    const DataNotFoundScreen(dataType: 'Riwayat Tabungan'),
+              );
+            },
+          ),
+        ] else ...[
+          const DataNotFoundScreen(dataType: 'Riwayat Transaksi'),
+        ],
       ],
     );
-  }
-
-  Widget _buildHistoryContent(WidgetRef ref) {
-    switch (type) {
-      case BalanceType.emoney:
-        return _buildEmoneyHistory(ref);
-      case BalanceType.savings:
-        return _buildSavingsHistory();
-    }
-  }
-
-  Widget _buildEmoneyHistory(WidgetRef ref) {
-    final historyState = ref.watch(emoneyHistoryControllerProvider);
-
-    return historyState.when(
-      data: (historyList) => _buildHistoryList(historyList),
-      loading: () => _buildLoading(),
-      error: (error, stack) => _buildError(error.toString()),
-    );
-  }
-
-  Widget _buildSavingsHistory() {
-    return Container(
-      height: 100.h,
-      decoration: BoxDecoration(
-        color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Center(
-        child: Text(
-          'Savings History\nComing Soon',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 14.sp,
-            color: Colors.grey[600],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHistoryList(List<EmoneyHistoryEntity> historyList) {
-    if (historyList.isEmpty) {
-      return BalanceHistoryStateWidget.empty();
-    }
-
-    final displayList = itemLimit != null && itemLimit! < historyList.length
-        ? historyList.take(itemLimit!).toList()
-        : historyList;
-
-    return Column(
-      children: displayList.asMap().entries.map((entry) {
-        final index = entry.key;
-        final item = entry.value;
-        
-        return Column(
-          children: [
-            TransactionHistoryItemWidget(item: item),
-            if (index < displayList.length - 1)
-              Container(
-                height: 1.h,
-                color: Colors.black.withValues(alpha: 0.1),
-                margin: EdgeInsets.symmetric(vertical: 10.h),
-              ),
-          ],
-        );
-      }).toList(),
-    );
-  }
-
-  Widget _buildLoading() {
-    return SizedBox(
-      height: 200.h,
-      child: BalanceHistoryStateWidget.loading(),
-    );
-  }
-
-  Widget _buildError(String error) {
-    return BalanceHistoryStateWidget.error(error);
   }
 }
