@@ -1,3 +1,6 @@
+import 'package:gaia/features/balances/domain/type/transaction_status.dart';
+import 'package:gaia/features/balances/domain/type/transaction_type.dart';
+
 class EmoneyHistoryEntity {
   final int id;
   final String? amount;
@@ -12,21 +15,5 @@ class EmoneyHistoryEntity {
     required this.transactionType,
     required this.status,
   });
-}
-
-enum TransactionStatus {
-  success,
-  pending,
-  failed,
-  unknown,
-}
-
-enum TransactionType {
-  topup,
-  cashout,
-  billPay,
-  canteenPay,
-  adminFee,
-  unknown,
 }
 
