@@ -47,7 +47,7 @@ class BalanceContentScreen extends ConsumerWidget {
           children: [
             Icon(Icons.error_outline, size: 64.r, color: Colors.red),
             SizedBox(height: 16.h),
-            Text('Error loading data', style: TextStyle(fontSize: 16.sp)),
+            Text('Terjadi kesalahan saat memuat data', style: TextStyle(fontSize: 16.sp)),
             SizedBox(height: 8.h),
             Text(error.toString(), style: TextStyle(fontSize: 14.sp, color: Colors.grey[600])),
             SizedBox(height: 24.h),
@@ -59,7 +59,7 @@ class BalanceContentScreen extends ConsumerWidget {
                   ref.read(savingsControllerProvider.notifier).refresh();
                 }
               },
-              child: const Text('Retry'),
+              child: const Text('Gagal, Silahkan Coba Lagi"'),
             ),
           ],
         ),
