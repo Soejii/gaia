@@ -1,5 +1,7 @@
 import '../../domain/entities/emoney_history_entity.dart';
 import '../models/emoney_history_model.dart';
+import 'package:gaia/features/balances/domain/type/transaction_status.dart';
+import 'package:gaia/features/balances/domain/type/transaction_type.dart';
 
 extension EmoneyHistoryMapper on EmoneyHistoryModel {
   EmoneyHistoryEntity toEntity() => EmoneyHistoryEntity(

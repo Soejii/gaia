@@ -1,5 +1,7 @@
 import '../../domain/entities/savings_history_entity.dart';
 import '../models/savings_history_model.dart';
+import 'package:gaia/features/balances/domain/type/transaction_status.dart';
+import 'package:gaia/features/balances/domain/type/transaction_type.dart';
 
 extension SavingsHistoryMapper on SavingsHistoryModel {
   SavingsHistoryEntity toEntity() => SavingsHistoryEntity(
