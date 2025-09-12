@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gaia/features/balances/domain/entities/emoney_history_entity.dart'
-    as emoney;
-import 'package:gaia/features/balances/domain/entities/savings_history_entity.dart'
-    as savings;
+import 'package:gaia/features/balances/domain/entities/emoney_history_entity.dart' as emoney;
+import 'package:gaia/features/balances/domain/entities/savings_history_entity.dart' as savings;
+import 'package:gaia/features/balances/domain/type/transaction_type.dart';
+import 'package:gaia/features/balances/domain/type/transaction_status.dart';
 import 'package:gaia/features/balances/presentation/mappers/transaction_type_ui_mapper.dart';
 import 'package:gaia/features/balances/presentation/mappers/transaction_status_ui_mapper.dart';
 import 'package:gaia/features/balances/presentation/mappers/generic_transaction_ui_mapper.dart';
@@ -100,28 +100,28 @@ class BalanceHistoryItemWidget extends StatelessWidget {
   String _getIconAsset() {
     if (emoneyItem != null) {
       return TransactionTypeUIMapper.getIconAsset(
-          emoneyItem?.transactionType ?? emoney.TransactionType.unknown);
+          emoneyItem?.transactionType ?? TransactionType.unknown);
     }
     return GenericTransactionUIMapper.getSavingsIconAsset(
-        savingsItem?.type ?? savings.TransactionType.unknown);
+        savingsItem?.type ?? TransactionType.unknown);
   }
 
   String _getTransactionTitle() {
     if (emoneyItem != null) {
       return TransactionTypeUIMapper.getDisplayText(
-          emoneyItem?.transactionType ?? emoney.TransactionType.unknown);
+          emoneyItem?.transactionType ?? TransactionType.unknown);
     }
     return GenericTransactionUIMapper.getSavingsDisplayText(
-        savingsItem?.type ?? savings.TransactionType.unknown);
+        savingsItem?.type ?? TransactionType.unknown);
   }
 
   Color _getTitleColor() {
     if (emoneyItem != null) {
       return TransactionTypeUIMapper.getAmountColor(
-          emoneyItem?.transactionType ?? emoney.TransactionType.unknown);
+          emoneyItem?.transactionType ?? TransactionType.unknown);
     }
     return GenericTransactionUIMapper.getSavingsAmountColor(
-        savingsItem?.type ?? savings.TransactionType.unknown);
+        savingsItem?.type ?? TransactionType.unknown);
   }
 
   String _formatDate() {
@@ -164,8 +164,8 @@ class BalanceHistoryItemWidget extends StatelessWidget {
       if (amount == null) {
         return '0';
       }
-      final type = savingsItem?.type ?? savings.TransactionType.unknown;
-      final prefix = type == savings.TransactionType.topup ? '+' : '-';
+      final type = savingsItem?.type ?? TransactionType.unknown;
+      final prefix = type == TransactionType.topup ? '+' : '-';
       final formatter = NumberFormat('#,###', 'id_ID');
       final formattedAmount = formatter.format(amount);
 
@@ -176,10 +176,10 @@ class BalanceHistoryItemWidget extends StatelessWidget {
   Color _getAmountColor() {
     if (emoneyItem != null) {
       return TransactionTypeUIMapper.getAmountColor(
-          emoneyItem?.transactionType ?? emoney.TransactionType.unknown);
+          emoneyItem?.transactionType ?? TransactionType.unknown);
     }
     return GenericTransactionUIMapper.getSavingsAmountColor(
-        savingsItem?.type ?? savings.TransactionType.unknown);
+        savingsItem?.type ?? TransactionType.unknown);
   }
 
   bool _shouldShowStatus() {
@@ -189,7 +189,7 @@ class BalanceHistoryItemWidget extends StatelessWidget {
   String _getStatusText() {
     if (emoneyItem != null) {
       return TransactionStatusUIMapper.getDisplayText(
-          emoneyItem?.status ?? emoney.TransactionStatus.unknown);
+          emoneyItem?.status ?? TransactionStatus.unknown);
     }
     return '';
   }
@@ -197,7 +197,7 @@ class BalanceHistoryItemWidget extends StatelessWidget {
   Color _getStatusColor() {
     if (emoneyItem != null) {
       return TransactionStatusUIMapper.getDisplayColor(
-          emoneyItem?.status ?? emoney.TransactionStatus.unknown);
+          emoneyItem?.status ?? TransactionStatus.unknown);
     }
     return Colors.grey;
   }
