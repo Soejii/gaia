@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
-import '../../domain/entities/emoney_history_entity.dart';
+import 'package:gaia/features/balances/domain/type/transaction_type.dart';
 
 class TransactionTypeUIMapper {
   static String getDisplayText(TransactionType type) {

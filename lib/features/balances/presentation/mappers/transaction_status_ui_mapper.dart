@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../domain/entities/emoney_history_entity.dart';
+import 'package:gaia/features/balances/domain/type/transaction_status.dart';
 
 class TransactionStatusUIMapper {
   static String getDisplayText(TransactionStatus status) {
