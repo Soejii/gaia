@@ -25,7 +25,7 @@ class SubjectPickerScreen extends ConsumerWidget {
           } else {
             return GridView.builder(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-              itemCount: 16,
+              itemCount: data.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 crossAxisSpacing: 16.w,
