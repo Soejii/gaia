@@ -5,10 +5,10 @@ import 'package:gaia/features/subject/domain/entities/module_entity.dart';
 import 'package:gaia/features/subject/presentation/providers/subject_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'module_subject_controller.g.dart';
+part 'module_controller.g.dart';
 
 @riverpod
-class ModuleSubjectController extends _$ModuleSubjectController {
+class ModuleController extends _$ModuleController {
   Timer? _ttl; // for optional TTL keepAlive
   KeepAliveLink? _link;
   @override

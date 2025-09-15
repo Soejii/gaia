@@ -1,13 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'module_subject_controller.dart';
+part of 'module_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$moduleSubjectControllerHash() =>
-    r'a9c5ce8bcf298987e534b664fa23f8e88db59f54';
+String _$moduleControllerHash() => r'ccf1f6fcd2851b6e6102c52fda511a52863cca52';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,7 +29,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$ModuleSubjectController
+abstract class _$ModuleController
     extends BuildlessAutoDisposeAsyncNotifier<List<ModuleEntity>> {
   late final int idSubject;
 
@@ -39,28 +38,27 @@ abstract class _$ModuleSubjectController
   );
 }
 
-/// See also [ModuleSubjectController].
-@ProviderFor(ModuleSubjectController)
-const moduleSubjectControllerProvider = ModuleSubjectControllerFamily();
+/// See also [ModuleController].
+@ProviderFor(ModuleController)
+const moduleControllerProvider = ModuleControllerFamily();
 
-/// See also [ModuleSubjectController].
-class ModuleSubjectControllerFamily
-    extends Family<AsyncValue<List<ModuleEntity>>> {
-  /// See also [ModuleSubjectController].
-  const ModuleSubjectControllerFamily();
+/// See also [ModuleController].
+class ModuleControllerFamily extends Family<AsyncValue<List<ModuleEntity>>> {
+  /// See also [ModuleController].
+  const ModuleControllerFamily();
 
-  /// See also [ModuleSubjectController].
-  ModuleSubjectControllerProvider call(
+  /// See also [ModuleController].
+  ModuleControllerProvider call(
     int idSubject,
   ) {
-    return ModuleSubjectControllerProvider(
+    return ModuleControllerProvider(
       idSubject,
     );
   }
 
   @override
-  ModuleSubjectControllerProvider getProviderOverride(
-    covariant ModuleSubjectControllerProvider provider,
+  ModuleControllerProvider getProviderOverride(
+    covariant ModuleControllerProvider provider,
   ) {
     return call(
       provider.idSubject,
@@ -79,31 +77,30 @@ class ModuleSubjectControllerFamily
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'moduleSubjectControllerProvider';
+  String? get name => r'moduleControllerProvider';
 }
 
-/// See also [ModuleSubjectController].
-class ModuleSubjectControllerProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<ModuleSubjectController,
-        List<ModuleEntity>> {
-  /// See also [ModuleSubjectController].
-  ModuleSubjectControllerProvider(
+/// See also [ModuleController].
+class ModuleControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
+    ModuleController, List<ModuleEntity>> {
+  /// See also [ModuleController].
+  ModuleControllerProvider(
     int idSubject,
   ) : this._internal(
-          () => ModuleSubjectController()..idSubject = idSubject,
-          from: moduleSubjectControllerProvider,
-          name: r'moduleSubjectControllerProvider',
+          () => ModuleController()..idSubject = idSubject,
+          from: moduleControllerProvider,
+          name: r'moduleControllerProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$moduleSubjectControllerHash,
-          dependencies: ModuleSubjectControllerFamily._dependencies,
+                  : _$moduleControllerHash,
+          dependencies: ModuleControllerFamily._dependencies,
           allTransitiveDependencies:
-              ModuleSubjectControllerFamily._allTransitiveDependencies,
+              ModuleControllerFamily._allTransitiveDependencies,
           idSubject: idSubject,
         );
 
-  ModuleSubjectControllerProvider._internal(
+  ModuleControllerProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -117,7 +114,7 @@ class ModuleSubjectControllerProvider
 
   @override
   FutureOr<List<ModuleEntity>> runNotifierBuild(
-    covariant ModuleSubjectController notifier,
+    covariant ModuleController notifier,
   ) {
     return notifier.build(
       idSubject,
@@ -125,10 +122,10 @@ class ModuleSubjectControllerProvider
   }
 
   @override
-  Override overrideWith(ModuleSubjectController Function() create) {
+  Override overrideWith(ModuleController Function() create) {
     return ProviderOverride(
       origin: this,
-      override: ModuleSubjectControllerProvider._internal(
+      override: ModuleControllerProvider._internal(
         () => create()..idSubject = idSubject,
         from: from,
         name: null,
@@ -141,15 +138,14 @@ class ModuleSubjectControllerProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<ModuleSubjectController,
-      List<ModuleEntity>> createElement() {
-    return _ModuleSubjectControllerProviderElement(this);
+  AutoDisposeAsyncNotifierProviderElement<ModuleController, List<ModuleEntity>>
+      createElement() {
+    return _ModuleControllerProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is ModuleSubjectControllerProvider &&
-        other.idSubject == idSubject;
+    return other is ModuleControllerProvider && other.idSubject == idSubject;
   }
 
   @override
@@ -163,19 +159,19 @@ class ModuleSubjectControllerProvider
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin ModuleSubjectControllerRef
+mixin ModuleControllerRef
     on AutoDisposeAsyncNotifierProviderRef<List<ModuleEntity>> {
   /// The parameter `idSubject` of this provider.
   int get idSubject;
 }
 
-class _ModuleSubjectControllerProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<ModuleSubjectController,
-        List<ModuleEntity>> with ModuleSubjectControllerRef {
-  _ModuleSubjectControllerProviderElement(super.provider);
+class _ModuleControllerProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<ModuleController,
+        List<ModuleEntity>> with ModuleControllerRef {
+  _ModuleControllerProviderElement(super.provider);
 
   @override
-  int get idSubject => (origin as ModuleSubjectControllerProvider).idSubject;
+  int get idSubject => (origin as ModuleControllerProvider).idSubject;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
