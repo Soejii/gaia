@@ -1,21 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/subject/presentation/providers/module_subject_controller.dart';
 import 'package:gaia/features/subject/presentation/widgets/module_card.dart';
+import 'package:gaia/shared/screens/data_not_found_screen.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ModuleContentWidget extends StatelessWidget {
-  const ModuleContentWidget({super.key});
+class ModuleContentWidget extends ConsumerWidget {
+  const ModuleContentWidget({super.key, required this.idSubject});
+  final int idSubject;
 
   @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.symmetric(vertical: 12.h),
-      children: const [
-        ModuleCard(),
-        ModuleCard(),
-        ModuleCard(),
-        ModuleCard(),
-        ModuleCard(),
-      ],
+  Widget build(BuildContext context, WidgetRef ref) {
+    final asyncModule = ref.watch(moduleSubjectControllerProvider(idSubject));
+    return asyncModule.when(
+      data: (data) {
+        if (data.isNotEmpty) {
+          return RefreshIndicator(
+            onRefresh: () => ref
+                .read(moduleSubjectControllerProvider(idSubject).notifier)
+                .refresh(idSubject),
+            child: ListView.builder(
+              padding: EdgeInsets.symmetric(vertical: 12.h),
+              itemCount: data.length,
+              itemBuilder: (context, index) => ModuleCard(
+                entity: data[index],
+              ),
+            ),
+          );
+        }
+        return const DataNotFoundScreen(dataType: 'Modul');
+      },
+      error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }

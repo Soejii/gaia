@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/subject/domain/entities/module_entity.dart';
 import 'package:gaia/features/subject/presentation/widgets/sub_module_card.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ModuleCard extends HookConsumerWidget {
-  const ModuleCard({super.key});
+  const ModuleCard({super.key, required this.entity});
+  final ModuleEntity entity;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -61,7 +63,7 @@ class ModuleCard extends HookConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Present Tense',
+                        entity.title ?? '-',
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: TextStyle(
@@ -72,7 +74,7 @@ class ModuleCard extends HookConsumerWidget {
                         ),
                       ),
                       Text(
-                        '2 Sub Modul',
+                        '${entity.examCount} Sub Modul',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -105,8 +107,10 @@ class ModuleCard extends HookConsumerWidget {
               shrinkWrap: true,
               padding: EdgeInsets.zero,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 2,
-              itemBuilder: (context, index) => const SubModuleCard(),
+              itemCount: entity.listSubModule?.length,
+              itemBuilder: (context, index) =>  SubModuleCard(
+                entity: entity.listSubModule![index],
+              ),
             ),
           )
         ],

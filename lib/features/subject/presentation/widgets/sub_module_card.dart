@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/subject/domain/entities/sub_module_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
-class SubModuleCard extends HookWidget {
-  const SubModuleCard({super.key});
+class SubModuleCard extends StatelessWidget {
+  const SubModuleCard({super.key, required this.entity});
+  final SubModuleEntity entity;
 
   @override
   Widget build(BuildContext context) {
-    final isReady = useState(true);
     return Container(
       padding: EdgeInsets.symmetric(vertical: 16.h),
       decoration: const BoxDecoration(
@@ -28,7 +28,7 @@ class SubModuleCard extends HookWidget {
             height: 24.h,
             width: 24.h,
             child: Image.asset(
-              isReady.value
+              entity.isUploaded
                   ? AssetsHelper.imgSubjectModulActive
                   : AssetsHelper.imgSubjectModulInactive,
             ),
@@ -36,7 +36,7 @@ class SubModuleCard extends HookWidget {
           SizedBox(width: 12.w),
           Expanded(
             child: Text(
-              'Simple Past Tensessssssssssssssssssssssssssssssssss',
+              entity.title ?? '',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -51,12 +51,13 @@ class SubModuleCard extends HookWidget {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              color: isReady.value ? AppColors.green : AppColors.inactiveColor,
+              color:
+                  entity.isUploaded ? AppColors.green : AppColors.inactiveColor,
             ),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
               child: Text(
-                isReady.value ? 'Telah Tayang' : 'Belum Tayang',
+                entity.isUploaded ? 'Telah Tayang' : 'Belum Tayang',
                 style: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 9.sp,

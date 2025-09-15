@@ -61,13 +61,13 @@ class DetailSubjectScreen extends HookConsumerWidget {
           Expanded(
             child: TabBarView(
               controller: tabController,
-              children: const [
-                ModuleContentWidget(),
-                SubjectDiscussionContentWidget(),
-                MediaContentWidget(),
-                SubjectExamContentWidget(),
-                SubjectQuizContentWidget(),
-                SubjectTaskContentWidget(),
+              children: [
+                ModuleContentWidget(idSubject: idSubject),
+                const SubjectDiscussionContentWidget(),
+                const MediaContentWidget(),
+                const SubjectExamContentWidget(),
+                const SubjectQuizContentWidget(),
+                const SubjectTaskContentWidget(),
               ],
             ),
           ),
