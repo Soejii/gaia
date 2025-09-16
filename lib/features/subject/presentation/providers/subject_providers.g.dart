@@ -83,6 +83,25 @@ final getListModuleUsecaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef GetListModuleUsecaseRef = AutoDisposeProviderRef<GetListModuleUsecase>;
+String _$getListMediaUsecaseHash() =>
+    r'8b389682949fca4dc8f0130a9ac51eeb91ef89c1';
+
+/// See also [getListMediaUsecase].
+@ProviderFor(getListMediaUsecase)
+final getListMediaUsecaseProvider =
+    AutoDisposeProvider<GetListMediaUsecase>.internal(
+  getListMediaUsecase,
+  name: r'getListMediaUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getListMediaUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetListMediaUsecaseRef = AutoDisposeProviderRef<GetListMediaUsecase>;
 String _$detailSubjectTabIndexHash() =>
     r'3ea72ce6062d9d60a424b86927be35fe41add630';
 

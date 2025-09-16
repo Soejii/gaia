@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:gaia/features/subject/data/models/media_model.dart';
 import 'package:gaia/features/subject/data/models/module_model.dart';
 import 'package:gaia/features/subject/data/models/subject_model.dart';
 
@@ -31,6 +32,23 @@ class SubjectRemoteDataSource {
     return data
         .map(
           (e) => ModuleModel.fromJson(
+            Map<String, dynamic>.from(e as Map),
+          ),
+        )
+        .toList(growable: false);
+  }
+
+    Future<List<MediaModel>> getLearningMedia(int subjectId) async {
+    final res = await _dio.get(
+      '/subject/list-learning-media',
+      queryParameters: {
+        'subject_id': subjectId,
+      },
+    );
+    final data = (res.data as Map<String, dynamic>)['data'] as List<dynamic>;
+    return data
+        .map(
+          (e) => MediaModel.fromJson(
             Map<String, dynamic>.from(e as Map),
           ),
         )

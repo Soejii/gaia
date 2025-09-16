@@ -1,11 +1,12 @@
 import 'package:gaia/features/subject/data/datasources/subject_remote_data_source.dart';
+import 'package:gaia/features/subject/data/mapper/media_mapper.dart';
 import 'package:gaia/features/subject/data/mapper/module_mapper.dart';
 import 'package:gaia/features/subject/data/mapper/subject_mapper.dart';
+import 'package:gaia/features/subject/domain/entities/media_entity.dart';
 import 'package:gaia/features/subject/domain/entities/module_entity.dart';
 import 'package:gaia/features/subject/domain/entities/subject_entity.dart';
 import 'package:gaia/features/subject/domain/subject_repository.dart';
 import 'package:gaia/shared/core/types/result.dart';
-
 
 class SubjectRepositoryImpl implements SubjectRepository {
   final SubjectRemoteDataSource _dataSource;
@@ -23,10 +24,22 @@ class SubjectRepositoryImpl implements SubjectRepository {
         },
       );
 
-        @override
+  @override
   Future<Result<List<ModuleEntity>>> getListModule(int subjectId) => guard(
         () async {
           final models = await _dataSource.getModule(subjectId);
+          return models
+              .map(
+                (model) => model.toEntity(),
+              )
+              .toList();
+        },
+      );
+
+  @override
+  Future<Result<List<MediaEntity>>> getListMedia(int subjectId) => guard(
+        () async {
+          final models = await _dataSource.getLearningMedia(subjectId);
           return models
               .map(
                 (model) => model.toEntity(),
