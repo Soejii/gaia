@@ -4,5 +4,6 @@ enum MediaType {
   word,
   pdf,
   ppt,
-  video
+  video,
+  unknown,
 }
