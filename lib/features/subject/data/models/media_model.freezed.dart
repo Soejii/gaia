@@ -24,6 +24,8 @@ mixin _$MediaModel {
   String? get name => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   String? get media => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  SubModuleModel? get subModule => throw _privateConstructorUsedError;
 
   /// Serializes this MediaModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +43,15 @@ abstract class $MediaModelCopyWith<$Res> {
           MediaModel value, $Res Function(MediaModel) then) =
       _$MediaModelCopyWithImpl<$Res, MediaModel>;
   @useResult
-  $Res call({int id, String? name, String? type, String? media});
+  $Res call(
+      {int id,
+      String? name,
+      String? type,
+      String? media,
+      String? createdAt,
+      SubModuleModel? subModule});
+
+  $SubModuleModelCopyWith<$Res>? get subModule;
 }
 
 /// @nodoc
@@ -63,6 +73,8 @@ class _$MediaModelCopyWithImpl<$Res, $Val extends MediaModel>
     Object? name = freezed,
     Object? type = freezed,
     Object? media = freezed,
+    Object? createdAt = freezed,
+    Object? subModule = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -81,7 +93,29 @@ class _$MediaModelCopyWithImpl<$Res, $Val extends MediaModel>
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subModule: freezed == subModule
+          ? _value.subModule
+          : subModule // ignore: cast_nullable_to_non_nullable
+              as SubModuleModel?,
     ) as $Val);
+  }
+
+  /// Create a copy of MediaModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SubModuleModelCopyWith<$Res>? get subModule {
+    if (_value.subModule == null) {
+      return null;
+    }
+
+    return $SubModuleModelCopyWith<$Res>(_value.subModule!, (value) {
+      return _then(_value.copyWith(subModule: value) as $Val);
+    });
   }
 }
 
@@ -93,7 +127,16 @@ abstract class _$$MediaModelImplCopyWith<$Res>
       __$$MediaModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String? name, String? type, String? media});
+  $Res call(
+      {int id,
+      String? name,
+      String? type,
+      String? media,
+      String? createdAt,
+      SubModuleModel? subModule});
+
+  @override
+  $SubModuleModelCopyWith<$Res>? get subModule;
 }
 
 /// @nodoc
@@ -113,6 +156,8 @@ class __$$MediaModelImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? type = freezed,
     Object? media = freezed,
+    Object? createdAt = freezed,
+    Object? subModule = freezed,
   }) {
     return _then(_$MediaModelImpl(
       id: null == id
@@ -131,6 +176,14 @@ class __$$MediaModelImplCopyWithImpl<$Res>
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subModule: freezed == subModule
+          ? _value.subModule
+          : subModule // ignore: cast_nullable_to_non_nullable
+              as SubModuleModel?,
     ));
   }
 }
@@ -139,7 +192,13 @@ class __$$MediaModelImplCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$MediaModelImpl implements _MediaModel {
-  const _$MediaModelImpl({required this.id, this.name, this.type, this.media});
+  const _$MediaModelImpl(
+      {required this.id,
+      this.name,
+      this.type,
+      this.media,
+      this.createdAt,
+      this.subModule});
 
   factory _$MediaModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MediaModelImplFromJson(json);
@@ -152,10 +211,14 @@ class _$MediaModelImpl implements _MediaModel {
   final String? type;
   @override
   final String? media;
+  @override
+  final String? createdAt;
+  @override
+  final SubModuleModel? subModule;
 
   @override
   String toString() {
-    return 'MediaModel(id: $id, name: $name, type: $type, media: $media)';
+    return 'MediaModel(id: $id, name: $name, type: $type, media: $media, createdAt: $createdAt, subModule: $subModule)';
   }
 
   @override
@@ -166,12 +229,17 @@ class _$MediaModelImpl implements _MediaModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.media, media) || other.media == media));
+            (identical(other.media, media) || other.media == media) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.subModule, subModule) ||
+                other.subModule == subModule));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, type, media);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, type, media, createdAt, subModule);
 
   /// Create a copy of MediaModel
   /// with the given fields replaced by the non-null parameter values.
@@ -194,7 +262,9 @@ abstract class _MediaModel implements MediaModel {
       {required final int id,
       final String? name,
       final String? type,
-      final String? media}) = _$MediaModelImpl;
+      final String? media,
+      final String? createdAt,
+      final SubModuleModel? subModule}) = _$MediaModelImpl;
 
   factory _MediaModel.fromJson(Map<String, dynamic> json) =
       _$MediaModelImpl.fromJson;
@@ -207,6 +277,10 @@ abstract class _MediaModel implements MediaModel {
   String? get type;
   @override
   String? get media;
+  @override
+  String? get createdAt;
+  @override
+  SubModuleModel? get subModule;
 
   /// Create a copy of MediaModel
   /// with the given fields replaced by the non-null parameter values.

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/features/subject/data/types/media_type.dart';
+import 'package:gaia/features/subject/domain/entities/media_entity.dart';
 import 'package:gaia/features/subject/presentation/mapper/media_ui_mapper.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/shared/utils/date_helper.dart';
 
 class MediaCard extends StatelessWidget {
   const MediaCard({
     super.key,
-    required this.type,
+    required this.entity,
   });
-  final MediaType type;
+  final MediaEntity entity;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,9 +34,9 @@ class MediaCard extends StatelessWidget {
               width: 64.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                gradient:  LinearGradient(
+                gradient: LinearGradient(
                   colors: [
-                    type.color,
+                    entity.type.color,
                     const Color.fromRGBO(200, 238, 255, 0),
                   ],
                   begin: Alignment.topCenter,
@@ -45,9 +47,7 @@ class MediaCard extends StatelessWidget {
                 child: SizedBox(
                   height: 52.h,
                   width: 52.h,
-                  child: Image.asset(
-                    type.icon
-                  ),
+                  child: Image.asset(entity.type.icon),
                 ),
               ),
             ),
@@ -58,7 +58,7 @@ class MediaCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Perkenalan Diri Anjay',
+                    entity.name ?? '',
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: TextStyle(
@@ -80,7 +80,7 @@ class MediaCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '20 April 2025',
+                    formatIndoDate(entity.date),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

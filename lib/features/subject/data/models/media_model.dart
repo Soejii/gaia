@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:gaia/features/subject/data/models/sub_module_model.dart';
 
 part 'media_model.g.dart';
 part 'media_model.freezed.dart';
@@ -11,6 +12,8 @@ class MediaModel with _$MediaModel {
     String? name,
     String? type,
     String? media,
+    String? createdAt,
+    SubModuleModel? subModule,
   }) = _MediaModel;
 
   factory MediaModel.fromJson(Map<String, dynamic> json) =>

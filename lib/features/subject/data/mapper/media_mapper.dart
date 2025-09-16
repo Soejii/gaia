@@ -7,6 +7,7 @@ extension MediaMapper on MediaModel {
         id: id,
         name: name,
         link: media,
+        date: createdAt,
         type: getType(type ?? ''),
       );
 }
