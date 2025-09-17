@@ -1,29 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/features/activity/domain/entities/exam_entity.dart';
+import 'package:gaia/features/activity/domain/type/exam_type.dart';
 import 'package:gaia/features/activity/presentation/widgets/exam_card.dart';
+import 'package:gaia/features/activity/presentation/widgets/quiz_card.dart';
+import 'package:gaia/features/subject/presentation/providers/exam_subject_controller.dart';
+import 'package:gaia/shared/screens/data_not_found_screen.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SubjectExamContentWidget extends StatelessWidget {
-  const SubjectExamContentWidget({super.key});
+class SubjectExamContentWidget extends ConsumerWidget {
+  const SubjectExamContentWidget({
+    super.key,
+    required this.idSubject,
+    required this.examType,
+  });
+  final int idSubject;
+  final ExamType examType;
 
   @override
-  Widget build(BuildContext context) {
-    final entity = ExamEntity(
-      id: 1,
-      subjectName: 'B.Inggris',
-      title: 'Ini Tugas B.Inggris',
-      date: '24-11-2025',
-      status: ExamStatus.done,
-      score: 100,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final asyncExam = ref.watch(
+      examSubjectControllerProvider(idSubject, examType),
     );
-    return ListView.separated(
-      padding: EdgeInsets.symmetric(vertical: 12.h),
-      itemCount: 4,
-      itemBuilder: (context, index) => Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: ExamCard(entity: entity),
-      ),
-      separatorBuilder: (context, index) => SizedBox(height: 12.h),
+
+    return asyncExam.when(
+      data: (data) {
+        if (data.isNotEmpty) {
+          return RefreshIndicator(
+            onRefresh: () => ref
+                .read(
+                    examSubjectControllerProvider(idSubject, examType).notifier)
+                .refresh(idSubject, examType),
+            child: ListView.separated(
+              itemCount: data.length,
+              itemBuilder: (context, index) => Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: examType == ExamType.exam
+                    ? ExamCard(entity: data[index])
+                    : QuizCard(entity: data[index]),
+              ),
+              separatorBuilder: (context, index) => SizedBox(height: 20.h),
+            ),
+          );
+        } else {
+          return DataNotFoundScreen(dataType: examType.name);
+        }
+      },
+      error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }

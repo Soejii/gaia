@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gaia/features/activity/domain/type/exam_type.dart';
 import 'package:gaia/features/subject/presentation/providers/subject_providers.dart';
 import 'package:gaia/features/subject/presentation/widgets/detail_subject_app_bar_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/detail_subject_tab_bar_widget.dart';
@@ -7,7 +8,6 @@ import 'package:gaia/features/subject/presentation/widgets/discussion_content_wi
 import 'package:gaia/features/subject/presentation/widgets/exam_content_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/media_content_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/module_content_widget.dart';
-import 'package:gaia/features/subject/presentation/widgets/quiz_content_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/task_content_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -65,8 +65,14 @@ class DetailSubjectScreen extends HookConsumerWidget {
                 ModuleContentWidget(idSubject: idSubject),
                 const SubjectDiscussionContentWidget(),
                 MediaContentWidget(idSubject: idSubject),
-                const SubjectExamContentWidget(),
-                const SubjectQuizContentWidget(),
+                SubjectExamContentWidget(
+                  idSubject: idSubject,
+                  examType: ExamType.exam,
+                ),
+                SubjectExamContentWidget(
+                  idSubject: idSubject,
+                  examType: ExamType.quiz,
+                ),
                 const SubjectTaskContentWidget(),
               ],
             ),
