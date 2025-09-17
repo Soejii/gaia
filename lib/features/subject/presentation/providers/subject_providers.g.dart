@@ -102,6 +102,26 @@ final getListMediaUsecaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef GetListMediaUsecaseRef = AutoDisposeProviderRef<GetListMediaUsecase>;
+String _$getListSubjectExamUsecaseHash() =>
+    r'a2d2c90a858f6b3f3ed0cdb81f5d7f356e2387ca';
+
+/// See also [getListSubjectExamUsecase].
+@ProviderFor(getListSubjectExamUsecase)
+final getListSubjectExamUsecaseProvider =
+    AutoDisposeProvider<GetListSubjectExamUsecase>.internal(
+  getListSubjectExamUsecase,
+  name: r'getListSubjectExamUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getListSubjectExamUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetListSubjectExamUsecaseRef
+    = AutoDisposeProviderRef<GetListSubjectExamUsecase>;
 String _$detailSubjectTabIndexHash() =>
     r'3ea72ce6062d9d60a424b86927be35fe41add630';
 

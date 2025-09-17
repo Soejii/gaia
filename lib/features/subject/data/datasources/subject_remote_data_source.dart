@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:gaia/features/activity/data/models/exam_model.dart';
+import 'package:gaia/features/activity/domain/type/exam_type.dart';
 import 'package:gaia/features/subject/data/models/media_model.dart';
 import 'package:gaia/features/subject/data/models/module_model.dart';
 import 'package:gaia/features/subject/data/models/subject_model.dart';
@@ -49,6 +51,24 @@ class SubjectRemoteDataSource {
     return data
         .map(
           (e) => MediaModel.fromJson(
+            Map<String, dynamic>.from(e as Map),
+          ),
+        )
+        .toList(growable: false);
+  }
+
+      Future<List<ExamModel>> getListSubjectExam(int subjectId, ExamType examType) async {
+    final res = await _dio.get(
+      '/subject/list-exam',
+      queryParameters: {
+        'subject_id': subjectId,
+        'exam_type': examType.name,
+      },
+    );
+    final data = (res.data as Map<String, dynamic>)['data'] as List<dynamic>;
+    return data
+        .map(
+          (e) => ExamModel.fromJson(
             Map<String, dynamic>.from(e as Map),
           ),
         )

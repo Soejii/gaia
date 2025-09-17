@@ -4,6 +4,7 @@ import 'package:gaia/features/subject/data/subject_repository_impl.dart';
 import 'package:gaia/features/subject/domain/subject_repository.dart';
 import 'package:gaia/features/subject/domain/usecase/get_list_media_usecase.dart';
 import 'package:gaia/features/subject/domain/usecase/get_list_module_usecase.dart';
+import 'package:gaia/features/subject/domain/usecase/get_list_subject_exam_usecase.dart';
 import 'package:gaia/features/subject/domain/usecase/get_list_subjects_usecase.dart';
 import 'package:gaia/shared/core/infrastructure/network/dio_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -41,6 +42,13 @@ GetListModuleUsecase getListModuleUsecase(Ref ref) {
 @riverpod
 GetListMediaUsecase getListMediaUsecase(Ref ref) {
   return GetListMediaUsecase(
+    ref.watch(subjectRepositoryProvider),
+  );
+}
+
+@riverpod
+GetListSubjectExamUsecase getListSubjectExamUsecase(Ref ref) {
+  return GetListSubjectExamUsecase(
     ref.watch(subjectRepositoryProvider),
   );
 }
