@@ -5,6 +5,7 @@ import 'package:gaia/features/subject/domain/subject_repository.dart';
 import 'package:gaia/features/subject/domain/usecase/get_list_media_usecase.dart';
 import 'package:gaia/features/subject/domain/usecase/get_list_module_usecase.dart';
 import 'package:gaia/features/subject/domain/usecase/get_list_subject_exam_usecase.dart';
+import 'package:gaia/features/subject/domain/usecase/get_list_subject_task_usecase.dart';
 import 'package:gaia/features/subject/domain/usecase/get_list_subjects_usecase.dart';
 import 'package:gaia/shared/core/infrastructure/network/dio_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -52,6 +53,14 @@ GetListSubjectExamUsecase getListSubjectExamUsecase(Ref ref) {
     ref.watch(subjectRepositoryProvider),
   );
 }
+
+@riverpod
+GetListSubjectTaskUsecase getListSubjectTaskUsecase(Ref ref) {
+  return GetListSubjectTaskUsecase(
+    ref.watch(subjectRepositoryProvider),
+  );
+}
+
 
 @riverpod
 class DetailSubjectTabIndex extends _$DetailSubjectTabIndex {

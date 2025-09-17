@@ -32,6 +32,7 @@ class SubjectExamContentWidget extends ConsumerWidget {
                 .refresh(idSubject, examType),
             child: ListView.separated(
               itemCount: data.length,
+              padding: EdgeInsets.symmetric(vertical: 12.h),
               itemBuilder: (context, index) => Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: examType == ExamType.exam

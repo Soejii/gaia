@@ -1,5 +1,7 @@
 import 'package:gaia/features/activity/data/mappers/exam_mapper.dart';
+import 'package:gaia/features/activity/data/mappers/task_mapper.dart';
 import 'package:gaia/features/activity/domain/entities/exam_entity.dart';
+import 'package:gaia/features/activity/domain/entities/task_entity.dart';
 import 'package:gaia/features/activity/domain/type/exam_type.dart';
 import 'package:gaia/features/subject/data/datasources/subject_remote_data_source.dart';
 import 'package:gaia/features/subject/data/mapper/media_mapper.dart';
@@ -61,6 +63,22 @@ class SubjectRepositoryImpl implements SubjectRepository {
           final models = await _dataSource.getListSubjectExam(
             subjectId,
             examType,
+          );
+          return models
+              .map(
+                (model) => model.toEntity(),
+              )
+              .toList();
+        },
+      );
+
+  @override
+  Future<Result<List<TaskEntity>>> getListTask(int subjectId, {int? page}) =>
+      guard(
+        () async {
+          final models = await _dataSource.getListTask(
+            subjectId,
+            page ?? 1,
           );
           return models
               .map(

@@ -73,7 +73,7 @@ class DetailSubjectScreen extends HookConsumerWidget {
                   idSubject: idSubject,
                   examType: ExamType.quiz,
                 ),
-                const SubjectTaskContentWidget(),
+                 SubjectTaskContentWidget(idSubject: idSubject,),
               ],
             ),
           ),

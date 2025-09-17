@@ -7,7 +7,7 @@ part of 'exam_subject_controller.dart';
 // **************************************************************************
 
 String _$examSubjectControllerHash() =>
-    r'13f74bb2be7a490d66d0d7cdedd6bbbab0fca510';
+    r'd530d79a0e93a833c3ba51d209858adb55c2b7d0';
 
 /// Copied from Dart SDK
 class _SystemHash {

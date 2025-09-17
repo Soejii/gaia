@@ -122,6 +122,26 @@ final getListSubjectExamUsecaseProvider =
 // ignore: unused_element
 typedef GetListSubjectExamUsecaseRef
     = AutoDisposeProviderRef<GetListSubjectExamUsecase>;
+String _$getListSubjectTaskUsecaseHash() =>
+    r'cd3eaad73f711e94c6dd083fb5fa32c71d5a2435';
+
+/// See also [getListSubjectTaskUsecase].
+@ProviderFor(getListSubjectTaskUsecase)
+final getListSubjectTaskUsecaseProvider =
+    AutoDisposeProvider<GetListSubjectTaskUsecase>.internal(
+  getListSubjectTaskUsecase,
+  name: r'getListSubjectTaskUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getListSubjectTaskUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetListSubjectTaskUsecaseRef
+    = AutoDisposeProviderRef<GetListSubjectTaskUsecase>;
 String _$detailSubjectTabIndexHash() =>
     r'3ea72ce6062d9d60a424b86927be35fe41add630';
 
