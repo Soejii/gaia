@@ -5,7 +5,8 @@ import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 
 class DetailSubModuleScreen extends StatelessWidget {
-  const DetailSubModuleScreen({super.key});
+  const DetailSubModuleScreen({super.key, required this.idSubModule});
+  final int idSubModule;
 
   @override
   Widget build(BuildContext context) {

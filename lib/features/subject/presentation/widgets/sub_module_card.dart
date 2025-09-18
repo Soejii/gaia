@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/subject/domain/entities/sub_module_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
+import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
+import 'package:go_router/go_router.dart';
 
 class SubModuleCard extends StatelessWidget {
   const SubModuleCard({super.key, required this.entity});
@@ -48,21 +50,32 @@ class SubModuleCard extends StatelessWidget {
             ),
           ),
           SizedBox(width: 8.w),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color:
-                  entity.isUploaded ? AppColors.green : AppColors.inactiveColor,
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
-              child: Text(
-                entity.isUploaded ? 'Telah Tayang' : 'Belum Tayang',
-                style: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontSize: 9.sp,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white,
+          GestureDetector(
+            onTap: () {
+              if (entity.isUploaded) {
+                context.pushNamed(
+                  RouteName.detailSubModule,
+                  pathParameters: {'id': entity.id.toString()},
+                );
+              }
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: entity.isUploaded
+                    ? AppColors.green
+                    : AppColors.inactiveColor,
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
+                child: Text(
+                  entity.isUploaded ? 'Telah Tayang' : 'Belum Tayang',
+                  style: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 9.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

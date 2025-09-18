@@ -14,6 +14,7 @@ import 'package:gaia/features/login/presentation/screen/login_screen.dart';
 import 'package:gaia/features/profile/presentation/profile_screen.dart';
 import 'package:gaia/features/schedule/presentation/screens/schedule_screen.dart';
 import 'package:gaia/features/school/presentation/screens/school_information_screen.dart';
+import 'package:gaia/features/subject/presentation/screens/detail_sub_module_screen.dart';
 import 'package:gaia/features/subject/presentation/screens/subject_picker_screen.dart';
 import 'package:gaia/features/subject/presentation/screens/detail_subject_screen.dart';
 import 'package:gaia/shared/core/infrastructure/auth/auth_state_provider.dart';
@@ -110,6 +111,17 @@ GoRouter appRouter(Ref ref) {
                           final id = state.pathParameters['id']!;
                           return DetailSubjectScreen(
                             idSubject: int.parse(id),
+                          );
+                        },
+                      ),
+                      GoRoute(
+                        path: 'detail-sub-module/:id',
+                        name: RouteName.detailSubModule,
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) {
+                          final id = state.pathParameters['id']!;
+                          return DetailSubModuleScreen(
+                            idSubModule: int.parse(id),
                           );
                         },
                       ),
