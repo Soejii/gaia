@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gaia/features/subject/data/datasources/subject_remote_data_source.dart';
 import 'package:gaia/features/subject/data/subject_repository_impl.dart';
 import 'package:gaia/features/subject/domain/subject_repository.dart';
+import 'package:gaia/features/subject/domain/usecase/get_detail_sub_module_usecase.dart';
 import 'package:gaia/features/subject/domain/usecase/get_list_media_usecase.dart';
 import 'package:gaia/features/subject/domain/usecase/get_list_module_usecase.dart';
 import 'package:gaia/features/subject/domain/usecase/get_list_subject_exam_usecase.dart';
@@ -61,6 +62,10 @@ GetListSubjectTaskUsecase getListSubjectTaskUsecase(Ref ref) {
   );
 }
 
+@riverpod
+GetDetailSubModuleUsecase getDetailSubModuleUsecase(Ref ref) {
+  return GetDetailSubModuleUsecase(ref.watch(subjectRepositoryProvider));
+}
 
 @riverpod
 class DetailSubjectTabIndex extends _$DetailSubjectTabIndex {

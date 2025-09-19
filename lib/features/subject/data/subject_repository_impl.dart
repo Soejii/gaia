@@ -4,9 +4,11 @@ import 'package:gaia/features/activity/domain/entities/exam_entity.dart';
 import 'package:gaia/features/activity/domain/entities/task_entity.dart';
 import 'package:gaia/features/activity/domain/type/exam_type.dart';
 import 'package:gaia/features/subject/data/datasources/subject_remote_data_source.dart';
+import 'package:gaia/features/subject/data/mapper/detail_sub_module_mapper.dart';
 import 'package:gaia/features/subject/data/mapper/media_mapper.dart';
 import 'package:gaia/features/subject/data/mapper/module_mapper.dart';
 import 'package:gaia/features/subject/data/mapper/subject_mapper.dart';
+import 'package:gaia/features/subject/domain/entities/detail_sub_module_entity.dart';
 import 'package:gaia/features/subject/domain/entities/media_entity.dart';
 import 'package:gaia/features/subject/domain/entities/module_entity.dart';
 import 'package:gaia/features/subject/domain/entities/subject_entity.dart';
@@ -85,6 +87,15 @@ class SubjectRepositoryImpl implements SubjectRepository {
                 (model) => model.toEntity(),
               )
               .toList();
+        },
+      );
+
+  @override
+  Future<Result<DetailSubModuleEntity>> getDetailSubModule(int subModuleId) =>
+      guard(
+        () async {
+          final model = await _dataSource.getDetailSubModule(subModuleId);
+          return model.toEntity();
         },
       );
 }

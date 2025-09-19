@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:gaia/features/activity/data/models/exam_model.dart';
 import 'package:gaia/features/activity/data/models/task_model.dart';
 import 'package:gaia/features/activity/domain/type/exam_type.dart';
+import 'package:gaia/features/subject/data/models/detail_sub_module_model.dart';
 import 'package:gaia/features/subject/data/models/media_model.dart';
 import 'package:gaia/features/subject/data/models/module_model.dart';
 import 'package:gaia/features/subject/data/models/subject_model.dart';
@@ -77,13 +78,13 @@ class SubjectRemoteDataSource {
         .toList(growable: false);
   }
 
-      Future<List<TaskModel>> getListTask(int page, int subjectId) async {
+  Future<List<TaskModel>> getListTask(int page, int subjectId) async {
     final res = await _dio.get(
       '/task/all',
       queryParameters: {
         'paginate': true,
         'subject_id': subjectId,
-        'page' : page,
+        'page': page,
         'perPage': 10,
       },
     );
@@ -95,5 +96,12 @@ class SubjectRemoteDataSource {
           ),
         )
         .toList(growable: false);
+  }
+
+  Future<DetailSubModuleModel> getDetailSubModule(int id) async {
+    final res = await _dio.get('/subject/detail-sub-module',
+        queryParameters: {'sub_module_id': id});
+    final data = DetailSubModuleModel.fromJson(res.data['data']);
+    return data;
   }
 }
