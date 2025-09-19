@@ -98,4 +98,12 @@ class SubjectRepositoryImpl implements SubjectRepository {
           return model.toEntity();
         },
       );
+
+  @override
+  Future<Result<SubjectEntity>> getDetailSubject(int subjectId) => guard(
+        () async {
+          final model = await _dataSource.getDetailSubject(subjectId);
+          return model.toEntity();
+        },
+      );
 }

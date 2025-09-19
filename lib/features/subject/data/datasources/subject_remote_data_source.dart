@@ -104,4 +104,10 @@ class SubjectRemoteDataSource {
     final data = DetailSubModuleModel.fromJson(res.data['data']);
     return data;
   }
+
+  Future<SubjectModel> getDetailSubject(int idSubject) async {
+    final res = await _dio.get('/subject/$idSubject');
+    final data = SubjectModel.fromJson(res.data['data']);
+    return data;
+  }
 }
