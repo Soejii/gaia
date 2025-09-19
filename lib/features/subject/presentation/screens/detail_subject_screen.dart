@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gaia/features/activity/domain/type/exam_type.dart';
 import 'package:gaia/features/subject/presentation/providers/detail_subject_controller.dart';
 import 'package:gaia/features/subject/presentation/providers/subject_providers.dart';
+import 'package:gaia/features/subject/presentation/widgets/detail_subject_app_bar_skeleton.dart';
 import 'package:gaia/features/subject/presentation/widgets/detail_subject_app_bar_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/detail_subject_tab_bar_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/discussion_content_widget.dart';
@@ -60,7 +61,7 @@ class DetailSubjectScreen extends HookConsumerWidget {
           asyncSubject.when(
             data: (data) => DetailSubjectAppBarWidget(entity: data),
             error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const DetailSubjectAppBarSkeleton(),
           ),
           DetailSubjectTabBarWidget(
             tabController: tabController,
