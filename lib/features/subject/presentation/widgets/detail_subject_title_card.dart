@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/subject/domain/entities/subject_entity.dart';
 import 'package:gaia/features/subject/presentation/providers/module_controller.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
-import 'package:gaia/shared/core/constant/assets_helper.dart';
 
 class DetailSubjectTitleCard extends ConsumerWidget {
   const DetailSubjectTitleCard({super.key, required this.entity});
@@ -36,7 +35,7 @@ class DetailSubjectTitleCard extends ConsumerWidget {
               height: 56.h,
               width: 56.h,
               child: Image.asset(
-                AssetsHelper.imgSubjectPlaceholder,
+                entity.iconCode,
               ),
             ),
           ),
@@ -48,7 +47,7 @@ class DetailSubjectTitleCard extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Bahasa Indonesia anjay mabar',
+                entity.name ?? '-',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
