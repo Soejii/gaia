@@ -54,7 +54,7 @@ class DetailSubjectScreen extends HookConsumerWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const DetailSubjectAppBarWidget(),
+          DetailSubjectAppBarWidget(idSubject: idSubject),
           DetailSubjectTabBarWidget(
             tabController: tabController,
           ),
@@ -73,7 +73,7 @@ class DetailSubjectScreen extends HookConsumerWidget {
                   idSubject: idSubject,
                   examType: ExamType.quiz,
                 ),
-                 SubjectTaskContentWidget(idSubject: idSubject,),
+                SubjectTaskContentWidget(idSubject: idSubject),
               ],
             ),
           ),

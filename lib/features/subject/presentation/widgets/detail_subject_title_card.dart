@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/subject/presentation/providers/module_controller.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
-class DetailSubjectTitleCard extends StatelessWidget {
-  const DetailSubjectTitleCard({super.key});
+class DetailSubjectTitleCard extends ConsumerWidget {
+  const DetailSubjectTitleCard({super.key, required this.idSubject});
+  final int idSubject;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final asyncCount = ref.watch(moduleControllerProvider(idSubject));
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -53,15 +57,19 @@ class DetailSubjectTitleCard extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              Text(
-                '0 Modul | 0 Submodul | 0 Latihan Soal',
-                maxLines: 2,
-                style: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
+              asyncCount.when(
+                data: (data) => Text(
+                  '${ref.watch(moduleControllerProvider(idSubject).notifier).totalModuleCount} Modul | ${ref.watch(moduleControllerProvider(idSubject).notifier).totalSubModuleCount} Submodul | ${ref.watch(moduleControllerProvider(idSubject).notifier).totalExamCount} Latihan Soal',
+                  maxLines: 2,
+                  style: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
                 ),
+                error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+                loading: () => const Center(child: CircularProgressIndicator()),
               ),
             ],
           ),

@@ -5,7 +5,8 @@ import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:go_router/go_router.dart';
 
 class DetailSubjectAppBarWidget extends StatelessWidget {
-  const DetailSubjectAppBarWidget({super.key});
+  const DetailSubjectAppBarWidget({super.key,required this.idSubject});
+  final int idSubject;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class DetailSubjectAppBarWidget extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20.h),
-            const DetailSubjectTitleCard()
+            DetailSubjectTitleCard(idSubject: idSubject)
           ],
         ),
       ),

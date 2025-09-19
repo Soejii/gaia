@@ -11,6 +11,9 @@ part 'module_controller.g.dart';
 class ModuleController extends _$ModuleController {
   Timer? _ttl; // for optional TTL keepAlive
   KeepAliveLink? _link;
+  int totalExamCount = 0;
+  int totalSubModuleCount = 0;
+  int totalModuleCount = 0;
   @override
   Future<List<ModuleEntity>> build(int idSubject) {
     _link ??= ref.keepAlive();
@@ -31,12 +34,24 @@ class ModuleController extends _$ModuleController {
 
     return res.fold(
       (failure) => throw failure,
-      (entity) => entity,
+      (entity) {
+        getAllCount(entity);
+        return entity;
+      },
     );
   }
 
   Future<void> refresh(int idSubject) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() => _fetch(idSubject));
+  }
+
+  getAllCount(List<ModuleEntity> list) {
+    for (var i = 0; i < list.length; i++) {
+      totalExamCount = totalExamCount + (list[i].examCount ?? 0);
+      totalExamCount = totalExamCount + (list[i].quizCount ?? 0);
+      totalSubModuleCount = totalSubModuleCount + (list[i].subModuleCount ?? 0);
+      totalModuleCount = list.length;
+    }
   }
 }
