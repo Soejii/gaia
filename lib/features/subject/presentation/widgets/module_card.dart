@@ -74,7 +74,7 @@ class ModuleCard extends HookConsumerWidget {
                         ),
                       ),
                       Text(
-                        '${entity.examCount} Sub Modul',
+                        '${entity.subModuleCount} Sub Modul',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -108,7 +108,7 @@ class ModuleCard extends HookConsumerWidget {
               padding: EdgeInsets.zero,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: entity.listSubModule?.length,
-              itemBuilder: (context, index) =>  SubModuleCard(
+              itemBuilder: (context, index) => SubModuleCard(
                 entity: entity.listSubModule![index],
               ),
             ),
