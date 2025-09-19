@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gaia/features/activity/domain/type/exam_type.dart';
+import 'package:gaia/features/subject/presentation/providers/detail_subject_controller.dart';
 import 'package:gaia/features/subject/presentation/providers/subject_providers.dart';
 import 'package:gaia/features/subject/presentation/widgets/detail_subject_app_bar_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/detail_subject_tab_bar_widget.dart';
@@ -20,6 +21,8 @@ class DetailSubjectScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final asyncSubject = ref.watch(detailSubjectControllerProvider(idSubject));
+
     final tabController = useTabController(
       initialLength: 6,
       initialIndex: ref.watch(detailSubjectTabIndexProvider),
@@ -54,7 +57,11 @@ class DetailSubjectScreen extends HookConsumerWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DetailSubjectAppBarWidget(idSubject: idSubject),
+          asyncSubject.when(
+            data: (data) => DetailSubjectAppBarWidget(entity: data),
+            error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+            loading: () => const Center(child: CircularProgressIndicator()),
+          ),
           DetailSubjectTabBarWidget(
             tabController: tabController,
           ),

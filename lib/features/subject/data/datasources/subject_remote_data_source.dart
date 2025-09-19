@@ -106,7 +106,7 @@ class SubjectRemoteDataSource {
   }
 
   Future<SubjectModel> getDetailSubject(int idSubject) async {
-    final res = await _dio.get('/subject/$idSubject');
+    final res = await _dio.get('/subjects/$idSubject');
     final data = SubjectModel.fromJson(res.data['data']);
     return data;
   }

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/subject/domain/entities/subject_entity.dart';
 import 'package:gaia/features/subject/presentation/providers/module_controller.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
 class DetailSubjectTitleCard extends ConsumerWidget {
-  const DetailSubjectTitleCard({super.key, required this.idSubject});
-  final int idSubject;
+  const DetailSubjectTitleCard({super.key, required this.entity});
+  final SubjectEntity entity;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncCount = ref.watch(moduleControllerProvider(idSubject));
+    final asyncCount = ref.watch(moduleControllerProvider(entity.id));
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -59,7 +60,7 @@ class DetailSubjectTitleCard extends ConsumerWidget {
               ),
               asyncCount.when(
                 data: (data) => Text(
-                  '${ref.watch(moduleControllerProvider(idSubject).notifier).totalModuleCount} Modul | ${ref.watch(moduleControllerProvider(idSubject).notifier).totalSubModuleCount} Submodul | ${ref.watch(moduleControllerProvider(idSubject).notifier).totalExamCount} Latihan Soal',
+                  '${ref.watch(moduleControllerProvider(entity.id).notifier).totalModuleCount} Modul | ${ref.watch(moduleControllerProvider(entity.id).notifier).totalSubModuleCount} Submodul | ${ref.watch(moduleControllerProvider(entity.id).notifier).totalExamCount} Latihan Soal',
                   maxLines: 2,
                   style: TextStyle(
                     fontFamily: 'OpenSans',
