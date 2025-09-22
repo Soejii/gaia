@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/discussion/domain/entity/comment_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
 class CommentCard extends StatelessWidget {
-  const CommentCard({super.key});
+  const CommentCard({super.key, required this.entity});
+  final CommentEntity? entity;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +22,8 @@ class CommentCard extends StatelessWidget {
                 height: 32.h,
                 width: 32.h,
                 child: CircleAvatar(
-                  foregroundImage: const NetworkImage(
-                    '',
+                  foregroundImage: NetworkImage(
+                    entity?.posterPhoto ?? '',
                   ),
                   backgroundImage: AssetImage(
                     AssetsHelper.imgProfilePlaceholder,
@@ -30,7 +32,7 @@ class CommentCard extends StatelessWidget {
               ),
               SizedBox(width: 8.w),
               Text(
-                'Rafi Sujianto',
+                entity?.posterName ?? '-',
                 style: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 10.sp,
@@ -49,7 +51,7 @@ class CommentCard extends StatelessWidget {
               ),
               SizedBox(width: 7.w),
               Text(
-                '12 Jam Yang Lalu',
+                entity?.posterDate ?? '-',
                 style: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 10.sp,
@@ -63,7 +65,7 @@ class CommentCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 40.w, right: 20.w),
             child: Text(
-              'Hello teman-teman, ada info terbaru untuk kegiatan Class Meeting minggu depan. Setiap anak diwajibkan bawa jajan sendiri-sendiri ya, biar gak minta-minta.. wkwkwkw ',
+              entity?.text ?? '',
               style: TextStyle(
                 fontFamily: 'OpenSans',
                 fontSize: 12.sp,

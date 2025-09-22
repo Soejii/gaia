@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/discussion/domain/entity/discussion_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:go_router/go_router.dart';
 
 class DiscussionCard extends StatelessWidget {
-  const DiscussionCard({super.key, required this.isDetail});
+  const DiscussionCard({
+    super.key,
+    required this.isDetail,
+    required this.entity,
+  });
   final bool isDetail;
+  final DiscussionEntity entity;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +29,8 @@ class DiscussionCard extends StatelessWidget {
                 height: 42.h,
                 width: 42.h,
                 child: CircleAvatar(
-                  foregroundImage: const NetworkImage(
-                    '',
+                  foregroundImage:  NetworkImage(
+                    entity.posterPhoto ?? '',
                   ),
                   backgroundImage: AssetImage(
                     AssetsHelper.imgProfilePlaceholder,
@@ -36,7 +42,7 @@ class DiscussionCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Rafi Mahadika Sujianto',
+                    entity.posterName ?? '-',
                     style: TextStyle(
                       fontFamily: 'OpenSans',
                       fontSize: 12.sp,
@@ -45,7 +51,7 @@ class DiscussionCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Kelas: XII RPL 1',
+                    'Kelas: ${entity.posterClass ?? '-'}',
                     style: TextStyle(
                       fontFamily: 'OpenSans',
                       fontSize: 12.sp,
@@ -54,7 +60,7 @@ class DiscussionCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '12 Jam Yang Lalu',
+                    entity.posterDate ?? '-',
                     style: TextStyle(
                       fontFamily: 'OpenSans',
                       fontSize: 12.sp,
@@ -69,7 +75,7 @@ class DiscussionCard extends StatelessWidget {
           ),
           SizedBox(height: 16.h),
           Text(
-            'Hello teman-teman, ada info terbaru untuk kegiatan Class Meeting minggu depan. Setiap anak diwajibkan bawa jajan sendiri-sendiri ya, biar gak minta-minta.. wkwkwkw ',
+            entity.text ?? '-',
             style: TextStyle(
               fontFamily: 'OpenSans',
               fontSize: 12.sp,
@@ -83,7 +89,7 @@ class DiscussionCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '2 Suka',
+                '${entity.likesCount ?? 0} Suka',
                 style: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 10.sp,
@@ -93,7 +99,7 @@ class DiscussionCard extends StatelessWidget {
                 ),
               ),
               Text(
-                '3 Komentar',
+                '${entity.commentCount ?? 0} Komentar',
                 style: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 10.sp,
@@ -124,9 +130,9 @@ class DiscussionCard extends StatelessWidget {
                 onPressed: () {
                   if (!isDetail) {
                     context.pushNamed(
-                    RouteName.detailDiscussion,
-                    pathParameters: {'id': '1'},
-                  );
+                      RouteName.detailDiscussion,
+                      pathParameters: {'id': entity.id.toString()},
+                    );
                   }
                 },
                 icon: const Icon(

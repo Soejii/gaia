@@ -71,7 +71,7 @@ class DetailSubjectScreen extends HookConsumerWidget {
               controller: tabController,
               children: [
                 ModuleContentWidget(idSubject: idSubject),
-                const SubjectDiscussionContentWidget(),
+                SubjectDiscussionContentWidget(idSubject: idSubject),
                 MediaContentWidget(idSubject: idSubject),
                 SubjectExamContentWidget(
                   idSubject: idSubject,
