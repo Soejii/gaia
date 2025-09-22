@@ -14,7 +14,7 @@ class DiscussionPostCard extends StatelessWidget {
       children: [
         DiscussionCard(
           isDetail: false,
-          entity: entity,
+          entity: entity.poster,
         ),
         if (entity.comment != null)
           Column(
