@@ -34,7 +34,7 @@ class SubjectPickerScreen extends ConsumerWidget {
               ),
               itemBuilder: (context, index) => QuickSubjectButton(
                 id: data[index].id,
-                iconCode: data[index].iconCode ?? '',
+                iconCode: data[index].iconCode ,
                 title: data[index].name ?? '-',
               ),
             );
