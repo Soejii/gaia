@@ -19,15 +19,15 @@ class DetailDiscussionScreen extends StatelessWidget {
       body: ListView(
         children: [
           SizedBox(height: 24.h),
-          // const DiscussionCard(isDetail: true),
+          const DiscussionCard(isDetail: true),
           SizedBox(height: 10.h),
-          // ListView.separated(
-          //   shrinkWrap: true,
-          //   physics: const NeverScrollableScrollPhysics(),
-          //   itemCount: 4,
-          //   itemBuilder: (context, index) => const CommentCard(),
-          //   separatorBuilder: (context, index) => SizedBox(height: 10.h),
-          // ),
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: 4,
+            itemBuilder: (context, index) => const CommentCard(),
+            separatorBuilder: (context, index) => SizedBox(height: 10.h),
+          ),
         ],
       ),
     );

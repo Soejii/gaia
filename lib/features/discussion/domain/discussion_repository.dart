@@ -1,3 +1,4 @@
+import 'package:gaia/features/discussion/domain/entity/detail_discussion_entity.dart';
 import 'package:gaia/features/discussion/domain/entity/discussion_entity.dart';
 import 'package:gaia/shared/core/types/result.dart';
 
@@ -7,4 +8,6 @@ abstract class DiscussionRepository {
     int page, {
     int? idSubject,
   });
+
+  Future<Result<DetailDiscussionEntity>> getDetailDiscussion(int idDiscussion);
 }

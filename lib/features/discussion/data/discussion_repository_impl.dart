@@ -1,6 +1,8 @@
 import 'package:gaia/features/discussion/data/datasource/discussion_remote_data_source.dart';
+import 'package:gaia/features/discussion/data/mappers/detail_discussion_mapper.dart';
 import 'package:gaia/features/discussion/data/mappers/discussion_mapper.dart';
 import 'package:gaia/features/discussion/domain/discussion_repository.dart';
+import 'package:gaia/features/discussion/domain/entity/detail_discussion_entity.dart';
 import 'package:gaia/features/discussion/domain/entity/discussion_entity.dart';
 import 'package:gaia/shared/core/types/result.dart';
 
@@ -23,6 +25,15 @@ class DiscussionRepositoryImpl implements DiscussionRepository {
                 (model) => model.toEntity(),
               )
               .toList();
+        },
+      );
+
+  @override
+  Future<Result<DetailDiscussionEntity>> getDetailDiscussion(int idDiscuss) =>
+      guard(
+        () async {
+          final models = await _dataSource.getDetailDiscussion(idDiscuss);
+          return models.toEntity();
         },
       );
 }

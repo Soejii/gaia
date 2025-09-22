@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:gaia/features/discussion/data/models/detail_discussion_model.dart';
 import 'package:gaia/features/discussion/data/models/discussion_model.dart';
 
 class DiscussionRemoteDataSource {
@@ -27,5 +28,12 @@ class DiscussionRemoteDataSource {
           ),
         )
         .toList(growable: false);
+  }
+
+  Future<DetailDiscussionModel> getDetailDiscussion(int idDiscuss) async {
+    final res = await _dio.get('/announcement/get-detail',
+        queryParameters: {'discuss_id': idDiscuss});
+    final data = DetailDiscussionModel.fromJson(res.data['data']);
+    return data;
   }
 }
