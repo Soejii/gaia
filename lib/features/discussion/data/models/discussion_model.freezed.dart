@@ -26,7 +26,7 @@ mixin _$DiscussionModel {
   String? get postedByClasses => throw _privateConstructorUsedError;
   String? get postedByPhoto => throw _privateConstructorUsedError;
   String? get postedAt => throw _privateConstructorUsedError;
-  int? get commentCount => throw _privateConstructorUsedError;
+  int? get commentsCount => throw _privateConstructorUsedError;
   int? get likesCount => throw _privateConstructorUsedError;
   CommentModel? get lastComment => throw _privateConstructorUsedError;
 
@@ -53,7 +53,7 @@ abstract class $DiscussionModelCopyWith<$Res> {
       String? postedByClasses,
       String? postedByPhoto,
       String? postedAt,
-      int? commentCount,
+      int? commentsCount,
       int? likesCount,
       CommentModel? lastComment});
 
@@ -81,7 +81,7 @@ class _$DiscussionModelCopyWithImpl<$Res, $Val extends DiscussionModel>
     Object? postedByClasses = freezed,
     Object? postedByPhoto = freezed,
     Object? postedAt = freezed,
-    Object? commentCount = freezed,
+    Object? commentsCount = freezed,
     Object? likesCount = freezed,
     Object? lastComment = freezed,
   }) {
@@ -110,9 +110,9 @@ class _$DiscussionModelCopyWithImpl<$Res, $Val extends DiscussionModel>
           ? _value.postedAt
           : postedAt // ignore: cast_nullable_to_non_nullable
               as String?,
-      commentCount: freezed == commentCount
-          ? _value.commentCount
-          : commentCount // ignore: cast_nullable_to_non_nullable
+      commentsCount: freezed == commentsCount
+          ? _value.commentsCount
+          : commentsCount // ignore: cast_nullable_to_non_nullable
               as int?,
       likesCount: freezed == likesCount
           ? _value.likesCount
@@ -155,7 +155,7 @@ abstract class _$$DiscussionModelImplCopyWith<$Res>
       String? postedByClasses,
       String? postedByPhoto,
       String? postedAt,
-      int? commentCount,
+      int? commentsCount,
       int? likesCount,
       CommentModel? lastComment});
 
@@ -182,7 +182,7 @@ class __$$DiscussionModelImplCopyWithImpl<$Res>
     Object? postedByClasses = freezed,
     Object? postedByPhoto = freezed,
     Object? postedAt = freezed,
-    Object? commentCount = freezed,
+    Object? commentsCount = freezed,
     Object? likesCount = freezed,
     Object? lastComment = freezed,
   }) {
@@ -211,9 +211,9 @@ class __$$DiscussionModelImplCopyWithImpl<$Res>
           ? _value.postedAt
           : postedAt // ignore: cast_nullable_to_non_nullable
               as String?,
-      commentCount: freezed == commentCount
-          ? _value.commentCount
-          : commentCount // ignore: cast_nullable_to_non_nullable
+      commentsCount: freezed == commentsCount
+          ? _value.commentsCount
+          : commentsCount // ignore: cast_nullable_to_non_nullable
               as int?,
       likesCount: freezed == likesCount
           ? _value.likesCount
@@ -238,7 +238,7 @@ class _$DiscussionModelImpl implements _DiscussionModel {
       this.postedByClasses,
       this.postedByPhoto,
       this.postedAt,
-      this.commentCount,
+      this.commentsCount,
       this.likesCount,
       this.lastComment});
 
@@ -258,7 +258,7 @@ class _$DiscussionModelImpl implements _DiscussionModel {
   @override
   final String? postedAt;
   @override
-  final int? commentCount;
+  final int? commentsCount;
   @override
   final int? likesCount;
   @override
@@ -266,7 +266,7 @@ class _$DiscussionModelImpl implements _DiscussionModel {
 
   @override
   String toString() {
-    return 'DiscussionModel(id: $id, text: $text, postedBy: $postedBy, postedByClasses: $postedByClasses, postedByPhoto: $postedByPhoto, postedAt: $postedAt, commentCount: $commentCount, likesCount: $likesCount, lastComment: $lastComment)';
+    return 'DiscussionModel(id: $id, text: $text, postedBy: $postedBy, postedByClasses: $postedByClasses, postedByPhoto: $postedByPhoto, postedAt: $postedAt, commentsCount: $commentsCount, likesCount: $likesCount, lastComment: $lastComment)';
   }
 
   @override
@@ -284,8 +284,8 @@ class _$DiscussionModelImpl implements _DiscussionModel {
                 other.postedByPhoto == postedByPhoto) &&
             (identical(other.postedAt, postedAt) ||
                 other.postedAt == postedAt) &&
-            (identical(other.commentCount, commentCount) ||
-                other.commentCount == commentCount) &&
+            (identical(other.commentsCount, commentsCount) ||
+                other.commentsCount == commentsCount) &&
             (identical(other.likesCount, likesCount) ||
                 other.likesCount == likesCount) &&
             (identical(other.lastComment, lastComment) ||
@@ -302,7 +302,7 @@ class _$DiscussionModelImpl implements _DiscussionModel {
       postedByClasses,
       postedByPhoto,
       postedAt,
-      commentCount,
+      commentsCount,
       likesCount,
       lastComment);
 
@@ -331,7 +331,7 @@ abstract class _DiscussionModel implements DiscussionModel {
       final String? postedByClasses,
       final String? postedByPhoto,
       final String? postedAt,
-      final int? commentCount,
+      final int? commentsCount,
       final int? likesCount,
       final CommentModel? lastComment}) = _$DiscussionModelImpl;
 
@@ -351,7 +351,7 @@ abstract class _DiscussionModel implements DiscussionModel {
   @override
   String? get postedAt;
   @override
-  int? get commentCount;
+  int? get commentsCount;
   @override
   int? get likesCount;
   @override

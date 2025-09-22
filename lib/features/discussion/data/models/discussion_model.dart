@@ -14,7 +14,7 @@ class DiscussionModel with _$DiscussionModel {
     String? postedByClasses,
     String? postedByPhoto,
     String? postedAt,
-    int? commentCount,
+    int? commentsCount,
     int? likesCount,
     CommentModel? lastComment,
   }) = _DiscussionModel;

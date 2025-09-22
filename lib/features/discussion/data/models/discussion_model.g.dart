@@ -15,7 +15,7 @@ _$DiscussionModelImpl _$$DiscussionModelImplFromJson(
       postedByClasses: json['posted_by_classes'] as String?,
       postedByPhoto: json['posted_by_photo'] as String?,
       postedAt: json['posted_at'] as String?,
-      commentCount: (json['comment_count'] as num?)?.toInt(),
+      commentsCount: (json['comments_count'] as num?)?.toInt(),
       likesCount: (json['likes_count'] as num?)?.toInt(),
       lastComment: json['last_comment'] == null
           ? null
@@ -31,7 +31,7 @@ Map<String, dynamic> _$$DiscussionModelImplToJson(
       'posted_by_classes': instance.postedByClasses,
       'posted_by_photo': instance.postedByPhoto,
       'posted_at': instance.postedAt,
-      'comment_count': instance.commentCount,
+      'comments_count': instance.commentsCount,
       'likes_count': instance.likesCount,
       'last_comment': instance.lastComment,
     };

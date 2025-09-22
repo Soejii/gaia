@@ -7,7 +7,7 @@ part of 'discussion_subject_controller.dart';
 // **************************************************************************
 
 String _$discussionSubjectControllerHash() =>
-    r'47a43848a8272f24a7bee0885f546d5506f3d39c';
+    r'455d954ece9ee57ac265563fcf53b909410b14a4';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,10 +31,10 @@ class _SystemHash {
 }
 
 abstract class _$DiscussionSubjectController
-    extends BuildlessAutoDisposeAsyncNotifier<List<DiscussionEntity>> {
+    extends BuildlessAutoDisposeNotifier<AsyncValue<Paged<DiscussionEntity>>> {
   late final int idSubject;
 
-  FutureOr<List<DiscussionEntity>> build(
+  AsyncValue<Paged<DiscussionEntity>> build(
     int idSubject,
   );
 }
@@ -45,7 +45,7 @@ const discussionSubjectControllerProvider = DiscussionSubjectControllerFamily();
 
 /// See also [DiscussionSubjectController].
 class DiscussionSubjectControllerFamily
-    extends Family<AsyncValue<List<DiscussionEntity>>> {
+    extends Family<AsyncValue<Paged<DiscussionEntity>>> {
   /// See also [DiscussionSubjectController].
   const DiscussionSubjectControllerFamily();
 
@@ -84,8 +84,8 @@ class DiscussionSubjectControllerFamily
 
 /// See also [DiscussionSubjectController].
 class DiscussionSubjectControllerProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<DiscussionSubjectController,
-        List<DiscussionEntity>> {
+    extends AutoDisposeNotifierProviderImpl<DiscussionSubjectController,
+        AsyncValue<Paged<DiscussionEntity>>> {
   /// See also [DiscussionSubjectController].
   DiscussionSubjectControllerProvider(
     int idSubject,
@@ -116,7 +116,7 @@ class DiscussionSubjectControllerProvider
   final int idSubject;
 
   @override
-  FutureOr<List<DiscussionEntity>> runNotifierBuild(
+  AsyncValue<Paged<DiscussionEntity>> runNotifierBuild(
     covariant DiscussionSubjectController notifier,
   ) {
     return notifier.build(
@@ -141,8 +141,8 @@ class DiscussionSubjectControllerProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<DiscussionSubjectController,
-      List<DiscussionEntity>> createElement() {
+  AutoDisposeNotifierProviderElement<DiscussionSubjectController,
+      AsyncValue<Paged<DiscussionEntity>>> createElement() {
     return _DiscussionSubjectControllerProviderElement(this);
   }
 
@@ -164,14 +164,15 @@ class DiscussionSubjectControllerProvider
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 mixin DiscussionSubjectControllerRef
-    on AutoDisposeAsyncNotifierProviderRef<List<DiscussionEntity>> {
+    on AutoDisposeNotifierProviderRef<AsyncValue<Paged<DiscussionEntity>>> {
   /// The parameter `idSubject` of this provider.
   int get idSubject;
 }
 
 class _DiscussionSubjectControllerProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<DiscussionSubjectController,
-        List<DiscussionEntity>> with DiscussionSubjectControllerRef {
+    extends AutoDisposeNotifierProviderElement<DiscussionSubjectController,
+        AsyncValue<Paged<DiscussionEntity>>>
+    with DiscussionSubjectControllerRef {
   _DiscussionSubjectControllerProviderElement(super.provider);
 
   @override

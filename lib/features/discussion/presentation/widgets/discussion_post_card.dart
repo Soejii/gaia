@@ -16,8 +16,13 @@ class DiscussionPostCard extends StatelessWidget {
           isDetail: false,
           entity: entity,
         ),
-        SizedBox(height: 10.h),
-        CommentCard(entity: entity.comment),
+        if (entity.comment != null)
+          Column(
+            children: [
+              SizedBox(height: 10.h),
+              CommentCard(entity: entity.comment),
+            ],
+          ),
       ],
     );
   }

@@ -11,7 +11,7 @@ extension DiscussionMapper on DiscussionModel {
         posterPhoto: postedByPhoto,
         posterDate: postedAt,
         likesCount: likesCount,
-        commentCount: commentCount,
+        commentCount: commentsCount,
         comment: lastComment?.toEntity(),
       );
 }

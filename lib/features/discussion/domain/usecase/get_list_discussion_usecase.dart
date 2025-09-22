@@ -6,8 +6,15 @@ class GetListDiscussionUsecase {
   final DiscussionRepository _repository;
   GetListDiscussionUsecase(this._repository);
 
-  Future<Result<List<DiscussionEntity>>> getListDiscussion(String type,
-      {int? idSubject}) async {
-    return await _repository.getListDiscussion(type, idSubject: idSubject);
+  Future<Result<List<DiscussionEntity>>> getListDiscussion(
+    String type,
+    int page, {
+    int? idSubject,
+  }) async {
+    return await _repository.getListDiscussion(
+      type,
+      page,
+      idSubject: idSubject,
+    );
   }
 }
