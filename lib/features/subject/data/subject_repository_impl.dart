@@ -59,12 +59,14 @@ class SubjectRepositoryImpl implements SubjectRepository {
   Future<Result<List<ExamEntity>>> getListExam(
     int subjectId,
     ExamType examType,
+    {int? page}
   ) =>
       guard(
         () async {
           final models = await _dataSource.getListSubjectExam(
             subjectId,
             examType,
+            page ?? 1
           );
           return models
               .map(

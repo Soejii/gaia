@@ -11,7 +11,7 @@ abstract class SubjectRepository {
   Future<Result<List<SubjectEntity>>> getAllSubject();
   Future<Result<List<ModuleEntity>>> getListModule(int subjectId);
   Future<Result<List<MediaEntity>>> getListMedia(int subjectId);
-  Future<Result<List<ExamEntity>>> getListExam(int subjectId, ExamType type);
+  Future<Result<List<ExamEntity>>> getListExam(int subjectId, ExamType type, {int? page});
   Future<Result<List<TaskEntity>>> getListTask(int subjectId, {int? page});
   Future<Result<DetailSubModuleEntity>> getDetailSubModule(int subModuleId);
   Future<Result<SubjectEntity>> getDetailSubject(int subjectId);

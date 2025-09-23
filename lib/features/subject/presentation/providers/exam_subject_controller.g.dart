@@ -7,7 +7,7 @@ part of 'exam_subject_controller.dart';
 // **************************************************************************
 
 String _$examSubjectControllerHash() =>
-    r'd530d79a0e93a833c3ba51d209858adb55c2b7d0';
+    r'1304e4d209b4d26a990b6a6caa29c4b54853fea1';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,11 +31,11 @@ class _SystemHash {
 }
 
 abstract class _$ExamSubjectController
-    extends BuildlessAutoDisposeAsyncNotifier<List<ExamEntity>> {
+    extends BuildlessAutoDisposeNotifier<AsyncValue<Paged<ExamEntity>>> {
   late final int idSubject;
   late final ExamType type;
 
-  FutureOr<List<ExamEntity>> build(
+  AsyncValue<Paged<ExamEntity>> build(
     int idSubject,
     ExamType type,
   );
@@ -46,7 +46,8 @@ abstract class _$ExamSubjectController
 const examSubjectControllerProvider = ExamSubjectControllerFamily();
 
 /// See also [ExamSubjectController].
-class ExamSubjectControllerFamily extends Family<AsyncValue<List<ExamEntity>>> {
+class ExamSubjectControllerFamily
+    extends Family<AsyncValue<Paged<ExamEntity>>> {
   /// See also [ExamSubjectController].
   const ExamSubjectControllerFamily();
 
@@ -87,9 +88,8 @@ class ExamSubjectControllerFamily extends Family<AsyncValue<List<ExamEntity>>> {
 }
 
 /// See also [ExamSubjectController].
-class ExamSubjectControllerProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<ExamSubjectController,
-        List<ExamEntity>> {
+class ExamSubjectControllerProvider extends AutoDisposeNotifierProviderImpl<
+    ExamSubjectController, AsyncValue<Paged<ExamEntity>>> {
   /// See also [ExamSubjectController].
   ExamSubjectControllerProvider(
     int idSubject,
@@ -126,7 +126,7 @@ class ExamSubjectControllerProvider
   final ExamType type;
 
   @override
-  FutureOr<List<ExamEntity>> runNotifierBuild(
+  AsyncValue<Paged<ExamEntity>> runNotifierBuild(
     covariant ExamSubjectController notifier,
   ) {
     return notifier.build(
@@ -155,8 +155,8 @@ class ExamSubjectControllerProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<ExamSubjectController,
-      List<ExamEntity>> createElement() {
+  AutoDisposeNotifierProviderElement<ExamSubjectController,
+      AsyncValue<Paged<ExamEntity>>> createElement() {
     return _ExamSubjectControllerProviderElement(this);
   }
 
@@ -180,7 +180,7 @@ class ExamSubjectControllerProvider
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 mixin ExamSubjectControllerRef
-    on AutoDisposeAsyncNotifierProviderRef<List<ExamEntity>> {
+    on AutoDisposeNotifierProviderRef<AsyncValue<Paged<ExamEntity>>> {
   /// The parameter `idSubject` of this provider.
   int get idSubject;
 
@@ -189,8 +189,8 @@ mixin ExamSubjectControllerRef
 }
 
 class _ExamSubjectControllerProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<ExamSubjectController,
-        List<ExamEntity>> with ExamSubjectControllerRef {
+    extends AutoDisposeNotifierProviderElement<ExamSubjectController,
+        AsyncValue<Paged<ExamEntity>>> with ExamSubjectControllerRef {
   _ExamSubjectControllerProviderElement(super.provider);
 
   @override

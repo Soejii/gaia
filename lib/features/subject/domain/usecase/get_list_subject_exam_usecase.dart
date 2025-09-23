@@ -8,7 +8,7 @@ class GetListSubjectExamUsecase {
   GetListSubjectExamUsecase(this._repository);
 
   Future<Result<List<ExamEntity>>> getListExam(
-      int subjectId, ExamType examType) async {
+      int subjectId, ExamType examType, {int? page}) async {
     return await _repository.getListExam(subjectId, examType);
   }
 }
