@@ -12,7 +12,7 @@ class QuickHomeGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     List<QuickHomeButton> listHomeButton = [
       QuickHomeButton(
-        path: RouteName.chooseSubject,
+        path: RouteName.subjectPicker,
         label: 'Mata Pelajaran',
         icon: AssetsHelper.imgHomeButtonMapel,
       ),

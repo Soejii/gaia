@@ -1,7 +1,7 @@
 class SubjectEntity {
   final int id;
   final String? name;
-  final String? iconCode;
+  final String iconCode;
 
   SubjectEntity({
     required this.id,

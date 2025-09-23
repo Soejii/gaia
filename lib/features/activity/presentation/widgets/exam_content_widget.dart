@@ -4,12 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/activity/domain/type/exam_type.dart';
 import 'package:gaia/features/activity/presentation/providers/exam_controller.dart';
 import 'package:gaia/features/activity/presentation/widgets/exam_card.dart';
-import 'package:gaia/features/home/presentation/widgets/quiz_card.dart';
+import 'package:gaia/features/activity/presentation/widgets/quiz_card.dart';
 import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ExamContentWidget extends HookConsumerWidget {
-  const ExamContentWidget({super.key, required this.type});
+class ActivityExamContentWidget extends HookConsumerWidget {
+  const ActivityExamContentWidget({super.key, required this.type});
   final ExamType type;
 
   @override

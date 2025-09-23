@@ -64,5 +64,140 @@ final getListSubjectsUsecaseProvider =
 // ignore: unused_element
 typedef GetListSubjectsUsecaseRef
     = AutoDisposeProviderRef<GetListSubjectsUsecase>;
+String _$getListModuleUsecaseHash() =>
+    r'ba26c7aad96261ca2034a2e707d84da7fb2976db';
+
+/// See also [getListModuleUsecase].
+@ProviderFor(getListModuleUsecase)
+final getListModuleUsecaseProvider =
+    AutoDisposeProvider<GetListModuleUsecase>.internal(
+  getListModuleUsecase,
+  name: r'getListModuleUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getListModuleUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetListModuleUsecaseRef = AutoDisposeProviderRef<GetListModuleUsecase>;
+String _$getListMediaUsecaseHash() =>
+    r'8b389682949fca4dc8f0130a9ac51eeb91ef89c1';
+
+/// See also [getListMediaUsecase].
+@ProviderFor(getListMediaUsecase)
+final getListMediaUsecaseProvider =
+    AutoDisposeProvider<GetListMediaUsecase>.internal(
+  getListMediaUsecase,
+  name: r'getListMediaUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getListMediaUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetListMediaUsecaseRef = AutoDisposeProviderRef<GetListMediaUsecase>;
+String _$getListSubjectExamUsecaseHash() =>
+    r'a2d2c90a858f6b3f3ed0cdb81f5d7f356e2387ca';
+
+/// See also [getListSubjectExamUsecase].
+@ProviderFor(getListSubjectExamUsecase)
+final getListSubjectExamUsecaseProvider =
+    AutoDisposeProvider<GetListSubjectExamUsecase>.internal(
+  getListSubjectExamUsecase,
+  name: r'getListSubjectExamUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getListSubjectExamUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetListSubjectExamUsecaseRef
+    = AutoDisposeProviderRef<GetListSubjectExamUsecase>;
+String _$getListSubjectTaskUsecaseHash() =>
+    r'cd3eaad73f711e94c6dd083fb5fa32c71d5a2435';
+
+/// See also [getListSubjectTaskUsecase].
+@ProviderFor(getListSubjectTaskUsecase)
+final getListSubjectTaskUsecaseProvider =
+    AutoDisposeProvider<GetListSubjectTaskUsecase>.internal(
+  getListSubjectTaskUsecase,
+  name: r'getListSubjectTaskUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getListSubjectTaskUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetListSubjectTaskUsecaseRef
+    = AutoDisposeProviderRef<GetListSubjectTaskUsecase>;
+String _$getDetailSubModuleUsecaseHash() =>
+    r'7008a3a07669b6c43301d92edeaa8a2bc905fbf9';
+
+/// See also [getDetailSubModuleUsecase].
+@ProviderFor(getDetailSubModuleUsecase)
+final getDetailSubModuleUsecaseProvider =
+    AutoDisposeProvider<GetDetailSubModuleUsecase>.internal(
+  getDetailSubModuleUsecase,
+  name: r'getDetailSubModuleUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getDetailSubModuleUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetDetailSubModuleUsecaseRef
+    = AutoDisposeProviderRef<GetDetailSubModuleUsecase>;
+String _$getDetailSubjectUsecaseHash() =>
+    r'b2081a742632b178e8251bb2a2482b361a7eaf9f';
+
+/// See also [getDetailSubjectUsecase].
+@ProviderFor(getDetailSubjectUsecase)
+final getDetailSubjectUsecaseProvider =
+    AutoDisposeProvider<GetDetailSubjectUsecase>.internal(
+  getDetailSubjectUsecase,
+  name: r'getDetailSubjectUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getDetailSubjectUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetDetailSubjectUsecaseRef
+    = AutoDisposeProviderRef<GetDetailSubjectUsecase>;
+String _$detailSubjectTabIndexHash() =>
+    r'3ea72ce6062d9d60a424b86927be35fe41add630';
+
+/// See also [DetailSubjectTabIndex].
+@ProviderFor(DetailSubjectTabIndex)
+final detailSubjectTabIndexProvider =
+    AutoDisposeNotifierProvider<DetailSubjectTabIndex, int>.internal(
+  DetailSubjectTabIndex.new,
+  name: r'detailSubjectTabIndexProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$detailSubjectTabIndexHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$DetailSubjectTabIndex = AutoDisposeNotifier<int>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
