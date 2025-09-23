@@ -60,16 +60,20 @@ class SubjectRemoteDataSource {
   }
 
   Future<List<ExamModel>> getListSubjectExam(
-      int subjectId, ExamType examType, int page,) async {
+    int subjectId,
+    ExamType examType,
+    int page,
+  ) async {
     final res = await _dio.get(
       '/subject/list-exam',
       queryParameters: {
         'subject_id': subjectId,
         'exam_type': examType.name,
-        'page' : page,
+        'page': page,
       },
     );
-    final data = (res.data as Map<String, dynamic>)['data'] as List<dynamic>;
+    final data =
+        (res.data as Map<String, dynamic>)['data']['data'] as List<dynamic>;
     return data
         .map(
           (e) => ExamModel.fromJson(
