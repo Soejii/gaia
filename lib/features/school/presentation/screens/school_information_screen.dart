@@ -14,6 +14,7 @@ class SchoolInformationScreen extends ConsumerWidget {
     final schoolAsync = ref.watch(schoolControllerProvider);
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: const CustomAppBarWidget(
         title: 'Informasi Sekolah',
         leadingIcon: true,

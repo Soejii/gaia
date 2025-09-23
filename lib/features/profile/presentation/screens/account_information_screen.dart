@@ -15,6 +15,7 @@ class AccountInformationScreen extends ConsumerWidget {
     final profileAsync = ref.watch(profileControllerProvider);
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: const CustomAppBarWidget(
         title: 'Informasi Akun',
         leadingIcon: true,
@@ -22,23 +23,55 @@ class AccountInformationScreen extends ConsumerWidget {
       body: profileAsync.when(
         data: (profile) {
           final accountItems = [
-            AccountInfoItem(label: 'Nama Lengkap', value: profile.name),
-            AccountInfoItem(label: 'Username', value: profile.username),
-            AccountInfoItem(label: 'Email', value: profile.email),
-            AccountInfoItem(label: 'NIS', value: profile.nis),
-            AccountInfoItem(label: 'NISN', value: profile.nisn),
-            AccountInfoItem(label: 'Tempat dan Tanggal Lahir', value: '${profile.birthplace}, ${profile.birthdate}'),
-            AccountInfoItem(label: 'Jenis Kelamin', value: profile.gender),
-            AccountInfoItem(label: 'Agama', value: profile.religion),
-            AccountInfoItem(label: 'Alamat Sesuai KTP', value: profile.address),
-            AccountInfoItem(label: 'Asal Sekolah', value: profile.schoolOrigin),
+            AccountInfoItem(
+              label: 'Nama Lengkap',
+              value: profile.name,
+            ),
+            AccountInfoItem(
+              label: 'Username',
+              value: profile.username,
+            ),
+            AccountInfoItem(
+              label: 'Email',
+              value: profile.email,
+            ),
+            AccountInfoItem(
+              label: 'NIS',
+              value: profile.nis,
+            ),
+            AccountInfoItem(
+              label: 'NISN',
+              value: profile.nisn,
+            ),
+            AccountInfoItem(
+              label: 'Tempat dan Tanggal Lahir',
+              value: '${profile.birthplace}, ${profile.birthdate}',
+            ),
+            AccountInfoItem(
+              label: 'Jenis Kelamin',
+              value: profile.gender,
+            ),
+            AccountInfoItem(
+              label: 'Agama',
+              value: profile.religion,
+            ),
+            AccountInfoItem(
+              label: 'Alamat Sesuai KTP',
+              value: profile.address,
+            ),
+            AccountInfoItem(
+              label: 'Asal Sekolah',
+              value: profile.schoolOrigin,
+            ),
           ];
 
           return ListView.builder(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             itemCount: accountItems.length,
             itemBuilder: (context, index) {
-              return AccountInfoField(item: accountItems[index]);
+              return AccountInfoField(
+                item: accountItems[index],
+              );
             },
           );
         },
@@ -47,7 +80,8 @@ class AccountInformationScreen extends ConsumerWidget {
             color: AppColors.mainColorSidigs,
           ),
         ),
-        error: (error, stack) => const DataNotFoundScreen(dataType: 'Informasi Akun'),
+        error: (error, stack) =>
+            const DataNotFoundScreen(dataType: 'Informasi Akun'),
       ),
     );
   }

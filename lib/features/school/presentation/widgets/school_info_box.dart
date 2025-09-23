@@ -15,8 +15,9 @@ class SchoolInfoBox extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Color(0xFFF9F9F9),
+        color: const Color(0xFFF9F9F9),
         borderRadius: BorderRadius.circular(10.r),
+        boxShadow: AppColors.shadow,
       ),
       padding: EdgeInsets.all(20.w),
       child: Column(
