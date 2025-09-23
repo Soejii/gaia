@@ -31,8 +31,7 @@ class DiscussionRemoteDataSource {
   }
 
   Future<DetailDiscussionModel> getDetailDiscussion(int idDiscuss) async {
-    final res = await _dio.get('/announcement/get-detail',
-        queryParameters: {'discuss_id': idDiscuss});
+    final res = await _dio.get('/discuss/detail/$idDiscuss');
     final data = DetailDiscussionModel.fromJson(res.data['data']);
     return data;
   }
