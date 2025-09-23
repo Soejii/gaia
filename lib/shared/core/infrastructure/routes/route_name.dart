@@ -16,8 +16,15 @@ class RouteName {
   static const listDiscussion = 'list-discussion';
   static const detailDiscussion = 'detail-discussion';
   static const createDiscussion = 'create-discussion';
+  
+  static const balance = 'balance';
+  static const balanceHistory = 'balance-history';
+
+  static const changePassword = 'change-password';
+  static const chooseSubject = 'choose-subject';
 
   static const profile = 'profile';
+  static const accountInformation = 'account-information';
 
   static const schedule = 'schedule';
 

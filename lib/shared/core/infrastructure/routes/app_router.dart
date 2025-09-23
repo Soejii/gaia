@@ -7,11 +7,16 @@ import 'package:gaia/features/announcement/presentation/screens/detail_announcem
 import 'package:gaia/features/announcement/presentation/screens/list_announcement_screen.dart';
 import 'package:gaia/features/discussion/presentation/screen/create_discussion_screen.dart';
 import 'package:gaia/features/discussion/presentation/screen/detail_discussion_screen.dart';
+import 'package:gaia/features/balances/domain/type/balance_type.dart';
+import 'package:gaia/features/balances/presentation/screens/balance_screen.dart';
+import 'package:gaia/features/balances/presentation/screens/balance_history_screen.dart';
 import 'package:gaia/features/edutainment/presentation/screens/detail_edutainment_screen.dart';
 import 'package:gaia/features/edutainment/presentation/screens/list_edutainment_screen.dart';
 import 'package:gaia/features/home/presentation/home_screen.dart';
 import 'package:gaia/features/login/presentation/screen/login_screen.dart';
-import 'package:gaia/features/profile/presentation/profile_screen.dart';
+import 'package:gaia/features/profile/presentation/screens/profile_screen.dart';
+import 'package:gaia/features/profile/presentation/screens/account_information_screen.dart';
+import 'package:gaia/features/profile/presentation/screens/change_password_screen.dart';
 import 'package:gaia/features/schedule/presentation/screens/schedule_screen.dart';
 import 'package:gaia/features/school/presentation/screens/school_information_screen.dart';
 import 'package:gaia/features/subject/presentation/screens/detail_sub_module_screen.dart';
@@ -30,7 +35,6 @@ final _rootKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 @riverpod
 GoRouter appRouter(Ref ref) {
   final authAsync = ref.watch(authStateProvider);
-
   return GoRouter(
     navigatorKey: _rootKey,
     initialLocation: '/login',
@@ -154,6 +158,25 @@ GoRouter appRouter(Ref ref) {
                       ),
                     ],
                   ),
+                  GoRoute(
+                    path: 'balance',
+                    name: RouteName.balance,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, __) => const BalanceScreen(),
+                    routes: [
+                      GoRoute(
+                        path: 'balance-history',
+                        name: RouteName.balanceHistory,
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) {
+                          final type = state.uri.queryParameters['type'] == 'savings' 
+                              ? BalanceType.savings 
+                              : BalanceType.emoney;
+                          return BalanceHistoryScreen(type: type);
+                        },
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ],
@@ -175,19 +198,30 @@ GoRouter appRouter(Ref ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: '/profile',
-                name: RouteName.profile,
-                pageBuilder: (_, __) =>
-                    const MaterialPage(child: ProfileScreen()),
-                routes: [
-                  GoRoute(
-                    path: 'school-information',
-                    name: RouteName.schoolInformation,
-                    parentNavigatorKey: _rootKey,
-                    builder: (_, __) => const SchoolInformationScreen(),
-                  ),
-                ],
-              ),
+                  path: '/profile',
+                  name: RouteName.profile,
+                  pageBuilder: (_, __) =>
+                      const MaterialPage(child: ProfileScreen()),
+                  routes: [
+                    GoRoute(
+                      path: 'school-information',
+                      name: RouteName.schoolInformation,
+                      parentNavigatorKey: _rootKey,
+                      builder: (_, __) => const SchoolInformationScreen(),
+                    ),
+                    GoRoute(
+                      path: 'account-information',
+                      name: RouteName.accountInformation,
+                      parentNavigatorKey: _rootKey,
+                      builder: (_, __) => const AccountInformationScreen(),
+                    ),
+                    GoRoute(
+                      path: 'change-password',
+                      name: RouteName.changePassword,
+                      parentNavigatorKey: _rootKey,
+                      builder: (_, __) => const ChangePasswordScreen(),
+                    ),
+                  ]),
             ],
           ),
         ],

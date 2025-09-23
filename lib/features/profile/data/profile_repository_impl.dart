@@ -15,4 +15,19 @@ class ProfileRepositoryImpl implements ProfileRepository {
           return models.toEntity();
         },
       );
+
+  @override
+  Future<Result<String>> changePassword({
+    required String currentPassword,
+    required String newPassword,
+    required String confirmPassword,
+  }) => guard(
+        () async {
+          return await _datasource.changePassword(
+            currentPassword: currentPassword,
+            newPassword: newPassword,
+            confirmPassword: confirmPassword,
+          );
+        },
+      );
 }
