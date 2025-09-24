@@ -5,6 +5,7 @@ import 'package:gaia/app/bottom_navigation_shell.dart';
 import 'package:gaia/features/activity/presentation/screen/activity_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/detail_announcement_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/list_announcement_screen.dart';
+import 'package:gaia/features/attendance/presentation/screens/attedance_screen.dart';
 import 'package:gaia/features/balances/domain/type/balance_type.dart';
 import 'package:gaia/features/balances/presentation/screens/balance_screen.dart';
 import 'package:gaia/features/balances/presentation/screens/balance_history_screen.dart';
@@ -102,6 +103,12 @@ GoRouter appRouter(Ref ref) {
                     name: RouteName.chooseSubject,
                     parentNavigatorKey: _rootKey,
                     builder: (_, __) => const ChooseSubjectScreen(),
+                  ),
+                  GoRoute(
+                    path: 'attendance',
+                    name: RouteName.attendance,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, __) => const AttendanceScreen(),
                   ),
                   GoRoute(
                     path: 'balance',
