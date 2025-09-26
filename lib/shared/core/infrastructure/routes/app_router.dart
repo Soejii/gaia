@@ -5,6 +5,7 @@ import 'package:gaia/app/bottom_navigation_shell.dart';
 import 'package:gaia/features/activity/presentation/screen/activity_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/detail_announcement_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/list_announcement_screen.dart';
+import 'package:gaia/features/discussion/presentation/screen/choose_discussion_screen.dart';
 import 'package:gaia/features/discussion/presentation/screen/create_discussion_screen.dart';
 import 'package:gaia/features/discussion/presentation/screen/detail_discussion_screen.dart';
 import 'package:gaia/features/balances/domain/type/balance_type.dart';
@@ -132,6 +133,12 @@ GoRouter appRouter(Ref ref) {
                     ],
                   ),
                   GoRoute(
+                    path: 'choose-discussion',
+                    name: RouteName.chooseDiscussion,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, __) => const ChooseDiscussionScreen(),
+                  ),
+                  GoRoute(
                     path: 'list-discussion',
                     name: RouteName.listDiscussion,
                     parentNavigatorKey: _rootKey,
@@ -169,9 +176,10 @@ GoRouter appRouter(Ref ref) {
                         name: RouteName.balanceHistory,
                         parentNavigatorKey: _rootKey,
                         builder: (_, state) {
-                          final type = state.uri.queryParameters['type'] == 'savings' 
-                              ? BalanceType.savings 
-                              : BalanceType.emoney;
+                          final type =
+                              state.uri.queryParameters['type'] == 'savings'
+                                  ? BalanceType.savings
+                                  : BalanceType.emoney;
                           return BalanceHistoryScreen(type: type);
                         },
                       ),
