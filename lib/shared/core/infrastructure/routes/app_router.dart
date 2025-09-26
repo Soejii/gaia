@@ -6,6 +6,8 @@ import 'package:gaia/features/activity/presentation/screen/activity_screen.dart'
 import 'package:gaia/features/announcement/presentation/screens/detail_announcement_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/list_announcement_screen.dart';
 import 'package:gaia/features/attendance/presentation/screens/attedance_screen.dart';
+import 'package:gaia/features/discussion/presentation/screen/create_discussion_screen.dart';
+import 'package:gaia/features/discussion/presentation/screen/detail_discussion_screen.dart';
 import 'package:gaia/features/balances/domain/type/balance_type.dart';
 import 'package:gaia/features/balances/presentation/screens/balance_screen.dart';
 import 'package:gaia/features/balances/presentation/screens/balance_history_screen.dart';
@@ -18,7 +20,9 @@ import 'package:gaia/features/profile/presentation/screens/account_information_s
 import 'package:gaia/features/profile/presentation/screens/change_password_screen.dart';
 import 'package:gaia/features/schedule/presentation/screens/schedule_screen.dart';
 import 'package:gaia/features/school/presentation/screens/school_information_screen.dart';
-import 'package:gaia/features/subject/presentation/screens/choose_subject_screen.dart';
+import 'package:gaia/features/subject/presentation/screens/detail_sub_module_screen.dart';
+import 'package:gaia/features/subject/presentation/screens/subject_picker_screen.dart';
+import 'package:gaia/features/subject/presentation/screens/detail_subject_screen.dart';
 import 'package:gaia/shared/core/infrastructure/auth/auth_state_provider.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:gaia/shared/screens/error_screen.dart';
@@ -99,10 +103,61 @@ GoRouter appRouter(Ref ref) {
                     builder: (_, __) => const ScheduleScreen(),
                   ),
                   GoRoute(
-                    path: 'choose-subject',
-                    name: RouteName.chooseSubject,
+                    path: 'subject-picker',
+                    name: RouteName.subjectPicker,
                     parentNavigatorKey: _rootKey,
-                    builder: (_, __) => const ChooseSubjectScreen(),
+                    builder: (_, __) => const SubjectPickerScreen(),
+                    routes: [
+                      GoRoute(
+                        path: 'detail-subject/:id',
+                        name: RouteName.detailSubject,
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) {
+                          final id = state.pathParameters['id']!;
+                          return DetailSubjectScreen(
+                            idSubject: int.parse(id),
+                          );
+                        },
+                      ),
+                      GoRoute(
+                        path: 'detail-sub-module/:id',
+                        name: RouteName.detailSubModule,
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) {
+                          final id = state.pathParameters['id']!;
+                          return DetailSubModuleScreen(
+                            idSubModule: int.parse(id),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  GoRoute(
+                    path: 'list-discussion',
+                    name: RouteName.listDiscussion,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, __) => Container(),
+                    routes: [
+                      GoRoute(
+                        path: 'detail-discussion/:id',
+                        name: RouteName.detailDiscussion,
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) {
+                          final id = state.pathParameters['id']!;
+                          return DetailDiscussionScreen(
+                            idDiscussion: int.parse(id),
+                          );
+                        },
+                      ),
+                      GoRoute(
+                        path: 'create-discussion',
+                        name: RouteName.createDiscussion,
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) {
+                          return const CreateDiscussionScreen();
+                        },
+                      ),
+                    ],
                   ),
                   GoRoute(
                     path: 'attendance',

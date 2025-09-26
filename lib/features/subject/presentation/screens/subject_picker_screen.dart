@@ -6,8 +6,8 @@ import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ChooseSubjectScreen extends ConsumerWidget {
-  const ChooseSubjectScreen({super.key});
+class SubjectPickerScreen extends ConsumerWidget {
+  const SubjectPickerScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,7 +25,7 @@ class ChooseSubjectScreen extends ConsumerWidget {
           } else {
             return GridView.builder(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-              itemCount: 16,
+              itemCount: data.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 crossAxisSpacing: 16.w,
@@ -34,7 +34,7 @@ class ChooseSubjectScreen extends ConsumerWidget {
               ),
               itemBuilder: (context, index) => QuickSubjectButton(
                 id: data[index].id,
-                iconCode: data[index].iconCode ?? '',
+                iconCode: data[index].iconCode ,
                 title: data[index].name ?? '-',
               ),
             );

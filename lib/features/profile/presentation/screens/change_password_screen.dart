@@ -51,14 +51,15 @@ class ChangePasswordScreen extends HookConsumerWidget {
     void handleSubmit() {
       if (formKey.currentState!.validate()) {
         ref.read(changePasswordControllerProvider.notifier).changePassword(
-          currentPassword: currentPasswordController.text,
-          newPassword: newPasswordController.text,
-          confirmPassword: confirmPasswordController.text,
-        );
+              currentPassword: currentPasswordController.text,
+              newPassword: newPasswordController.text,
+              confirmPassword: confirmPasswordController.text,
+            );
       }
     }
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: const CustomAppBarWidget(
         title: 'Ubah Kata Sandi',
         leadingIcon: true,
@@ -149,8 +150,7 @@ class ChangePasswordScreen extends HookConsumerWidget {
                       width: 20.w,
                       child: const CircularProgressIndicator(
                         strokeWidth: 2,
-                        valueColor:
-                            AlwaysStoppedAnimation<Color>(Colors.white),
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                       ),
                     )
                   : Text(

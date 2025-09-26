@@ -154,7 +154,7 @@ class QuizCard extends StatelessWidget {
               'Kerjakan',
               style: TextStyle(
                 fontFamily: 'OpenSans',
-                fontSize: 14.sp,
+                fontSize: 10.sp,
                 fontWeight: FontWeight.w600,
                 color: Colors.white,
               ),

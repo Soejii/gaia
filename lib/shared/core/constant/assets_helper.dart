@@ -34,8 +34,17 @@ class AssetsHelper {
   static String imgSubjectInggris = img("img_subject_inggris.png");
   static String imgSubjectGeografi = img("img_subject_geografi.png");
   static String imgSubjectPlaceholder = img("img_subject_placeholder.png");
+  static String imgSubjectModulActive = img("img_subject_modul_activate.png");
+  static String imgSubjectModulInactive = img("img_subject_modul_inactive.png");
 
   static String imgTidakAdaPelajaran = img("img_tidak_ada_pelajaran.png");
+
+  static String imgMediaYoutube = img("img_media_youtube.png");
+  static String imgMediaWord = img("img_media_word.png");
+  static String imgMediaExcel = img("img_media_excel.png");
+  static String imgMediaPdf = img("img_media_pdf.png");
+  static String imgMediaPpt = img("img_media_ppt.png");
+  static String imgMediaVideo = img("img_media_video.png");
 
   static String imgDataNotFound = img('img_data_not_found.png');
 

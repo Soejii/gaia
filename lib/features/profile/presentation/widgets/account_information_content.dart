@@ -41,6 +41,7 @@ class AccountInfoField extends StatelessWidget {
             decoration: BoxDecoration(
               color: const Color(0xFFF9F9F9),
               borderRadius: BorderRadius.circular(10.r),
+              boxShadow: AppColors.shadow,
             ),
             padding: EdgeInsets.all(20.w),
             child: Text(

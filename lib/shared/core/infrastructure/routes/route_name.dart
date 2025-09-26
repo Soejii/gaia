@@ -8,11 +8,19 @@ class RouteName {
   static const listEdutainment = 'list-edutainment';
   static const detailEdutainment = 'detail-edutainment';
 
+  static const subjectPicker = 'subject-picker';
+  static const detailSubject = 'detail-subject';
+
+  static const detailSubModule = 'detail-sub-module';
+
+  static const listDiscussion = 'list-discussion';
+  static const detailDiscussion = 'detail-discussion';
+  static const createDiscussion = 'create-discussion';
+  
   static const balance = 'balance';
   static const balanceHistory = 'balance-history';
 
   static const attendance = 'attendance';
-
 
   static const changePassword = 'change-password';
   static const chooseSubject = 'choose-subject';
