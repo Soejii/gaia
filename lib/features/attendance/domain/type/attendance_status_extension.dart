@@ -14,6 +14,8 @@ extension AttendanceStatusExtension on AttendanceStatus {
         return 'Izin';
       case AttendanceStatus.sick:
         return 'Sakit';
+      case AttendanceStatus.unknown:
+        return 'Tidak Diketahui';
     }
   }
 
@@ -29,6 +31,8 @@ extension AttendanceStatusExtension on AttendanceStatus {
         return const Color(0xFFF2C94C);
       case AttendanceStatus.sick:
         return const Color(0xFFFF7171);
+      case AttendanceStatus.unknown:
+        return const Color(0xFF9E9E9E);
     }
   }
 }

@@ -4,4 +4,5 @@ enum AttendanceStatus {
   absent,
   permit,
   sick,
+  unknown,
 }

@@ -32,7 +32,7 @@ extension AttendanceMapper on AttendanceModel {
       case 'sakit':
         return AttendanceStatus.sick;
       default:
-        return AttendanceStatus.absent;
+        return AttendanceStatus.unknown;
     }
   }
 }
