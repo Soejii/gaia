@@ -56,6 +56,7 @@ class AssetsHelper {
   static String icEmoney = icon('ic_emoney.svg');
   static String icTopup = icon('ic_topup.svg');
   static String icCashout = icon('ic_cashout.svg');
+  static String icChooseDiscussion = icon('ic_choose_discussion.svg');
 
   static String icon(String name) {
     return "assets/icons/$name";
