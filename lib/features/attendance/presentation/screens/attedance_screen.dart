@@ -6,7 +6,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:gaia/features/attendance/domain/type/attendance_type.dart';
 import 'package:gaia/features/attendance/presentation/providers/attedance_providers.dart';
 import 'package:gaia/features/attendance/presentation/widgets/attendance_tab_bar_widget.dart';
-import 'package:gaia/features/attendance/presentation/widgets/attendance_content_widget.dart';
+import 'package:gaia/features/attendance/presentation/widgets/attendance_history_widget.dart';
+import 'package:gaia/features/attendance/presentation/widgets/attendance_calendar_widget.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 
 class AttendanceScreen extends HookConsumerWidget {
@@ -43,8 +44,8 @@ class AttendanceScreen extends HookConsumerWidget {
             child: TabBarView(
               controller: tabController,
               children: const [
-                AttendanceContentScreen(type: AttendanceType.history),
-                AttendanceContentScreen(type: AttendanceType.calendar),
+                AttendanceHistoryWidget(),
+                AttendanceCalendarWidget(),
               ],
             ),
           ),
