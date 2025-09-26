@@ -5,6 +5,7 @@ import 'package:gaia/app/bottom_navigation_shell.dart';
 import 'package:gaia/features/activity/presentation/screen/activity_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/detail_announcement_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/list_announcement_screen.dart';
+import 'package:gaia/features/attendance/presentation/screens/attedance_screen.dart';
 import 'package:gaia/features/discussion/presentation/screen/create_discussion_screen.dart';
 import 'package:gaia/features/discussion/presentation/screen/detail_discussion_screen.dart';
 import 'package:gaia/features/balances/domain/type/balance_type.dart';
@@ -157,6 +158,12 @@ GoRouter appRouter(Ref ref) {
                         },
                       ),
                     ],
+                  ),
+                  GoRoute(
+                    path: 'attendance',
+                    name: RouteName.attendance,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, __) => const AttendanceScreen(),
                   ),
                   GoRoute(
                     path: 'balance',

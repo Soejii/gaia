@@ -1,0 +1,173 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:gaia/features/attendance/domain/entities/attendance_entitiy.dart';
+import 'package:gaia/features/attendance/domain/type/attendance_status.dart';
+import 'package:gaia/features/attendance/domain/type/attendance_status_extension.dart';
+import 'package:gaia/features/attendance/presentation/providers/attedance_controller.dart';
+import 'package:intl/intl.dart';
+
+class AttendanceHistoryWidget extends ConsumerWidget {
+  const AttendanceHistoryWidget({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final attendanceAsync = ref.watch(attendanceControllerProvider);
+
+    return attendanceAsync.when(
+      data: (attendanceList) {
+        if (attendanceList.isEmpty) {
+          return const Center(
+            child: Text('Tidak ada data kehadiran'),
+          );
+        }
+
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: ListView.separated(
+            itemCount: attendanceList.length,
+            separatorBuilder: (context, index) => Divider(
+              color: Colors.grey[300],
+              thickness: 1,
+              height: 1,
+            ),
+            itemBuilder: (context, index) {
+              final attendance = attendanceList[index];
+              return AttendanceHistoryCard(attendance: attendance);
+            },
+          ),
+        );
+      },
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (error, stack) => Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Error: $error'),
+            ElevatedButton(
+              onPressed: () => ref.refresh(attendanceControllerProvider),
+              child: const Text('Coba Lagi'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AttendanceHistoryCard extends StatelessWidget {
+  final AttendanceEntity attendance;
+
+  const AttendanceHistoryCard({
+    super.key,
+    required this.attendance,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 16.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildAttendanceInfo(),
+          SizedBox(height: 8.h),
+          Text(
+            _formatDate(attendance.date),
+            style: TextStyle(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w400,
+              color: AppColors.secondaryText,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAttendanceInfo() {
+    if (attendance.checkedInTime != null && attendance.checkedOutTime != null) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildAttendanceRow(
+            'Absen Masuk',
+            attendance.checkedInTime!,
+            AttendanceStatus.checkedIn.color,
+          ),
+          SizedBox(height: 4.h),
+          _buildAttendanceRow(
+            'Absen Pulang',
+            attendance.checkedOutTime!,
+            AttendanceStatus.checkedOut.color,
+          ),
+        ],
+      );
+    } else if (attendance.checkedInTime != null) {
+      return _buildAttendanceRow(
+        'Absen Masuk',
+        attendance.checkedInTime!,
+        AttendanceStatus.checkedIn.color,
+      );
+    } else if (attendance.checkedOutTime != null) {
+      return _buildAttendanceRow(
+        'Absen Pulang',
+        attendance.checkedOutTime!,
+        AttendanceStatus.checkedOut.color,
+      );
+    } else {
+      return Text(
+        attendance.status.displayName,
+        style: TextStyle(
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w600,
+          color: attendance.status.color,
+        ),
+      );
+    }
+  }
+
+  Widget _buildAttendanceRow(String label, String time, Color labelColor) {
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w600,
+              color: labelColor,
+            ),
+          ),
+        ),
+        Text(
+          _formatTime(time),
+          style: TextStyle(
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w600,
+            color: AppColors.secondaryText,
+          ),
+        ),
+      ],
+    );
+  }
+
+  String _formatDate(String dateStr) {
+    try {
+      final date = DateTime.parse(dateStr);
+      return DateFormat('EEEE, dd MMM yyyy', 'id_ID').format(date);
+    } catch (e) {
+      return dateStr;
+    }
+  }
+
+  String _formatTime(String dateTimeStr) {
+    try {
+      final dateTime = DateTime.parse(dateTimeStr);
+      return DateFormat('h:mm a').format(dateTime);
+    } catch (e) {
+      return dateTimeStr;
+    }
+  }
+}
