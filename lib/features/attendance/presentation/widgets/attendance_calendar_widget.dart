@@ -95,18 +95,29 @@ class _AttendanceCalendarWidgetState
         defaultBuilder: (context, day, focusedDay) {
           final attendanceEntity =
               attendanceMap[DateTime(day.year, day.month, day.day)];
-          return _calendarDay(day, attendanceEntity, false);
+          return AttendanceCalendarDay(
+            day: day,
+            attendanceEntity: attendanceEntity,
+            isToday: false,
+          );
         },
         todayBuilder: (context, day, focusedDay) {
           final attendanceEntity =
               attendanceMap[DateTime(day.year, day.month, day.day)];
-          return _calendarDay(day, attendanceEntity, true);
+          return AttendanceCalendarDay(
+            day: day,
+            attendanceEntity: attendanceEntity,
+            isToday: true,
+          );
         },
         selectedBuilder: (context, day, focusedDay) {
           final attendanceEntity =
               attendanceMap[DateTime(day.year, day.month, day.day)];
-          return _calendarDay(
-              day, attendanceEntity, isSameDay(day, DateTime.now()));
+          return AttendanceCalendarDay(
+            day: day,
+            attendanceEntity: attendanceEntity,
+            isToday: isSameDay(day, DateTime.now()),
+          );
         },
       ),
       headerStyle: const HeaderStyle(
@@ -120,48 +131,6 @@ class _AttendanceCalendarWidgetState
             TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
         weekendStyle:
             TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
-      ),
-    );
-  }
-
-  Widget _calendarDay(
-      DateTime day, AttendanceEntity? attendanceEntity, bool isToday) {
-    Color? backgroundColor;
-    Gradient? gradient;
-
-    if (isToday) {
-      gradient = const LinearGradient(
-        colors: [Color(0xFF3229A0), Color(0xFF832AA3)],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-      );
-    } else if (attendanceEntity != null) {
-      if (attendanceEntity.checkedInTime != null &&
-          attendanceEntity.checkedOutTime != null) {
-        backgroundColor = AttendanceStatus.checkedOut.color;
-      } else {
-        backgroundColor = attendanceEntity.status.color;
-      }
-    }
-
-    return Container(
-      margin: EdgeInsets.all(4.w),
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        gradient: gradient,
-        borderRadius: BorderRadius.circular(8.r),
-      ),
-      child: Center(
-        child: Text(
-          '${day.day}',
-          style: TextStyle(
-            color: (isToday || attendanceEntity != null)
-                ? Colors.white
-                : Colors.black,
-            fontWeight: FontWeight.w500,
-            fontSize: 14.sp,
-          ),
-        ),
       ),
     );
   }
@@ -348,6 +317,61 @@ class _AttendanceCalendarWidgetState
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class AttendanceCalendarDay extends StatelessWidget {
+  final DateTime day;
+  final AttendanceEntity? attendanceEntity;
+  final bool isToday;
+
+  const AttendanceCalendarDay({
+    super.key,
+    required this.day,
+    required this.attendanceEntity,
+    required this.isToday,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    Color? backgroundColor;
+    Gradient? gradient;
+
+    if (isToday) {
+      gradient = const LinearGradient(
+        colors: [Color(0xFF3229A0), Color(0xFF832AA3)],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      );
+    } else if (attendanceEntity != null) {
+      if (attendanceEntity!.checkedInTime != null &&
+          attendanceEntity!.checkedOutTime != null) {
+        backgroundColor = AttendanceStatus.checkedOut.color;
+      } else {
+        backgroundColor = attendanceEntity!.status.color;
+      }
+    }
+
+    return Container(
+      margin: EdgeInsets.all(4.w),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        gradient: gradient,
+        borderRadius: BorderRadius.circular(8.r),
+      ),
+      child: Center(
+        child: Text(
+          '${day.day}',
+          style: TextStyle(
+            color: (isToday || attendanceEntity != null)
+                ? Colors.white
+                : Colors.black,
+            fontWeight: FontWeight.w500,
+            fontSize: 14.sp,
+          ),
+        ),
       ),
     );
   }
