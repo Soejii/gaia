@@ -36,4 +36,14 @@ class DiscussionRepositoryImpl implements DiscussionRepository {
           return models.toEntity();
         },
       );
+
+  @override
+  Future<Result<Unit>> createDiscussion(String type, String text,
+          {int? subjectId}) =>
+      guard(
+        () async {
+          await _dataSource.createDiscussion(type, text, subjectId: subjectId);
+          return const Unit();
+        },
+      );
 }
