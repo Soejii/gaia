@@ -40,6 +40,7 @@ class ClassDiscussionScreen extends HookConsumerWidget {
       backgroundColor: Colors.white,
       body: ListView(
         children: [
+          SizedBox(height: 16.h),
           const CreateDiscussionCard(),
           SizedBox(height: 16.h),
           const DividerCard(),
