@@ -4,6 +4,7 @@ import 'package:gaia/features/discussion/data/discussion_repository_impl.dart';
 import 'package:gaia/features/discussion/domain/discussion_repository.dart';
 import 'package:gaia/features/discussion/domain/usecase/get_detail_discussion_usecase.dart';
 import 'package:gaia/features/discussion/domain/usecase/get_list_discussion_usecase.dart';
+import 'package:gaia/features/discussion/domain/usecase/create_discussion_usecase.dart';
 import 'package:gaia/shared/core/infrastructure/network/dio_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -36,3 +37,11 @@ GetDetailDiscussionUsecase getDetailDiscussionUsecase(Ref ref) {
     ref.watch(discussionRepositoryProvider),
   );
 }
+
+@riverpod
+CreateDiscussionUsecase createDiscussionUsecase(Ref ref) {
+  return CreateDiscussionUsecase(
+    ref.watch(discussionRepositoryProvider),
+  );
+}
+

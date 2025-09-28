@@ -1,9 +1,9 @@
 import 'package:gaia/features/discussion/domain/discussion_repository.dart';
 import 'package:gaia/shared/core/types/result.dart';
 
-class PostDiscussionUsecase {
+class CreateDiscussionUsecase {
   final DiscussionRepository _repository;
-  PostDiscussionUsecase(this._repository);
+  CreateDiscussionUsecase(this._repository);
 
   Future<Result<Unit>> createDiscussion(
     String type,

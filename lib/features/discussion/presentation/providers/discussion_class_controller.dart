@@ -69,10 +69,34 @@ class DiscussionClassController extends _$DiscussionClassController {
       state = AsyncValue.data(updated);
     } catch (e, st) {
       // keep previous list, surface error on state
-      state =
-          AsyncValue<Paged<DiscussionEntity>>.error(e, st).copyWithPrevious(state);
+      state = AsyncValue<Paged<DiscussionEntity>>.error(e, st)
+          .copyWithPrevious(state);
     } finally {
       _loadingMore = false;
     }
+  }
+
+  Future<void> createDiscussion(String text) async {
+    final usecase = ref.read(createDiscussionUsecaseProvider);
+
+    final result = await usecase.createDiscussion('class', text);
+
+    result.fold(
+      (failure) => throw failure,
+      (_) async {
+        // re-fetch list after creating
+        state = const AsyncLoading();
+        state = state = await AsyncValue.guard(
+          () async {
+            final items = await _fetch(1);
+            return Paged(
+              items: items,
+              page: 1,
+              hasMore: items.length >= _pageSize,
+            );
+          },
+        );
+      },
+    );
   }
 }
