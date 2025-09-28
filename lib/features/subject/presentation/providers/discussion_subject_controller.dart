@@ -76,29 +76,4 @@ class DiscussionSubjectController extends _$DiscussionSubjectController {
       _loadingMore = false;
     }
   }
-
-  Future<void> createDiscussion(String text) async {
-    final usecase = ref.read(createDiscussionUsecaseProvider);
-
-    final result =
-        await usecase.createDiscussion('subject', text, subjectId: idSubject);
-
-    result.fold(
-      (failure) => throw failure,
-      (_) async {
-        // re-fetch list after creating
-        state = const AsyncLoading();
-        state = state = await AsyncValue.guard(
-          () async {
-            final items = await _fetch(1);
-            return Paged(
-              items: items,
-              page: 1,
-              hasMore: items.length >= _pageSize,
-            );
-          },
-        );
-      },
-    );
-  }
 }

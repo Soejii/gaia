@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/discussion/presentation/types/create_discussion_args.dart';
 import 'package:gaia/features/profile/presentation/providers/profile_controller.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
@@ -9,7 +10,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CreateDiscussionCard extends ConsumerWidget {
-  const CreateDiscussionCard({super.key});
+  const CreateDiscussionCard({super.key, required this.type});
+  final CreateDiscussionArgs type;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,7 +43,7 @@ class CreateDiscussionCard extends ConsumerWidget {
           Expanded(
             child: GestureDetector(
               onTap: () {
-                context.pushNamed(RouteName.createDiscussion);
+                context.pushNamed(RouteName.createDiscussion, extra: type);
               },
               child: Container(
                 height: 48.h,

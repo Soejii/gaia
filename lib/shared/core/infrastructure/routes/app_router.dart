@@ -12,6 +12,7 @@ import 'package:gaia/features/discussion/presentation/screen/detail_discussion_s
 import 'package:gaia/features/balances/domain/type/balance_type.dart';
 import 'package:gaia/features/balances/presentation/screens/balance_screen.dart';
 import 'package:gaia/features/balances/presentation/screens/balance_history_screen.dart';
+import 'package:gaia/features/discussion/presentation/types/create_discussion_args.dart';
 import 'package:gaia/features/edutainment/presentation/screens/detail_edutainment_screen.dart';
 import 'package:gaia/features/edutainment/presentation/screens/list_edutainment_screen.dart';
 import 'package:gaia/features/home/presentation/home_screen.dart';
@@ -150,31 +151,26 @@ GoRouter appRouter(Ref ref) {
                     ],
                   ),
                   GoRoute(
-                    path: 'list-discussion',
-                    name: RouteName.listDiscussion,
+                    path: 'detail-discussion/:id',
+                    name: RouteName.detailDiscussion,
                     parentNavigatorKey: _rootKey,
-                    builder: (_, __) => Container(),
-                    routes: [
-                      GoRoute(
-                        path: 'detail-discussion/:id',
-                        name: RouteName.detailDiscussion,
-                        parentNavigatorKey: _rootKey,
-                        builder: (_, state) {
-                          final id = state.pathParameters['id']!;
-                          return DetailDiscussionScreen(
-                            idDiscussion: int.parse(id),
-                          );
-                        },
-                      ),
-                      GoRoute(
-                        path: 'create-discussion',
-                        name: RouteName.createDiscussion,
-                        parentNavigatorKey: _rootKey,
-                        builder: (_, state) {
-                          return const CreateDiscussionScreen();
-                        },
-                      ),
-                    ],
+                    builder: (_, state) {
+                      final id = state.pathParameters['id']!;
+                      return DetailDiscussionScreen(
+                        idDiscussion: int.parse(id),
+                      );
+                    },
+                  ),
+                  GoRoute(
+                    path: 'create-discussion',
+                    name: RouteName.createDiscussion,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, state) {
+                      final args = state.extra as CreateDiscussionArgs;
+                      return CreateDiscussionScreen(
+                        type: args,
+                      );
+                    },
                   ),
                   GoRoute(
                     path: 'balance',
