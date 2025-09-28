@@ -16,8 +16,8 @@ class ChooseDiscussionScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           ChooseDiscussionButton(index: 0),
-           ChooseDiscussionButton(index: 1),
+           ChooseDiscussionButton(index: 0), // 0 means navigate to subject discussion
+           ChooseDiscussionButton(index: 1), // while 1 means navigate to class discussion
         ],
       ),
     );

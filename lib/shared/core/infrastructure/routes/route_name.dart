@@ -15,6 +15,7 @@ class RouteName {
 
   static const chooseDiscussion = 'choose-discussion';
   static const listDiscussion = 'list-discussion';
+  static const classDiscussion = 'class-discussion';
   static const detailDiscussion = 'detail-discussion';
   static const createDiscussion = 'create-discussion';
 

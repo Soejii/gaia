@@ -19,9 +19,10 @@ class ChooseDiscussionButton extends ConsumerWidget {
     return InkWell(
       onTap: () {
         if (index == 0) {
+          context.pushNamed(RouteName.classDiscussion);
         } else {
           ref.read(detailSubjectTabIndexProvider.notifier).set(1);
-          context.pushNamed(RouteName.subjectPicker,extra: 1);
+          context.pushNamed(RouteName.subjectPicker);
         }
       },
       child: Padding(
