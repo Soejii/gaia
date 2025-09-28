@@ -41,14 +41,12 @@ class DiscussionRemoteDataSource {
     String text, {
     int? subjectId,
   }) async {
-    final res = await _dio.post(
-      'discuss/post-discussion/$type',
+    await _dio.post(
+      '/discuss/post-discussion/$type',
       data: {
         if (subjectId != null) 'subject_id': subjectId,
         'text': text,
       },
     );
-    final data = res.data['status'];
-    return data;
   }
 }
