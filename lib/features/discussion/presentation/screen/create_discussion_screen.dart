@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/profile/presentation/providers/profile_controller.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
+import 'package:gaia/shared/core/types/failure.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CreateDiscussionScreen extends HookWidget {
+class CreateDiscussionScreen extends HookConsumerWidget {
   const CreateDiscussionScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textController = useTextEditingController();
+    final profileAsync = ref.watch(profileControllerProvider);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBarWidget(
@@ -28,24 +32,36 @@ class CreateDiscussionScreen extends HookWidget {
                 SizedBox(
                   height: 42.h,
                   width: 42.h,
-                  child: CircleAvatar(
-                    foregroundImage: const NetworkImage(
-                      '',
+                  child: profileAsync.when(
+                    data: (data) => CircleAvatar(
+                      foregroundImage: NetworkImage(
+                        data.imgUrl,
+                      ),
+                      backgroundImage: AssetImage(
+                        AssetsHelper.imgProfilePlaceholder,
+                      ),
                     ),
-                    backgroundImage: AssetImage(
-                      AssetsHelper.imgProfilePlaceholder,
-                    ),
+                    error: (error, stackTrace) => Text(error is NetworkFailure
+                        ? 'Offline'
+                        : 'Terjadi Kesalahan'),
+                    loading: () => const CircularProgressIndicator(),
                   ),
                 ),
                 SizedBox(width: 7.w),
-                Text(
-                  'Rafi Mahadika Sujianto',
-                  style: TextStyle(
-                    fontFamily: 'OpenSans',
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.mainText,
+                profileAsync.when(
+                  data: (data) => Text(
+                    data.name,
+                    style: TextStyle(
+                      fontFamily: 'OpenSans',
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.mainText,
+                    ),
                   ),
+                  error: (error, stackTrace) => Text(error is NetworkFailure
+                      ? 'Offline'
+                      : 'Terjadi Kesalahan'),
+                  loading: () => const CircularProgressIndicator(),
                 ),
               ],
             ),
