@@ -40,40 +40,44 @@ class ClassDiscussionScreen extends HookConsumerWidget {
         leadingIcon: true,
       ),
       backgroundColor: Colors.white,
-      body: ListView(
-        children: [
-          SizedBox(height: 16.h),
-          const CreateDiscussionCard(
-            type: CreateDiscussionArgs(
-              type: CreateDiscussionType.kelas,
+      body: RefreshIndicator(
+        onRefresh: () =>
+            ref.read(discussionClassControllerProvider.notifier).refresh(),
+        child: ListView(
+          children: [
+            SizedBox(height: 16.h),
+            const CreateDiscussionCard(
+              type: CreateDiscussionArgs(
+                type: CreateDiscussionType.kelas,
+              ),
             ),
-          ),
-          SizedBox(height: 16.h),
-          const DividerCard(),
-          asyncDiscuss.when(
-            data: (data) {
-              if (data.items.isNotEmpty) {
-                return ListView.separated(
-                  padding: EdgeInsets.zero,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: data.items.length,
-                  itemBuilder: (context, index) => Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16.h),
-                    child: DiscussionPostCard(
-                      entity: data.items[index],
+            SizedBox(height: 16.h),
+            const DividerCard(),
+            asyncDiscuss.when(
+              data: (data) {
+                if (data.items.isNotEmpty) {
+                  return ListView.separated(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: data.items.length,
+                    itemBuilder: (context, index) => Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16.h),
+                      child: DiscussionPostCard(
+                        entity: data.items[index],
+                      ),
                     ),
-                  ),
-                  separatorBuilder: (context, index) => const DividerCard(),
-                );
-              } else {
-                return const DataNotFoundScreen(dataType: 'Diskusi Kelas');
-              }
-            },
-            error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
-            loading: () => const Center(child: CircularProgressIndicator()),
-          ),
-        ],
+                    separatorBuilder: (context, index) => const DividerCard(),
+                  );
+                } else {
+                  return const DataNotFoundScreen(dataType: 'Diskusi Kelas');
+                }
+              },
+              error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+              loading: () => const Center(child: CircularProgressIndicator()),
+            ),
+          ],
+        ),
       ),
     );
   }
