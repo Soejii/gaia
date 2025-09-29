@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/discussion/presentation/providers/create_comment_controller.dart';
 import 'package:gaia/features/discussion/presentation/providers/detail_discussion_controller.dart';
 import 'package:gaia/features/discussion/presentation/widgets/comment_card.dart';
 import 'package:gaia/features/discussion/presentation/widgets/discussion_card.dart';
@@ -101,17 +102,29 @@ class DetailDiscussionScreen extends HookConsumerWidget {
                   ),
                 ),
                 SizedBox(width: 8.w),
-                Container(
-                  width: 40.w,
-                  height: 40.w,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.mainColorSidigs,
-                  ),
-                  child: const Center(
-                    child: Icon(
-                      Icons.send,
-                      color: Colors.white,
+                GestureDetector(
+                  onTap: () async {
+                    final res = await ref
+                        .read(createCommentControllerProvider.notifier)
+                        .createComment(textController.text, idDiscussion);
+
+                    res.fold(
+                      (f) => throw f,
+                      (_) => textController.clear(),
+                    );
+                  },
+                  child: Container(
+                    width: 40.w,
+                    height: 40.w,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.mainColorSidigs,
+                    ),
+                    child: const Center(
+                      child: Icon(
+                        Icons.send,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
