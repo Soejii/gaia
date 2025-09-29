@@ -17,6 +17,14 @@ class AppColors {
     ),
   ];
 
+  static const List<BoxShadow> invertedShadow = [
+    BoxShadow(
+      color: Color.fromRGBO(0, 0, 0, 0.25),
+      offset: Offset(0, -4),
+      blurRadius: 4,
+      spreadRadius: 0,
+    ),
+  ];
 
   static const LinearGradient mainColorGradient = LinearGradient(
     colors: [
@@ -26,11 +34,6 @@ class AppColors {
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );
-
-
-
-
-  
 }
 
 class HexColor extends Color {
