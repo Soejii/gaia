@@ -49,4 +49,16 @@ class DiscussionRemoteDataSource {
       },
     );
   }
+
+    Future<void> createComment(
+    String text,
+    int discussionId, 
+    ) async {
+    await _dio.post(
+      '/discuss/post-comment/$discussionId',
+      data: {
+        'text': text,
+      },
+    );
+  }
 }

@@ -11,5 +11,7 @@ abstract class DiscussionRepository {
 
   Future<Result<DetailDiscussionEntity>> getDetailDiscussion(int idDiscussion);
 
-  Future<Result<Unit>> createDiscussion( String type, String text, {int? subjectId}); 
+  Future<Result<Unit>> createDiscussion(String type, String text,
+      {int? subjectId,});
+  Future<Result<Unit>> createComment(String text, int discussionId);
 }

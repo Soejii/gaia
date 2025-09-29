@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gaia/features/discussion/data/datasource/discussion_remote_data_source.dart';
 import 'package:gaia/features/discussion/data/discussion_repository_impl.dart';
 import 'package:gaia/features/discussion/domain/discussion_repository.dart';
+import 'package:gaia/features/discussion/domain/usecase/create_comment_usecase.dart';
 import 'package:gaia/features/discussion/domain/usecase/get_detail_discussion_usecase.dart';
 import 'package:gaia/features/discussion/domain/usecase/get_list_discussion_usecase.dart';
 import 'package:gaia/features/discussion/domain/usecase/create_discussion_usecase.dart';
@@ -41,6 +42,13 @@ GetDetailDiscussionUsecase getDetailDiscussionUsecase(Ref ref) {
 @riverpod
 CreateDiscussionUsecase createDiscussionUsecase(Ref ref) {
   return CreateDiscussionUsecase(
+    ref.watch(discussionRepositoryProvider),
+  );
+}
+
+@riverpod
+CreateCommentUsecase createCommentUsecase(Ref ref) {
+  return CreateCommentUsecase(
     ref.watch(discussionRepositoryProvider),
   );
 }
