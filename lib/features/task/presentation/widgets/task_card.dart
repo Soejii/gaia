@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/task/domain/entities/task_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
+import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:gaia/shared/utils/date_helper.dart';
+import 'package:go_router/go_router.dart';
 
 class TaskCard extends StatelessWidget {
   const TaskCard({super.key, required this.entity});
@@ -96,16 +98,14 @@ class TaskCard extends StatelessWidget {
                 ],
               ),
             ),
-            _circle(entity.status)
+            _circle(entity.status, context)
           ],
         ),
       ),
     );
   }
 
-  Widget _circle(
-    TaskStatus status,
-  ) {
+  Widget _circle(TaskStatus status, BuildContext context) {
     switch (status) {
       case TaskStatus.submitted:
         return Container(
@@ -141,22 +141,27 @@ class TaskCard extends StatelessWidget {
           ),
         );
       case TaskStatus.assigned:
-        return Container(
-          width: 64.h,
-          height: 64.h,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: Colors.white, width: 6.w),
-            color: AppColors.green,
-          ),
-          child: Center(
-            child: Text(
-              'Kerjakan',
-              style: TextStyle(
-                fontFamily: 'OpenSans',
-                fontSize: 11.sp,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
+        return GestureDetector(
+          onTap: () {
+            context.pushNamed(RouteName.detailTask);
+          },
+          child: Container(
+            width: 64.h,
+            height: 64.h,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.white, width: 6.w),
+              color: AppColors.green,
+            ),
+            child: Center(
+              child: Text(
+                'Kerjakan',
+                style: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 11.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
