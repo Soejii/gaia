@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/task/presentation/widgets/detail_task_header_widget.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 
@@ -9,78 +10,90 @@ class DetailTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: const CustomAppBarWidget(
         title: 'Detail Tugas',
         leadingIcon: true,
       ),
       body: ListView(
         children: [
-          Container(
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              boxShadow: AppColors.shadow,
+          const DetailTaskHeaderWidget(),
+          SizedBox(height: 7.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: Text(
+              'INSTRUKSI',
+              style: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w700,
+                color: Colors.black,
+              ),
             ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 24.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  infoCard(
-                    Icons.calendar_month_rounded,
-                    'Batas Pengumpulan',
-                    '25 Juni 2025',
+          ),
+          SizedBox(height: 7.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Container(
+              width: double.infinity,
+              constraints: BoxConstraints(minHeight: 72.h),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  width: 1,
+                  color: const Color.fromRGBO(82, 103, 137, 1),
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+                child: Text(
+                  'Buatlah Puisi bertemakan Kepahlawanan',
+                  style: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
                   ),
-                  infoCard(
-                    Icons.assignment_outlined,
-                    'Judul Tugas',
-                    'Rafi Mahadika Sujiantooooooooooooooooooooooooo',
-                  ),
-                  infoCard(
-                    Icons.person,
-                    'Guru Pengajar',
-                    'Bapak Transbara Al-Fatih anjay mabar',
-                  ),
-                ],
+                ),
               ),
             ),
           ),
         ],
       ),
-    );
-  }
-
-  infoCard(IconData icon, String title, String value) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Icon(
-          icon,
-          color: AppColors.inactiveColor,
+      bottomNavigationBar: Container(
+        width: double.infinity,
+        height: 80.h,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          boxShadow: AppColors.invertedShadow,
         ),
-        SizedBox(width: 12.w),
-        Text(
-          title,
-          style: TextStyle(
-            fontFamily: 'OpenSans',
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w400,
-            color: AppColors.mainText,
-          ),
-        ),
-        SizedBox(width: 20.w),
-        const Expanded(child: SizedBox()),
-        Flexible(
-          child: Text(
-            value,
-            style: TextStyle(
-              fontFamily: 'OpenSans',
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w700,
-              color: AppColors.mainColorSidigs,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+          child: GestureDetector(
+            onTap: () {},
+            child: Container(
+              width: double.infinity,
+              height: 56.h,
+              decoration: BoxDecoration(
+                color: AppColors.mainColorSidigs,
+                boxShadow: AppColors.shadow,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Center(
+                child: Text(
+                  'Kerjakan',
+                  style: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }
