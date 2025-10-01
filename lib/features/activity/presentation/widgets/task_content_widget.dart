@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/activity/presentation/providers/task_controller.dart';
-import 'package:gaia/features/activity/presentation/widgets/task_card.dart';
+import 'package:gaia/features/task/presentation/widgets/task_card.dart';
 import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
