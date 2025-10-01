@@ -1,5 +1,5 @@
-import 'package:gaia/features/activity/data/models/task_model.dart';
-import 'package:gaia/features/activity/domain/entities/task_entity.dart';
+import 'package:gaia/features/task/data/models/task_model.dart';
+import 'package:gaia/features/task/domain/entities/task_entity.dart';
 
 extension TaskMapper on TaskModel {
   TaskEntity toEntity() => TaskEntity(

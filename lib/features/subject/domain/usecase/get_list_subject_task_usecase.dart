@@ -1,4 +1,4 @@
-import 'package:gaia/features/activity/domain/entities/task_entity.dart';
+import 'package:gaia/features/task/domain/entities/task_entity.dart';
 import 'package:gaia/features/subject/domain/subject_repository.dart';
 import 'package:gaia/shared/core/types/result.dart';
 
