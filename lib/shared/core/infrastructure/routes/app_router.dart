@@ -172,6 +172,8 @@ GoRouter appRouter(Ref ref) {
                         type: args,
                       );
                     },
+                  ),
+                  GoRoute(
                     path: 'attendance',
                     name: RouteName.attendance,
                     parentNavigatorKey: _rootKey,
