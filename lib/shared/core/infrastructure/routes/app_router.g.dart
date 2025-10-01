@@ -8,6 +8,8 @@ part of 'app_router.dart';
 
 String _$appRouterHash() => r'17eda432f402d54078273bfaf30cfc84666905bc';
 
+
+
 /// See also [appRouter].
 @ProviderFor(appRouter)
 final appRouterProvider = AutoDisposeProvider<GoRouter>.internal(

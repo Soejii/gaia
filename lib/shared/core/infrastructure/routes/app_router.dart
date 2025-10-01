@@ -7,6 +7,7 @@ import 'package:gaia/features/announcement/presentation/screens/detail_announcem
 import 'package:gaia/features/announcement/presentation/screens/list_announcement_screen.dart';
 import 'package:gaia/features/discussion/presentation/screen/choose_discussion_screen.dart';
 import 'package:gaia/features/discussion/presentation/screen/class_discussion_screen.dart';
+import 'package:gaia/features/attendance/presentation/screens/attedance_screen.dart';
 import 'package:gaia/features/discussion/presentation/screen/create_discussion_screen.dart';
 import 'package:gaia/features/discussion/presentation/screen/detail_discussion_screen.dart';
 import 'package:gaia/features/balances/domain/type/balance_type.dart';
@@ -171,6 +172,10 @@ GoRouter appRouter(Ref ref) {
                         type: args,
                       );
                     },
+                    path: 'attendance',
+                    name: RouteName.attendance,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, __) => const AttendanceScreen(),
                   ),
                   GoRoute(
                     path: 'balance',

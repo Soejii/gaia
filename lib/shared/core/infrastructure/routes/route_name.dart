@@ -21,6 +21,8 @@ class RouteName {
   static const balance = 'balance';
   static const balanceHistory = 'balance-history';
 
+  static const attendance = 'attendance';
+
   static const changePassword = 'change-password';
   static const chooseSubject = 'choose-subject';
 
