@@ -183,12 +183,12 @@ final getDetailSubjectUsecaseProvider =
 typedef GetDetailSubjectUsecaseRef
     = AutoDisposeProviderRef<GetDetailSubjectUsecase>;
 String _$detailSubjectTabIndexHash() =>
-    r'3ea72ce6062d9d60a424b86927be35fe41add630';
+    r'83f236042071893a71d33bb0f6c8a63a14de65ec';
 
 /// See also [DetailSubjectTabIndex].
 @ProviderFor(DetailSubjectTabIndex)
 final detailSubjectTabIndexProvider =
-    AutoDisposeNotifierProvider<DetailSubjectTabIndex, int>.internal(
+    NotifierProvider<DetailSubjectTabIndex, int>.internal(
   DetailSubjectTabIndex.new,
   name: r'detailSubjectTabIndexProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -198,6 +198,6 @@ final detailSubjectTabIndexProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$DetailSubjectTabIndex = AutoDisposeNotifier<int>;
+typedef _$DetailSubjectTabIndex = Notifier<int>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

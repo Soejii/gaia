@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:gaia/shared/core/types/exception.dart';
 import 'package:gaia/shared/core/types/failure.dart';
-
+class Unit {
+  const Unit();
+}
 sealed class Result<T> {
   const Result();
   R fold<R>(R Function(Failure) onErr, R Function(T) onOk);

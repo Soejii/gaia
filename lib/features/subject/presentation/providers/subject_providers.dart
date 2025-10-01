@@ -73,7 +73,7 @@ GetDetailSubjectUsecase getDetailSubjectUsecase(Ref ref) {
   return GetDetailSubjectUsecase(ref.watch(subjectRepositoryProvider));
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class DetailSubjectTabIndex extends _$DetailSubjectTabIndex {
   @override
   int build() => 0;

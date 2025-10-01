@@ -17,7 +17,7 @@ class QuickHomeGrid extends StatelessWidget {
         icon: AssetsHelper.imgHomeButtonMapel,
       ),
       QuickHomeButton(
-        path: '',
+        path: RouteName.chooseDiscussion,
         label: 'Diskusi',
         icon: AssetsHelper.imgHomeButtonDiskusi,
       ),

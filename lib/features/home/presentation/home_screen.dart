@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/announcement/presentation/widgets/announcement_widget.dart';
 import 'package:gaia/features/home/presentation/widgets/digital_magazines_card.dart';
-import 'package:gaia/features/home/presentation/widgets/divider_card.dart';
+import 'package:gaia/shared/presentation/divider_card.dart';
 import 'package:gaia/features/home/presentation/widgets/home_header_widget.dart';
 import 'package:gaia/features/home/presentation/widgets/newest_exam_widget.dart';
 import 'package:gaia/features/home/presentation/widgets/newest_quiz_widget.dart';

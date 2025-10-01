@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/discussion/presentation/providers/create_comment_controller.dart';
 import 'package:gaia/features/discussion/presentation/providers/detail_discussion_controller.dart';
 import 'package:gaia/features/discussion/presentation/widgets/comment_card.dart';
 import 'package:gaia/features/discussion/presentation/widgets/discussion_card.dart';
+import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class DetailDiscussionScreen extends ConsumerWidget {
+class DetailDiscussionScreen extends HookConsumerWidget {
   const DetailDiscussionScreen({super.key, required this.idDiscussion});
   final int idDiscussion;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final textController = useTextEditingController();
     final asyncDetail =
         ref.watch(detailDiscussionControllerProvider(idDiscussion));
     return Scaffold(
@@ -43,6 +48,89 @@ class DetailDiscussionScreen extends ConsumerWidget {
         error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
         loading: () => const Center(
           child: CircularProgressIndicator(),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: MediaQuery.of(context).viewInsets,
+        child: Container(
+          height: 80.h,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            boxShadow: AppColors.invertedShadow,
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 20.w,
+              vertical: 10.h,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: const Color.fromRGBO(0, 0, 0, 0.10),
+                        width: 1,
+                      ),
+                    ),
+                    child: TextField(
+                      controller: textController,
+                      minLines: 1,
+                      maxLines: 2,
+                      style: TextStyle(
+                        fontFamily: 'OpenSans',
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.mainText,
+                      ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Tulis Komentar!',
+                        hintStyle: TextStyle(
+                          fontFamily: 'OpenSans',
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.inactiveColor,
+                          fontStyle: FontStyle.italic,
+                        ),
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 8.w, vertical: 10.h),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 8.w),
+                GestureDetector(
+                  onTap: () async {
+                    final res = await ref
+                        .read(createCommentControllerProvider.notifier)
+                        .createComment(textController.text, idDiscussion);
+
+                    res.fold(
+                      (f) => throw f,
+                      (_) => textController.clear(),
+                    );
+                  },
+                  child: Container(
+                    width: 40.w,
+                    height: 40.w,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.mainColorSidigs,
+                    ),
+                    child: const Center(
+                      child: Icon(
+                        Icons.send,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

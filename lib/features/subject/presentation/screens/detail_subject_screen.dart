@@ -53,6 +53,7 @@ class DetailSubjectScreen extends HookConsumerWidget {
       },
       [tabController],
     );
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(

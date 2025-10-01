@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/discussion/presentation/providers/create_discussion_controller.dart';
+import 'package:gaia/features/discussion/presentation/types/create_discussion_args.dart';
+import 'package:gaia/features/profile/presentation/providers/profile_controller.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
+import 'package:gaia/shared/core/types/failure.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CreateDiscussionScreen extends HookWidget {
-  const CreateDiscussionScreen({super.key});
+class CreateDiscussionScreen extends HookConsumerWidget {
+  const CreateDiscussionScreen({super.key, required this.type});
+  final CreateDiscussionArgs type;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textController = useTextEditingController();
+    final profileAsync = ref.watch(profileControllerProvider);
+    final controller = ref.watch(createDiscussionControllerProvider);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBarWidget(
@@ -28,24 +38,36 @@ class CreateDiscussionScreen extends HookWidget {
                 SizedBox(
                   height: 42.h,
                   width: 42.h,
-                  child: CircleAvatar(
-                    foregroundImage: const NetworkImage(
-                      '',
+                  child: profileAsync.when(
+                    data: (data) => CircleAvatar(
+                      foregroundImage: NetworkImage(
+                        data.imgUrl,
+                      ),
+                      backgroundImage: AssetImage(
+                        AssetsHelper.imgProfilePlaceholder,
+                      ),
                     ),
-                    backgroundImage: AssetImage(
-                      AssetsHelper.imgProfilePlaceholder,
-                    ),
+                    error: (error, stackTrace) => Text(error is NetworkFailure
+                        ? 'Offline'
+                        : 'Terjadi Kesalahan'),
+                    loading: () => const CircularProgressIndicator(),
                   ),
                 ),
                 SizedBox(width: 7.w),
-                Text(
-                  'Rafi Mahadika Sujianto',
-                  style: TextStyle(
-                    fontFamily: 'OpenSans',
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.mainText,
+                profileAsync.when(
+                  data: (data) => Text(
+                    data.name,
+                    style: TextStyle(
+                      fontFamily: 'OpenSans',
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.mainText,
+                    ),
                   ),
+                  error: (error, stackTrace) => Text(error is NetworkFailure
+                      ? 'Offline'
+                      : 'Terjadi Kesalahan'),
+                  loading: () => const CircularProgressIndicator(),
                 ),
               ],
             ),
@@ -93,25 +115,39 @@ class CreateDiscussionScreen extends HookWidget {
         color: Colors.white,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
-          child: Container(
-            width: double.infinity,
-            height: 56.h,
-            decoration: BoxDecoration(
-              color: AppColors.mainColorSidigs,
-              boxShadow: AppColors.shadow,
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Center(
-              child: Text(
-                'Posting',
-                style: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+          child: GestureDetector(
+            onTap: () async {
+              final res = await ref
+                  .read(createDiscussionControllerProvider.notifier)
+                  .createDiscussion(type, textController.text);
+
+              res.fold(
+                (f) => throw f,
+                (_) => context.pop(),
+              );
+            },
+            child: controller.isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : Container(
+                    width: double.infinity,
+                    height: 56.h,
+                    decoration: BoxDecoration(
+                      color: AppColors.mainColorSidigs,
+                      boxShadow: AppColors.shadow,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Posting',
+                        style: TextStyle(
+                          fontFamily: 'OpenSans',
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
           ),
         ),
       ),

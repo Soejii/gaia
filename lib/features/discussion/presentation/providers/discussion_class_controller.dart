@@ -5,10 +5,10 @@ import 'package:gaia/features/discussion/presentation/providers/discussion_provi
 import 'package:gaia/shared/presentation/paged.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'discussion_subject_controller.g.dart';
+part 'discussion_class_controller.g.dart';
 
 @riverpod
-class DiscussionSubjectController extends _$DiscussionSubjectController {
+class DiscussionClassController extends _$DiscussionClassController {
   Timer? _ttl; // for optional TTL keepAlive
   KeepAliveLink? _link;
 
@@ -17,7 +17,7 @@ class DiscussionSubjectController extends _$DiscussionSubjectController {
   bool _loadingMore = false;
 
   @override
-  AsyncValue<Paged<DiscussionEntity>> build(int idSubject) {
+  AsyncValue<Paged<DiscussionEntity>> build() {
     _link ??= ref.keepAlive();
     ref.onCancel(() {
       _ttl = Timer(const Duration(minutes: 5), () {
@@ -33,8 +33,7 @@ class DiscussionSubjectController extends _$DiscussionSubjectController {
 
   Future<List<DiscussionEntity>> _fetch(int page) async {
     final usecase = ref.read(getListDiscussionUsecaseProvider);
-    final either =
-        await usecase.getListDiscussion('subject', page, idSubject: idSubject);
+    final either = await usecase.getListDiscussion('class', page);
     return either.fold((e) => throw e, (list) => list);
   }
 

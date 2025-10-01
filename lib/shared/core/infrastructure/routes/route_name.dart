@@ -13,10 +13,11 @@ class RouteName {
 
   static const detailSubModule = 'detail-sub-module';
 
-  static const listDiscussion = 'list-discussion';
+  static const chooseDiscussion = 'choose-discussion';
+  static const classDiscussion = 'class-discussion';
   static const detailDiscussion = 'detail-discussion';
   static const createDiscussion = 'create-discussion';
-  
+
   static const balance = 'balance';
   static const balanceHistory = 'balance-history';
 
