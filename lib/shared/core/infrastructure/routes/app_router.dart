@@ -26,6 +26,7 @@ import 'package:gaia/features/school/presentation/screens/school_information_scr
 import 'package:gaia/features/subject/presentation/screens/detail_sub_module_screen.dart';
 import 'package:gaia/features/subject/presentation/screens/subject_picker_screen.dart';
 import 'package:gaia/features/subject/presentation/screens/detail_subject_screen.dart';
+import 'package:gaia/features/task/presentation/screens/collect_task_screen.dart';
 import 'package:gaia/features/task/presentation/screens/detail_task_screen.dart';
 import 'package:gaia/shared/core/infrastructure/auth/auth_state_provider.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
@@ -200,13 +201,20 @@ GoRouter appRouter(Ref ref) {
                       ),
                     ],
                   ),
-                                    GoRoute(
+                  GoRoute(
                     parentNavigatorKey: _rootKey,
                     path: 'detail-task',
                     name: RouteName.detailTask,
                     builder: (context, state) => const DetailTaskScreen(),
+                    routes: [
+                      GoRoute(
+                        path: 'collect-task',
+                        name: RouteName.collectTask,
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, __) => const CollectTaskScreen(),
+                      ),
+                    ],
                   ),
-
                 ],
               ),
             ],

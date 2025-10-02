@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/task/presentation/widgets/detail_task_header_widget.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
+import 'package:go_router/go_router.dart';
 
 class DetailTaskScreen extends StatelessWidget {
   const DetailTaskScreen({super.key});
@@ -70,7 +72,9 @@ class DetailTaskScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              context.pushNamed(RouteName.collectTask);
+            },
             child: Container(
               width: double.infinity,
               height: 56.h,
