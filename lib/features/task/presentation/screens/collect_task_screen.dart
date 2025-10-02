@@ -12,6 +12,7 @@ class CollectTaskScreen extends HookWidget {
   Widget build(BuildContext context) {
     final textController = useTextEditingController();
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: const CustomAppBarWidget(
         title: 'Kerjakan Tugas',
         leadingIcon: true,
@@ -89,14 +90,14 @@ class CollectTaskScreen extends HookWidget {
                       end: Alignment.bottomCenter,
                     ),
                   ),
-                  child: Image.asset(AssetsHelper.icUpload),
+                  child: Image.asset(AssetsHelper.imgUpload),
                 ),
                 SizedBox(width: 14.w),
                 Text(
                   'Upload File',
                   style: TextStyle(
                     fontFamily: 'OpenSans',
-                    fontSize: 12.sp,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
                     color: AppColors.secondaryColor,
                     decoration: TextDecoration.underline,

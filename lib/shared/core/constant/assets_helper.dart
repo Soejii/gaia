@@ -7,6 +7,7 @@ class AssetsHelper {
   static String imgTask = img("img_task.png");
   static String imgQuiz = img("img_quiz.png");
   static String imgLogoTransparant = img("img_logo_transparant.png");
+  static String imgUpload = img('img_upload.png');
 
   static String imgHomeButtonMapel = img("img_home_mapel.png");
   static String imgHomeButtonDiskusi = img("img_home_diskusi.png");
@@ -57,8 +58,6 @@ class AssetsHelper {
   static String icTopup = icon('ic_topup.svg');
   static String icCashout = icon('ic_cashout.svg');
   static String icChooseDiscussion = icon('ic_choose_discussion.svg');
-
-  static String icUpload = icon('ic_upload.svg');
 
   static String icon(String name) {
     return "assets/icons/$name";
