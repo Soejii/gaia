@@ -110,7 +110,12 @@ class DetailTaskScreen extends ConsumerWidget {
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
           child: GestureDetector(
             onTap: () {
-              context.pushNamed(RouteName.collectTask);
+              context.pushNamed(
+                RouteName.collectTask,
+                pathParameters: {
+                  'id': idTask.toString(),
+                },
+              );
             },
             child: Container(
               width: double.infinity,
