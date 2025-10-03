@@ -6,7 +6,8 @@ import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 
 class CollectTaskScreen extends HookWidget {
-  const CollectTaskScreen({super.key});
+  const CollectTaskScreen({super.key,required this.idTask});
+  final int idTask;
 
   @override
   Widget build(BuildContext context) {

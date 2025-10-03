@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/task/presentation/widgets/detail_task_header_info_card.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
-class DetailTaskHeaderWidget extends StatelessWidget {
-  const DetailTaskHeaderWidget({super.key});
+class DetailTaskHeaderSkeletonWidget extends StatelessWidget {
+  const DetailTaskHeaderSkeletonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

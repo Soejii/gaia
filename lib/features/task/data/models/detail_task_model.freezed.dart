@@ -20,6 +20,7 @@ DetailTaskModel _$DetailTaskModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DetailTaskModel {
+  int get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get teacherNotes => throw _privateConstructorUsedError;
   String? get studentNotes => throw _privateConstructorUsedError;
@@ -48,7 +49,8 @@ abstract class $DetailTaskModelCopyWith<$Res> {
       _$DetailTaskModelCopyWithImpl<$Res, DetailTaskModel>;
   @useResult
   $Res call(
-      {String? title,
+      {int id,
+      String? title,
       String? teacherNotes,
       String? studentNotes,
       String? file,
@@ -75,6 +77,7 @@ class _$DetailTaskModelCopyWithImpl<$Res, $Val extends DetailTaskModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = freezed,
     Object? teacherNotes = freezed,
     Object? studentNotes = freezed,
@@ -87,6 +90,10 @@ class _$DetailTaskModelCopyWithImpl<$Res, $Val extends DetailTaskModel>
     Object? teacherName = freezed,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -140,7 +147,8 @@ abstract class _$$DetailTaskModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? title,
+      {int id,
+      String? title,
       String? teacherNotes,
       String? studentNotes,
       String? file,
@@ -165,6 +173,7 @@ class __$$DetailTaskModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = freezed,
     Object? teacherNotes = freezed,
     Object? studentNotes = freezed,
@@ -177,6 +186,10 @@ class __$$DetailTaskModelImplCopyWithImpl<$Res>
     Object? teacherName = freezed,
   }) {
     return _then(_$DetailTaskModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -226,7 +239,8 @@ class __$$DetailTaskModelImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$DetailTaskModelImpl implements _DetailTaskModel {
   const _$DetailTaskModelImpl(
-      {this.title,
+      {required this.id,
+      this.title,
       this.teacherNotes,
       this.studentNotes,
       this.file,
@@ -240,6 +254,8 @@ class _$DetailTaskModelImpl implements _DetailTaskModel {
   factory _$DetailTaskModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$DetailTaskModelImplFromJson(json);
 
+  @override
+  final int id;
   @override
   final String? title;
   @override
@@ -263,7 +279,7 @@ class _$DetailTaskModelImpl implements _DetailTaskModel {
 
   @override
   String toString() {
-    return 'DetailTaskModel(title: $title, teacherNotes: $teacherNotes, studentNotes: $studentNotes, file: $file, score: $score, instruction: $instruction, startAt: $startAt, finishAt: $finishAt, dateSubmit: $dateSubmit, teacherName: $teacherName)';
+    return 'DetailTaskModel(id: $id, title: $title, teacherNotes: $teacherNotes, studentNotes: $studentNotes, file: $file, score: $score, instruction: $instruction, startAt: $startAt, finishAt: $finishAt, dateSubmit: $dateSubmit, teacherName: $teacherName)';
   }
 
   @override
@@ -271,6 +287,7 @@ class _$DetailTaskModelImpl implements _DetailTaskModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DetailTaskModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.teacherNotes, teacherNotes) ||
                 other.teacherNotes == teacherNotes) &&
@@ -293,6 +310,7 @@ class _$DetailTaskModelImpl implements _DetailTaskModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       title,
       teacherNotes,
       studentNotes,
@@ -323,7 +341,8 @@ class _$DetailTaskModelImpl implements _DetailTaskModel {
 
 abstract class _DetailTaskModel implements DetailTaskModel {
   const factory _DetailTaskModel(
-      {final String? title,
+      {required final int id,
+      final String? title,
       final String? teacherNotes,
       final String? studentNotes,
       final String? file,
@@ -337,6 +356,8 @@ abstract class _DetailTaskModel implements DetailTaskModel {
   factory _DetailTaskModel.fromJson(Map<String, dynamic> json) =
       _$DetailTaskModelImpl.fromJson;
 
+  @override
+  int get id;
   @override
   String? get title;
   @override

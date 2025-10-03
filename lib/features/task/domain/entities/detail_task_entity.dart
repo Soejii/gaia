@@ -1,4 +1,5 @@
 class DetailTaskEntity {
+  final int id;
   final String? title;
   final int? score;
   final String? instruction;
@@ -8,6 +9,7 @@ class DetailTaskEntity {
   final String? teacherName;
 
   DetailTaskEntity({
+    required this.id,
     required this.title,
     required this.score,
     required this.instruction,

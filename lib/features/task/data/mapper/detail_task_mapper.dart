@@ -3,6 +3,7 @@ import 'package:gaia/features/task/domain/entities/detail_task_entity.dart';
 
 extension DetailTaskMapper on DetailTaskModel {
   DetailTaskEntity toEntity() => DetailTaskEntity(
+        id: id,
         title: title,
         score: score,
         instruction: instruction,

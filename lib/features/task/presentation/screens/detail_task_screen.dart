@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/task/presentation/providers/detail_task_controller.dart';
+import 'package:gaia/features/task/presentation/widgets/detail_task_header_skeleton_widget.dart';
 import 'package:gaia/features/task/presentation/widgets/detail_task_header_widget.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
@@ -28,7 +30,7 @@ class DetailTaskScreen extends ConsumerWidget {
               entity: data,
             ),
             error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
-            loading: () => const CircularProgressIndicator(),
+            loading: () => const DetailTaskHeaderSkeletonWidget(),
           ),
           SizedBox(height: 7.h),
           Padding(
@@ -44,30 +46,55 @@ class DetailTaskScreen extends ConsumerWidget {
             ),
           ),
           SizedBox(height: 7.h),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Container(
-              width: double.infinity,
-              constraints: BoxConstraints(minHeight: 72.h),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  width: 1,
-                  color: const Color.fromRGBO(82, 103, 137, 1),
+          asnycTask.when(
+            data: (data) => Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Container(
+                width: double.infinity,
+                constraints: BoxConstraints(minHeight: 72.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    width: 1,
+                    color: const Color.fromRGBO(82, 103, 137, 1),
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-                child: Text(
-                  'Buatlah Puisi bertemakan Kepahlawanan',
-                  style: TextStyle(
-                    fontFamily: 'OpenSans',
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+                  child: Html(
+                    data: data.instruction ?? '',
+                    style: {
+                      "body": Style(
+                        color: AppColors.mainText,
+                        fontFamily: "Open Sans",
+                        fontSize: FontSize(14.sp),
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w400,
+                        lineHeight: LineHeight.normal,
+                      ),
+                      "h1": Style(
+                          fontSize: FontSize(22.sp),
+                          fontWeight: FontWeight.bold),
+                      "h2": Style(
+                          fontSize: FontSize(20.sp),
+                          fontWeight: FontWeight.bold),
+                      "h3": Style(
+                          fontSize: FontSize(18.sp),
+                          fontWeight: FontWeight.w600),
+                      "p": Style(margin: Margins.zero),
+                      "ul": Style(
+                          margin: Margins.zero, padding: HtmlPaddings.zero),
+                      "li": Style(margin: Margins.zero),
+                      "strong": Style(fontWeight: FontWeight.w600),
+                      "em": Style(fontStyle: FontStyle.italic),
+                    },
                   ),
                 ),
               ),
+            ),
+            error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+            loading: () => const Center(
+              child: CircularProgressIndicator(),
             ),
           ),
         ],

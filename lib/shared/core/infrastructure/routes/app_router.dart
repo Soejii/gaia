@@ -214,7 +214,10 @@ GoRouter appRouter(Ref ref) {
                         path: 'collect-task',
                         name: RouteName.collectTask,
                         parentNavigatorKey: _rootKey,
-                        builder: (_, __) => const CollectTaskScreen(),
+                        builder: (context, state) {
+                          final id = state.pathParameters['id']!;
+                          return CollectTaskScreen(idTask: int.parse(id));
+                        },
                       ),
                     ],
                   ),
