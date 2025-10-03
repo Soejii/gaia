@@ -49,6 +49,8 @@ class AssetsHelper {
 
   static String imgDataNotFound = img('img_data_not_found.png');
 
+  static String imgSuccess = img('img_done.png');
+
   static String icHome = icon('ic_beranda_home.svg');
   static String icActivity = icon('ic_activity_home.svg');
   static String icChat = icon('ic_chat_home.svg');

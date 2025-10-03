@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/task/presentation/providers/submit_task_controller.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
+import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -150,14 +151,18 @@ class CollectTaskScreen extends HookConsumerWidget {
                     );
                 res.fold(
                   (f) => throw f,
-                  (_) => context.pop(),
+                  (_) => showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (context) => successDialog(context),
+                  ),
                 );
               }
             },
             child: controller.isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : Container(
-                  width: double.infinity,
+                    width: double.infinity,
                     height: 56.h,
                     decoration: BoxDecoration(
                       color: AppColors.mainColorSidigs,
@@ -177,6 +182,105 @@ class CollectTaskScreen extends HookConsumerWidget {
                     ),
                   ),
           ),
+        ),
+      ),
+    );
+  }
+
+  successDialog(BuildContext context) {
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      child: SizedBox(
+        height: 350.h,
+        width: 258.w,
+        child: Stack(
+          children: [
+            Align(
+              alignment: AlignmentGeometry.bottomCenter,
+              child: Container(
+                height: 295.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 46.h),
+                    Text(
+                      'Berhasil!',
+                      style: TextStyle(
+                        fontFamily: 'OpenSans',
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.secondaryColor,
+                      ),
+                    ),
+                    SizedBox(height: 11.h),
+                    Text(
+                      'Tugas kamu sudah berhasil dikirim. Tunggu Review dari pengajar untuk melihat nilai.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'OpenSans',
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.secondaryText,
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    GestureDetector(
+                      onTap: () => context.goNamed(RouteName.activity),
+                      child: Container(
+                        width: 146.w,
+                        height: 56.h,
+                        decoration: BoxDecoration(
+                          color: AppColors.mainColorSidigs,
+                          boxShadow: AppColors.shadow,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Kembali',
+                            style: TextStyle(
+                              fontFamily: 'OpenSans',
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Align(
+              alignment: AlignmentGeometry.topCenter,
+              child: Container(
+                width: 142.w,
+                height: 142.w,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: AppColors.mainColorSidigs,
+                    width: 12,
+                  ),
+                  color: Colors.white,
+                ),
+                child: Center(
+                  child: SizedBox(
+                    height: 110.w,
+                    width: 110.w,
+                    child: Image.asset(
+                      AssetsHelper.imgSuccess,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
