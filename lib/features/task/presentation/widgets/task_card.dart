@@ -143,7 +143,10 @@ class TaskCard extends StatelessWidget {
       case TaskStatus.assigned:
         return GestureDetector(
           onTap: () {
-            context.pushNamed(RouteName.detailTask);
+            context.pushNamed(
+              RouteName.detailTask,
+              pathParameters: {'id': entity.id.toString()},
+            );
           },
           child: Container(
             width: 64.h,

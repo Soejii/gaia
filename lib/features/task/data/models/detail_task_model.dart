@@ -7,7 +7,6 @@ part 'detail_task_model.freezed.dart';
 class DetailTaskModel with _$DetailTaskModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DetailTaskModel({
-    required int id,
     String? title,
     String? teacherNotes,
     String? studentNotes,
@@ -17,6 +16,7 @@ class DetailTaskModel with _$DetailTaskModel {
     String? startAt,
     String? finishAt,
     String? dateSubmit,
+    String? teacherName,
   }) = _DetailTaskModel;
 
   factory DetailTaskModel.fromJson(Map<String, dynamic> json) =>

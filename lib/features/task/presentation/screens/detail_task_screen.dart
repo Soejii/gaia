@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/task/presentation/providers/detail_task_controller.dart';
 import 'package:gaia/features/task/presentation/widgets/detail_task_header_widget.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class DetailTaskScreen extends StatelessWidget {
-  const DetailTaskScreen({super.key});
+class DetailTaskScreen extends ConsumerWidget {
+  const DetailTaskScreen({super.key, required this.idTask});
+  final int idTask;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final asnycTask = ref.watch(detailTaskControllerProvider(idTask));
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBarWidget(
@@ -19,7 +23,13 @@ class DetailTaskScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          const DetailTaskHeaderWidget(),
+          asnycTask.when(
+            data: (data) => DetailTaskHeaderWidget(
+              entity: data,
+            ),
+            error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+            loading: () => const CircularProgressIndicator(),
+          ),
           SizedBox(height: 7.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),

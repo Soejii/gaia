@@ -27,7 +27,7 @@ class TaskRemoteDataSource {
 
   Future<DetailTaskModel> getDetailTask(int id) async {
     final res = await _dio.get(
-      '/task/all',
+      '/task/detail/$id',
     );
     return DetailTaskModel.fromJson(res.data['data']);
   }

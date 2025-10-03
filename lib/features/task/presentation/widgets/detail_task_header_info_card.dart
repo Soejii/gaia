@@ -1,55 +1,20 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/features/task/domain/entities/detail_task_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
-class DetailTaskHeaderWidget extends StatelessWidget {
-  const DetailTaskHeaderWidget({
+class DetailTaskHeaderInfoCard extends StatelessWidget {
+  const DetailTaskHeaderInfoCard({
     super.key,
-    required this.entity
+    required this.icon,
+    required this.title,
+    required this.value,
   });
-  final DetailTaskEntity entity;
+  final IconData icon;
+  final String title;
+  final String value;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        boxShadow: AppColors.shadow,
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 24.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            infoCard(
-              Icons.calendar_month_rounded,
-              'Batas Pengumpulan',
-              entity.finishAt ?? 'Batas Pengumpulan Tidak Ditemukan',
-            ),
-            SizedBox(height: 8.h),
-            infoCard(
-              Icons.assignment_outlined,
-              'Judul Tugas',
-              entity.title ?? '-',
-            ),
-            SizedBox(height: 8.h),
-            infoCard(
-              Icons.person,
-              'Guru Pengajar',
-              entity.teacherName ?? '-',
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  infoCard(
-    IconData icon,
-    String title,
-    String value,
-  ) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

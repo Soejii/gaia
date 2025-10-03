@@ -20,7 +20,6 @@ DetailTaskModel _$DetailTaskModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DetailTaskModel {
-  int get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get teacherNotes => throw _privateConstructorUsedError;
   String? get studentNotes => throw _privateConstructorUsedError;
@@ -30,6 +29,7 @@ mixin _$DetailTaskModel {
   String? get startAt => throw _privateConstructorUsedError;
   String? get finishAt => throw _privateConstructorUsedError;
   String? get dateSubmit => throw _privateConstructorUsedError;
+  String? get teacherName => throw _privateConstructorUsedError;
 
   /// Serializes this DetailTaskModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,8 +48,7 @@ abstract class $DetailTaskModelCopyWith<$Res> {
       _$DetailTaskModelCopyWithImpl<$Res, DetailTaskModel>;
   @useResult
   $Res call(
-      {int id,
-      String? title,
+      {String? title,
       String? teacherNotes,
       String? studentNotes,
       String? file,
@@ -57,7 +56,8 @@ abstract class $DetailTaskModelCopyWith<$Res> {
       String? instruction,
       String? startAt,
       String? finishAt,
-      String? dateSubmit});
+      String? dateSubmit,
+      String? teacherName});
 }
 
 /// @nodoc
@@ -75,7 +75,6 @@ class _$DetailTaskModelCopyWithImpl<$Res, $Val extends DetailTaskModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? title = freezed,
     Object? teacherNotes = freezed,
     Object? studentNotes = freezed,
@@ -85,12 +84,9 @@ class _$DetailTaskModelCopyWithImpl<$Res, $Val extends DetailTaskModel>
     Object? startAt = freezed,
     Object? finishAt = freezed,
     Object? dateSubmit = freezed,
+    Object? teacherName = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -127,6 +123,10 @@ class _$DetailTaskModelCopyWithImpl<$Res, $Val extends DetailTaskModel>
           ? _value.dateSubmit
           : dateSubmit // ignore: cast_nullable_to_non_nullable
               as String?,
+      teacherName: freezed == teacherName
+          ? _value.teacherName
+          : teacherName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -140,8 +140,7 @@ abstract class _$$DetailTaskModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String? title,
+      {String? title,
       String? teacherNotes,
       String? studentNotes,
       String? file,
@@ -149,7 +148,8 @@ abstract class _$$DetailTaskModelImplCopyWith<$Res>
       String? instruction,
       String? startAt,
       String? finishAt,
-      String? dateSubmit});
+      String? dateSubmit,
+      String? teacherName});
 }
 
 /// @nodoc
@@ -165,7 +165,6 @@ class __$$DetailTaskModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? title = freezed,
     Object? teacherNotes = freezed,
     Object? studentNotes = freezed,
@@ -175,12 +174,9 @@ class __$$DetailTaskModelImplCopyWithImpl<$Res>
     Object? startAt = freezed,
     Object? finishAt = freezed,
     Object? dateSubmit = freezed,
+    Object? teacherName = freezed,
   }) {
     return _then(_$DetailTaskModelImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -217,6 +213,10 @@ class __$$DetailTaskModelImplCopyWithImpl<$Res>
           ? _value.dateSubmit
           : dateSubmit // ignore: cast_nullable_to_non_nullable
               as String?,
+      teacherName: freezed == teacherName
+          ? _value.teacherName
+          : teacherName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -226,8 +226,7 @@ class __$$DetailTaskModelImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$DetailTaskModelImpl implements _DetailTaskModel {
   const _$DetailTaskModelImpl(
-      {required this.id,
-      this.title,
+      {this.title,
       this.teacherNotes,
       this.studentNotes,
       this.file,
@@ -235,13 +234,12 @@ class _$DetailTaskModelImpl implements _DetailTaskModel {
       this.instruction,
       this.startAt,
       this.finishAt,
-      this.dateSubmit});
+      this.dateSubmit,
+      this.teacherName});
 
   factory _$DetailTaskModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$DetailTaskModelImplFromJson(json);
 
-  @override
-  final int id;
   @override
   final String? title;
   @override
@@ -260,10 +258,12 @@ class _$DetailTaskModelImpl implements _DetailTaskModel {
   final String? finishAt;
   @override
   final String? dateSubmit;
+  @override
+  final String? teacherName;
 
   @override
   String toString() {
-    return 'DetailTaskModel(id: $id, title: $title, teacherNotes: $teacherNotes, studentNotes: $studentNotes, file: $file, score: $score, instruction: $instruction, startAt: $startAt, finishAt: $finishAt, dateSubmit: $dateSubmit)';
+    return 'DetailTaskModel(title: $title, teacherNotes: $teacherNotes, studentNotes: $studentNotes, file: $file, score: $score, instruction: $instruction, startAt: $startAt, finishAt: $finishAt, dateSubmit: $dateSubmit, teacherName: $teacherName)';
   }
 
   @override
@@ -271,7 +271,6 @@ class _$DetailTaskModelImpl implements _DetailTaskModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DetailTaskModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.teacherNotes, teacherNotes) ||
                 other.teacherNotes == teacherNotes) &&
@@ -285,13 +284,25 @@ class _$DetailTaskModelImpl implements _DetailTaskModel {
             (identical(other.finishAt, finishAt) ||
                 other.finishAt == finishAt) &&
             (identical(other.dateSubmit, dateSubmit) ||
-                other.dateSubmit == dateSubmit));
+                other.dateSubmit == dateSubmit) &&
+            (identical(other.teacherName, teacherName) ||
+                other.teacherName == teacherName));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, teacherNotes,
-      studentNotes, file, score, instruction, startAt, finishAt, dateSubmit);
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      teacherNotes,
+      studentNotes,
+      file,
+      score,
+      instruction,
+      startAt,
+      finishAt,
+      dateSubmit,
+      teacherName);
 
   /// Create a copy of DetailTaskModel
   /// with the given fields replaced by the non-null parameter values.
@@ -312,8 +323,7 @@ class _$DetailTaskModelImpl implements _DetailTaskModel {
 
 abstract class _DetailTaskModel implements DetailTaskModel {
   const factory _DetailTaskModel(
-      {required final int id,
-      final String? title,
+      {final String? title,
       final String? teacherNotes,
       final String? studentNotes,
       final String? file,
@@ -321,13 +331,12 @@ abstract class _DetailTaskModel implements DetailTaskModel {
       final String? instruction,
       final String? startAt,
       final String? finishAt,
-      final String? dateSubmit}) = _$DetailTaskModelImpl;
+      final String? dateSubmit,
+      final String? teacherName}) = _$DetailTaskModelImpl;
 
   factory _DetailTaskModel.fromJson(Map<String, dynamic> json) =
       _$DetailTaskModelImpl.fromJson;
 
-  @override
-  int get id;
   @override
   String? get title;
   @override
@@ -346,6 +355,8 @@ abstract class _DetailTaskModel implements DetailTaskModel {
   String? get finishAt;
   @override
   String? get dateSubmit;
+  @override
+  String? get teacherName;
 
   /// Create a copy of DetailTaskModel
   /// with the given fields replaced by the non-null parameter values.

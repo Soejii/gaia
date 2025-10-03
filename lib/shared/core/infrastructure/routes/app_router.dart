@@ -203,9 +203,12 @@ GoRouter appRouter(Ref ref) {
                   ),
                   GoRoute(
                     parentNavigatorKey: _rootKey,
-                    path: 'detail-task',
+                    path: 'detail-task/:id',
                     name: RouteName.detailTask,
-                    builder: (context, state) => const DetailTaskScreen(),
+                    builder: (context, state) {
+                      final id = state.pathParameters['id']!;
+                      return DetailTaskScreen(idTask: int.parse(id));
+                    },
                     routes: [
                       GoRoute(
                         path: 'collect-task',
