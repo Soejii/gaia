@@ -4,6 +4,7 @@ import 'package:gaia/features/task/data/task_repository_impl.dart';
 import 'package:gaia/features/task/domain/task_repository.dart';
 import 'package:gaia/features/task/domain/usecase/get_detail_task_usecase.dart';
 import 'package:gaia/features/task/domain/usecase/get_list_task_usecase.dart';
+import 'package:gaia/features/task/domain/usecase/submit_task_usecase.dart';
 import 'package:gaia/shared/core/infrastructure/network/dio_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -33,6 +34,13 @@ GetListTaskUsecase getListTaskUsecase(Ref ref) {
 @riverpod
 GetDetailTaskUsecase getDetailTaskUsecase(Ref ref) {
   return GetDetailTaskUsecase(
+    ref.watch(taskRepositoryProvider),
+  );
+}
+
+@riverpod
+SubmitTaskUsecase submitTaskUsecase(Ref ref) {
+  return SubmitTaskUsecase(
     ref.watch(taskRepositoryProvider),
   );
 }

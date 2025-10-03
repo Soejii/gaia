@@ -80,5 +80,23 @@ final getDetailTaskUsecaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef GetDetailTaskUsecaseRef = AutoDisposeProviderRef<GetDetailTaskUsecase>;
+String _$submitTaskUsecaseHash() => r'd464b47a166040721ac517f16b15b983bb34b86e';
+
+/// See also [submitTaskUsecase].
+@ProviderFor(submitTaskUsecase)
+final submitTaskUsecaseProvider =
+    AutoDisposeProvider<SubmitTaskUsecase>.internal(
+  submitTaskUsecase,
+  name: r'submitTaskUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$submitTaskUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef SubmitTaskUsecaseRef = AutoDisposeProviderRef<SubmitTaskUsecase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:gaia/features/task/data/datasources/task_remote_data_source.dart';
 import 'package:gaia/features/task/data/mapper/detail_task_mapper.dart';
 import 'package:gaia/features/task/data/mapper/task_mapper.dart';
@@ -27,6 +29,14 @@ class TaskRepositoryImpl implements TaskRepository {
         () async {
           final models = await _dataSource.getDetailTask(idTask);
           return models.toEntity();
+        },
+      );
+
+  @override
+  Future<Result<Unit>> submitTask(int taskId, File file, String note) => guard(
+        () async {
+          await _dataSource.submitTask(taskId, file, note);
+          return const Unit();
         },
       );
 }
