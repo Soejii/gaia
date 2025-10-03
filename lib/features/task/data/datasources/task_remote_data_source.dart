@@ -48,7 +48,7 @@ class TaskRemoteDataSource {
     });
 
     await _dio.post(
-      "/api/student/task/submit/$taskId",
+      "/task/submit/$taskId",
       data: formData,
       options: Options(headers: {
         "Content-Type": "multipart/form-data",
