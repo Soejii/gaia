@@ -7,7 +7,7 @@ part 'contact_model.g.dart';
 class ContactModel with _$ContactModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory ContactModel({
-    required int userId,
+    int? userId,
     String? role,
     @JsonKey(name: 'class') String? className,
     String? name,

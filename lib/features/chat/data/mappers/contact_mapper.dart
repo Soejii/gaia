@@ -4,7 +4,7 @@ import 'package:gaia/features/chat/domain/type/chat_role.dart';
 
 extension ContactMapper on ContactModel {
   ContactEntity toEntity() => ContactEntity(
-        id: userId,
+        id: userId ?? 0,
         role: ChatRole.fromString(role) ?? ChatRole.unknown,
         className: className,
         name: name,

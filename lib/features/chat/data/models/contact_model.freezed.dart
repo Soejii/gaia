@@ -20,7 +20,7 @@ ContactModel _$ContactModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ContactModel {
-  int get userId => throw _privateConstructorUsedError;
+  int? get userId => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
   @JsonKey(name: 'class')
   String? get className => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $ContactModelCopyWith<$Res> {
       _$ContactModelCopyWithImpl<$Res, ContactModel>;
   @useResult
   $Res call(
-      {int userId,
+      {int? userId,
       String? role,
       @JsonKey(name: 'class') String? className,
       String? name,
@@ -66,17 +66,17 @@ class _$ContactModelCopyWithImpl<$Res, $Val extends ContactModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
+    Object? userId = freezed,
     Object? role = freezed,
     Object? className = freezed,
     Object? name = freezed,
     Object? photo = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: null == userId
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -106,7 +106,7 @@ abstract class _$$ContactModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int userId,
+      {int? userId,
       String? role,
       @JsonKey(name: 'class') String? className,
       String? name,
@@ -126,17 +126,17 @@ class __$$ContactModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
+    Object? userId = freezed,
     Object? role = freezed,
     Object? className = freezed,
     Object? name = freezed,
     Object? photo = freezed,
   }) {
     return _then(_$ContactModelImpl(
-      userId: null == userId
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -162,7 +162,7 @@ class __$$ContactModelImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$ContactModelImpl implements _ContactModel {
   const _$ContactModelImpl(
-      {required this.userId,
+      {this.userId,
       this.role,
       @JsonKey(name: 'class') this.className,
       this.name,
@@ -172,7 +172,7 @@ class _$ContactModelImpl implements _ContactModel {
       _$$ContactModelImplFromJson(json);
 
   @override
-  final int userId;
+  final int? userId;
   @override
   final String? role;
   @override
@@ -224,7 +224,7 @@ class _$ContactModelImpl implements _ContactModel {
 
 abstract class _ContactModel implements ContactModel {
   const factory _ContactModel(
-      {required final int userId,
+      {final int? userId,
       final String? role,
       @JsonKey(name: 'class') final String? className,
       final String? name,
@@ -234,7 +234,7 @@ abstract class _ContactModel implements ContactModel {
       _$ContactModelImpl.fromJson;
 
   @override
-  int get userId;
+  int? get userId;
   @override
   String? get role;
   @override
