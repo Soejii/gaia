@@ -53,7 +53,7 @@ class ContactTabBar extends StatelessWidget {
                         EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                     child: Center(
                       child: Text(
-                        role.displayName,
+                        role.label,
                         style: TextStyle(
                           fontFamily: 'OpenSans',
                           fontSize: 12.sp,

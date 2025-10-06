@@ -21,7 +21,6 @@ class ContactListItem extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 12.h),
         child: Row(
           children: [
-            // Avatar
             CircleAvatar(
               radius: 24.r,
               backgroundColor: Colors.grey[200],
@@ -40,12 +39,10 @@ class ContactListItem extends StatelessWidget {
 
             SizedBox(width: 12.w),
 
-            // Contact info
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Name
                   if (contact.name != null && contact.name!.isNotEmpty)
                     Text(
                       contact.name!,
@@ -60,8 +57,6 @@ class ContactListItem extends StatelessWidget {
 
                   if (contact.name != null && contact.name!.isNotEmpty)
                     SizedBox(height: 4.h),
-
-                  // Class
                   if (contact.className != null &&
                       contact.className!.isNotEmpty &&
                       contact.className != '-')

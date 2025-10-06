@@ -2,20 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gaia/features/chat/domain/type/chat_role.dart';
 import 'package:gaia/features/chat/presentation/providers/contact_controller.dart';
 import 'package:gaia/features/chat/presentation/widgets/contact_list_item.dart';
 import 'package:gaia/features/chat/presentation/widgets/contact_tab_bar.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
+import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 
 class ContactPickerScreen extends HookConsumerWidget {
   const ContactPickerScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final contactAsync = ref.watch(contactControllerProvider);
-    final controller = ref.read(contactControllerProvider.notifier);
     final selectedRole = useState<ChatRole>(ChatRole.student);
+    final contactAsync = ref.watch(contactControllerProvider(selectedRole.value));
+    final controller = ref.read(contactControllerProvider(selectedRole.value).notifier);
+    final scrollController = useScrollController();
+
+    useEffect(() {
+      void onScroll() {
+        if (scrollController.position.extentAfter < 200) {
+          final currentData = ref.read(contactControllerProvider(selectedRole.value)).asData?.value;
+          if (currentData != null && currentData.hasMore && !currentData.isMoreLoading) {
+            controller.loadMore();
+          }
+        }
+      }
+
+      scrollController.addListener(onScroll);
+      return () => scrollController.removeListener(onScroll);
+    }, [scrollController, selectedRole.value]);
 
     return Scaffold(
       appBar: const CustomAppBarWidget(
@@ -33,11 +50,9 @@ class ContactPickerScreen extends HookConsumerWidget {
           Expanded(
             child: contactAsync.when(
               data: (pagedContacts) {
-                final filteredContacts = pagedContacts.items
-                    .where((contact) => contact.role == selectedRole.value)
-                    .toList();
+                final contacts = pagedContacts.items;
 
-                if (filteredContacts.isEmpty) {
+                if (contacts.isEmpty) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
@@ -48,8 +63,10 @@ class ContactPickerScreen extends HookConsumerWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: ListView.separated(
-                      itemCount: filteredContacts.length,
+                      controller: scrollController,
+                      itemCount: contacts.length + (pagedContacts.hasMore ? 1 : 0),
                       separatorBuilder: (context, index) {
+                        if (index >= contacts.length) return const SizedBox.shrink();
                         return Divider(
                           color: Colors.grey[300],
                           thickness: 1,
@@ -57,12 +74,21 @@ class ContactPickerScreen extends HookConsumerWidget {
                         );
                       },
                       itemBuilder: (context, index) {
-                        final contact = filteredContacts[index];
+                        if (index >= contacts.length) {
+                          return const Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: Center(child: CircularProgressIndicator()),
+                          );
+                        }
+
+                        final contact = contacts[index];
                         return ContactListItem(
                           contact: contact,
                           onTap: () {
-                            // TODO: Navigate to chat detail with selected contact
-                            Navigator.pop(context);
+                            context.goNamed(
+                              RouteName.chatDetail,
+                              pathParameters: {'userId': contact.id.toString()},
+                            );
                           },
                         );
                       },
@@ -77,7 +103,7 @@ class ContactPickerScreen extends HookConsumerWidget {
                   children: [
                     Text('Error: $error'),
                     ElevatedButton(
-                      onPressed: () => ref.refresh(contactControllerProvider),
+                      onPressed: () => ref.refresh(contactControllerProvider(selectedRole.value)),
                       child: const Text('Coba Lagi'),
                     ),
                   ],

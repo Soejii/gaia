@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:gaia/features/chat/domain/entities/chat_entity.dart';
@@ -9,32 +8,19 @@ part 'chat_controller.g.dart';
 
 @riverpod
 class ChatController extends _$ChatController {
-  Timer? _ttl;
-  KeepAliveLink? _link;
-  
   int page = 1;
   static const _pageSize = 10;
   bool _loadingMore = false;
 
   @override
   AsyncValue<Paged<ChatEntity>> build() {
-    _link ??= ref.keepAlive();
-    ref.onCancel(() {
-      _ttl = Timer(const Duration(minutes: 5), () {
-        _link?.close();
-        _link = null;
-      });
-    });
-    ref.onResume(() => _ttl?.cancel());
-    ref.onDispose(() => _ttl?.cancel());
-    
-    _firstLoad(); // kick first page
-    return const AsyncLoading(); // so UI can use `.when(loading: ...)`
+    _firstLoad();
+    return const AsyncLoading();
   }
 
   Future<List<ChatEntity>> _fetch(int page) async {
     final uc = ref.read(getListChatUsecaseProvider);
-    final either = await uc.getListChats(page: page);
+    final either = await uc.getListChats(page);
     return either.fold((e) => throw e, (list) => list);
   }
 
@@ -69,7 +55,6 @@ class ChatController extends _$ChatController {
       );
       state = AsyncValue.data(updated);
     } catch (e, st) {
-      // keep previous list, surface error on state
       state = AsyncValue<Paged<ChatEntity>>.error(e, st).copyWithPrevious(state);
     } finally {
       _loadingMore = false;

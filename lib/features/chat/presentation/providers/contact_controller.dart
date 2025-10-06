@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gaia/features/chat/domain/entities/contact_entity.dart';
+import 'package:gaia/features/chat/domain/type/chat_role.dart';
 import 'package:gaia/features/chat/presentation/providers/chat_providers.dart';
 import 'package:gaia/shared/presentation/paged.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -9,15 +10,15 @@ part 'contact_controller.g.dart';
 
 @riverpod
 class ContactController extends _$ContactController {
-  Timer? _ttl; // for optional TTL keepAlive
+  Timer? _ttl;
   KeepAliveLink? _link;
 
   int page = 1;
-  static const _pageSize = 100;
+  static const _pageSize = 10;
   bool _loadingMore = false;
 
   @override
-  AsyncValue<Paged<ContactEntity>> build() {
+  AsyncValue<Paged<ContactEntity>> build(ChatRole role) {
     _link ??= ref.keepAlive();
     ref.onCancel(() {
       _ttl = Timer(const Duration(minutes: 5), () {
@@ -27,13 +28,13 @@ class ContactController extends _$ContactController {
     });
     ref.onResume(() => _ttl?.cancel());
     ref.onDispose(() => _ttl?.cancel());
-    _firstLoad(); // kick first page
-    return const AsyncLoading(); // so UI can use `.when(loading: ...)`
+    _firstLoad();
+    return const AsyncLoading();
   }
 
   Future<List<ContactEntity>> _fetch(int page) async {
     final uc = ref.read(getContactsUsecaseProvider);
-    final either = await uc.getContact(page: page);
+    final either = await uc.getContact(role.displayName, page);
     return either.fold((e) => throw e, (list) => list);
   }
 
@@ -49,11 +50,7 @@ class ContactController extends _$ContactController {
     });
   }
 
-  Future<void> refresh() async {
-    page = 1;
-    _loadingMore = false;
-    await _firstLoad();
-  }
+  Future<void> refresh() async => _firstLoad();
 
   Future<void> loadMore() async {
     final data = state.asData?.value;
@@ -71,8 +68,8 @@ class ContactController extends _$ContactController {
         isMoreLoading: false,
       );
       state = AsyncValue.data(updated);
+      page = next;
     } catch (e, st) {
-      // keep previous list, surface error on state
       state =
           AsyncValue<Paged<ContactEntity>>.error(e, st).copyWithPrevious(state);
     } finally {

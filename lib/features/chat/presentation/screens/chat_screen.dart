@@ -54,15 +54,19 @@ class ChatScreen extends ConsumerWidget {
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: NotificationListener<ScrollNotification>(
                 onNotification: (ScrollNotification scrollInfo) {
-                  if (scrollInfo.metrics.pixels >= scrollInfo.metrics.maxScrollExtent - 200) {
+                  if (scrollInfo.metrics.pixels >=
+                      scrollInfo.metrics.maxScrollExtent - 200) {
                     controller.loadMore();
                   }
                   return false;
                 },
                 child: ListView.separated(
-                  itemCount: pagedChats.items.length + (pagedChats.hasMore ? 1 : 0),
+                  itemCount:
+                      pagedChats.items.length + (pagedChats.hasMore ? 1 : 0),
                   separatorBuilder: (context, index) {
-                    if (index >= pagedChats.items.length) return const SizedBox.shrink();
+                    if (index >= pagedChats.items.length) {
+                      return const SizedBox.shrink();
+                    }
                     return Divider(
                       color: Colors.grey[300],
                       thickness: 1,
@@ -70,7 +74,6 @@ class ChatScreen extends ConsumerWidget {
                     );
                   },
                   itemBuilder: (context, index) {
-                    // Loading indicator di bottom
                     if (index >= pagedChats.items.length) {
                       return pagedChats.isMoreLoading == true
                           ? const Padding(
@@ -79,7 +82,7 @@ class ChatScreen extends ConsumerWidget {
                             )
                           : const SizedBox.shrink();
                     }
-                    
+
                     final chat = pagedChats.items[index];
                     return ChatListItem(chat: chat);
                   },
