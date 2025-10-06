@@ -170,22 +170,30 @@ class TaskCard extends StatelessWidget {
           ),
         );
       case TaskStatus.review:
-        return Container(
-          width: 64.h,
-          height: 64.h,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: Colors.white, width: 6.w),
-            color: const Color.fromRGBO(255, 122, 0, 1),
-          ),
-          child: Center(
-            child: Text(
-              'Review',
-              style: TextStyle(
-                fontFamily: 'OpenSans',
-                fontSize: 11.sp,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
+        return GestureDetector(
+          onTap: () {
+            context.pushNamed(
+              RouteName.detailTask,
+              pathParameters: {'id': entity.id.toString()},
+            );
+          },
+          child: Container(
+            width: 64.h,
+            height: 64.h,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.white, width: 6.w),
+              color: const Color.fromRGBO(255, 122, 0, 1),
+            ),
+            child: Center(
+              child: Text(
+                'Review',
+                style: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 11.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),

@@ -2,16 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/task/domain/entities/detail_task_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:intl/intl.dart';
 
 class DetailTaskHeaderWidget extends StatelessWidget {
-  const DetailTaskHeaderWidget({
-    super.key,
-    required this.entity
-  });
+  const DetailTaskHeaderWidget({super.key, required this.entity});
   final DetailTaskEntity entity;
 
   @override
   Widget build(BuildContext context) {
+    String formatDate(String? dateStr) {
+      try {
+        final formatter = DateFormat('d MMMM yyyy, HH:mm', 'id_ID');
+        return formatter.format(DateTime.parse(dateStr ?? ''));
+      } catch (_) {
+        return 'Batas Pengumpulan Tidak Ditemukan';
+      }
+    }
+
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -25,7 +32,7 @@ class DetailTaskHeaderWidget extends StatelessWidget {
             infoCard(
               Icons.calendar_month_rounded,
               'Batas Pengumpulan',
-              entity.finishAt ?? 'Batas Pengumpulan Tidak Ditemukan',
+              formatDate(entity.finishAt),
             ),
             SizedBox(height: 8.h),
             infoCard(
@@ -73,7 +80,7 @@ class DetailTaskHeaderWidget extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(width: 60.w),
+        SizedBox(width: 40.w),
         Flexible(
           child: Text(
             value,

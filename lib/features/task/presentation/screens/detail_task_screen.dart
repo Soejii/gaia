@@ -17,6 +17,12 @@ class DetailTaskScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asnycTask = ref.watch(detailTaskControllerProvider(idTask));
+
+    bool hasSurpassedDateFromString(String dateString) {
+      final targetDate = DateTime.parse(dateString);
+      return DateTime.now().isAfter(targetDate);
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBarWidget(
@@ -117,24 +123,32 @@ class DetailTaskScreen extends ConsumerWidget {
                 },
               );
             },
-            child: Container(
-              width: double.infinity,
-              height: 56.h,
-              decoration: BoxDecoration(
-                color: AppColors.mainColorSidigs,
-                boxShadow: AppColors.shadow,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Center(
-                child: Text(
-                  'Kerjakan',
-                  style: TextStyle(
-                    fontFamily: 'OpenSans',
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
+            child: asnycTask.when(
+              data: (data) => Container(
+                width: double.infinity,
+                height: 56.h,
+                decoration: BoxDecoration(
+                  color: hasSurpassedDateFromString(data.finishAt ?? '')
+                      ? AppColors.inactiveColor
+                      : AppColors.mainColorSidigs,
+                  boxShadow: AppColors.shadow,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Center(
+                  child: Text(
+                    'Kerjakan',
+                    style: TextStyle(
+                      fontFamily: 'OpenSans',
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
+              ),
+              error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
               ),
             ),
           ),
