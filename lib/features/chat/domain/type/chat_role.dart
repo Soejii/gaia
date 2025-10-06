@@ -7,6 +7,17 @@ enum ChatRole {
   String get displayName {
     switch (this) {
       case ChatRole.student:
+        return 'student';
+      case ChatRole.teacher:
+        return 'teacher';
+      case ChatRole.unknown:
+        return 'unknown';
+    }
+  }
+
+  String get label {
+    switch (this) {
+      case ChatRole.student:
         return 'Murid';
       case ChatRole.teacher:
         return 'Guru';

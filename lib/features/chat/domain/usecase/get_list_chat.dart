@@ -6,7 +6,7 @@ class GetListChatUsecase {
   final ChatRepository _repository;
   GetListChatUsecase(this._repository);
 
-  Future<Result<List<ChatEntity>>> getListChats({int page = 1}) async {
-    return await _repository.getListChats(page: page);
+  Future<Result<List<ChatEntity>>> getListChats(int page) async {
+    return await _repository.getListChats(page);
   }
 }

@@ -7,7 +7,7 @@ class GetContactsUsecase {
 
   GetContactsUsecase(this._repository);
 
-  Future<Result<List<ContactEntity>>> getContact({int page = 1}) {
-    return _repository.getContacts(page: page);
+  Future<Result<List<ContactEntity>>> getContact(String role, int page) {
+    return _repository.getContacts(role, page);
   }
 }
