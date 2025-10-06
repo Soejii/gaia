@@ -13,6 +13,7 @@ import 'package:gaia/features/balances/presentation/screens/balance_screen.dart'
 import 'package:gaia/features/balances/presentation/screens/balance_history_screen.dart';
 import 'package:gaia/features/chat/presentation/screens/chat_screen.dart';
 import 'package:gaia/features/chat/presentation/screens/contact_picker_screen.dart';
+import 'package:gaia/features/chat/presentation/screens/chat_detail_screen.dart';
 import 'package:gaia/features/edutainment/presentation/screens/detail_edutainment_screen.dart';
 import 'package:gaia/features/edutainment/presentation/screens/list_edutainment_screen.dart';
 import 'package:gaia/features/home/presentation/home_screen.dart';
@@ -217,6 +218,15 @@ GoRouter appRouter(Ref ref) {
                     name: RouteName.contactPicker,
                     parentNavigatorKey: _rootKey,
                     builder: (_, __) => const ContactPickerScreen(),
+                  ),
+                  GoRoute(
+                    path: 'messages/:userId',
+                    name: RouteName.chatDetail,
+                    parentNavigatorKey: _rootKey,
+                    builder: (context, state) {
+                      final userId = int.parse(state.pathParameters['userId']!);
+                      return ChatDetailScreen(userId: userId);
+                    },
                   ),
                 ],
               ),

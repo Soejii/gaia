@@ -34,6 +34,7 @@ class RouteName {
 
   static const chat = 'chat';
   static const contactPicker = 'contact-picker';
+  static const chatDetail = 'chat-detail';
 
   static const schoolInformation = 'school-information';
 }
