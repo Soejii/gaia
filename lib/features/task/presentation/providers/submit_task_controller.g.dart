@@ -7,7 +7,7 @@ part of 'submit_task_controller.dart';
 // **************************************************************************
 
 String _$submitTaskControllerHash() =>
-    r'b745c8c8c1fa8fc0facf6a2f4454d15050d145ce';
+    r'19a257351a35c4606bb0a69491904b9227aa68a0';
 
 /// Copied from Dart SDK
 class _SystemHash {
