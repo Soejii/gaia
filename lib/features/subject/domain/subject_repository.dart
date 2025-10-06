@@ -1,5 +1,5 @@
 import 'package:gaia/features/activity/domain/entities/exam_entity.dart';
-import 'package:gaia/features/activity/domain/entities/task_entity.dart';
+import 'package:gaia/features/task/domain/entities/task_entity.dart';
 import 'package:gaia/features/activity/domain/type/exam_type.dart';
 import 'package:gaia/features/subject/domain/entities/detail_sub_module_entity.dart';
 import 'package:gaia/features/subject/domain/entities/media_entity.dart';

@@ -11,6 +11,9 @@ class RouteName {
   static const subjectPicker = 'subject-picker';
   static const detailSubject = 'detail-subject';
 
+  static const detailTask = 'detail-task';
+  static const collectTask = 'collect-task';
+
   static const detailSubModule = 'detail-sub-module';
 
   static const chooseDiscussion = 'choose-discussion';

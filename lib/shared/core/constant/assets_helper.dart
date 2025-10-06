@@ -7,6 +7,7 @@ class AssetsHelper {
   static String imgTask = img("img_task.png");
   static String imgQuiz = img("img_quiz.png");
   static String imgLogoTransparant = img("img_logo_transparant.png");
+  static String imgUpload = img('img_upload.png');
 
   static String imgHomeButtonMapel = img("img_home_mapel.png");
   static String imgHomeButtonDiskusi = img("img_home_diskusi.png");
@@ -47,6 +48,8 @@ class AssetsHelper {
   static String imgMediaVideo = img("img_media_video.png");
 
   static String imgDataNotFound = img('img_data_not_found.png');
+
+  static String imgSuccess = img('img_done.png');
 
   static String icHome = icon('ic_beranda_home.svg');
   static String icActivity = icon('ic_activity_home.svg');

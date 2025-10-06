@@ -1,7 +1,7 @@
 import 'package:gaia/features/activity/data/mappers/exam_mapper.dart';
-import 'package:gaia/features/activity/data/mappers/task_mapper.dart';
+import 'package:gaia/features/task/data/mapper/task_mapper.dart';
 import 'package:gaia/features/activity/domain/entities/exam_entity.dart';
-import 'package:gaia/features/activity/domain/entities/task_entity.dart';
+import 'package:gaia/features/task/domain/entities/task_entity.dart';
 import 'package:gaia/features/activity/domain/type/exam_type.dart';
 import 'package:gaia/features/subject/data/datasources/subject_remote_data_source.dart';
 import 'package:gaia/features/subject/data/mapper/detail_sub_module_mapper.dart';

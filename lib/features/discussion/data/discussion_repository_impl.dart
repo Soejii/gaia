@@ -47,9 +47,8 @@ class DiscussionRepositoryImpl implements DiscussionRepository {
         },
       );
 
-        @override
-  Future<Result<Unit>> createComment(String text, int discussionId) =>
-      guard(
+  @override
+  Future<Result<Unit>> createComment(String text, int discussionId) => guard(
         () async {
           await _dataSource.createComment(text, discussionId);
           return const Unit();
