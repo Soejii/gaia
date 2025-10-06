@@ -11,6 +11,8 @@ import 'package:gaia/features/discussion/presentation/screen/detail_discussion_s
 import 'package:gaia/features/balances/domain/type/balance_type.dart';
 import 'package:gaia/features/balances/presentation/screens/balance_screen.dart';
 import 'package:gaia/features/balances/presentation/screens/balance_history_screen.dart';
+import 'package:gaia/features/chat/presentation/screens/chat_screen.dart';
+import 'package:gaia/features/chat/presentation/screens/contact_picker_screen.dart';
 import 'package:gaia/features/edutainment/presentation/screens/detail_edutainment_screen.dart';
 import 'package:gaia/features/edutainment/presentation/screens/list_edutainment_screen.dart';
 import 'package:gaia/features/home/presentation/home_screen.dart';
@@ -197,6 +199,26 @@ GoRouter appRouter(Ref ref) {
                 name: RouteName.activity,
                 pageBuilder: (_, __) =>
                     const MaterialPage(child: ActivityScreen()),
+              ),
+            ],
+          ),
+
+          // CHAT BRANCH
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/chat',
+                name: RouteName.chat,
+                pageBuilder: (_, __) =>
+                    const MaterialPage(child: ChatScreen()),
+                routes: [
+                  GoRoute(
+                    path: 'contact-picker',
+                    name: RouteName.contactPicker,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, __) => const ContactPickerScreen(),
+                  ),
+                ],
               ),
             ],
           ),

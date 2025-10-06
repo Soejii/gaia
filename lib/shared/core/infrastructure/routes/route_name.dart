@@ -32,5 +32,8 @@ class RouteName {
 
   static const activity = 'activity';
 
+  static const chat = 'chat';
+  static const contactPicker = 'contact-picker';
+
   static const schoolInformation = 'school-information';
 }
