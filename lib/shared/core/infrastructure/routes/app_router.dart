@@ -220,12 +220,14 @@ GoRouter appRouter(Ref ref) {
                     builder: (_, __) => const ContactPickerScreen(),
                   ),
                   GoRoute(
-                    path: 'messages/:userId',
+                    path: 'detail-chat/:userId',
                     name: RouteName.chatDetail,
                     parentNavigatorKey: _rootKey,
-                    builder: (context, state) {
-                      final userId = int.parse(state.pathParameters['userId']!);
-                      return ChatDetailScreen(userId: userId);
+                    builder: (_, state) {
+                      final userId = state.pathParameters['userId']!;
+                      return ChatDetailScreen(
+                        userId: int.parse(userId),
+                      );
                     },
                   ),
                 ],
