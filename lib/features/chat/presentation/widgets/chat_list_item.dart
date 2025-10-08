@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gaia/features/chat/domain/entities/chat_entity.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:gaia/features/chat/domain/entity/chat_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:intl/intl.dart';
 
-class ChatListItem extends StatelessWidget {
+class ChatListItem extends ConsumerWidget {
   final ChatEntity chat;
 
   const ChatListItem({
@@ -15,10 +16,10 @@ class ChatListItem extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: () {
-        context.goNamed(
+        context.pushNamed(
           RouteName.chatDetail,
           pathParameters: {'userId': chat.id.toString()},
         );

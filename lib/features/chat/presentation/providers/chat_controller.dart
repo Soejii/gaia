@@ -1,6 +1,7 @@
+import 'dart:async';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:gaia/features/chat/domain/entities/chat_entity.dart';
+import 'package:gaia/features/chat/domain/entity/chat_entity.dart';
 import 'package:gaia/features/chat/presentation/providers/chat_providers.dart';
 import 'package:gaia/shared/presentation/paged.dart';
 
@@ -8,13 +9,32 @@ part 'chat_controller.g.dart';
 
 @riverpod
 class ChatController extends _$ChatController {
+  Timer? _refreshTimer;
+  KeepAliveLink? _link;
   int page = 1;
   static const _pageSize = 10;
   bool _loadingMore = false;
+  bool _isAutoRefreshEnabled = false;
 
   @override
   AsyncValue<Paged<ChatEntity>> build() {
+    _link ??= ref.keepAlive();
+    ref.onCancel(() {
+      _refreshTimer?.cancel();
+      _isAutoRefreshEnabled = false;
+      final timer = Timer(const Duration(minutes: 5), () {
+        _link?.close();
+        _link = null;
+      });
+    });
+    ref.onResume(() {
+      startAutoRefresh();
+    });
+    ref.onDispose(() {
+      _refreshTimer?.cancel();
+    });
     _firstLoad();
+    startAutoRefresh();
     return const AsyncLoading();
   }
 
@@ -58,6 +78,38 @@ class ChatController extends _$ChatController {
       state = AsyncValue<Paged<ChatEntity>>.error(e, st).copyWithPrevious(state);
     } finally {
       _loadingMore = false;
+    }
+  }
+
+  void startAutoRefresh() {
+    if (_isAutoRefreshEnabled) return;
+    _isAutoRefreshEnabled = true;
+    _refreshTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      if (_isAutoRefreshEnabled && state.hasValue) {
+        _silentRefresh();
+      }
+    });
+  }
+
+  void stopAutoRefresh() {
+    _isAutoRefreshEnabled = false;
+    _refreshTimer?.cancel();
+    _refreshTimer = null;
+  }
+
+  Future<void> _silentRefresh() async {
+    try {
+      final items = await _fetch(1);
+      final data = state.asData?.value;
+      if (data != null) {
+        final updated = data.copyWith(
+          items: items,
+          page: 1,
+          hasMore: items.length >= _pageSize,
+        );
+        state = AsyncValue.data(updated);
+      }
+    } catch (_) {
     }
   }
 }

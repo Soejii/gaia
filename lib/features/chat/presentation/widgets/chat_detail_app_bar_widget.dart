@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gaia/features/chat/domain/entities/contact_entity.dart';
+import 'package:gaia/features/chat/domain/entity/contact_entity.dart';
 
 class ChatDetailAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final ContactEntity? contact;

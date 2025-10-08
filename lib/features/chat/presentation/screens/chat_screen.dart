@@ -9,7 +9,7 @@ import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 
-class ChatScreen extends ConsumerWidget {
+class ChatScreen extends HookConsumerWidget {
   const ChatScreen({super.key});
 
   @override

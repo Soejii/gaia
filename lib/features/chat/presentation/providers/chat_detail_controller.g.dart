@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'message_controller.dart';
+part of 'chat_detail_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$messageControllerHash() => r'd48663145720b1a2d652c69b7da5396468b43332';
+String _$chatDetailControllerHash() =>
+    r'022cedada8637347abc0d8707038cbee99999135';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,36 +30,36 @@ class _SystemHash {
   }
 }
 
-abstract class _$MessageController
-    extends BuildlessAutoDisposeNotifier<AsyncValue<MessageState>> {
+abstract class _$ChatDetailController
+    extends BuildlessAutoDisposeAsyncNotifier<ChatDetailEntity> {
   late final int userId;
 
-  AsyncValue<MessageState> build(
+  FutureOr<ChatDetailEntity> build(
     int userId,
   );
 }
 
-/// See also [MessageController].
-@ProviderFor(MessageController)
-const messageControllerProvider = MessageControllerFamily();
+/// See also [ChatDetailController].
+@ProviderFor(ChatDetailController)
+const chatDetailControllerProvider = ChatDetailControllerFamily();
 
-/// See also [MessageController].
-class MessageControllerFamily extends Family<AsyncValue<MessageState>> {
-  /// See also [MessageController].
-  const MessageControllerFamily();
+/// See also [ChatDetailController].
+class ChatDetailControllerFamily extends Family<AsyncValue<ChatDetailEntity>> {
+  /// See also [ChatDetailController].
+  const ChatDetailControllerFamily();
 
-  /// See also [MessageController].
-  MessageControllerProvider call(
+  /// See also [ChatDetailController].
+  ChatDetailControllerProvider call(
     int userId,
   ) {
-    return MessageControllerProvider(
+    return ChatDetailControllerProvider(
       userId,
     );
   }
 
   @override
-  MessageControllerProvider getProviderOverride(
-    covariant MessageControllerProvider provider,
+  ChatDetailControllerProvider getProviderOverride(
+    covariant ChatDetailControllerProvider provider,
   ) {
     return call(
       provider.userId,
@@ -77,30 +78,30 @@ class MessageControllerFamily extends Family<AsyncValue<MessageState>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'messageControllerProvider';
+  String? get name => r'chatDetailControllerProvider';
 }
 
-/// See also [MessageController].
-class MessageControllerProvider extends AutoDisposeNotifierProviderImpl<
-    MessageController, AsyncValue<MessageState>> {
-  /// See also [MessageController].
-  MessageControllerProvider(
+/// See also [ChatDetailController].
+class ChatDetailControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
+    ChatDetailController, ChatDetailEntity> {
+  /// See also [ChatDetailController].
+  ChatDetailControllerProvider(
     int userId,
   ) : this._internal(
-          () => MessageController()..userId = userId,
-          from: messageControllerProvider,
-          name: r'messageControllerProvider',
+          () => ChatDetailController()..userId = userId,
+          from: chatDetailControllerProvider,
+          name: r'chatDetailControllerProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$messageControllerHash,
-          dependencies: MessageControllerFamily._dependencies,
+                  : _$chatDetailControllerHash,
+          dependencies: ChatDetailControllerFamily._dependencies,
           allTransitiveDependencies:
-              MessageControllerFamily._allTransitiveDependencies,
+              ChatDetailControllerFamily._allTransitiveDependencies,
           userId: userId,
         );
 
-  MessageControllerProvider._internal(
+  ChatDetailControllerProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -113,8 +114,8 @@ class MessageControllerProvider extends AutoDisposeNotifierProviderImpl<
   final int userId;
 
   @override
-  AsyncValue<MessageState> runNotifierBuild(
-    covariant MessageController notifier,
+  FutureOr<ChatDetailEntity> runNotifierBuild(
+    covariant ChatDetailController notifier,
   ) {
     return notifier.build(
       userId,
@@ -122,10 +123,10 @@ class MessageControllerProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  Override overrideWith(MessageController Function() create) {
+  Override overrideWith(ChatDetailController Function() create) {
     return ProviderOverride(
       origin: this,
-      override: MessageControllerProvider._internal(
+      override: ChatDetailControllerProvider._internal(
         () => create()..userId = userId,
         from: from,
         name: null,
@@ -138,14 +139,14 @@ class MessageControllerProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  AutoDisposeNotifierProviderElement<MessageController,
-      AsyncValue<MessageState>> createElement() {
-    return _MessageControllerProviderElement(this);
+  AutoDisposeAsyncNotifierProviderElement<ChatDetailController,
+      ChatDetailEntity> createElement() {
+    return _ChatDetailControllerProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is MessageControllerProvider && other.userId == userId;
+    return other is ChatDetailControllerProvider && other.userId == userId;
   }
 
   @override
@@ -159,19 +160,19 @@ class MessageControllerProvider extends AutoDisposeNotifierProviderImpl<
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin MessageControllerRef
-    on AutoDisposeNotifierProviderRef<AsyncValue<MessageState>> {
+mixin ChatDetailControllerRef
+    on AutoDisposeAsyncNotifierProviderRef<ChatDetailEntity> {
   /// The parameter `userId` of this provider.
   int get userId;
 }
 
-class _MessageControllerProviderElement
-    extends AutoDisposeNotifierProviderElement<MessageController,
-        AsyncValue<MessageState>> with MessageControllerRef {
-  _MessageControllerProviderElement(super.provider);
+class _ChatDetailControllerProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<ChatDetailController,
+        ChatDetailEntity> with ChatDetailControllerRef {
+  _ChatDetailControllerProviderElement(super.provider);
 
   @override
-  int get userId => (origin as MessageControllerProvider).userId;
+  int get userId => (origin as ChatDetailControllerProvider).userId;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

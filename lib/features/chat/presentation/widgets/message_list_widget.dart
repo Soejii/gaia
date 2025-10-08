@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/features/chat/domain/entities/message_entity.dart';
+import 'package:gaia/features/chat/domain/entity/message_entity.dart';
 import 'package:gaia/features/chat/presentation/widgets/message_bubble_widget.dart';
 import 'package:gaia/features/chat/presentation/widgets/date_separator_widget.dart';
 

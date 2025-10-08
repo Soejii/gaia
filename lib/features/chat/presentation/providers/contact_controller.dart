@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gaia/features/chat/domain/entities/contact_entity.dart';
+import 'package:gaia/features/chat/domain/entity/contact_entity.dart';
 import 'package:gaia/features/chat/domain/type/chat_role.dart';
 import 'package:gaia/features/chat/presentation/providers/chat_providers.dart';
 import 'package:gaia/shared/presentation/paged.dart';
