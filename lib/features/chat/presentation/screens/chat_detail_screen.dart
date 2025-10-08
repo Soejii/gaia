@@ -114,8 +114,6 @@ class ChatDetailScreen extends HookConsumerWidget {
         await sendController.sendMessage(userId: userId, message: message);
 
         textController.clear();
-        
-        // Refresh messages in detail screen
         final messageController = ref.read(messageControllerProvider(userId).notifier);
         await messageController.refresh();
 

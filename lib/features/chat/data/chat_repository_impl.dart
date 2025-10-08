@@ -3,9 +3,9 @@ import 'package:gaia/features/chat/data/mappers/chat_mapper.dart';
 import 'package:gaia/features/chat/data/mappers/contact_mapper.dart';
 import 'package:gaia/features/chat/data/mappers/message_mapper.dart';
 import 'package:gaia/features/chat/domain/chat_repository.dart';
-import 'package:gaia/features/chat/domain/entities/chat_entity.dart';
-import 'package:gaia/features/chat/domain/entities/contact_entity.dart';
-import 'package:gaia/features/chat/domain/entities/message_entity.dart';
+import 'package:gaia/features/chat/domain/entity/chat_entity.dart';
+import 'package:gaia/features/chat/domain/entity/contact_entity.dart';
+import 'package:gaia/features/chat/domain/entity/message_entity.dart';
 import 'package:gaia/shared/core/types/result.dart';
 
 class ChatRepositoryImpl implements ChatRepository {

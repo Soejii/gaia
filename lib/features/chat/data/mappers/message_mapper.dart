@@ -1,5 +1,5 @@
 import 'package:gaia/features/chat/data/models/message_model.dart';
-import 'package:gaia/features/chat/domain/entities/message_entity.dart';
+import 'package:gaia/features/chat/domain/entity/message_entity.dart';
 
 extension MessageMapper on MessageModel {
   MessageEntity toEntity() => MessageEntity(

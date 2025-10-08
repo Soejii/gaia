@@ -6,7 +6,6 @@ class ChatEntity {
   final String? lastChat;
   final String? lastChatDate;
 
-
   ChatEntity({
     required this.id,
     this.photo,
@@ -15,5 +14,4 @@ class ChatEntity {
     this.lastChat,
     this.lastChatDate,
   });
-
 }

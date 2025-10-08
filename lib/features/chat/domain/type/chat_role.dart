@@ -28,7 +28,7 @@ enum ChatRole {
 
   static ChatRole? fromString(String? roleString) {
     if (roleString == null || roleString.isEmpty) return ChatRole.unknown;
-    
+
     switch (roleString.toLowerCase()) {
       case 'student':
         return ChatRole.student;
