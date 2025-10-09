@@ -1,41 +1,28 @@
-import 'package:url_launcher/url_launcher.dart';
+import 'package:android_intent_plus/android_intent.dart';
+import 'package:android_intent_plus/flag.dart';
 
 class ExamAppLauncher {
-  static const String _scheme = 'examapp';
-  static const String _playStoreUrl =
-      'https://play.google.com/store/apps/details?id=com.cbt.sidigs.karna';
 
-  /// Opens the Exam App with the provided [examId], [examType].
+  /// Opens the Exam App with the provided [examId], [examType] or straight up go to google play store.
   static Future<void> openExam(int examId, String examType) async {
-    final uri = Uri(
-      scheme: _scheme,
-      host: 'exam',
-      queryParameters: {
-        'id': '$examId',
-        'type': examType,
-      },
+  const packageName = 'com.cbt.sidigs.karna';
+  final intent = AndroidIntent(
+      action: 'android.intent.action.VIEW',
+      data: 'examapp://exam?id=$examId&type=$examType',
+      package: 'com.cbt.sidigs.karna',
+      flags: <int>[Flag.FLAG_ACTIVITY_NEW_TASK],
     );
-    await _launch(uri);
+
+  try {
+    await intent.launch();
+  } catch (e) {
+    // Fallback to Play Store if not installed
+    const storeIntent = AndroidIntent(
+      action: 'android.intent.action.VIEW',
+      data: 'https://play.google.com/store/apps/details?id=$packageName',
+      flags: <int>[Flag.FLAG_ACTIVITY_NEW_TASK],
+    );
+    await storeIntent.launch();
   }
-
-  // static Future<void> openResult(int resultId) async {
-  //   final uri = Uri.parse('$_scheme://result?id=$resultId');
-  //   await _launch(uri);
-  // }
-
-  // static Future<void> openReview(int reviewId) async {
-  //   final uri = Uri.parse('$_scheme://review?id=$reviewId');
-  //   await _launch(uri);
-  // }
-
-  static Future<void> _launch(Uri uri) async {
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } else {
-      await launchUrl(
-        Uri.parse(_playStoreUrl),
-        mode: LaunchMode.externalApplication,
-      );
-    }
-  }
+}
 }
