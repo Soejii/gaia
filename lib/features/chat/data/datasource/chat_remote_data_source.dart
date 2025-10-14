@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:gaia/features/chat/data/models/chat_model.dart';
-import 'package:gaia/features/chat/data/models/contact_model.dart';
-import 'package:gaia/features/chat/data/models/message_model.dart';
 
 class ChatRemoteDataSource {
   final Dio _dio;
@@ -25,7 +23,7 @@ class ChatRemoteDataSource {
         .toList(growable: false);
   }
 
-  Future<List<ContactModel>> getContacts(String role, int page) async {
+  Future<List<ChatModel>> getContacts(String role, int page) async {
     final res = await _dio.get('/chat/get-contacts', queryParameters: {
       'role': role,
       'page': page,
@@ -36,14 +34,14 @@ class ChatRemoteDataSource {
 
     return data
         .map(
-          (e) => ContactModel.fromJson(
+          (e) => ChatModel.fromJson(
             Map<String, dynamic>.from(e as Map),
           ),
         )
         .toList(growable: false);
   }
 
-  Future<({ContactModel user, List<MessageModel> messages})> getMessages(
+  Future<ChatModel> getMessages(
     int userId,
     int page,
   ) async {
@@ -55,22 +53,14 @@ class ChatRemoteDataSource {
     final responseData = res.data as Map<String, dynamic>;
     final data = responseData['data'] as Map<String, dynamic>;
 
-    final user = ContactModel.fromJson(
-      Map<String, dynamic>.from(data['user'] as Map),
-    );
+    final chatsData = data['chats'] as Map<String, dynamic>?;
+    final messagesData = chatsData?['data'] as List<dynamic>? ?? [];
+    final transformedData = <String, dynamic>{
+      'user': data['user'],
+      'messages': messagesData,
+    };
 
-    final chatsData = data['chats'] as Map<String, dynamic>;
-    final messagesData = chatsData['data'] as List<dynamic>;
-
-    final messages = messagesData
-        .map(
-          (e) => MessageModel.fromJson(
-            Map<String, dynamic>.from(e as Map),
-          ),
-        )
-        .toList(growable: false);
-
-    return (user: user, messages: messages);
+    return ChatModel.fromJson(transformedData);
   }
 
   Future<void> sendMessage(int userId, String message) async {

@@ -20,12 +20,16 @@ ChatModel _$ChatModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ChatModel {
-  int get userId => throw _privateConstructorUsedError;
+  int? get userId => throw _privateConstructorUsedError;
   String? get photo => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
   String? get lastChat => throw _privateConstructorUsedError;
   String? get lastChatDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'class')
+  String? get className => throw _privateConstructorUsedError;
+  ContactModel? get user => throw _privateConstructorUsedError;
+  List<MessageModel>? get messages => throw _privateConstructorUsedError;
 
   /// Serializes this ChatModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,12 +47,17 @@ abstract class $ChatModelCopyWith<$Res> {
       _$ChatModelCopyWithImpl<$Res, ChatModel>;
   @useResult
   $Res call(
-      {int userId,
+      {int? userId,
       String? photo,
       String? name,
       String? role,
       String? lastChat,
-      String? lastChatDate});
+      String? lastChatDate,
+      @JsonKey(name: 'class') String? className,
+      ContactModel? user,
+      List<MessageModel>? messages});
+
+  $ContactModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -66,18 +75,21 @@ class _$ChatModelCopyWithImpl<$Res, $Val extends ChatModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
+    Object? userId = freezed,
     Object? photo = freezed,
     Object? name = freezed,
     Object? role = freezed,
     Object? lastChat = freezed,
     Object? lastChatDate = freezed,
+    Object? className = freezed,
+    Object? user = freezed,
+    Object? messages = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: null == userId
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       photo: freezed == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
@@ -98,7 +110,33 @@ class _$ChatModelCopyWithImpl<$Res, $Val extends ChatModel>
           ? _value.lastChatDate
           : lastChatDate // ignore: cast_nullable_to_non_nullable
               as String?,
+      className: freezed == className
+          ? _value.className
+          : className // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as ContactModel?,
+      messages: freezed == messages
+          ? _value.messages
+          : messages // ignore: cast_nullable_to_non_nullable
+              as List<MessageModel>?,
     ) as $Val);
+  }
+
+  /// Create a copy of ChatModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ContactModelCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $ContactModelCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -111,12 +149,18 @@ abstract class _$$ChatModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int userId,
+      {int? userId,
       String? photo,
       String? name,
       String? role,
       String? lastChat,
-      String? lastChatDate});
+      String? lastChatDate,
+      @JsonKey(name: 'class') String? className,
+      ContactModel? user,
+      List<MessageModel>? messages});
+
+  @override
+  $ContactModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -132,18 +176,21 @@ class __$$ChatModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
+    Object? userId = freezed,
     Object? photo = freezed,
     Object? name = freezed,
     Object? role = freezed,
     Object? lastChat = freezed,
     Object? lastChatDate = freezed,
+    Object? className = freezed,
+    Object? user = freezed,
+    Object? messages = freezed,
   }) {
     return _then(_$ChatModelImpl(
-      userId: null == userId
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       photo: freezed == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
@@ -164,6 +211,18 @@ class __$$ChatModelImplCopyWithImpl<$Res>
           ? _value.lastChatDate
           : lastChatDate // ignore: cast_nullable_to_non_nullable
               as String?,
+      className: freezed == className
+          ? _value.className
+          : className // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as ContactModel?,
+      messages: freezed == messages
+          ? _value._messages
+          : messages // ignore: cast_nullable_to_non_nullable
+              as List<MessageModel>?,
     ));
   }
 }
@@ -173,18 +232,22 @@ class __$$ChatModelImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$ChatModelImpl implements _ChatModel {
   const _$ChatModelImpl(
-      {required this.userId,
+      {this.userId,
       this.photo,
       this.name,
       this.role,
       this.lastChat,
-      this.lastChatDate});
+      this.lastChatDate,
+      @JsonKey(name: 'class') this.className,
+      this.user,
+      final List<MessageModel>? messages})
+      : _messages = messages;
 
   factory _$ChatModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatModelImplFromJson(json);
 
   @override
-  final int userId;
+  final int? userId;
   @override
   final String? photo;
   @override
@@ -195,10 +258,24 @@ class _$ChatModelImpl implements _ChatModel {
   final String? lastChat;
   @override
   final String? lastChatDate;
+  @override
+  @JsonKey(name: 'class')
+  final String? className;
+  @override
+  final ContactModel? user;
+  final List<MessageModel>? _messages;
+  @override
+  List<MessageModel>? get messages {
+    final value = _messages;
+    if (value == null) return null;
+    if (_messages is EqualUnmodifiableListView) return _messages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ChatModel(userId: $userId, photo: $photo, name: $name, role: $role, lastChat: $lastChat, lastChatDate: $lastChatDate)';
+    return 'ChatModel(userId: $userId, photo: $photo, name: $name, role: $role, lastChat: $lastChat, lastChatDate: $lastChatDate, className: $className, user: $user, messages: $messages)';
   }
 
   @override
@@ -213,13 +290,26 @@ class _$ChatModelImpl implements _ChatModel {
             (identical(other.lastChat, lastChat) ||
                 other.lastChat == lastChat) &&
             (identical(other.lastChatDate, lastChatDate) ||
-                other.lastChatDate == lastChatDate));
+                other.lastChatDate == lastChatDate) &&
+            (identical(other.className, className) ||
+                other.className == className) &&
+            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other._messages, _messages));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, userId, photo, name, role, lastChat, lastChatDate);
+      runtimeType,
+      userId,
+      photo,
+      name,
+      role,
+      lastChat,
+      lastChatDate,
+      className,
+      user,
+      const DeepCollectionEquality().hash(_messages));
 
   /// Create a copy of ChatModel
   /// with the given fields replaced by the non-null parameter values.
@@ -239,18 +329,21 @@ class _$ChatModelImpl implements _ChatModel {
 
 abstract class _ChatModel implements ChatModel {
   const factory _ChatModel(
-      {required final int userId,
+      {final int? userId,
       final String? photo,
       final String? name,
       final String? role,
       final String? lastChat,
-      final String? lastChatDate}) = _$ChatModelImpl;
+      final String? lastChatDate,
+      @JsonKey(name: 'class') final String? className,
+      final ContactModel? user,
+      final List<MessageModel>? messages}) = _$ChatModelImpl;
 
   factory _ChatModel.fromJson(Map<String, dynamic> json) =
       _$ChatModelImpl.fromJson;
 
   @override
-  int get userId;
+  int? get userId;
   @override
   String? get photo;
   @override
@@ -261,6 +354,13 @@ abstract class _ChatModel implements ChatModel {
   String? get lastChat;
   @override
   String? get lastChatDate;
+  @override
+  @JsonKey(name: 'class')
+  String? get className;
+  @override
+  ContactModel? get user;
+  @override
+  List<MessageModel>? get messages;
 
   /// Create a copy of ChatModel
   /// with the given fields replaced by the non-null parameter values.
