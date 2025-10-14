@@ -16,17 +16,19 @@ class ChatMessageListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Sort messages by date (oldest first, newest at bottom)
+    // Sort messages: newest first (for reverse ListView)
     final sortedMessages = [...messages]
-      ..sort((a, b) => a.createdAt.compareTo(b.createdAt));
+      ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
 
     final groupedMessages = _groupMessagesByDate(sortedMessages);
 
     return ListView.builder(
       controller: scrollController,
-      reverse: false, // Normal scrolling, newest messages at bottom
+      reverse: true,
       padding: EdgeInsets.all(16.w),
       itemCount: groupedMessages.length,
+      physics: const ClampingScrollPhysics(), // Better scroll physics like WhatsApp
+      cacheExtent: 1000, // Cache more items for smoother scrolling
       itemBuilder: (context, index) {
         final item = groupedMessages[index];
         if (item['type'] == 'date') {
@@ -43,11 +45,15 @@ class ChatMessageListWidget extends StatelessWidget {
     final List<Map<String, dynamic>> grouped = [];
     String? lastDate;
 
-    for (final message in messages) {
-      // Since createdAt is now string, we need to parse or use simple date grouping
+    // For reverse ListView, we need to process in reverse order for proper date separators
+    // This ensures date separators appear in correct chronological order
+    final reversedMessages = messages.reversed.toList();
+    
+    for (final message in reversedMessages) {
       final messageDate = _extractDateFromString(message.createdAt);
 
       if (lastDate == null || lastDate != messageDate) {
+        // Add date separator
         grouped.add({
           'type': 'date',
           'date': messageDate,
@@ -61,16 +67,15 @@ class ChatMessageListWidget extends StatelessWidget {
       });
     }
 
-    return grouped;
+    // Reverse the grouped list to match ListView's reverse order
+    return grouped.reversed.toList();
   }
 
   String _extractDateFromString(String dateTimeString) {
-    // Simple date extraction - you may need to adjust based on actual format
     try {
       final dateTime = DateTime.parse(dateTimeString);
       return '${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}';
     } catch (e) {
-      // Fallback for unparseable dates
       return dateTimeString.split(' ').first;
     }
   }

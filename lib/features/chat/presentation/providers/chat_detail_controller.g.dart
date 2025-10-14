@@ -159,13 +159,13 @@ class _ChatDetailEntityProviderElement
 }
 
 String _$chatDetailControllerHash() =>
-    r'069fd74de7d7541ee39dd6bf81ae5151a7c78d60';
+    r'baec426341ebaf205854bb6788fdb9e52b95b9da';
 
 abstract class _$ChatDetailController
-    extends BuildlessAutoDisposeAsyncNotifier<Paged<ChatMessageEntity>> {
+    extends BuildlessAutoDisposeNotifier<AsyncValue<Paged<ChatMessageEntity>>> {
   late final int userId;
 
-  FutureOr<Paged<ChatMessageEntity>> build(
+  AsyncValue<Paged<ChatMessageEntity>> build(
     int userId,
   );
 }
@@ -214,8 +214,8 @@ class ChatDetailControllerFamily
 }
 
 /// See also [ChatDetailController].
-class ChatDetailControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    ChatDetailController, Paged<ChatMessageEntity>> {
+class ChatDetailControllerProvider extends AutoDisposeNotifierProviderImpl<
+    ChatDetailController, AsyncValue<Paged<ChatMessageEntity>>> {
   /// See also [ChatDetailController].
   ChatDetailControllerProvider(
     int userId,
@@ -246,7 +246,7 @@ class ChatDetailControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
   final int userId;
 
   @override
-  FutureOr<Paged<ChatMessageEntity>> runNotifierBuild(
+  AsyncValue<Paged<ChatMessageEntity>> runNotifierBuild(
     covariant ChatDetailController notifier,
   ) {
     return notifier.build(
@@ -271,8 +271,8 @@ class ChatDetailControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<ChatDetailController,
-      Paged<ChatMessageEntity>> createElement() {
+  AutoDisposeNotifierProviderElement<ChatDetailController,
+      AsyncValue<Paged<ChatMessageEntity>>> createElement() {
     return _ChatDetailControllerProviderElement(this);
   }
 
@@ -293,14 +293,14 @@ class ChatDetailControllerProvider extends AutoDisposeAsyncNotifierProviderImpl<
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 mixin ChatDetailControllerRef
-    on AutoDisposeAsyncNotifierProviderRef<Paged<ChatMessageEntity>> {
+    on AutoDisposeNotifierProviderRef<AsyncValue<Paged<ChatMessageEntity>>> {
   /// The parameter `userId` of this provider.
   int get userId;
 }
 
 class _ChatDetailControllerProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<ChatDetailController,
-        Paged<ChatMessageEntity>> with ChatDetailControllerRef {
+    extends AutoDisposeNotifierProviderElement<ChatDetailController,
+        AsyncValue<Paged<ChatMessageEntity>>> with ChatDetailControllerRef {
   _ChatDetailControllerProviderElement(super.provider);
 
   @override

@@ -15,6 +15,8 @@ class ChatContactListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hasPhoto = contact.photo?.isNotEmpty == true;
+    
     return InkWell(
       onTap: onTap,
       child: Padding(
@@ -24,19 +26,13 @@ class ChatContactListItem extends StatelessWidget {
             CircleAvatar(
               radius: 24.r,
               backgroundColor: Colors.grey[200],
-              backgroundImage:
-                  contact.photo != null && contact.photo!.isNotEmpty
-                      ? NetworkImage(contact.photo!)
-                      : null,
-              child: contact.photo == null || contact.photo!.isEmpty
-                  ? Icon(
-                      Icons.person,
-                      size: 24.r,
-                      color: Colors.grey[600],
-                    )
-                  : null,
+              backgroundImage: hasPhoto ? NetworkImage(contact.photo!) : null,
+              child: hasPhoto ? null : Icon(
+                Icons.person,
+                size: 24.r,
+                color: Colors.grey[600],
+              ),
             ),
-
             SizedBox(width: 12.w),
 
             Expanded(

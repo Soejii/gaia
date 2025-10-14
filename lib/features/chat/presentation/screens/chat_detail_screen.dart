@@ -19,52 +19,26 @@ class ChatDetailScreen extends HookConsumerWidget {
     final chatDetailAsync = ref.watch(chatDetailEntityProvider(userId));
     final messagesAsync = ref.watch(chatDetailControllerProvider(userId));
     final controller = ref.read(chatDetailControllerProvider(userId).notifier);
+
     final scrollController = useScrollController();
     final textController = useTextEditingController();
     final focusNode = useFocusNode();
 
     useEffect(() {
       void onScroll() {
-        if (scrollController.position.pixels < 200) {
-          final currentData =
-              ref.read(chatDetailControllerProvider(userId)).asData?.value;
-          if (currentData != null &&
-              currentData.hasMore &&
-              !currentData.isMoreLoading) {
-            controller.loadMore();
-          }
+        if (!scrollController.hasClients) return;
+        final position = scrollController.position;
+        final data = ref.read(chatDetailControllerProvider(userId)).value;
+
+        if (data?.hasMore == true &&
+            position.pixels >= position.maxScrollExtent - 200 &&
+            !controller.isLoadingMore) {
+          controller.loadMore();
         }
       }
 
       scrollController.addListener(onScroll);
       return () => scrollController.removeListener(onScroll);
-    }, [scrollController, userId]);
-
-    useEffect(() {
-      controller.startAutoRefresh();
-      return () => controller.stopAutoRefresh();
-    }, [userId]);
-
-    useEffect(() {
-      void scrollToBottom() {
-        if (scrollController.hasClients) {
-          Future.delayed(const Duration(milliseconds: 300), () {
-            scrollController.animateTo(
-              scrollController.position.maxScrollExtent,
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeOut,
-            );
-          });
-        }
-      }
-
-      ref.listen(chatDetailControllerProvider(userId), (previous, next) {
-        if (next.hasValue && next.value != null) {
-          scrollToBottom();
-        }
-      });
-
-      return null;
     }, [scrollController, userId]);
 
     return Scaffold(
@@ -93,6 +67,7 @@ class ChatDetailScreen extends HookConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('Error: $error'),
+                    const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: () => controller.refresh(),
                       child: const Text('Retry'),
@@ -105,51 +80,52 @@ class ChatDetailScreen extends HookConsumerWidget {
           ChatMessageInputWidget(
             textController: textController,
             focusNode: focusNode,
-            onSend: () => _sendMessage(textController, scrollController, ref, context),
+            onSend: () => _sendMessage(
+              textController, 
+              scrollController, 
+              ref, 
+              context
+            ),
           ),
         ],
       ),
     );
   }
 
-  void _sendMessage(TextEditingController textController,
-      ScrollController scrollController, WidgetRef ref, BuildContext context) async {
+  Future<void> _sendMessage(
+    TextEditingController textController,
+    ScrollController scrollController,
+    WidgetRef ref,
+    BuildContext context,
+  ) async {
     final message = textController.text.trim();
     if (message.isEmpty) return;
 
-    final controller =
-        ref.read(chatDetailControllerProvider(userId).notifier);
+    final controller = ref.read(chatDetailControllerProvider(userId).notifier);
 
     controller.addOptimisticMessage(message);
-
     textController.clear();
 
-    if (scrollController.hasClients) {
-      Future.delayed(const Duration(milliseconds: 100), () {
-        scrollController.animateTo(
-          scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 200),
-          curve: Curves.easeOut,
-        );
-      });
-    }
-
-    controller.sendMessage(message).catchError((error) {
+    try {
+      await controller.sendMessage(message);
+    } catch (error) {
       controller.removeOptimisticMessage(message);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Gagal mengirim pesan: $error'),
-          backgroundColor: Colors.red,
-          action: SnackBarAction(
-            label: 'Retry',
-            textColor: Colors.white,
-            onPressed: () {
-              controller.addOptimisticMessage(message);
-              controller.sendMessage(message);
-            },
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Gagal mengirim pesan: $error'),
+            backgroundColor: Colors.red,
+            action: SnackBarAction(
+              label: 'Retry',
+              textColor: Colors.white,
+              onPressed: () {
+                controller.addOptimisticMessage(message);
+                controller.sendMessage(message);
+              },
+            ),
           ),
-        ),
-      );
-    });
+        );
+      }
+    }
   }
 }

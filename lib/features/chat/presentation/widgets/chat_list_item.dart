@@ -18,8 +18,8 @@ class ChatListItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final contact = chat.contact;
-    if (contact == null) return const SizedBox.shrink();
-    
+    final hasPhoto = contact.photo?.isNotEmpty == true;
+
     return InkWell(
       onTap: () {
         context.pushNamed(
@@ -34,16 +34,12 @@ class ChatListItem extends ConsumerWidget {
             CircleAvatar(
               radius: 20.r,
               backgroundColor: Colors.grey[200],
-              backgroundImage: contact.photo != null && contact.photo!.isNotEmpty
-                  ? NetworkImage(contact.photo!)
-                  : null,
-              child: contact.photo == null || contact.photo!.isEmpty
-                  ? Icon(
-                      Icons.person,
-                      size: 24.r,
-                      color: Colors.grey[600],
-                    )
-                  : null,
+              backgroundImage: hasPhoto ? NetworkImage(contact.photo!) : null,
+              child: hasPhoto ? null : Icon(
+                Icons.person,
+                size: 24.r,
+                color: Colors.grey[600],
+              ),
             ),
             SizedBox(width: 12.w),
             Expanded(

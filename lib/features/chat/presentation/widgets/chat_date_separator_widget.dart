@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class ChatDateSeparatorWidget extends StatelessWidget {
-  final dynamic date; // Can be DateTime or String
+  final dynamic date; 
 
   const ChatDateSeparatorWidget({
     super.key,
@@ -24,7 +24,7 @@ class ChatDateSeparatorWidget extends StatelessWidget {
         final parsedDate = DateTime.parse(date.toString());
         messageDate = DateTime(parsedDate.year, parsedDate.month, parsedDate.day);
       } catch (e) {
-        messageDate = today; // Fallback
+        messageDate = today;
       }
     }
 

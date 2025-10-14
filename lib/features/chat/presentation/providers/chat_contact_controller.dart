@@ -33,6 +33,7 @@ class ChatContactController extends _$ChatContactController {
   }
 
   Future<void> _firstLoad(String roleName) async {
+    page = 1;
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final items = await _fetch(roleName, 1);
@@ -54,6 +55,7 @@ class ChatContactController extends _$ChatContactController {
   }
 
   Future<void> refresh(String roleName) async {
+    page = 1;
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final items = await _fetch(roleName, 1);
@@ -81,7 +83,6 @@ class ChatContactController extends _$ChatContactController {
         isMoreLoading: false,
       );
       state = AsyncValue.data(updated);
-      page = next;
     } catch (e, st) {
       state =
           AsyncValue<Paged<ChatContactEntity>>.error(e, st).copyWithPrevious(state);

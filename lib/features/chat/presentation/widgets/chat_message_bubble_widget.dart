@@ -66,7 +66,7 @@ class ChatMessageBubbleWidget extends StatelessWidget {
       final dateTime = DateTime.parse(createdAt);
       return DateFormat('HH:mm').format(dateTime);
     } catch (e) {
-      // Fallback for unparseable dates
+
       return createdAt.split(' ').last.substring(0, 5);
     }
   }

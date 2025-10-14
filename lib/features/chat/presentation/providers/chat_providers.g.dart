@@ -99,5 +99,24 @@ final getContactsUsecaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef GetContactsUsecaseRef = AutoDisposeProviderRef<GetContactsUsecase>;
+String _$sendMessageUsecaseHash() =>
+    r'e3f3820fb1ae2771cfb3caef3b027dd04ec6bcd3';
+
+/// See also [sendMessageUsecase].
+@ProviderFor(sendMessageUsecase)
+final sendMessageUsecaseProvider =
+    AutoDisposeProvider<SendMessageUsecase>.internal(
+  sendMessageUsecase,
+  name: r'sendMessageUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sendMessageUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef SendMessageUsecaseRef = AutoDisposeProviderRef<SendMessageUsecase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -13,7 +13,7 @@ part 'chat_detail_controller.g.dart';
 Future<ChatEntity> chatDetailEntity(ChatDetailEntityRef ref, int userId) async {
   final uc = ref.read(getMessagesUsecaseProvider);
   final either = await uc.getMessages(userId: userId, page: 1);
-  
+
   return either.fold(
     (failure) => throw failure,
     (response) => response,
@@ -25,135 +25,177 @@ class ChatDetailController extends _$ChatDetailController {
   Timer? _ttl;
   Timer? _autoRefreshTimer;
   KeepAliveLink? _link;
-  int _currentPage = 1;
+
+  static const _pageSize = 15;
+  bool _isLoadingMore = false;
+
+  bool get isLoadingMore => _isLoadingMore;
 
   @override
-  Future<Paged<ChatMessageEntity>> build(int userId) {
+  AsyncValue<Paged<ChatMessageEntity>> build(int userId) {
     _link ??= ref.keepAlive();
+
     ref.onCancel(() {
+      _stopAutoRefresh();
       _ttl = Timer(const Duration(minutes: 3), () {
         _link?.close();
         _link = null;
       });
     });
-    ref.onResume(() => _ttl?.cancel());
+
+    ref.onResume(() {
+      _ttl?.cancel();
+      _startAutoRefresh();
+    });
+
     ref.onDispose(() {
       _ttl?.cancel();
       _autoRefreshTimer?.cancel();
     });
-    return _fetch();
+
+    _startAutoRefresh();
+    _loadInitial();
+    return const AsyncLoading();
   }
 
-  Future<Paged<ChatMessageEntity>> _fetch({int page = 1}) async {
+  Future<List<ChatMessageEntity>> _fetchMessages(int page) async {
     final uc = ref.read(getMessagesUsecaseProvider);
     final either = await uc.getMessages(userId: userId, page: page);
-    
+
     return either.fold(
       (failure) => throw failure,
-      (response) {
-
-        return Paged(
-          items: response.messages ?? [],
-          page: page,
-          hasMore: (response.messages?.length ?? 0) >= 20,
-        );
-      },
+      (response) => response.messages ?? [],
     );
   }
 
-  Future<void> refresh() async {
-    _currentPage = 1;
+  Future<void> _loadInitial() async {
     state = const AsyncLoading();
-    
-    // Force refresh by invalidating any potential cache
-    ref.invalidateSelf();
-    
-    state = await AsyncValue.guard(() => _fetch(page: 1));
-  }
-
-  Future<void> loadMore() async {
-    final currentState = state.asData?.value;
-    if (currentState == null || !currentState.hasMore) return;
-
-    try {
-      _currentPage++;
-      final newData = await _fetch(page: _currentPage);
-      // Insert pesan lama di awal list (reverse pagination)
-      final updatedMessages = Paged<ChatMessageEntity>(
-        items: [...newData.items, ...currentState.items],
-        page: _currentPage,
-        hasMore: newData.hasMore,
+    state = await AsyncValue.guard(() async {
+      final items = await _fetchMessages(1);
+      return Paged(
+        items: items,
+        page: 1,
+        hasMore: items.length >= _pageSize,
       );
-
-      state = AsyncData(updatedMessages);
-    } catch (error) {
-      _currentPage--;
-      rethrow;
-    }
-  }
-
-  void startAutoRefresh() {
-    _autoRefreshTimer?.cancel();
-    _autoRefreshTimer = Timer.periodic(const Duration(seconds: 30), (_) {
-      if (state.hasValue) {
-        refresh();
-      }
     });
   }
 
-  void stopAutoRefresh() {
+  Future<void> refresh() async => _loadInitial();
+  Future<void> loadMore() async {
+    final data = state.value;
+    if (data == null || _isLoadingMore || !data.hasMore) return;
+
+    _isLoadingMore = true;
+
+    try {
+      final nextPage = data.page + 1;
+      final olderMessages = await _fetchMessages(nextPage);
+
+      final updated = data.copyWith(
+        items: [...olderMessages, ...data.items],
+        page: nextPage,
+        hasMore: olderMessages.length >= _pageSize,
+      );
+
+      state = AsyncValue.data(updated);
+    } catch (e, st) {
+      state = AsyncValue<Paged<ChatMessageEntity>>.error(e, st);
+    } finally {
+      _isLoadingMore = false;
+    }
+  }
+
+  void _startAutoRefresh() {
+    _autoRefreshTimer?.cancel();
+    _autoRefreshTimer = Timer.periodic(const Duration(seconds: 3), (_) {
+      if (state.hasValue && !_isLoadingMore) _checkNewMessages();
+    });
+  }
+
+  void _stopAutoRefresh() {
     _autoRefreshTimer?.cancel();
     _autoRefreshTimer = null;
   }
 
-  void addOptimisticMessage(String message) {
-    final currentState = state.asData?.value;
-    if (currentState == null) return;
+  void startAutoRefresh() => _startAutoRefresh();
+  void stopAutoRefresh() => _stopAutoRefresh();
 
-    final now = DateTime.now();
-    final formattedDate = "${now.year.toString().padLeft(4, '0')}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')} ${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}:${now.second.toString().padLeft(2, '0')}";
+  Future<void> _checkNewMessages() async {
+    try {
+      final currentData = state.value;
+      if (currentData == null || currentData.items.isEmpty) return;
+
+      final latestMessages = await _fetchMessages(1);
+      if (latestMessages.isEmpty) return;
+
+      final lastCurrentTime = currentData.items.last.createdAt;
+      final newMessages = latestMessages.where((msg) {
+        final isNewer = msg.createdAt.compareTo(lastCurrentTime) > 0;
+        final notExists = !currentData.items.any((existing) => 
+          existing.message == msg.message && existing.type == msg.type
+        );
+        return isNewer && notExists;
+      }).toList();
+
+      if (newMessages.isNotEmpty) {
+        final filteredItems = currentData.items.where((existing) {
+          if (existing.type != ChatMessageType.send) return true;
+
+          return !newMessages.any((newMsg) => 
+            newMsg.message == existing.message && 
+            newMsg.type == ChatMessageType.send
+          );
+        }).toList();
+
+        final updated = currentData.copyWith(
+          items: [...filteredItems, ...newMessages],
+        );
+        state = AsyncData(updated);
+      }
+    } catch (_) {}
+  }
+
+  void addOptimisticMessage(String message) {
+    final data = state.value;
+    if (data == null) return;
 
     final optimisticMessage = ChatMessageEntity(
       type: ChatMessageType.send,
       message: message,
-      createdAt: formattedDate,
+      createdAt: DateTime.now().toIso8601String().replaceFirst('T', ' ').substring(0, 19),
     );
 
-    final updatedMessages = Paged<ChatMessageEntity>(
-      items: [...currentState.items, optimisticMessage],
-      page: currentState.page,
-      hasMore: currentState.hasMore,
-    );
-
-    state = AsyncData(updatedMessages);
+    state = AsyncData(data.copyWith(
+      items: [...data.items, optimisticMessage],
+    ));
   }
 
   void removeOptimisticMessage(String message) {
-    final currentState = state.asData?.value;
-    if (currentState == null) return;
+    final data = state.value;
+    if (data == null) return;
 
-    final updatedItems = currentState.items
+    final updatedItems = data.items
         .where((msg) => !(msg.message == message && msg.type == ChatMessageType.send))
         .toList();
 
-    final updatedMessages = Paged<ChatMessageEntity>(
-      items: updatedItems,
-      page: currentState.page,
-      hasMore: currentState.hasMore,
-    );
-
-    state = AsyncData(updatedMessages);
+    state = AsyncData(data.copyWith(items: updatedItems));
   }
 
   Future<void> sendMessage(String message) async {
     if (message.trim().isEmpty) return;
+    
+    _stopAutoRefresh();
 
     try {
-      final dataSource = ref.read(chatRemoteDataSourceProvider);
-      await dataSource.sendMessage(userId, message);
-      
-    } catch (error) {
-      rethrow;
+      final usecase = ref.read(sendMessageUsecaseProvider);
+      final result = await usecase.sendMessage(userId: userId, message: message);
+
+      result.fold(
+        (failure) => throw failure,
+        (_) => Future.delayed(const Duration(milliseconds: 200), _checkNewMessages),
+      );
+    } finally {
+      Future.delayed(const Duration(milliseconds: 300), _startAutoRefresh);
     }
   }
 }

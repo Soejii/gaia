@@ -45,6 +45,7 @@ class ChatController extends _$ChatController {
   }
 
   Future<void> _firstLoad() async {
+    page = 1;
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final items = await _fetch(1);
@@ -108,8 +109,10 @@ class ChatController extends _$ChatController {
           hasMore: items.length >= _pageSize,
         );
         state = AsyncValue.data(updated);
+        page = 1;
       }
     } catch (_) {
+      // Silent error handling
     }
   }
 }
