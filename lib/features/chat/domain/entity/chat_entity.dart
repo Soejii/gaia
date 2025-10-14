@@ -1,17 +1,12 @@
+import 'package:gaia/features/chat/domain/entity/chat_contact_entity.dart';
+import 'package:gaia/features/chat/domain/entity/chat_message_entity.dart';
+
 class ChatEntity {
-  final int id;
-  final String? photo;
-  final String? name;
-  final String? role;
-  final String? lastChat;
-  final String? lastChatDate;
+  final ChatContactEntity contact;
+  final List<ChatMessageEntity>? messages;
 
   ChatEntity({
-    required this.id,
-    this.photo,
-    this.name,
-    this.role,
-    this.lastChat,
-    this.lastChatDate,
+    required this.contact,
+    this.messages,
   });
 }

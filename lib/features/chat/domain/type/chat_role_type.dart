@@ -1,7 +1,7 @@
 enum ChatRole {
   student,
   teacher,
-
+  parent,
   unknown;
 
   String get displayName {
@@ -10,6 +10,8 @@ enum ChatRole {
         return 'student';
       case ChatRole.teacher:
         return 'teacher';
+      case ChatRole.parent:
+        return 'Orang tua';
       case ChatRole.unknown:
         return 'unknown';
     }
@@ -21,6 +23,8 @@ enum ChatRole {
         return 'Murid';
       case ChatRole.teacher:
         return 'Guru';
+      case ChatRole.parent:
+        return 'Orang tua';
       case ChatRole.unknown:
         return 'Tidak Diketahui';
     }
@@ -34,6 +38,8 @@ enum ChatRole {
         return ChatRole.student;
       case 'teacher':
         return ChatRole.teacher;
+      case 'parent':
+        return ChatRole.parent;
       default:
         return ChatRole.unknown;
     }
