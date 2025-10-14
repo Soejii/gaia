@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:gaia/features/chat/domain/entity/message_entity.dart';
+import 'package:gaia/features/chat/domain/entity/chat_message_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
-class MessageBubbleWidget extends StatelessWidget {
-  final MessageEntity message;
+class ChatMessageBubbleWidget extends StatelessWidget {
+  final ChatMessageEntity message;
 
-  const MessageBubbleWidget({
+  const ChatMessageBubbleWidget({
     super.key,
     required this.message,
   });
@@ -15,7 +15,6 @@ class MessageBubbleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isReceived = message.isReceived;
-    final timeFormat = DateFormat('HH:mm');
 
     return Align(
       alignment: isReceived ? Alignment.centerLeft : Alignment.centerRight,
@@ -47,7 +46,7 @@ class MessageBubbleWidget extends StatelessWidget {
                 Align(
                   alignment: Alignment.bottomRight,
                   child: Text(
-                    timeFormat.format(message.createdAt),
+                    _formatTime(message.createdAt),
                     style: TextStyle(
                       color: isReceived ? Colors.grey[600] : Colors.white70,
                       fontSize: 10.sp,
@@ -60,5 +59,15 @@ class MessageBubbleWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _formatTime(String createdAt) {
+    try {
+      final dateTime = DateTime.parse(createdAt);
+      return DateFormat('HH:mm').format(dateTime);
+    } catch (e) {
+      // Fallback for unparseable dates
+      return createdAt.split(' ').last.substring(0, 5);
+    }
   }
 }

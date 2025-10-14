@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gaia/features/chat/domain/entity/contact_entity.dart';
+import 'package:gaia/features/chat/domain/entity/chat_contact_entity.dart';
 
 class ChatDetailAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  final ContactEntity? contact;
+  final ChatContactEntity? contact;
 
   const ChatDetailAppBarWidget({
     super.key,
@@ -34,7 +34,7 @@ class ChatDetailAppBarWidget extends StatelessWidget implements PreferredSizeWid
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => context.pop(),
         ),
-        title: contact != null ? _buildUserInfo() : _buildLoadingInfo(),
+        title: _buildUserInfo(),
         titleSpacing: 0,
       ),
     );
@@ -59,7 +59,7 @@ class ChatDetailAppBarWidget extends StatelessWidget implements PreferredSizeWid
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                contact?.name ?? 'Unknown',
+                contact?.name ?? '-',
                 style: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 14.sp,
@@ -78,35 +78,6 @@ class ChatDetailAppBarWidget extends StatelessWidget implements PreferredSizeWid
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildLoadingInfo() {
-    return Row(
-      children: [
-        CircleAvatar(
-          radius: 16.r,
-          child: Icon(Icons.person, size: 16.r, color: Colors.grey),
-        ),
-        SizedBox(width: 8.w),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Loading...',
-                style: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
             ],
           ),
         ),

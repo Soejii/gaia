@@ -10,8 +10,8 @@ import 'package:gaia/features/chat/presentation/widgets/chat_contact_tab_bar.dar
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 
-class ContactPickerScreen extends HookConsumerWidget {
-  const ContactPickerScreen({super.key});
+class ChatContactPickerScreen extends HookConsumerWidget {
+  const ChatContactPickerScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

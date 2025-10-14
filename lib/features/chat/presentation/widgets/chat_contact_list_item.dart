@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/features/chat/domain/entity/contact_entity.dart';
+import 'package:gaia/features/chat/domain/entity/chat_contact_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
-class ContactListItem extends StatelessWidget {
-  final ContactEntity contact;
+class ChatContactListItem extends StatelessWidget {
+  final ChatContactEntity contact;
   final VoidCallback? onTap;
 
-  const ContactListItem({
+  const ChatContactListItem({
     super.key,
     required this.contact,
     this.onTap,
@@ -43,33 +43,27 @@ class ContactListItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (contact.name != null && contact.name!.isNotEmpty)
-                    Text(
-                      contact.name!,
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.mainText,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                  Text(
+                    contact.name ?? '-',
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.mainText,
                     ),
-
-                  if (contact.name != null && contact.name!.isNotEmpty)
-                    SizedBox(height: 4.h),
-                  if (contact.className != null &&
-                      contact.className!.isNotEmpty &&
-                      contact.className != '-')
-                    Text(
-                      contact.className!,
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.secondaryText,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(height: 4.h),
+                  Text(
+                    contact.className ?? '-',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.secondaryText,
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ],
               ),
             ),

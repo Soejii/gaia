@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'contact_controller.dart';
+part of 'chat_contact_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$contactControllerHash() => r'df00fe0f2a79c31b1b6e94f2868bdfe900230442';
+String _$chatContactControllerHash() =>
+    r'8b0b74ee4c574a4f0a3c5dae9359085bf973894d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,7 +30,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$ContactController
+abstract class _$ChatContactController
     extends BuildlessAutoDisposeNotifier<AsyncValue<Paged<ChatContactEntity>>> {
   late final String roleName;
 
@@ -38,28 +39,28 @@ abstract class _$ContactController
   );
 }
 
-/// See also [ContactController].
-@ProviderFor(ContactController)
-const contactControllerProvider = ContactControllerFamily();
+/// See also [ChatContactController].
+@ProviderFor(ChatContactController)
+const chatContactControllerProvider = ChatContactControllerFamily();
 
-/// See also [ContactController].
-class ContactControllerFamily
+/// See also [ChatContactController].
+class ChatContactControllerFamily
     extends Family<AsyncValue<Paged<ChatContactEntity>>> {
-  /// See also [ContactController].
-  const ContactControllerFamily();
+  /// See also [ChatContactController].
+  const ChatContactControllerFamily();
 
-  /// See also [ContactController].
-  ContactControllerProvider call(
+  /// See also [ChatContactController].
+  ChatContactControllerProvider call(
     String roleName,
   ) {
-    return ContactControllerProvider(
+    return ChatContactControllerProvider(
       roleName,
     );
   }
 
   @override
-  ContactControllerProvider getProviderOverride(
-    covariant ContactControllerProvider provider,
+  ChatContactControllerProvider getProviderOverride(
+    covariant ChatContactControllerProvider provider,
   ) {
     return call(
       provider.roleName,
@@ -78,30 +79,30 @@ class ContactControllerFamily
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'contactControllerProvider';
+  String? get name => r'chatContactControllerProvider';
 }
 
-/// See also [ContactController].
-class ContactControllerProvider extends AutoDisposeNotifierProviderImpl<
-    ContactController, AsyncValue<Paged<ChatContactEntity>>> {
-  /// See also [ContactController].
-  ContactControllerProvider(
+/// See also [ChatContactController].
+class ChatContactControllerProvider extends AutoDisposeNotifierProviderImpl<
+    ChatContactController, AsyncValue<Paged<ChatContactEntity>>> {
+  /// See also [ChatContactController].
+  ChatContactControllerProvider(
     String roleName,
   ) : this._internal(
-          () => ContactController()..roleName = roleName,
-          from: contactControllerProvider,
-          name: r'contactControllerProvider',
+          () => ChatContactController()..roleName = roleName,
+          from: chatContactControllerProvider,
+          name: r'chatContactControllerProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$contactControllerHash,
-          dependencies: ContactControllerFamily._dependencies,
+                  : _$chatContactControllerHash,
+          dependencies: ChatContactControllerFamily._dependencies,
           allTransitiveDependencies:
-              ContactControllerFamily._allTransitiveDependencies,
+              ChatContactControllerFamily._allTransitiveDependencies,
           roleName: roleName,
         );
 
-  ContactControllerProvider._internal(
+  ChatContactControllerProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -115,7 +116,7 @@ class ContactControllerProvider extends AutoDisposeNotifierProviderImpl<
 
   @override
   AsyncValue<Paged<ChatContactEntity>> runNotifierBuild(
-    covariant ContactController notifier,
+    covariant ChatContactController notifier,
   ) {
     return notifier.build(
       roleName,
@@ -123,10 +124,10 @@ class ContactControllerProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  Override overrideWith(ContactController Function() create) {
+  Override overrideWith(ChatContactController Function() create) {
     return ProviderOverride(
       origin: this,
-      override: ContactControllerProvider._internal(
+      override: ChatContactControllerProvider._internal(
         () => create()..roleName = roleName,
         from: from,
         name: null,
@@ -139,14 +140,14 @@ class ContactControllerProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  AutoDisposeNotifierProviderElement<ContactController,
+  AutoDisposeNotifierProviderElement<ChatContactController,
       AsyncValue<Paged<ChatContactEntity>>> createElement() {
-    return _ContactControllerProviderElement(this);
+    return _ChatContactControllerProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is ContactControllerProvider && other.roleName == roleName;
+    return other is ChatContactControllerProvider && other.roleName == roleName;
   }
 
   @override
@@ -160,19 +161,19 @@ class ContactControllerProvider extends AutoDisposeNotifierProviderImpl<
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin ContactControllerRef
+mixin ChatContactControllerRef
     on AutoDisposeNotifierProviderRef<AsyncValue<Paged<ChatContactEntity>>> {
   /// The parameter `roleName` of this provider.
   String get roleName;
 }
 
-class _ContactControllerProviderElement
-    extends AutoDisposeNotifierProviderElement<ContactController,
-        AsyncValue<Paged<ChatContactEntity>>> with ContactControllerRef {
-  _ContactControllerProviderElement(super.provider);
+class _ChatContactControllerProviderElement
+    extends AutoDisposeNotifierProviderElement<ChatContactController,
+        AsyncValue<Paged<ChatContactEntity>>> with ChatContactControllerRef {
+  _ChatContactControllerProviderElement(super.provider);
 
   @override
-  String get roleName => (origin as ContactControllerProvider).roleName;
+  String get roleName => (origin as ChatContactControllerProvider).roleName;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

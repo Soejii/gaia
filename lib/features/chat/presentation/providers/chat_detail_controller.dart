@@ -1,13 +1,24 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gaia/features/chat/domain/entity/message_entity.dart';
-import 'package:gaia/features/chat/domain/entity/chat_detail_entity.dart';
+import 'package:gaia/features/chat/domain/entity/chat_message_entity.dart';
+import 'package:gaia/features/chat/domain/entity/chat_entity.dart';
+import 'package:gaia/features/chat/domain/type/chat_message_type.dart';
 import 'package:gaia/features/chat/presentation/providers/chat_providers.dart';
-import 'package:gaia/features/chat/presentation/providers/chat_controller.dart';
 import 'package:gaia/shared/presentation/paged.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'chat_detail_controller.g.dart';
+
+@riverpod
+Future<ChatEntity> chatDetailEntity(ChatDetailEntityRef ref, int userId) async {
+  final uc = ref.read(getMessagesUsecaseProvider);
+  final either = await uc.getMessages(userId: userId, page: 1);
+  
+  return either.fold(
+    (failure) => throw failure,
+    (response) => response,
+  );
+}
 
 @riverpod
 class ChatDetailController extends _$ChatDetailController {
@@ -17,10 +28,10 @@ class ChatDetailController extends _$ChatDetailController {
   int _currentPage = 1;
 
   @override
-  Future<ChatDetailEntity> build(int userId) {
+  Future<Paged<ChatMessageEntity>> build(int userId) {
     _link ??= ref.keepAlive();
     ref.onCancel(() {
-      _ttl = Timer(const Duration(minutes: 5), () {
+      _ttl = Timer(const Duration(minutes: 3), () {
         _link?.close();
         _link = null;
       });
@@ -33,43 +44,48 @@ class ChatDetailController extends _$ChatDetailController {
     return _fetch();
   }
 
-  Future<ChatDetailEntity> _fetch({int page = 1}) async {
+  Future<Paged<ChatMessageEntity>> _fetch({int page = 1}) async {
     final uc = ref.read(getMessagesUsecaseProvider);
     final either = await uc.getMessages(userId: userId, page: page);
     
     return either.fold(
       (failure) => throw failure,
-      (response) => ChatDetailEntity(
-        contact: response.user,
-        messages: Paged(
-          items: response.messages,
+      (response) {
+
+        return Paged(
+          items: response.messages ?? [],
           page: page,
-          hasMore: response.messages.length >= 20,
-        ),
-      ),
+          hasMore: (response.messages?.length ?? 0) >= 20,
+        );
+      },
     );
   }
 
   Future<void> refresh() async {
     _currentPage = 1;
     state = const AsyncLoading();
+    
+    // Force refresh by invalidating any potential cache
+    ref.invalidateSelf();
+    
     state = await AsyncValue.guard(() => _fetch(page: 1));
   }
 
   Future<void> loadMore() async {
     final currentState = state.asData?.value;
-    if (currentState == null || !currentState.messages.hasMore) return;
+    if (currentState == null || !currentState.hasMore) return;
 
     try {
       _currentPage++;
       final newData = await _fetch(page: _currentPage);
-      final updatedMessages = Paged<MessageEntity>(
-        items: [...currentState.messages.items, ...newData.messages.items],
+      // Insert pesan lama di awal list (reverse pagination)
+      final updatedMessages = Paged<ChatMessageEntity>(
+        items: [...newData.items, ...currentState.items],
         page: _currentPage,
-        hasMore: newData.messages.hasMore,
+        hasMore: newData.hasMore,
       );
 
-      state = AsyncData(currentState.copyWith(messages: updatedMessages));
+      state = AsyncData(updatedMessages);
     } catch (error) {
       _currentPage--;
       rethrow;
@@ -94,36 +110,39 @@ class ChatDetailController extends _$ChatDetailController {
     final currentState = state.asData?.value;
     if (currentState == null) return;
 
-    final optimisticMessage = MessageEntity(
-      type: 'send',
+    final now = DateTime.now();
+    final formattedDate = "${now.year.toString().padLeft(4, '0')}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')} ${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}:${now.second.toString().padLeft(2, '0')}";
+
+    final optimisticMessage = ChatMessageEntity(
+      type: ChatMessageType.send,
       message: message,
-      createdAt: DateTime.now(),
+      createdAt: formattedDate,
     );
 
-    final updatedMessages = Paged<MessageEntity>(
-      items: [...currentState.messages.items, optimisticMessage],
-      page: currentState.messages.page,
-      hasMore: currentState.messages.hasMore,
+    final updatedMessages = Paged<ChatMessageEntity>(
+      items: [...currentState.items, optimisticMessage],
+      page: currentState.page,
+      hasMore: currentState.hasMore,
     );
 
-    state = AsyncData(currentState.copyWith(messages: updatedMessages));
+    state = AsyncData(updatedMessages);
   }
 
   void removeOptimisticMessage(String message) {
     final currentState = state.asData?.value;
     if (currentState == null) return;
 
-    final updatedItems = currentState.messages.items
-        .where((msg) => !(msg.message == message && msg.type == 'send'))
+    final updatedItems = currentState.items
+        .where((msg) => !(msg.message == message && msg.type == ChatMessageType.send))
         .toList();
 
-    final updatedMessages = Paged<MessageEntity>(
+    final updatedMessages = Paged<ChatMessageEntity>(
       items: updatedItems,
-      page: currentState.messages.page,
-      hasMore: currentState.messages.hasMore,
+      page: currentState.page,
+      hasMore: currentState.hasMore,
     );
 
-    state = AsyncData(currentState.copyWith(messages: updatedMessages));
+    state = AsyncData(updatedMessages);
   }
 
   Future<void> sendMessage(String message) async {
@@ -132,7 +151,7 @@ class ChatDetailController extends _$ChatDetailController {
     try {
       final dataSource = ref.read(chatRemoteDataSourceProvider);
       await dataSource.sendMessage(userId, message);
-      ref.invalidate(chatControllerProvider);
+      
     } catch (error) {
       rethrow;
     }

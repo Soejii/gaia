@@ -5,10 +5,10 @@ import 'package:gaia/features/chat/presentation/providers/chat_providers.dart';
 import 'package:gaia/shared/presentation/paged.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'contact_controller.g.dart';
+part 'chat_contact_controller.g.dart';
 
 @riverpod
-class ContactController extends _$ContactController {
+class ChatContactController extends _$ChatContactController {
   Timer? _ttl;
   KeepAliveLink? _link;
 
@@ -27,17 +27,9 @@ class ContactController extends _$ContactController {
     });
     ref.onResume(() => _ttl?.cancel());
     ref.onDispose(() => _ttl?.cancel());
+    
     _firstLoad(roleName);
     return const AsyncLoading();
-  }
-
-  Future<List<ChatContactEntity>> _fetch(String roleName, int page) async {
-    final uc = ref.read(getContactsUsecaseProvider);
-    final either = await uc.getContacts(role: roleName, page: page);
-    return either.fold(
-      (e) => throw e,
-      (chatEntities) => chatEntities.map((chat) => chat.contact).toList(),
-    );
   }
 
   Future<void> _firstLoad(String roleName) async {
@@ -52,7 +44,26 @@ class ContactController extends _$ContactController {
     });
   }
 
-  Future<void> refresh(String roleName) async => _firstLoad(roleName);
+  Future<List<ChatContactEntity>> _fetch(String roleName, int page) async {
+    final uc = ref.read(getContactsUsecaseProvider);
+    final either = await uc.getContacts(role: roleName, page: page);
+    return either.fold(
+      (e) => throw e,
+      (chatEntities) => chatEntities.map((chat) => chat.contact).toList(),
+    );
+  }
+
+  Future<void> refresh(String roleName) async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      final items = await _fetch(roleName, 1);
+      return Paged(
+        items: items,
+        page: 1,
+        hasMore: items.length >= _pageSize,
+      );
+    });
+  }
 
   Future<void> loadMore(String roleName) async {
     final data = state.asData?.value;

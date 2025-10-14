@@ -17,11 +17,14 @@ class ChatListItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final contact = chat.contact;
+    if (contact == null) return const SizedBox.shrink();
+    
     return InkWell(
       onTap: () {
         context.pushNamed(
           RouteName.chatDetail,
-          pathParameters: {'userId': chat.id.toString()},
+          pathParameters: {'userId': contact.id.toString()},
         );
       },
       child: Padding(
@@ -31,10 +34,10 @@ class ChatListItem extends ConsumerWidget {
             CircleAvatar(
               radius: 20.r,
               backgroundColor: Colors.grey[200],
-              backgroundImage: chat.photo != null && chat.photo!.isNotEmpty
-                  ? NetworkImage(chat.photo!)
+              backgroundImage: contact.photo != null && contact.photo!.isNotEmpty
+                  ? NetworkImage(contact.photo!)
                   : null,
-              child: chat.photo == null || chat.photo!.isEmpty
+              child: contact.photo == null || contact.photo!.isEmpty
                   ? Icon(
                       Icons.person,
                       size: 24.r,
@@ -48,7 +51,7 @@ class ChatListItem extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    chat.name ?? 'Pengguna',
+                    contact.name ?? '-',
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w600,
@@ -58,7 +61,7 @@ class ChatListItem extends ConsumerWidget {
                   ),
                   SizedBox(height: 4.h),
                   Text(
-                    chat.lastChat ?? 'Tidak ada pesan',
+                    contact.lastChat ?? '',
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w600,
@@ -71,7 +74,7 @@ class ChatListItem extends ConsumerWidget {
               ),
             ),
             Text(
-              _formatTime(chat.lastChatDate ?? ''),
+              _formatTime(contact.lastChatDate ?? ''),
               style: TextStyle(
                 fontSize: 14.sp,
                 color: AppColors.secondaryText,

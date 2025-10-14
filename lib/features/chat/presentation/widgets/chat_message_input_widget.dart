@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
-class MessageInputWidget extends StatelessWidget {
+class ChatMessageInputWidget extends StatelessWidget {
   final TextEditingController textController;
   final FocusNode focusNode;
   final VoidCallback onSend;
 
-  const MessageInputWidget({
+  const ChatMessageInputWidget({
     super.key,
     required this.textController,
     required this.focusNode,

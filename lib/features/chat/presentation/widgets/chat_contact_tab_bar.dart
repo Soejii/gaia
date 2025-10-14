@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/features/chat/domain/type/chat_role.dart';
+import 'package:gaia/features/chat/domain/type/chat_role_type.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
-class ContactTabBar extends StatelessWidget {
+class ChatContactTabBar extends StatelessWidget {
   final ChatRole selectedRole;
-  final Function(ChatRole) onRoleChanged;
+  final ValueChanged<ChatRole> onRoleChanged;
 
-  const ContactTabBar({
+  const ChatContactTabBar({
     super.key,
     required this.selectedRole,
     required this.onRoleChanged,
@@ -25,8 +25,7 @@ class ContactTabBar extends StatelessWidget {
         boxShadow: AppColors.shadow,
       ),
       child: Row(
-        children: roles.asMap().entries.map((entry) {
-          final role = entry.value;
+        children: roles.map((role) {
           final isSelected = selectedRole == role;
 
           return Expanded(

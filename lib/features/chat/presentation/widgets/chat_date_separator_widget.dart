@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
-class DateSeparatorWidget extends StatelessWidget {
-  final DateTime date;
+class ChatDateSeparatorWidget extends StatelessWidget {
+  final dynamic date; // Can be DateTime or String
 
-  const DateSeparatorWidget({
+  const ChatDateSeparatorWidget({
     super.key,
     required this.date,
   });
@@ -15,7 +15,18 @@ class DateSeparatorWidget extends StatelessWidget {
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
     final yesterday = today.subtract(const Duration(days: 1));
-    final messageDate = DateTime(date.year, date.month, date.day);
+    
+    DateTime messageDate;
+    if (date is DateTime) {
+      messageDate = DateTime(date.year, date.month, date.day);
+    } else {
+      try {
+        final parsedDate = DateTime.parse(date.toString());
+        messageDate = DateTime(parsedDate.year, parsedDate.month, parsedDate.day);
+      } catch (e) {
+        messageDate = today; // Fallback
+      }
+    }
 
     String dateText;
     if (_isSameDay(messageDate, today)) {
@@ -23,7 +34,8 @@ class DateSeparatorWidget extends StatelessWidget {
     } else if (_isSameDay(messageDate, yesterday)) {
       dateText = 'Kemarin';
     } else {
-      dateText = DateFormat('dd MMMM yyyy', 'id_ID').format(date);
+      final displayDate = date is DateTime ? date : DateTime.parse(date.toString());
+      dateText = DateFormat('dd MMMM yyyy', 'id_ID').format(displayDate);
     }
 
     return Container(

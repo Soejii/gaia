@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:gaia/features/chat/presentation/providers/chat_detail_controller.dart';
-import 'package:gaia/features/chat/presentation/widgets/message_list_widget.dart';
-import 'package:gaia/features/chat/presentation/widgets/message_input_widget.dart';
+import 'package:gaia/features/chat/presentation/widgets/chat_message_list_widget.dart';
+import 'package:gaia/features/chat/presentation/widgets/chat_message_input_widget.dart';
 import 'package:gaia/features/chat/presentation/widgets/chat_detail_app_bar_widget.dart';
 
 class ChatDetailScreen extends HookConsumerWidget {
@@ -16,7 +16,8 @@ class ChatDetailScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final chatDetailAsync = ref.watch(chatDetailControllerProvider(userId));
+    final chatDetailAsync = ref.watch(chatDetailEntityProvider(userId));
+    final messagesAsync = ref.watch(chatDetailControllerProvider(userId));
     final controller = ref.read(chatDetailControllerProvider(userId).notifier);
     final scrollController = useScrollController();
     final textController = useTextEditingController();
@@ -24,12 +25,12 @@ class ChatDetailScreen extends HookConsumerWidget {
 
     useEffect(() {
       void onScroll() {
-        if (scrollController.position.extentAfter < 200) {
+        if (scrollController.position.pixels < 200) {
           final currentData =
               ref.read(chatDetailControllerProvider(userId)).asData?.value;
           if (currentData != null &&
-              currentData.messages.hasMore &&
-              !currentData.messages.isMoreLoading) {
+              currentData.hasMore &&
+              !currentData.isMoreLoading) {
             controller.loadMore();
           }
         }
@@ -76,13 +77,13 @@ class ChatDetailScreen extends HookConsumerWidget {
       body: Column(
         children: [
           Expanded(
-            child: chatDetailAsync.when(
+            child: messagesAsync.when(
               data: (data) {
-                if (data.messages.items.isEmpty) {
+                if (data.items.isEmpty) {
                   return const Center(child: Text('Belum ada pesan'));
                 }
-                return MessageListWidget(
-                  messages: data.messages.items,
+                return ChatMessageListWidget(
+                  messages: data.items,
                   scrollController: scrollController,
                 );
               },
@@ -101,7 +102,7 @@ class ChatDetailScreen extends HookConsumerWidget {
               ),
             ),
           ),
-          MessageInputWidget(
+          ChatMessageInputWidget(
             textController: textController,
             focusNode: focusNode,
             onSend: () => _sendMessage(textController, scrollController, ref, context),

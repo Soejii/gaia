@@ -22,7 +22,7 @@ class ChatController extends _$ChatController {
     ref.onCancel(() {
       _refreshTimer?.cancel();
       _isAutoRefreshEnabled = false;
-      final timer = Timer(const Duration(minutes: 5), () {
+      Timer(const Duration(minutes: 3), () {
         _link?.close();
         _link = null;
       });
