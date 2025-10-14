@@ -48,6 +48,9 @@ class AssetsHelper {
 
   static String imgDataNotFound = img('img_data_not_found.png');
 
+  
+  static String imgChatNotFound = img('img_chat_not_found.png');
+  
   static String icHome = icon('ic_beranda_home.svg');
   static String icActivity = icon('ic_activity_home.svg');
   static String icChat = icon('ic_chat_home.svg');
@@ -57,7 +60,6 @@ class AssetsHelper {
   static String icTopup = icon('ic_topup.svg');
   static String icCashout = icon('ic_cashout.svg');
 
-  static String imgChatNotFound = img('imgChatNotFound');
   static String icon(String name) {
     return "assets/icons/$name";
   }
