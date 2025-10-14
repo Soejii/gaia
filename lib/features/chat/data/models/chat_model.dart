@@ -18,6 +18,7 @@ class ChatModel with _$ChatModel {
     @JsonKey(name: 'class') String? className,
     ContactModel? user,
     List<MessageModel>? messages,
+    bool? hasMore,
   }) = _ChatModel;
   factory ChatModel.fromJson(Map<String, dynamic> json) =>
       _$ChatModelFromJson(json);

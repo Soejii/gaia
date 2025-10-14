@@ -53,14 +53,16 @@ class ChatRemoteDataSource {
     final responseData = res.data as Map<String, dynamic>;
     final data = responseData['data'] as Map<String, dynamic>;
 
-    final chatsData = data['chats'] as Map<String, dynamic>?;
-    final messagesData = chatsData?['data'] as List<dynamic>? ?? [];
-    final transformedData = <String, dynamic>{
-      'user': data['user'],
+    final userData = data['user'] as Map<String, dynamic>;
+    final chatsData = data['chats'] as Map<String, dynamic>;
+    final messagesData = chatsData['data'] as List<dynamic>;
+
+    final chatModelData = {
+      'user': userData,
       'messages': messagesData,
     };
 
-    return ChatModel.fromJson(transformedData);
+    return ChatModel.fromJson(chatModelData);
   }
 
   Future<void> sendMessage(int userId, String message) async {

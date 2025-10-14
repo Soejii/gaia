@@ -30,6 +30,7 @@ mixin _$ChatModel {
   String? get className => throw _privateConstructorUsedError;
   ContactModel? get user => throw _privateConstructorUsedError;
   List<MessageModel>? get messages => throw _privateConstructorUsedError;
+  bool? get hasMore => throw _privateConstructorUsedError;
 
   /// Serializes this ChatModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,7 +56,8 @@ abstract class $ChatModelCopyWith<$Res> {
       String? lastChatDate,
       @JsonKey(name: 'class') String? className,
       ContactModel? user,
-      List<MessageModel>? messages});
+      List<MessageModel>? messages,
+      bool? hasMore});
 
   $ContactModelCopyWith<$Res>? get user;
 }
@@ -84,6 +86,7 @@ class _$ChatModelCopyWithImpl<$Res, $Val extends ChatModel>
     Object? className = freezed,
     Object? user = freezed,
     Object? messages = freezed,
+    Object? hasMore = freezed,
   }) {
     return _then(_value.copyWith(
       userId: freezed == userId
@@ -122,6 +125,10 @@ class _$ChatModelCopyWithImpl<$Res, $Val extends ChatModel>
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<MessageModel>?,
+      hasMore: freezed == hasMore
+          ? _value.hasMore
+          : hasMore // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -157,7 +164,8 @@ abstract class _$$ChatModelImplCopyWith<$Res>
       String? lastChatDate,
       @JsonKey(name: 'class') String? className,
       ContactModel? user,
-      List<MessageModel>? messages});
+      List<MessageModel>? messages,
+      bool? hasMore});
 
   @override
   $ContactModelCopyWith<$Res>? get user;
@@ -185,6 +193,7 @@ class __$$ChatModelImplCopyWithImpl<$Res>
     Object? className = freezed,
     Object? user = freezed,
     Object? messages = freezed,
+    Object? hasMore = freezed,
   }) {
     return _then(_$ChatModelImpl(
       userId: freezed == userId
@@ -223,6 +232,10 @@ class __$$ChatModelImplCopyWithImpl<$Res>
           ? _value._messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<MessageModel>?,
+      hasMore: freezed == hasMore
+          ? _value.hasMore
+          : hasMore // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -240,7 +253,8 @@ class _$ChatModelImpl implements _ChatModel {
       this.lastChatDate,
       @JsonKey(name: 'class') this.className,
       this.user,
-      final List<MessageModel>? messages})
+      final List<MessageModel>? messages,
+      this.hasMore})
       : _messages = messages;
 
   factory _$ChatModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -274,8 +288,11 @@ class _$ChatModelImpl implements _ChatModel {
   }
 
   @override
+  final bool? hasMore;
+
+  @override
   String toString() {
-    return 'ChatModel(userId: $userId, photo: $photo, name: $name, role: $role, lastChat: $lastChat, lastChatDate: $lastChatDate, className: $className, user: $user, messages: $messages)';
+    return 'ChatModel(userId: $userId, photo: $photo, name: $name, role: $role, lastChat: $lastChat, lastChatDate: $lastChatDate, className: $className, user: $user, messages: $messages, hasMore: $hasMore)';
   }
 
   @override
@@ -294,7 +311,8 @@ class _$ChatModelImpl implements _ChatModel {
             (identical(other.className, className) ||
                 other.className == className) &&
             (identical(other.user, user) || other.user == user) &&
-            const DeepCollectionEquality().equals(other._messages, _messages));
+            const DeepCollectionEquality().equals(other._messages, _messages) &&
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -309,7 +327,8 @@ class _$ChatModelImpl implements _ChatModel {
       lastChatDate,
       className,
       user,
-      const DeepCollectionEquality().hash(_messages));
+      const DeepCollectionEquality().hash(_messages),
+      hasMore);
 
   /// Create a copy of ChatModel
   /// with the given fields replaced by the non-null parameter values.
@@ -337,7 +356,8 @@ abstract class _ChatModel implements ChatModel {
       final String? lastChatDate,
       @JsonKey(name: 'class') final String? className,
       final ContactModel? user,
-      final List<MessageModel>? messages}) = _$ChatModelImpl;
+      final List<MessageModel>? messages,
+      final bool? hasMore}) = _$ChatModelImpl;
 
   factory _ChatModel.fromJson(Map<String, dynamic> json) =
       _$ChatModelImpl.fromJson;
@@ -361,6 +381,8 @@ abstract class _ChatModel implements ChatModel {
   ContactModel? get user;
   @override
   List<MessageModel>? get messages;
+  @override
+  bool? get hasMore;
 
   /// Create a copy of ChatModel
   /// with the given fields replaced by the non-null parameter values.

@@ -31,4 +31,9 @@ class ChatRepositoryImpl implements ChatRepository {
         final models = await _remoteDataSource.getContacts(role, page);
         return models.map((model) => model.toEntity()).toList();
       });
+
+  @override
+  Future<Result<void>> sendMessage(int userId, String message) => guard(() async {
+        await _remoteDataSource.sendMessage(userId, message);
+      });
 }

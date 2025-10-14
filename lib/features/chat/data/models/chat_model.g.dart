@@ -21,6 +21,7 @@ _$ChatModelImpl _$$ChatModelImplFromJson(Map<String, dynamic> json) =>
       messages: (json['messages'] as List<dynamic>?)
           ?.map((e) => MessageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      hasMore: json['has_more'] as bool?,
     );
 
 Map<String, dynamic> _$$ChatModelImplToJson(_$ChatModelImpl instance) =>
@@ -34,4 +35,5 @@ Map<String, dynamic> _$$ChatModelImplToJson(_$ChatModelImpl instance) =>
       'class': instance.className,
       'user': instance.user,
       'messages': instance.messages,
+      'has_more': instance.hasMore,
     };
