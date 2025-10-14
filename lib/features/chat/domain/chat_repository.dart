@@ -11,4 +11,5 @@ abstract class ChatRepository {
     String role,
     int page,
   );
+  Future<Result<void>> sendMessage(int userId, String message);
 }
