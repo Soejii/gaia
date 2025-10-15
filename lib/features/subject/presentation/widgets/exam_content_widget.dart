@@ -5,6 +5,7 @@ import 'package:gaia/features/activity/domain/type/exam_type.dart';
 import 'package:gaia/features/activity/presentation/widgets/exam_card.dart';
 import 'package:gaia/features/activity/presentation/widgets/quiz_card.dart';
 import 'package:gaia/features/subject/presentation/providers/exam_subject_controller.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -73,7 +74,11 @@ class SubjectExamContentWidget extends HookConsumerWidget {
           return DataNotFoundScreen(dataType: examType.name);
         }
       },
-      error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+      error: (error, stackTrace) => BufferErrorView(
+        error: error,
+        stackTrace: stackTrace,
+        onRetry: () => ref.invalidate(examSubjectControllerProvider(idSubject, examType)),
+      ),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }

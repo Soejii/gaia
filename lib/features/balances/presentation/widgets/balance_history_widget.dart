@@ -6,6 +6,7 @@ import 'package:gaia/features/balances/presentation/providers/savings_history_co
 import 'package:gaia/features/balances/presentation/widgets/balance_history_item_widget.dart';
 import 'package:gaia/features/balances/presentation/mappers/balance_type_ui_mapper.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -102,8 +103,12 @@ class BalanceHistoryWidget extends ConsumerWidget {
                   height: 200.h,
                   child: const Center(child: CircularProgressIndicator()),
                 ),
-                error: (error, stack) =>
-                    const DataNotFoundScreen(dataType: 'Riwayat Transaksi'),
+                error: (error, stack) => BufferErrorView(
+                  error: error,
+                  stackTrace: stack,
+                  onRetry: () =>
+                      ref.invalidate(emoneyHistoryControllerProvider),
+                ),
               );
             },
           ),
@@ -132,7 +137,7 @@ class BalanceHistoryWidget extends ConsumerWidget {
 
                       return Column(
                         children: [
-                        BalanceHistoryItemWidget.savings(savingsItem: item),
+                          BalanceHistoryItemWidget.savings(savingsItem: item),
                           if (index < displayList.length - 1)
                             Container(
                               height: 1.h,
@@ -148,8 +153,12 @@ class BalanceHistoryWidget extends ConsumerWidget {
                   height: 200.h,
                   child: const Center(child: CircularProgressIndicator()),
                 ),
-                error: (error, stack) =>
-                    const DataNotFoundScreen(dataType: 'Riwayat Tabungan'),
+                error: (error, stack) => BufferErrorView(
+                  error: error,
+                  stackTrace: stack,
+                  onRetry: () =>
+                      ref.invalidate(savingsHistoryControllerProvider),
+                ),
               );
             },
           ),

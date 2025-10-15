@@ -7,6 +7,7 @@ import 'package:gaia/features/discussion/presentation/widgets/discussion_post_ca
 import 'package:gaia/shared/presentation/divider_card.dart';
 import 'package:gaia/features/discussion/presentation/widgets/create_discussion_card.dart';
 import 'package:gaia/features/subject/presentation/providers/discussion_subject_controller.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -72,7 +73,12 @@ class SubjectDiscussionContentWidget extends HookConsumerWidget {
                 return const DataNotFoundScreen(dataType: 'Diskusi');
               }
             },
-            error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+            error: (error, stackTrace) => BufferErrorView(
+              error: error,
+              stackTrace: stackTrace,
+              onRetry: () => ref
+                  .invalidate(discussionSubjectControllerProvider(idSubject)),
+            ),
             loading: () => const Center(child: CircularProgressIndicator()),
           ),
         ],

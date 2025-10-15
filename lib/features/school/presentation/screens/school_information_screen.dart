@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:gaia/features/school/presentation/providers/school_controller.dart';
 import 'package:gaia/features/school/presentation/widgets/school_information_content.dart';
 import 'package:gaia/features/school/presentation/widgets/school_loading_widget.dart';
-import 'package:gaia/features/school/presentation/widgets/school_error_widget.dart';
 
 class SchoolInformationScreen extends ConsumerWidget {
   const SchoolInformationScreen({super.key});
@@ -22,7 +22,11 @@ class SchoolInformationScreen extends ConsumerWidget {
       body: schoolAsync.when(
         data: (school) => SchoolInformationContent(school: school),
         loading: () => const SchoolLoadingWidget(),
-        error: (error, stack) => const SchoolErrorWidget(),
+        error: (error, stack) => BufferErrorView(
+          error: error,
+          stackTrace: stack,
+          onRetry: () => ref.invalidate(schoolControllerProvider),
+        ),
       ),
     );
   }

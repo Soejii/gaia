@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/edutainment/presentation/providers/detail_edutainment_controller.dart';
 import 'package:gaia/features/edutainment/presentation/widgets/detail_edutainment_content.dart';
 import 'package:gaia/features/edutainment/presentation/widgets/detail_edutainment_image.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 
 class DetailEdutainmentScreen extends ConsumerWidget {
@@ -30,21 +31,15 @@ class DetailEdutainmentScreen extends ConsumerWidget {
               title: data.title,
               date: data.date,
               desc: data.desc,
-              link:  data.link,
+              link: data.link,
             ),
           ],
         ),
-        error: (error, stackTrace) => ListView(
-          children: [
-            SizedBox(height: 30.h),
-            const DetailEdutainmentImage(
-              imgUrl: '',
-            ),
-            SizedBox(height: 20.h),
-            Center(
-              child: Text('$error'),
-            ),
-          ],
+        error: (error, stackTrace) => BufferErrorView(
+          error: error,
+          stackTrace: stackTrace,
+          onRetry: () =>
+              ref.invalidate(detailEdutainmentControllerProvider(id)),
         ),
         loading: () => const Center(
           child: CircularProgressIndicator(),

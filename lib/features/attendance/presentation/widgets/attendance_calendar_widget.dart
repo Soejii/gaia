@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:gaia/features/attendance/domain/entities/attendance_entitiy.dart';
 import 'package:gaia/features/attendance/presentation/providers/attedance_controller.dart';
@@ -59,17 +60,10 @@ class _AttendanceCalendarWidgetState
         );
       },
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, stack) => Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Error: $error'),
-            ElevatedButton(
-              onPressed: () => ref.refresh(attendanceControllerProvider),
-              child: const Text('Coba Lagi'),
-            ),
-          ],
-        ),
+      error: (error, stack) => BufferErrorView(
+        error: error,
+        stackTrace: stack,
+        onRetry: () => ref.invalidate(attendanceControllerProvider),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/announcement/presentation/providers/detail_announcement_controller.dart';
 import 'package:gaia/features/announcement/presentation/widgets/detail_announcement_content.dart';
 import 'package:gaia/features/announcement/presentation/widgets/detail_announcement_image.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 
 class DetailAnnouncementScreen extends ConsumerWidget {
@@ -33,18 +34,11 @@ class DetailAnnouncementScreen extends ConsumerWidget {
             ),
           ],
         ),
-        error: (error, stackTrace) => ListView(
-          children: [
-            SizedBox(height: 30.h),
-            const DetailAnnouncementImage(
-              imgUrl: '',
-            ),
-            SizedBox(height: 20.h),
-            Center(
-              child: Text('$error'),
-            ),
-          ],
-        ),
+        error: (error, stackTrace) => BufferErrorView(
+        error: error,
+        stackTrace: stackTrace,
+        onRetry: () => ref.invalidate(detailAnnouncementControllerProvider(id)),
+      ),
         loading: () => const Center(
           child: CircularProgressIndicator(),
         ),
