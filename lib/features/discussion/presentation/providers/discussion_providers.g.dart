@@ -85,5 +85,44 @@ final getDetailDiscussionUsecaseProvider =
 // ignore: unused_element
 typedef GetDetailDiscussionUsecaseRef
     = AutoDisposeProviderRef<GetDetailDiscussionUsecase>;
+String _$createDiscussionUsecaseHash() =>
+    r'43c2c992deeb3338ea3f2f12334660878116b867';
+
+/// See also [createDiscussionUsecase].
+@ProviderFor(createDiscussionUsecase)
+final createDiscussionUsecaseProvider =
+    AutoDisposeProvider<CreateDiscussionUsecase>.internal(
+  createDiscussionUsecase,
+  name: r'createDiscussionUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$createDiscussionUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef CreateDiscussionUsecaseRef
+    = AutoDisposeProviderRef<CreateDiscussionUsecase>;
+String _$createCommentUsecaseHash() =>
+    r'7c851da59b1f86d55587d9b55b4be85bfd302f9c';
+
+/// See also [createCommentUsecase].
+@ProviderFor(createCommentUsecase)
+final createCommentUsecaseProvider =
+    AutoDisposeProvider<CreateCommentUsecase>.internal(
+  createCommentUsecase,
+  name: r'createCommentUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$createCommentUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef CreateCommentUsecaseRef = AutoDisposeProviderRef<CreateCommentUsecase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

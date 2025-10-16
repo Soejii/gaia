@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/features/discussion/presentation/types/create_discussion_args.dart';
+import 'package:gaia/features/profile/presentation/providers/profile_controller.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
+import 'package:gaia/shared/core/types/failure.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CreateDiscussionCard extends StatelessWidget {
-  const CreateDiscussionCard({super.key});
+class CreateDiscussionCard extends ConsumerWidget {
+  const CreateDiscussionCard({super.key, required this.type});
+  final CreateDiscussionArgs type;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final profileAsync = ref.watch(profileControllerProvider);
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Row(
@@ -18,20 +25,25 @@ class CreateDiscussionCard extends StatelessWidget {
           SizedBox(
             height: 48.h,
             width: 48.h,
-            child: CircleAvatar(
-              foregroundImage: const NetworkImage(
-                '',
+            child: profileAsync.when(
+              data: (data) => CircleAvatar(
+                foregroundImage: NetworkImage(
+                  data.imgUrl,
+                ),
+                backgroundImage: AssetImage(
+                  AssetsHelper.imgProfilePlaceholder,
+                ),
               ),
-              backgroundImage: AssetImage(
-                AssetsHelper.imgProfilePlaceholder,
-              ),
+              error: (error, stackTrace) => Text(
+                  error is NetworkFailure ? 'Offline' : 'Terjadi Kesalahan'),
+              loading: () => const CircularProgressIndicator(),
             ),
           ),
           SizedBox(width: 12.w),
           Expanded(
             child: GestureDetector(
               onTap: () {
-                context.pushNamed(RouteName.createDiscussion);
+                context.pushNamed(RouteName.createDiscussion, extra: type);
               },
               child: Container(
                 height: 48.h,

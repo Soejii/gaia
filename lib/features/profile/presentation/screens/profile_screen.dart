@@ -4,6 +4,7 @@ import 'package:gaia/features/profile/presentation/providers/profile_controller.
 import 'package:gaia/features/profile/presentation/widgets/profile_menu_widget.dart';
 import 'package:gaia/features/profile/presentation/widgets/user_avatar_profile_widget.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -20,7 +21,11 @@ class ProfileScreen extends HookConsumerWidget {
         leadingIcon: false,
       ),
       body: profileAsync.when(
-        error: (e, _) => Center(child: Text('Error: $e')),
+        error: (e, _) => BufferErrorView(
+          error: e,
+          stackTrace: _,
+          onRetry: () => ref.invalidate(profileControllerProvider),
+        ),
         loading: () => const Center(
           child: CircularProgressIndicator(),
         ),

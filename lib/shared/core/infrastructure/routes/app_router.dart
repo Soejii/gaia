@@ -5,6 +5,8 @@ import 'package:gaia/app/bottom_navigation_shell.dart';
 import 'package:gaia/features/activity/presentation/screen/activity_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/detail_announcement_screen.dart';
 import 'package:gaia/features/announcement/presentation/screens/list_announcement_screen.dart';
+import 'package:gaia/features/discussion/presentation/screen/choose_discussion_screen.dart';
+import 'package:gaia/features/discussion/presentation/screen/class_discussion_screen.dart';
 import 'package:gaia/features/attendance/presentation/screens/attedance_screen.dart';
 import 'package:gaia/features/discussion/presentation/screen/create_discussion_screen.dart';
 import 'package:gaia/features/discussion/presentation/screen/detail_discussion_screen.dart';
@@ -14,6 +16,7 @@ import 'package:gaia/features/balances/presentation/screens/balance_history_scre
 import 'package:gaia/features/chat/presentation/screens/chat_list_screen.dart';
 import 'package:gaia/features/chat/presentation/screens/chat_contact_picker_screen.dart';
 import 'package:gaia/features/chat/presentation/screens/chat_detail_screen.dart';
+import 'package:gaia/features/discussion/presentation/types/create_discussion_args.dart';
 import 'package:gaia/features/edutainment/presentation/screens/detail_edutainment_screen.dart';
 import 'package:gaia/features/edutainment/presentation/screens/list_edutainment_screen.dart';
 import 'package:gaia/features/home/presentation/home_screen.dart';
@@ -26,6 +29,8 @@ import 'package:gaia/features/school/presentation/screens/school_information_scr
 import 'package:gaia/features/subject/presentation/screens/detail_sub_module_screen.dart';
 import 'package:gaia/features/subject/presentation/screens/subject_picker_screen.dart';
 import 'package:gaia/features/subject/presentation/screens/detail_subject_screen.dart';
+import 'package:gaia/features/task/presentation/screens/collect_task_screen.dart';
+import 'package:gaia/features/task/presentation/screens/detail_task_screen.dart';
 import 'package:gaia/shared/core/infrastructure/auth/auth_state_provider.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:gaia/shared/screens/error_screen.dart';
@@ -136,31 +141,42 @@ GoRouter appRouter(Ref ref) {
                     ],
                   ),
                   GoRoute(
-                    path: 'list-discussion',
-                    name: RouteName.listDiscussion,
+                    path: 'choose-discussion',
+                    name: RouteName.chooseDiscussion,
                     parentNavigatorKey: _rootKey,
-                    builder: (_, __) => Container(),
+                    builder: (_, __) => const ChooseDiscussionScreen(),
                     routes: [
                       GoRoute(
-                        path: 'detail-discussion/:id',
-                        name: RouteName.detailDiscussion,
+                        path: 'class-discussion',
+                        name: RouteName.classDiscussion,
                         parentNavigatorKey: _rootKey,
                         builder: (_, state) {
-                          final id = state.pathParameters['id']!;
-                          return DetailDiscussionScreen(
-                            idDiscussion: int.parse(id),
-                          );
-                        },
-                      ),
-                      GoRoute(
-                        path: 'create-discussion',
-                        name: RouteName.createDiscussion,
-                        parentNavigatorKey: _rootKey,
-                        builder: (_, state) {
-                          return const CreateDiscussionScreen();
+                          return const ClassDiscussionScreen();
                         },
                       ),
                     ],
+                  ),
+                  GoRoute(
+                    path: 'detail-discussion/:id',
+                    name: RouteName.detailDiscussion,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, state) {
+                      final id = state.pathParameters['id']!;
+                      return DetailDiscussionScreen(
+                        idDiscussion: int.parse(id),
+                      );
+                    },
+                  ),
+                  GoRoute(
+                    path: 'create-discussion',
+                    name: RouteName.createDiscussion,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, state) {
+                      final args = state.extra as CreateDiscussionArgs;
+                      return CreateDiscussionScreen(
+                        type: args,
+                      );
+                    },
                   ),
                   GoRoute(
                     path: 'attendance',
@@ -179,10 +195,31 @@ GoRouter appRouter(Ref ref) {
                         name: RouteName.balanceHistory,
                         parentNavigatorKey: _rootKey,
                         builder: (_, state) {
-                          final type = state.uri.queryParameters['type'] == 'savings' 
-                              ? BalanceType.savings 
-                              : BalanceType.emoney;
+                          final type =
+                              state.uri.queryParameters['type'] == 'savings'
+                                  ? BalanceType.savings
+                                  : BalanceType.emoney;
                           return BalanceHistoryScreen(type: type);
+                        },
+                      ),
+                    ],
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: _rootKey,
+                    path: 'detail-task/:id',
+                    name: RouteName.detailTask,
+                    builder: (context, state) {
+                      final id = state.pathParameters['id']!;
+                      return DetailTaskScreen(idTask: int.parse(id));
+                    },
+                    routes: [
+                      GoRoute(
+                        path: 'collect-task',
+                        name: RouteName.collectTask,
+                        parentNavigatorKey: _rootKey,
+                        builder: (context, state) {
+                          final id = state.pathParameters['id']!;
+                          return CollectTaskScreen(idTask: int.parse(id));
                         },
                       ),
                     ],

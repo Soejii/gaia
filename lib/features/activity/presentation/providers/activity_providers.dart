@@ -3,7 +3,6 @@ import 'package:gaia/features/activity/data/activity_repository_impl.dart';
 import 'package:gaia/features/activity/data/datasources/activity_remote_data_source.dart';
 import 'package:gaia/features/activity/domain/activity_repository.dart';
 import 'package:gaia/features/activity/domain/usecase/get_list_exam_usecase.dart';
-import 'package:gaia/features/activity/domain/usecase/get_list_task_usecase.dart';
 
 import 'package:gaia/shared/core/infrastructure/network/dio_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -27,13 +26,6 @@ ActivityRepository activityRepository(Ref ref) {
 @riverpod
 GetListExamUsecase getListExamUsecase(Ref ref) {
   return GetListExamUsecase(
-    ref.watch(activityRepositoryProvider),
-  );
-}
-
-@riverpod
-GetListTaskUsecase getListTaskUsecase(Ref ref) {
-  return GetListTaskUsecase(
     ref.watch(activityRepositoryProvider),
   );
 }

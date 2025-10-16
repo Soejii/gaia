@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/activity/domain/entities/exam_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
+import 'package:gaia/shared/core/infrastructure/exam_app_launcher.dart';
 import 'package:gaia/shared/utils/date_helper.dart';
 
 class ExamCard extends StatelessWidget {
@@ -134,22 +135,25 @@ class ExamCard extends StatelessWidget {
           ),
         );
       case 'notDone':
-        return Container(
-          width: 64.h,
-          height: 64.h,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: Colors.white, width: 6.w),
-            color: AppColors.green,
-          ),
-          child: Center(
-            child: Text(
-              'Kerjakan',
-              style: TextStyle(
-                fontFamily: 'OpenSans',
-                fontSize: 10.sp,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
+        return GestureDetector(
+          onTap: () => ExamAppLauncher.openExam(entity.id, 'exam'),
+          child: Container(
+            width: 64.h,
+            height: 64.h,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.white, width: 6.w),
+              color: AppColors.green,
+            ),
+            child: Center(
+              child: Text(
+                'Kerjakan',
+                style: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),

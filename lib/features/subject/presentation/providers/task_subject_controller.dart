@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gaia/features/activity/domain/entities/task_entity.dart';
+import 'package:gaia/features/task/domain/entities/task_entity.dart';
 import 'package:gaia/features/subject/presentation/providers/subject_providers.dart';
 import 'package:gaia/shared/presentation/paged.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:gaia/features/activity/data/models/exam_model.dart';
-import 'package:gaia/features/activity/data/models/task_model.dart';
+import 'package:gaia/features/task/data/models/task_model.dart';
 import 'package:gaia/features/activity/domain/type/exam_type.dart';
 import 'package:gaia/features/subject/data/models/detail_sub_module_model.dart';
 import 'package:gaia/features/subject/data/models/media_model.dart';

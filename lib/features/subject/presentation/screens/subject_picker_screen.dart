@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gaia/features/subject/presentation/providers/choose_subject_controller.dart';
 import 'package:gaia/features/subject/presentation/widgets/quick_subject_button.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,14 +35,17 @@ class SubjectPickerScreen extends ConsumerWidget {
               ),
               itemBuilder: (context, index) => QuickSubjectButton(
                 id: data[index].id,
-                iconCode: data[index].iconCode ,
+                iconCode: data[index].iconCode,
                 title: data[index].name ?? '-',
               ),
             );
           }
         },
-        error: (error, stackTrace) =>
-            Text('Terjadi Kesalahan, $error, $stackTrace'),
+        error: (error, stackTrace) => BufferErrorView(
+          error: error,
+          stackTrace: stackTrace,
+          onRetry: () => ref.invalidate(chooseSubjectControllerProvider),
+        ),
         loading: () => const Center(
           child: CircularProgressIndicator(),
         ),

@@ -35,4 +35,30 @@ class DiscussionRemoteDataSource {
     final data = DetailDiscussionModel.fromJson(res.data['data']);
     return data;
   }
+
+  Future<void> createDiscussion(
+    String type,
+    String text, {
+    int? subjectId,
+  }) async {
+    await _dio.post(
+      '/discuss/post-discussion/$type',
+      data: {
+        if (subjectId != null) 'subject_id': subjectId,
+        'text': text,
+      },
+    );
+  }
+
+    Future<void> createComment(
+    String text,
+    int discussionId, 
+    ) async {
+    await _dio.post(
+      '/discuss/post-comment/$discussionId',
+      data: {
+        'text': text,
+      },
+    );
+  }
 }

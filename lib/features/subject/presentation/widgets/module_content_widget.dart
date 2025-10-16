@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/subject/presentation/providers/module_controller.dart';
 import 'package:gaia/features/subject/presentation/widgets/module_card.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -30,7 +31,11 @@ class ModuleContentWidget extends ConsumerWidget {
         }
         return const DataNotFoundScreen(dataType: 'Modul');
       },
-      error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+      error: (error, stackTrace) => BufferErrorView(
+        error: error,
+        stackTrace: stackTrace,
+        onRetry: () => ref.invalidate(moduleControllerProvider(idSubject)),
+      ),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }

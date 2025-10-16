@@ -3,6 +3,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/subject/presentation/providers/detail_sub_module_controller.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/utils/date_helper.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -78,7 +79,12 @@ class DetailSubModuleScreen extends ConsumerWidget {
             ),
           ],
         ),
-        error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+        error: (error, stackTrace) => BufferErrorView(
+          error: error,
+          stackTrace: stackTrace,
+          onRetry: () =>
+              ref.invalidate(detailSubModuleControllerProvider(idSubModule)),
+        ),
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
     );

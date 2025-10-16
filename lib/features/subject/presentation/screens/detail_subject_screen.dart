@@ -11,6 +11,7 @@ import 'package:gaia/features/subject/presentation/widgets/exam_content_widget.d
 import 'package:gaia/features/subject/presentation/widgets/media_content_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/module_content_widget.dart';
 import 'package:gaia/features/subject/presentation/widgets/task_content_widget.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DetailSubjectScreen extends HookConsumerWidget {
@@ -53,6 +54,7 @@ class DetailSubjectScreen extends HookConsumerWidget {
       },
       [tabController],
     );
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -60,7 +62,12 @@ class DetailSubjectScreen extends HookConsumerWidget {
         children: [
           asyncSubject.when(
             data: (data) => DetailSubjectAppBarWidget(entity: data),
-            error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+            error: (error, stackTrace) => BufferErrorView(
+              error: error,
+              stackTrace: stackTrace,
+              onRetry: () =>
+                  ref.invalidate(detailSubjectControllerProvider(idSubject)),
+            ),
             loading: () => const DetailSubjectAppBarSkeleton(),
           ),
           DetailSubjectTabBarWidget(

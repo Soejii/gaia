@@ -33,7 +33,8 @@ class DiscussionSubjectController extends _$DiscussionSubjectController {
 
   Future<List<DiscussionEntity>> _fetch(int page) async {
     final usecase = ref.read(getListDiscussionUsecaseProvider);
-    final either = await usecase.getListDiscussion('subject', page, idSubject: idSubject);
+    final either =
+        await usecase.getListDiscussion('subject', page, idSubject: idSubject);
     return either.fold((e) => throw e, (list) => list);
   }
 
@@ -69,8 +70,8 @@ class DiscussionSubjectController extends _$DiscussionSubjectController {
       state = AsyncValue.data(updated);
     } catch (e, st) {
       // keep previous list, surface error on state
-      state =
-          AsyncValue<Paged<DiscussionEntity>>.error(e, st).copyWithPrevious(state);
+      state = AsyncValue<Paged<DiscussionEntity>>.error(e, st)
+          .copyWithPrevious(state);
     } finally {
       _loadingMore = false;
     }
