@@ -10,9 +10,9 @@ part 'dio_provider.g.dart';
 
 @riverpod
 Dio dio(Ref ref) {
-  final env = ref.watch(configProvider);
+  final env = ref.watch(appConfigProvider);
   final storage = ref.watch(authLocalDataSourceProvider);
-  final baseUrl = env['baseUrl']!;
+  final baseUrl = env.baseUrl.toString();
 
   final dio = ApiClient.build(baseUrl: baseUrl, token: null);
   dio.interceptors.addAll(
