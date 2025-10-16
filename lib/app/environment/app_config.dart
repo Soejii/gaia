@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 class AppConfig {
@@ -14,20 +15,36 @@ class AppConfig {
   });
 
   factory AppConfig.fromJson(Map<String, dynamic> j) => AppConfig(
-    appName: j['appName'] as String,
-    baseUrl: Uri.parse(j['baseUrl'] as String),
-    features: Map<String, bool>.from(j['features'] ?? const {}),
-    deeplinkScheme: j['deeplinkScheme'] as String? ?? 'gaiaapp',
-  );
+        appName: j['appName'] as String,
+        baseUrl: Uri.parse(j['baseUrl'] as String),
+        features: Map<String, bool>.from(j['features'] ?? const {}),
+        deeplinkScheme: j['deeplinkScheme'] as String? ?? 'gaiaapp',
+      );
 }
 
 class AppConfigLoader {
   static Future<AppConfig> load(String client, String env) async {
-    final path = 'assets/clients/$client/config.$env.json';
-    final jsonStr = await rootBundle.loadString(path);
-    final cfg = AppConfig.fromJson(json.decode(jsonStr) as Map<String, dynamic>);
-    // guard rails
-    assert(env != 'prod' || cfg.baseUrl.toString().isNotEmpty, 'prod baseUrl must not be empty');
+    Future<String> read(String c, String e) =>
+        rootBundle.loadString('assets/clients/$c/config.$e.json');
+
+    String jsonStr;
+    try {
+      jsonStr = await read(client, env);
+    } on FlutterError {
+      try {
+        jsonStr = await read(client, 'dev');
+      } on FlutterError {
+        try {
+          jsonStr = await read('default', env);
+        } on FlutterError {
+          jsonStr = await read('default', 'dev');
+        }
+      }
+    }
+    final map = json.decode(jsonStr) as Map<String, dynamic>;
+    final cfg = AppConfig.fromJson(map);
+    assert(env != 'prod' || cfg.baseUrl.toString().isNotEmpty,
+        'prod baseUrl must not be empty');
     return cfg;
   }
 }

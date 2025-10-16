@@ -37,6 +37,33 @@ android {
             signingConfig = signingConfigs.debug
         }
     }
+
+      flavorDimensions += ["client", "env"]
+
+  productFlavors {
+    create("default") {
+      dimension "client"
+      applicationId "com.sidigs.murid"
+      resValue "string", "app_name", "SIDIGS MURID"
+      manifestPlaceholders = [ appAuthRedirectScheme: "gaiaapp" ]
+    }
+    
+    create("madani") {
+      dimension "client"
+      applicationId "com.sidigs.madani"
+      resValue "string", "app_name", "SIDIGS Madani"
+      manifestPlaceholders = [ appAuthRedirectScheme: "gaiaapp" ]
+    }
+
+    create("dev") {
+      dimension "env"
+      applicationIdSuffix ".dev"
+      versionNameSuffix "-dev"
+    }
+    create("prod") {
+      dimension "env"
+    }
+  }
 }
 
 flutter {

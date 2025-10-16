@@ -3,6 +3,7 @@ import 'package:gaia/app.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gaia/app/environment/app_config.dart';
 import 'package:gaia/app/environment/build_environment.dart';
+import 'package:gaia/shared/core/infrastructure/network/config_provider.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
@@ -15,8 +16,11 @@ void main() async {
   debugPrint('✅ CLIENT=$client  ENV=$env  baseUrl=${cfg.baseUrl}');
   initializeDateFormatting('id_ID').then(
     (value) => runApp(
-      const ProviderScope(
-        child: MyApp(),
+      ProviderScope(
+        overrides: [
+          appConfigProvider.overrideWithValue(cfg),
+        ],
+        child: const MyApp(),
       ),
     ),
   );

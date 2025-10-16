@@ -1,0 +1,7 @@
+{
+  "appName": "Gaia (Dev)",
+  "baseUrl": "https://demo.sidigs.com/api/student",
+  "deeplinkScheme": "examapp",
+  "colors": { "primary": "#009ADE" },
+  "features": { "chat": true }
+}

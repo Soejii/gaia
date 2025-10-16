@@ -7,7 +7,8 @@
       "type": "dart",
       "program": "lib/main.dart",
       "args": [
-        "--dart-define=CLIENT=_default",
+        "--flavor", "defaultDev",
+        "--dart-define=CLIENT=default",
         "--dart-define=ENV=dev"
       ]
     },
@@ -17,71 +18,48 @@
       "type": "dart",
       "program": "lib/main.dart",
       "args": [
-        "--dart-define=CLIENT=_default",
-        "--dart-define=ENV=prod"
-      ]
-    },
-    // {
-    //   "name": "Madani • Dev",
-    //   "request": "launch",
-    //   "type": "dart",
-    //   "program": "lib/main.dart",
-    //   "args": [
-    //     "--dart-define=CLIENT=madani",
-    //     "--dart-define=ENV=dev"
-    //   ]
-    // },
-    // {
-    //   "name": "Madani • Prod (debug build)",
-    //   "request": "launch",
-    //   "type": "dart",
-    //   "program": "lib/main.dart",
-    //   "args": [
-    //     "--dart-define=CLIENT=madani",
-    //     "--dart-define=ENV=prod"
-    //   ]
-    // },
-
-    // --- Release/Profile variants ---
-    {
-      "name": "Default • Prod (release)",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main.dart",
-      "flutterMode": "release",
-      "args": [
-        "--dart-define=CLIENT=_default",
+        "--flavor", "defaultProd",
+        "--dart-define=CLIENT=default",
         "--dart-define=ENV=prod"
       ]
     },
     {
-      "name": "Madani • Prod (release)",
+      "name": "Madani • Dev",
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
-      "flutterMode": "release",
       "args": [
+        "--flavor", "madaniDev",
+        "--dart-define=CLIENT=madani",
+        "--dart-define=ENV=dev"
+      ]
+    },
+    {
+      "name": "Madani • Prod (debug build)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--flavor", "madaniProd",
         "--dart-define=CLIENT=madani",
         "--dart-define=ENV=prod"
       ]
     },
-    {
-      "name": "Default • Prod (profile)",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main.dart",
+
+    { "name": "Default • Prod (release)",
+      "request": "launch", "type": "dart", "program": "lib/main.dart",
+      "flutterMode": "release",
+      "args": ["--flavor","defaultProd","--dart-define=CLIENT=default","--dart-define=ENV=prod"]
+    },
+    { "name": "Madani • Prod (release)",
+      "request": "launch", "type": "dart", "program": "lib/main.dart",
+      "flutterMode": "release",
+      "args": ["--flavor","madaniProd","--dart-define=CLIENT=madani","--dart-define=ENV=prod"]
+    },
+    { "name": "Default • Prod (profile)",
+      "request": "launch", "type": "dart", "program": "lib/main.dart",
       "flutterMode": "profile",
-      "args": [
-        "--dart-define=CLIENT=_default",
-        "--dart-define=ENV=prod"
-      ]
+      "args": ["--flavor","defaultProd","--dart-define=CLIENT=default","--dart-define=ENV=prod"]
     }
   ]
-
-  // "compounds": [
-  //   {
-  //     "name": "Quick sanity: _default & madani (dev)",
-  //     "configurations": ["Default • Dev", "Madani • Dev"]
-  //   }
-  // ]
 }
