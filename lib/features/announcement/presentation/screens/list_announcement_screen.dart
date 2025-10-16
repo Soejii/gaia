@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/announcement/presentation/providers/announcement_controller.dart';
 import 'package:gaia/features/announcement/presentation/widgets/announcement_card.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 
@@ -34,22 +35,11 @@ class ListAnnouncementScreen extends ConsumerWidget {
             return const DataNotFoundScreen(dataType: 'Pengumuman');
           }
         },
-        error: (error, stackTrace) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 100.h,
-              ),
-              const Center(
-                child: Text(
-                  'Terjadi Kesalahan, Silahkan Coba Lagi',
-                ),
-              )
-            ],
-          );
-        },
+        error: (error, stackTrace) => BufferErrorView(
+          error: error,
+          stackTrace: stackTrace,
+          onRetry: () => ref.invalidate(announcementControllerProvider),
+        ),
         loading: () => const Center(
           child: CircularProgressIndicator(),
         ),

@@ -7,6 +7,7 @@ import 'package:gaia/features/discussion/presentation/types/create_discussion_ty
 import 'package:gaia/features/discussion/presentation/widgets/create_discussion_card.dart';
 import 'package:gaia/features/discussion/presentation/widgets/discussion_post_card.dart';
 import 'package:gaia/shared/presentation/divider_card.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/screens/data_not_found_screen.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -73,7 +74,12 @@ class ClassDiscussionScreen extends HookConsumerWidget {
                   return const DataNotFoundScreen(dataType: 'Diskusi Kelas');
                 }
               },
-              error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+              error: (error, stackTrace) => BufferErrorView(
+                error: error,
+                stackTrace: stackTrace,
+                onRetry: () =>
+                    ref.invalidate(discussionClassControllerProvider),
+              ),
               loading: () => const Center(child: CircularProgressIndicator()),
             ),
           ],

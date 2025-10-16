@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/features/subject/presentation/providers/media_controller.dart';
 import 'package:gaia/features/subject/presentation/widgets/media_card.dart';
+import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/screens/data_not_found_screen.dart';
 
 class MediaContentWidget extends ConsumerWidget {
@@ -30,7 +31,11 @@ class MediaContentWidget extends ConsumerWidget {
         }
         return const DataNotFoundScreen(dataType: 'Learning Media');
       },
-      error: (error, stackTrace) => Text('Terjadi Kesalahan, $error'),
+      error: (error, stackTrace) => BufferErrorView(
+        error: error,
+        stackTrace: stackTrace,
+        onRetry: () => ref.invalidate(mediaControllerProvider(idSubject)),
+      ),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
   }

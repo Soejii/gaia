@@ -48,6 +48,8 @@ class AssetsHelper {
   static String imgMediaVideo = img("img_media_video.png");
 
   static String imgDataNotFound = img('img_data_not_found.png');
+  static String imgNetworkError = img('img_no_internet.png');
+  static String imgUnknownError = img('img_error.png');
 
   static String imgSuccess = img('img_done.png');
 
