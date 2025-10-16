@@ -76,12 +76,12 @@
         "--dart-define=ENV=prod"
       ]
     }
-  ],
-
-  "compounds": [
-    {
-      "name": "Quick sanity: _default & madani (dev)",
-      "configurations": ["Default • Dev", "Madani • Dev"]
-    }
   ]
+
+  // "compounds": [
+  //   {
+  //     "name": "Quick sanity: _default & madani (dev)",
+  //     "configurations": ["Default • Dev", "Madani • Dev"]
+  //   }
+  // ]
 }
