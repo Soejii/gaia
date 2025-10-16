@@ -1,7 +1,7 @@
 {
   "appName": "Gaia",
   "baseUrl": "https://prod.sidigs.com/api/student",
-  "deeplinkScheme": "examapp",
+  "deeplinkScheme": "gaiaapp",
   "colors": { "primary": "#009ADE" },
   "features": { "chat": true, "wallet": true }
 }
