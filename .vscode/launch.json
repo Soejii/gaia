@@ -2,26 +2,86 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "DEV",
+      "name": "Default • Dev",
       "request": "launch",
       "type": "dart",
+      "program": "lib/main.dart",
       "args": [
+        "--dart-define=CLIENT=_default",
         "--dart-define=ENV=dev"
       ]
     },
     {
-      "name": "PRODUCTION",
+      "name": "Default • Prod (debug build)",
       "request": "launch",
       "type": "dart",
+      "program": "lib/main.dart",
       "args": [
+        "--dart-define=CLIENT=_default",
+        "--dart-define=ENV=prod"
+      ]
+    },
+    // {
+    //   "name": "Madani • Dev",
+    //   "request": "launch",
+    //   "type": "dart",
+    //   "program": "lib/main.dart",
+    //   "args": [
+    //     "--dart-define=CLIENT=madani",
+    //     "--dart-define=ENV=dev"
+    //   ]
+    // },
+    // {
+    //   "name": "Madani • Prod (debug build)",
+    //   "request": "launch",
+    //   "type": "dart",
+    //   "program": "lib/main.dart",
+    //   "args": [
+    //     "--dart-define=CLIENT=madani",
+    //     "--dart-define=ENV=prod"
+    //   ]
+    // },
+
+    // --- Release/Profile variants ---
+    {
+      "name": "Default • Prod (release)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "release",
+      "args": [
+        "--dart-define=CLIENT=_default",
         "--dart-define=ENV=prod"
       ]
     },
     {
-      "name": "anusapati (release mode)",
+      "name": "Madani • Prod (release)",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "release"
+      "program": "lib/main.dart",
+      "flutterMode": "release",
+      "args": [
+        "--dart-define=CLIENT=madani",
+        "--dart-define=ENV=prod"
+      ]
+    },
+    {
+      "name": "Default • Prod (profile)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "profile",
+      "args": [
+        "--dart-define=CLIENT=_default",
+        "--dart-define=ENV=prod"
+      ]
+    }
+  ],
+
+  "compounds": [
+    {
+      "name": "Quick sanity: _default & madani (dev)",
+      "configurations": ["Default • Dev", "Madani • Dev"]
     }
   ]
 }
