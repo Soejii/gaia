@@ -3,7 +3,6 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/subject/presentation/providers/detail_sub_module_controller.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/utils/date_helper.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';

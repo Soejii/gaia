@@ -6,7 +6,6 @@ import 'package:gaia/features/announcement/presentation/providers/announcement_c
 import 'package:gaia/features/announcement/presentation/widgets/announcement_card.dart';
 import 'package:gaia/features/announcement/presentation/widgets/announcement_error_card.dart';
 import 'package:gaia/features/announcement/presentation/widgets/announcement_skeleton_card.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:go_router/go_router.dart';
 
 class AnnouncementWidget extends ConsumerWidget {

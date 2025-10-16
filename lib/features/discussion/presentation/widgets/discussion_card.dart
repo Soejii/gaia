@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/discussion/domain/entity/poster_discussion_entity.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:go_router/go_router.dart';

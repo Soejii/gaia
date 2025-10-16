@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/chat/domain/entity/chat_contact_entity.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class ChatContactListItem extends StatelessWidget {
   final ChatContactEntity contact;

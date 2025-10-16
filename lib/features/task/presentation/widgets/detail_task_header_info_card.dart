@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/app/theme/brand_palette.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class DetailTaskHeaderInfoCard extends StatelessWidget {
   const DetailTaskHeaderInfoCard({

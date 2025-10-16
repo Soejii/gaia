@@ -5,7 +5,6 @@ import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/discussion/presentation/providers/create_discussion_controller.dart';
 import 'package:gaia/features/discussion/presentation/types/create_discussion_args.dart';
 import 'package:gaia/features/profile/presentation/providers/profile_controller.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:gaia/shared/core/types/failure.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';

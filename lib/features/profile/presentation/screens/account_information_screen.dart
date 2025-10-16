@@ -6,7 +6,6 @@ import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:gaia/features/profile/presentation/providers/profile_controller.dart';
 import 'package:gaia/features/profile/presentation/widgets/account_information_content.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class AccountInformationScreen extends ConsumerWidget {
   const AccountInformationScreen({super.key});

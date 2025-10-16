@@ -4,7 +4,6 @@ import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:gaia/features/schedule/domain/entities/schedule_entity.dart';
 import 'package:gaia/features/schedule/presentation/providers/schedule_controller.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class ScheduleErrorState extends ConsumerWidget {
   final DayOfWeek day;

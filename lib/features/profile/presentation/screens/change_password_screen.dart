@@ -5,7 +5,6 @@ import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:gaia/features/profile/presentation/providers/change_password_controller.dart';
 import 'package:gaia/features/profile/presentation/widgets/change_password_form_field.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 
 class ChangePasswordScreen extends HookConsumerWidget {

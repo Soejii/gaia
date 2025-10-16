@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/app/theme/brand_palette.dart';
-import '../../../../shared/core/constant/app_colors.dart';
 import '../../../../shared/core/constant/assets_helper.dart';
 
 class ScheduleEmptyState extends StatelessWidget {

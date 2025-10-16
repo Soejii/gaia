@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/subject/presentation/providers/subject_providers.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:go_router/go_router.dart';

@@ -5,7 +5,6 @@ import 'package:gaia/features/balances/domain/type/balance_type.dart';
 import 'package:gaia/features/balances/presentation/providers/emoney_controller.dart';
 import 'package:gaia/features/balances/presentation/providers/savings_controller.dart';
 import 'package:gaia/features/balances/presentation/mappers/balance_summary_ui_mapper.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class BalanceSummaryWidget extends ConsumerWidget {

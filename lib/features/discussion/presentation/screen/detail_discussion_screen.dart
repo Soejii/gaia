@@ -7,7 +7,6 @@ import 'package:gaia/features/discussion/presentation/providers/create_comment_c
 import 'package:gaia/features/discussion/presentation/providers/detail_discussion_controller.dart';
 import 'package:gaia/features/discussion/presentation/widgets/comment_card.dart';
 import 'package:gaia/features/discussion/presentation/widgets/discussion_card.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

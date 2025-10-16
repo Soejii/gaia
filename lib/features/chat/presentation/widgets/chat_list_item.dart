@@ -4,7 +4,6 @@ import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:gaia/features/chat/domain/entity/chat_entity.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:intl/intl.dart';
 

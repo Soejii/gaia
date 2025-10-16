@@ -7,7 +7,6 @@ import 'package:gaia/features/activity/presentation/providers/exam_controller.da
 import 'package:gaia/features/activity/presentation/widgets/exam_error_card.dart';
 import 'package:gaia/features/activity/presentation/widgets/exam_skeleton_card.dart';
 import 'package:gaia/features/activity/presentation/widgets/quiz_card.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/attendance/domain/entities/attendance_entitiy.dart';
 import 'package:gaia/features/attendance/domain/type/attendance_status_extension.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:intl/intl.dart';
 
 class AttendanceSelectedDayDetails extends StatelessWidget {

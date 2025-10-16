@@ -6,7 +6,6 @@ import 'package:gaia/features/chat/presentation/providers/chat_controller.dart';
 import 'package:gaia/features/chat/presentation/widgets/chat_list_item.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 

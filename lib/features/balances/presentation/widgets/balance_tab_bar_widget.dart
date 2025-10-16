@@ -5,7 +5,6 @@ import 'package:gaia/features/balances/domain/type/balance_type.dart';
 import 'package:gaia/features/balances/presentation/providers/balance_providers.dart';
 import 'package:gaia/features/balances/presentation/mappers/balance_type_ui_mapper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class BalanceTabBarWidget extends ConsumerWidget {
   final TabController tabBarController;

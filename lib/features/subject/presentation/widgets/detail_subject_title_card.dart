@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/subject/domain/entities/subject_entity.dart';
 import 'package:gaia/features/subject/presentation/providers/module_controller.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class DetailSubjectTitleCard extends ConsumerWidget {
   const DetailSubjectTitleCard({super.key, required this.entity});

@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/subject/domain/entities/subject_entity.dart';
 import 'package:gaia/features/subject/presentation/widgets/detail_subject_title_card.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:go_router/go_router.dart';
 
 class DetailSubjectAppBarWidget extends StatelessWidget {

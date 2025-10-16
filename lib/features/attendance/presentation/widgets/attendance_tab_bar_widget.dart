@@ -5,7 +5,6 @@ import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/attendance/domain/type/attendance_type.dart';
 import 'package:gaia/features/attendance/domain/type/attendance_type_extension.dart';
 import 'package:gaia/features/attendance/presentation/providers/attedance_providers.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class AttendanceTabBarWidget extends ConsumerWidget {
   final TabController tabBarController;

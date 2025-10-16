@@ -7,7 +7,6 @@ import 'package:gaia/features/schedule/presentation/providers/schedule_controlle
 import 'package:gaia/features/schedule/presentation/widgets/schedule_card.dart';
 import 'package:gaia/features/schedule/presentation/widgets/schedule_empty_state.dart';
 import 'package:gaia/features/schedule/presentation/widgets/schedule_error_state.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class ScheduleContent extends ConsumerWidget {
   final DayOfWeek day;

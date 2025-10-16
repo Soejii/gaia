@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/attendance/domain/type/attendance_status.dart';
 import 'package:gaia/features/attendance/domain/type/attendance_status_extension.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class AttendanceCalendarLegend extends StatelessWidget {
   const AttendanceCalendarLegend({super.key});

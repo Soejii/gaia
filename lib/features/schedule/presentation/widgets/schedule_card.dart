@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/app/theme/brand_palette.dart';
 import '../../domain/entities/schedule_entity.dart';
-import '../../../../shared/core/constant/app_colors.dart';
 
 class ScheduleCard extends StatelessWidget {
   final ScheduleEntity schedule;

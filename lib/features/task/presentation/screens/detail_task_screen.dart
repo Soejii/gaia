@@ -5,7 +5,6 @@ import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/task/presentation/providers/detail_task_controller.dart';
 import 'package:gaia/features/task/presentation/widgets/detail_task_header_skeleton_widget.dart';
 import 'package:gaia/features/task/presentation/widgets/detail_task_header_widget.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:go_router/go_router.dart';

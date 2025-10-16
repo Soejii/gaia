@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/edutainment/domain/type/edutainment_type.dart';
 import 'package:gaia/features/edutainment/presentation/providers/edutainment_providers.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class EdutainmentTabBarWidget extends ConsumerWidget {

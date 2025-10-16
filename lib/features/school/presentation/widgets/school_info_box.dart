@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/app/theme/brand_palette.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class SchoolInfoBox extends StatelessWidget {
   final String value;

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/subject/domain/entities/module_entity.dart';
 import 'package:gaia/features/subject/presentation/widgets/sub_module_card.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
