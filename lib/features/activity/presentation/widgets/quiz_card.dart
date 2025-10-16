@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/activity/domain/entities/exam_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
@@ -24,7 +25,7 @@ class QuizCard extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
-        boxShadow: AppColors.shadow,
+        boxShadow: context.brand.shadow,
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
@@ -97,7 +98,10 @@ class QuizCard extends StatelessWidget {
                 ],
               ),
             ),
-            _circle(entity.status.name)
+            _circle(
+              entity.status.name,
+              context,
+            )
           ],
         ),
       ),
@@ -106,6 +110,7 @@ class QuizCard extends StatelessWidget {
 
   Widget _circle(
     String status,
+    BuildContext context,
   ) {
     switch (status) {
       case 'done':
@@ -115,7 +120,7 @@ class QuizCard extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(color: Colors.white, width: 6.w),
-            color: AppColors.green,
+            color: context.brand.green,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -150,7 +155,7 @@ class QuizCard extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(color: Colors.white, width: 6.w),
-              color: AppColors.green,
+              color: context.brand.green,
             ),
             child: Center(
               child: Text(
@@ -193,7 +198,7 @@ class QuizCard extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(color: Colors.white, width: 6.w),
-            color: AppColors.green,
+            color: context.brand.green,
           ),
           child: Center(
             child: Text(

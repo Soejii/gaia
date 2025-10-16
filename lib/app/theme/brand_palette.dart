@@ -8,6 +8,7 @@ class BrandPalette extends ThemeExtension<BrandPalette> {
   final Color textMain;
   final Color textSecondary;
   final Color success;
+  final Color green;
   final LinearGradient mainGradient;
   final List<BoxShadow> shadow;
   final List<BoxShadow> invertedShadow;
@@ -19,6 +20,7 @@ class BrandPalette extends ThemeExtension<BrandPalette> {
     required this.textMain,
     required this.textSecondary,
     required this.success,
+    required this.green,
     required this.mainGradient,
     required this.shadow,
     required this.invertedShadow,
@@ -32,6 +34,7 @@ class BrandPalette extends ThemeExtension<BrandPalette> {
         textMain: Color.fromRGBO(4, 23, 53, 1),
         textSecondary: Color.fromRGBO(82, 103, 137, 1),
         success: Color.fromRGBO(90, 175, 85, 1),
+        green: Color.fromRGBO(90, 175, 85, 1),
         mainGradient: LinearGradient(
           colors: [
             Color.fromRGBO(28, 178, 255, 1),
@@ -69,23 +72,35 @@ class BrandPalette extends ThemeExtension<BrandPalette> {
       return Color(int.parse(hex, radix: 16));
     }
 
-    final left  = _hex(colors['gradientLeft']  as String?, d.mainGradient.colors.first);
-    final right = _hex(colors['gradientRight'] as String?, d.mainGradient.colors.last);
+    final left =
+        _hex(colors['gradientLeft'] as String?, d.mainGradient.colors.first);
+    final right =
+        _hex(colors['gradientRight'] as String?, d.mainGradient.colors.last);
     final shadowOpacity = (colors['shadowOpacity'] as num?)?.toDouble() ?? 0.25;
 
     return BrandPalette(
-      primary:       _hex(colors['primary']       as String?, d.primary),
-      secondary:     _hex(colors['secondary']     as String?, d.secondary),
-      inactive:      _hex(colors['inactive']      as String?, d.inactive),
-      textMain:      _hex(colors['textMain']      as String?, d.textMain),
+      primary: _hex(colors['primary'] as String?, d.primary),
+      secondary: _hex(colors['secondary'] as String?, d.secondary),
+      inactive: _hex(colors['inactive'] as String?, d.inactive),
+      textMain: _hex(colors['textMain'] as String?, d.textMain),
       textSecondary: _hex(colors['textSecondary'] as String?, d.textSecondary),
-      success:       _hex(colors['success']       as String?, d.success),
-      mainGradient: LinearGradient(colors: [left, right], begin: Alignment.centerLeft, end: Alignment.centerRight),
+      success: _hex(colors['success'] as String?, d.success),
+      green: _hex(colors['green'] as String?, d.green),
+      mainGradient: LinearGradient(
+          colors: [left, right],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight),
       shadow: [
-        BoxShadow(color: Colors.black.withOpacity(shadowOpacity), offset: const Offset(0, 4), blurRadius: 4),
+        BoxShadow(
+            color: Colors.black.withOpacity(shadowOpacity),
+            offset: const Offset(0, 4),
+            blurRadius: 4),
       ],
       invertedShadow: [
-        BoxShadow(color: Colors.black.withOpacity(shadowOpacity), offset: const Offset(0, -4), blurRadius: 4),
+        BoxShadow(
+            color: Colors.black.withOpacity(shadowOpacity),
+            offset: const Offset(0, -4),
+            blurRadius: 4),
       ],
     );
   }
@@ -98,16 +113,19 @@ class BrandPalette extends ThemeExtension<BrandPalette> {
     Color? textMain,
     Color? textSecondary,
     Color? success,
+    Color? green,
     LinearGradient? mainGradient,
     List<BoxShadow>? shadow,
     List<BoxShadow>? invertedShadow,
-  }) => BrandPalette(
+  }) =>
+      BrandPalette(
         primary: primary ?? this.primary,
         secondary: secondary ?? this.secondary,
         inactive: inactive ?? this.inactive,
         textMain: textMain ?? this.textMain,
         textSecondary: textSecondary ?? this.textSecondary,
         success: success ?? this.success,
+        green: green ?? this.green,
         mainGradient: mainGradient ?? this.mainGradient,
         shadow: shadow ?? this.shadow,
         invertedShadow: invertedShadow ?? this.invertedShadow,
@@ -124,12 +142,16 @@ class BrandPalette extends ThemeExtension<BrandPalette> {
       textMain: _l(textMain, other.textMain),
       textSecondary: _l(textSecondary, other.textSecondary),
       success: _l(success, other.success),
+      green: _l(green, other.green),
       mainGradient: LinearGradient(
         colors: [
-          Color.lerp(mainGradient.colors.first, other.mainGradient.colors.first, t)!,
-          Color.lerp(mainGradient.colors.last,  other.mainGradient.colors.last,  t)!,
+          Color.lerp(
+              mainGradient.colors.first, other.mainGradient.colors.first, t)!,
+          Color.lerp(
+              mainGradient.colors.last, other.mainGradient.colors.last, t)!,
         ],
-        begin: mainGradient.begin, end: mainGradient.end,
+        begin: mainGradient.begin,
+        end: mainGradient.end,
       ),
       shadow: shadow,
       invertedShadow: invertedShadow,

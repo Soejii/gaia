@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gaia/features/chat/domain/entity/chat_contact_entity.dart';
 
-class ChatDetailAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
+class ChatDetailAppBarWidget extends StatelessWidget
+    implements PreferredSizeWidget {
   final ChatContactEntity? contact;
 
   const ChatDetailAppBarWidget({
@@ -34,20 +36,21 @@ class ChatDetailAppBarWidget extends StatelessWidget implements PreferredSizeWid
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => context.pop(),
         ),
-        title: _buildUserInfo(),
+        title: _buildUserInfo(context),
         titleSpacing: 0,
       ),
     );
   }
 
-  Widget _buildUserInfo() {
+  Widget _buildUserInfo(
+    BuildContext context,
+  ) {
     return Row(
       children: [
         CircleAvatar(
           radius: 16.r,
-          backgroundImage: contact?.photo != null
-              ? NetworkImage(contact!.photo!)
-              : null,
+          backgroundImage:
+              contact?.photo != null ? NetworkImage(contact!.photo!) : null,
           child: contact?.photo == null
               ? Icon(Icons.person, size: 16.r, color: Colors.grey)
               : null,
@@ -74,7 +77,7 @@ class ChatDetailAppBarWidget extends StatelessWidget implements PreferredSizeWid
                   style: TextStyle(
                     fontFamily: 'OpenSans',
                     fontSize: 12.sp,
-                    color: AppColors.inactiveColor,
+                    color: context.brand.inactive,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),

@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/subject/domain/entities/subject_entity.dart';
 import 'package:gaia/features/subject/presentation/widgets/detail_subject_title_card.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:go_router/go_router.dart';
 
 class DetailSubjectAppBarWidget extends StatelessWidget {
-  const DetailSubjectAppBarWidget({super.key,required this.entity});
+  const DetailSubjectAppBarWidget({super.key, required this.entity});
   final SubjectEntity entity;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: AppColors.mainColorSidigs,
+      color: context.brand.primary,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
         child: Column(

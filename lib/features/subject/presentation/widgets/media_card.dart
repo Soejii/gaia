@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/subject/domain/entities/media_entity.dart';
 import 'package:gaia/features/subject/presentation/mapper/media_ui_mapper.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
@@ -65,7 +66,7 @@ class MediaCard extends StatelessWidget {
                       fontFamily: 'OpenSans',
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w700,
-                      color: AppColors.mainText,
+                      color: context.brand.textMain,
                     ),
                   ),
                   Text(
@@ -76,7 +77,7 @@ class MediaCard extends StatelessWidget {
                       fontFamily: 'OpenSans',
                       fontSize: 10.sp,
                       fontWeight: FontWeight.w400,
-                      color: AppColors.secondaryText,
+                      color: context.brand.textSecondary,
                     ),
                   ),
                   Text(
@@ -87,7 +88,7 @@ class MediaCard extends StatelessWidget {
                       fontFamily: 'OpenSans',
                       fontSize: 10.sp,
                       fontWeight: FontWeight.w400,
-                      color: AppColors.secondaryText,
+                      color: context.brand.textSecondary,
                     ),
                   ),
                 ],

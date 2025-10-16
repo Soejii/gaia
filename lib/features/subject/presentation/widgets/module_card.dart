@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/subject/domain/entities/module_entity.dart';
 import 'package:gaia/features/subject/presentation/widgets/sub_module_card.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
@@ -70,7 +71,7 @@ class ModuleCard extends HookConsumerWidget {
                           fontFamily: 'OpenSans',
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.mainText,
+                          color: context.brand.textMain,
                         ),
                       ),
                       Text(
@@ -81,7 +82,7 @@ class ModuleCard extends HookConsumerWidget {
                           fontFamily: 'OpenSans',
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.secondaryText,
+                          color: context.brand.textSecondary,
                         ),
                       ),
                     ],
@@ -93,9 +94,9 @@ class ModuleCard extends HookConsumerWidget {
                   onPressed: () {
                     isOpen.value = !isOpen.value;
                   },
-                  icon: const Icon(
+                  icon:  Icon(
                     Icons.arrow_drop_down,
-                    color: AppColors.secondaryText,
+                    color: context.brand.textSecondary,
                   ),
                 ),
               ],

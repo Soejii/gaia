@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,7 +16,7 @@ class BottomNavigationShell extends StatelessWidget {
       bottomNavigationBar: Container(
         height: 80.h,
         width: double.infinity,
-        color: AppColors.mainColorSidigs,
+        color: context.brand.primary,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
           child: Row(
@@ -27,21 +27,25 @@ class BottomNavigationShell extends StatelessWidget {
                 0,
                 AssetsHelper.icHome,
                 'Beranda',
+                context,
               ),
               navigationButton(
                 1,
                 AssetsHelper.icActivity,
                 'Aktifitas',
+                context,
               ),
               navigationButton(
                 2,
                 AssetsHelper.icChat,
                 'Chat',
+                context,
               ),
               navigationButton(
                 3,
                 AssetsHelper.icProfile,
                 'Profile',
+                context,
               ),
             ],
           ),
@@ -54,6 +58,7 @@ class BottomNavigationShell extends StatelessWidget {
     int index,
     String icon,
     String label,
+    BuildContext context,
   ) {
     return GestureDetector(
       onTap: () {
@@ -78,7 +83,7 @@ class BottomNavigationShell extends StatelessWidget {
                 icon,
                 colorFilter: ColorFilter.mode(
                   index == shell.currentIndex
-                      ? AppColors.mainColorSidigs
+                      ? context.brand.primary
                       : Colors.white,
                   BlendMode.srcIn,
                 ),
@@ -92,7 +97,7 @@ class BottomNavigationShell extends StatelessWidget {
                 fontSize: 10.sp,
                 fontWeight: FontWeight.w600,
                 color: index == shell.currentIndex
-                    ? AppColors.mainColorSidigs
+                    ? context.brand.primary
                     : Colors.white,
               ),
             ),

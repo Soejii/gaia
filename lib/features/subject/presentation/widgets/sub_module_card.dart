@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/subject/domain/entities/sub_module_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
@@ -45,7 +46,7 @@ class SubModuleCard extends StatelessWidget {
                 fontFamily: 'OpenSans',
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w600,
-                color: AppColors.secondaryText,
+                color: context.brand.textSecondary,
               ),
             ),
           ),
@@ -63,8 +64,8 @@ class SubModuleCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: entity.isUploaded
-                    ? AppColors.green
-                    : AppColors.inactiveColor,
+                    ? context.brand.green
+                    : context.brand.inactive,
               ),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),

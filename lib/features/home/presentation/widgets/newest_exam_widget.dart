@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/activity/domain/type/exam_type.dart';
 import 'package:gaia/features/activity/presentation/providers/activity_providers.dart';
 import 'package:gaia/features/activity/presentation/providers/exam_controller.dart';
@@ -33,7 +34,7 @@ class NewestExamWidget extends ConsumerWidget {
                           fontFamily: 'OpenSans',
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.mainText,
+                          color: context.brand.textMain,
                         ),
                       ),
                       TextButton(
@@ -47,7 +48,7 @@ class NewestExamWidget extends ConsumerWidget {
                             fontFamily: 'OpenSans',
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w400,
-                            color: AppColors.mainColorSidigs,
+                            color: context.brand.primary,
                           ),
                         ),
                       ),

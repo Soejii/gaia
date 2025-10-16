@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class SchoolSectionLabel extends StatelessWidget {
@@ -15,7 +16,7 @@ class SchoolSectionLabel extends StatelessWidget {
     return Text(
       label,
       style: TextStyle(
-        color: AppColors.secondaryText,
+        color: context.brand.textSecondary,
         fontSize: 12.sp,
         fontWeight: FontWeight.w400,
       ),

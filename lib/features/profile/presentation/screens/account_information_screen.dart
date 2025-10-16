@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:gaia/features/profile/presentation/providers/profile_controller.dart';
@@ -75,9 +76,9 @@ class AccountInformationScreen extends ConsumerWidget {
             },
           );
         },
-        loading: () => const Center(
+        loading: () =>  Center(
           child: CircularProgressIndicator(
-            color: AppColors.mainColorSidigs,
+            color: context.brand.primary,
           ),
         ),
         error: (error, stack) => BufferErrorView(

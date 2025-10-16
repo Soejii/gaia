@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class DetailTaskHeaderInfoCard extends StatelessWidget {
@@ -24,7 +25,7 @@ class DetailTaskHeaderInfoCard extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: AppColors.inactiveColor,
+              color: context.brand.inactive,
             ),
             SizedBox(width: 12.w),
             Text(
@@ -33,7 +34,7 @@ class DetailTaskHeaderInfoCard extends StatelessWidget {
                 fontFamily: 'OpenSans',
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w400,
-                color: AppColors.mainText,
+                color: context.brand.textMain,
               ),
             ),
           ],
@@ -49,7 +50,7 @@ class DetailTaskHeaderInfoCard extends StatelessWidget {
               fontFamily: 'OpenSans',
               fontSize: 12.sp,
               fontWeight: FontWeight.w700,
-              color: AppColors.mainColorSidigs,
+              color: context.brand.primary,
             ),
           ),
         ),

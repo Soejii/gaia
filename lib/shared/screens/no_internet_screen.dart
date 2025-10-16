@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
 class NoInternetScreen extends StatelessWidget {
-   const NoInternetScreen({super.key, required this.onTap});
-    final void Function()? onTap;
+  const NoInternetScreen({super.key, required this.onTap});
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class NoInternetScreen extends StatelessWidget {
                 fontSize: 12.sp,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,
-                color: AppColors.mainText,
+                color: context.brand.textMain,
               ),
             ),
           ),
@@ -43,7 +44,7 @@ class NoInternetScreen extends StatelessWidget {
                 fontSize: 12.sp,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,
-                color: AppColors.mainText,
+                color: context.brand.textMain,
               ),
             ),
           ),
@@ -56,8 +57,8 @@ class NoInternetScreen extends StatelessWidget {
                 height: 40.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: AppColors.mainColorSidigs,
-                  boxShadow: AppColors.shadow,
+                  color: context.brand.primary,
+                  boxShadow: context.brand.shadow,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(

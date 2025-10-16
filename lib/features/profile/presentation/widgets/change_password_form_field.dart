@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class ChangePasswordFormField extends StatelessWidget {
@@ -26,7 +27,7 @@ class ChangePasswordFormField extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            color: AppColors.secondaryText,
+            color: context.brand.textSecondary,
             fontSize: 12.sp,
             fontWeight: FontWeight.w400,
           ),
@@ -44,7 +45,7 @@ class ChangePasswordFormField extends StatelessWidget {
             obscuringCharacter: '*',
             validator: validator,
             style: TextStyle(
-              color: AppColors.mainText,
+              color: context.brand.textMain,
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),
@@ -60,7 +61,7 @@ class ChangePasswordFormField extends StatelessWidget {
               ),
               hintText: hintText,
               hintStyle: TextStyle(
-                color: AppColors.inactiveColor,
+                color: context.brand.inactive,
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w400,
               ),

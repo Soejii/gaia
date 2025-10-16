@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 
 class ChatMessageInputWidget extends StatelessWidget {
   final TextEditingController textController;
@@ -42,9 +42,10 @@ class ChatMessageInputWidget extends StatelessWidget {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(24.r),
-                  borderSide: const BorderSide(color: AppColors.mainColorSidigs),
+                  borderSide:  BorderSide(color: context.brand.primary),
                 ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
               ),
               maxLines: null,
               textInputAction: TextInputAction.send,
@@ -56,8 +57,8 @@ class ChatMessageInputWidget extends StatelessWidget {
             onTap: onSend,
             child: Container(
               padding: EdgeInsets.all(12.w),
-              decoration: const BoxDecoration(
-                color: AppColors.mainColorSidigs,
+              decoration:  BoxDecoration(
+                color: context.brand.primary,
                 shape: BoxShape.circle,
               ),
               child: Icon(

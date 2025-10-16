@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/edutainment/domain/entities/edutainment_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
@@ -19,8 +20,8 @@ class EdutainmentCard extends StatelessWidget {
         );
       },
       child: Container(
-        decoration: const BoxDecoration(
-          boxShadow: AppColors.shadow,
+        decoration: BoxDecoration(
+          boxShadow: context.brand.shadow,
         ),
         child: Column(
           children: [
@@ -66,7 +67,7 @@ class EdutainmentCard extends StatelessWidget {
                         fontFamily: 'OpenSans',
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.mainText,
+                        color: context.brand.textMain,
                       ),
                     ),
                     Text(
@@ -75,7 +76,7 @@ class EdutainmentCard extends StatelessWidget {
                         fontFamily: 'OpenSans',
                         fontSize: 10.sp,
                         fontWeight: FontWeight.w400,
-                        color: AppColors.mainText,
+                        color: context.brand.textMain,
                       ),
                     ),
                     Text(
@@ -85,7 +86,7 @@ class EdutainmentCard extends StatelessWidget {
                         fontFamily: 'OpenSans',
                         fontSize: 10.sp,
                         fontWeight: FontWeight.w400,
-                        color: AppColors.secondaryText,
+                        color: context.brand.textSecondary,
                       ),
                     ),
                   ],

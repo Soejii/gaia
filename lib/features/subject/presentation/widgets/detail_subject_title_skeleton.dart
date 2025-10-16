@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
@@ -24,7 +25,7 @@ class DetailSubjectTitleSkeleton extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
-            boxShadow: AppColors.shadow,
+            boxShadow: context.brand.shadow,
           ),
           child: Center(
             child: SizedBox(
@@ -54,15 +55,15 @@ class DetailSubjectTitleSkeleton extends StatelessWidget {
                 ),
               ),
               Text(
-                  '... Modul | ... Submodul | ... Latihan Soal',
-                  maxLines: 2,
-                  style: TextStyle(
-                    fontFamily: 'OpenSans',
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
+                '... Modul | ... Submodul | ... Latihan Soal',
+                maxLines: 2,
+                style: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
+              ),
             ],
           ),
         )

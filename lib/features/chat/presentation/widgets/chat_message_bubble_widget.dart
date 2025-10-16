@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:intl/intl.dart';
 import 'package:gaia/features/chat/domain/entity/chat_message_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
@@ -28,12 +29,16 @@ class ChatMessageBubbleWidget extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
             decoration: BoxDecoration(
-              color: isReceived ? Colors.transparent : AppColors.mainColorSidigs,
-              border: isReceived ? Border.all(color: AppColors.mainColorSidigs, width: 1) : null,
+              color: isReceived ? Colors.transparent : context.brand.primary,
+              border: isReceived
+                  ? Border.all(color: context.brand.primary, width: 1)
+                  : null,
               borderRadius: BorderRadius.circular(12.r),
             ),
             child: Column(
-              crossAxisAlignment: isReceived ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+              crossAxisAlignment: isReceived
+                  ? CrossAxisAlignment.start
+                  : CrossAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
@@ -66,7 +71,6 @@ class ChatMessageBubbleWidget extends StatelessWidget {
       final dateTime = DateTime.parse(createdAt);
       return DateFormat('HH:mm').format(dateTime);
     } catch (e) {
-
       return createdAt.split(' ').last.substring(0, 5);
     }
   }

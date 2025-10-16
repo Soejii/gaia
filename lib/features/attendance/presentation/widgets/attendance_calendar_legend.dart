@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/attendance/domain/type/attendance_status.dart';
 import 'package:gaia/features/attendance/domain/type/attendance_status_extension.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
@@ -19,6 +20,7 @@ class AttendanceCalendarLegend extends StatelessWidget {
               child: Column(
                 children: [
                   _legendItem(
+                    context,
                     gradient: const LinearGradient(
                       colors: [Color(0xFF3229A0), Color(0xFF832AA3)],
                       begin: Alignment.topCenter,
@@ -28,11 +30,13 @@ class AttendanceCalendarLegend extends StatelessWidget {
                   ),
                   SizedBox(height: 8.h),
                   _legendItem(
+                    context,
                     color: AttendanceStatus.sick.color,
                     label: AttendanceStatus.sick.displayName,
                   ),
                   SizedBox(height: 8.h),
                   _legendItem(
+                    context,
                     color: AttendanceStatus.permit.color,
                     label: AttendanceStatus.permit.displayName,
                   ),
@@ -43,11 +47,13 @@ class AttendanceCalendarLegend extends StatelessWidget {
               child: Column(
                 children: [
                   _legendItem(
+                    context,
                     color: AttendanceStatus.checkedOut.color,
                     label: 'Hadir',
                   ),
                   SizedBox(height: 8.h),
                   _legendItem(
+                    context,
                     color: AttendanceStatus.absent.color,
                     label: 'Tanpa keterangan',
                   ),
@@ -60,7 +66,8 @@ class AttendanceCalendarLegend extends StatelessWidget {
     );
   }
 
-  Widget _legendItem({
+  Widget _legendItem(
+    BuildContext context, {
     Color? color,
     Gradient? gradient,
     required String label,
@@ -82,7 +89,7 @@ class AttendanceCalendarLegend extends StatelessWidget {
             label,
             style: TextStyle(
               fontSize: 12.sp,
-              color: AppColors.secondaryText,
+              color: context.brand.textSecondary,
               fontWeight: FontWeight.w300,
             ),
           ),

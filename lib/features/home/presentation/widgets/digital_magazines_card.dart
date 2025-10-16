@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
@@ -20,7 +21,7 @@ class DigitalMagazinesCard extends StatelessWidget {
               fontFamily: 'OpenSans',
               fontSize: 16.sp,
               fontWeight: FontWeight.w600,
-              color: AppColors.mainText,
+              color: context.brand.textMain,
             ),
           ),
         ),
@@ -33,7 +34,7 @@ class DigitalMagazinesCard extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              boxShadow: AppColors.shadow,
+              boxShadow: context.brand.shadow,
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
@@ -42,7 +43,7 @@ class DigitalMagazinesCard extends StatelessWidget {
                 errorBuilder: (context, error, stackTrace) => Image.asset(
                   AssetsHelper.imgAnnouncementPlaceholder,
                 ),
-                  loadingBuilder: (context, child, loadingProgress) {
+                loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress == null) return child;
                   return Container(
                     height: 200.h,

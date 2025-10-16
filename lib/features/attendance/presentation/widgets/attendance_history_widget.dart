@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -65,14 +66,14 @@ class AttendanceHistoryCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildAttendanceInfo(),
+          _buildAttendanceInfo(context),
           SizedBox(height: 8.h),
           Text(
             _formatDate(attendance.date),
             style: TextStyle(
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
-              color: AppColors.secondaryText,
+              color: context.brand.textSecondary,
             ),
           ),
         ],
@@ -80,7 +81,7 @@ class AttendanceHistoryCard extends StatelessWidget {
     );
   }
 
-  Widget _buildAttendanceInfo() {
+  Widget _buildAttendanceInfo(BuildContext context) {
     if (attendance.checkedInTime != null && attendance.checkedOutTime != null) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,12 +90,14 @@ class AttendanceHistoryCard extends StatelessWidget {
             'Absen Masuk',
             attendance.checkedInTime!,
             AttendanceStatus.checkedIn.color,
+            context,
           ),
           SizedBox(height: 4.h),
           _buildAttendanceRow(
             'Absen Pulang',
             attendance.checkedOutTime!,
             AttendanceStatus.checkedOut.color,
+            context,
           ),
         ],
       );
@@ -103,12 +106,14 @@ class AttendanceHistoryCard extends StatelessWidget {
         'Absen Masuk',
         attendance.checkedInTime!,
         AttendanceStatus.checkedIn.color,
+        context,
       );
     } else if (attendance.checkedOutTime != null) {
       return _buildAttendanceRow(
         'Absen Pulang',
         attendance.checkedOutTime!,
         AttendanceStatus.checkedOut.color,
+        context,
       );
     } else {
       return Text(
@@ -122,7 +127,8 @@ class AttendanceHistoryCard extends StatelessWidget {
     }
   }
 
-  Widget _buildAttendanceRow(String label, String time, Color labelColor) {
+  Widget _buildAttendanceRow(
+      String label, String time, Color labelColor, BuildContext context) {
     return Row(
       children: [
         Expanded(
@@ -140,7 +146,7 @@ class AttendanceHistoryCard extends StatelessWidget {
           style: TextStyle(
             fontSize: 14.sp,
             fontWeight: FontWeight.w600,
-            color: AppColors.secondaryText,
+            color: context.brand.textSecondary,
           ),
         ),
       ],

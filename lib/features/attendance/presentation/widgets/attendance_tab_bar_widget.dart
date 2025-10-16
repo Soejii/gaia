@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/attendance/domain/type/attendance_type.dart';
 import 'package:gaia/features/attendance/domain/type/attendance_type_extension.dart';
 import 'package:gaia/features/attendance/presentation/providers/attedance_providers.dart';
@@ -21,12 +22,13 @@ class AttendanceTabBarWidget extends ConsumerWidget {
     return Container(
       height: 56.h,
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
         color: Colors.white,
-        boxShadow: AppColors.shadow,
+        boxShadow: context.brand.shadow,
       ),
       child: TabBar(
-        onTap: (index) => ref.read(attendanceTabIndexProvider.notifier).set(index),
+        onTap: (index) =>
+            ref.read(attendanceTabIndexProvider.notifier).set(index),
         controller: tabBarController,
         indicator: const BoxDecoration(color: Colors.transparent),
         tabs: attendanceTypes.asMap().entries.map((entry) {
@@ -40,10 +42,11 @@ class AttendanceTabBarWidget extends ConsumerWidget {
               height: 28.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(11),
-                color: isSelected ? AppColors.mainColorSidigs : Colors.white,
+                color: isSelected ? context.brand.primary : Colors.white,
                 border: Border.all(
                   width: 1.w,
-                  color: isSelected ? Colors.transparent : AppColors.mainColorSidigs,
+                  color:
+                      isSelected ? Colors.transparent : context.brand.primary,
                 ),
               ),
               child: Padding(
@@ -55,7 +58,7 @@ class AttendanceTabBarWidget extends ConsumerWidget {
                       fontFamily: 'OpenSans',
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w600,
-                      color: isSelected ? Colors.white : AppColors.inactiveColor,
+                      color: isSelected ? Colors.white : context.brand.inactive,
                     ),
                   ),
                 ),

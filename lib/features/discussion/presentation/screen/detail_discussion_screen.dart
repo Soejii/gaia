@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/discussion/presentation/providers/create_comment_controller.dart';
 import 'package:gaia/features/discussion/presentation/providers/detail_discussion_controller.dart';
 import 'package:gaia/features/discussion/presentation/widgets/comment_card.dart';
@@ -60,9 +61,9 @@ class DetailDiscussionScreen extends HookConsumerWidget {
         padding: MediaQuery.of(context).viewInsets,
         child: Container(
           height: 80.h,
-          decoration: const BoxDecoration(
+          decoration:  BoxDecoration(
             color: Colors.white,
-            boxShadow: AppColors.invertedShadow,
+            boxShadow: context.brand.invertedShadow,
           ),
           child: Padding(
             padding: EdgeInsets.symmetric(
@@ -89,7 +90,7 @@ class DetailDiscussionScreen extends HookConsumerWidget {
                         fontFamily: 'OpenSans',
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
-                        color: AppColors.mainText,
+                        color: context.brand.textMain,
                       ),
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -98,7 +99,7 @@ class DetailDiscussionScreen extends HookConsumerWidget {
                           fontFamily: 'OpenSans',
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w400,
-                          color: AppColors.inactiveColor,
+                          color: context.brand.inactive,
                           fontStyle: FontStyle.italic,
                         ),
                         contentPadding: EdgeInsets.symmetric(
@@ -122,9 +123,9 @@ class DetailDiscussionScreen extends HookConsumerWidget {
                   child: Container(
                     width: 40.w,
                     height: 40.w,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppColors.mainColorSidigs,
+                      color: context.brand.primary,
                     ),
                     child: const Center(
                       child: Icon(

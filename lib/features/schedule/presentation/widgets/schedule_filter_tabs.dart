@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class ScheduleFilterTabs extends StatelessWidget {
@@ -15,16 +16,17 @@ class ScheduleFilterTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
         color: Colors.white,
-        boxShadow: AppColors.shadow,
+        boxShadow: context.brand.shadow,
       ),
-      padding: EdgeInsets.only(left: 15.w, top: 16.h, bottom: 18.h, right: 16.w),
+      padding:
+          EdgeInsets.only(left: 15.w, top: 16.h, bottom: 18.h, right: 16.w),
       child: TabBar(
         controller: tabController,
         isScrollable: true,
         labelColor: Colors.white,
-        unselectedLabelColor: AppColors.mainColorSidigs,
+        unselectedLabelColor: context.brand.primary,
         labelStyle: TextStyle(
           fontFamily: 'OpenSans',
           fontSize: 12.sp,
@@ -42,17 +44,21 @@ class ScheduleFilterTabs extends StatelessWidget {
           final day = entry.value;
           return Tab(
             child: Padding(
-              padding: EdgeInsets.only(right: index < weekDays.length - 1 ? 8.w : 0),
+              padding:
+                  EdgeInsets.only(right: index < weekDays.length - 1 ? 8.w : 0),
               child: AnimatedBuilder(
                 animation: tabController,
                 builder: (context, child) {
                   final isSelected = tabController.index == index;
                   return Container(
-                    padding: EdgeInsets.symmetric(horizontal: 9.w, vertical: 3.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 9.w, vertical: 3.h),
                     decoration: BoxDecoration(
-                      color: isSelected ? AppColors.mainColorSidigs : Colors.transparent,
+                      color: isSelected
+                          ? context.brand.primary
+                          : Colors.transparent,
                       border: Border.all(
-                        color: AppColors.mainColorSidigs,
+                        color: context.brand.primary,
                         width: 1,
                       ),
                       borderRadius: BorderRadius.circular(11.r),
@@ -60,7 +66,8 @@ class ScheduleFilterTabs extends StatelessWidget {
                     child: Text(
                       day,
                       style: TextStyle(
-                        color: isSelected ? Colors.white : AppColors.mainColorSidigs,
+                        color:
+                            isSelected ? Colors.white : context.brand.primary,
                         fontFamily: 'OpenSans',
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,

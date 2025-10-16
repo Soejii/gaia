@@ -4,6 +4,7 @@ import 'dart:math' as math;
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/subject/presentation/providers/subject_providers.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
@@ -76,15 +77,15 @@ class ChooseDiscussionButton extends ConsumerWidget {
                   fontFamily: 'OpenSans',
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w400,
-                  color: AppColors.mainText,
+                  color: context.brand.textMain,
                 ),
               ),
               const Expanded(child: SizedBox()),
               Transform.rotate(
                 angle: 180 * math.pi / 180,
-                child: const Icon(
+                child:  Icon(
                   Icons.arrow_back_ios,
-                  color: AppColors.mainText,
+                  color: context.brand.textMain,
                 ),
               ),
             ],

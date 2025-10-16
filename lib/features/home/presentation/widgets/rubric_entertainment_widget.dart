@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/announcement/presentation/widgets/announcement_error_card.dart';
 import 'package:gaia/features/announcement/presentation/widgets/announcement_skeleton_card.dart';
 import 'package:gaia/features/edutainment/domain/type/edutainment_type.dart';
@@ -31,7 +32,7 @@ class RubricEntertainmentWidget extends ConsumerWidget {
                   fontFamily: 'OpenSans',
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.mainText,
+                  color: context.brand.textMain,
                 ),
               ),
               TextButton(
@@ -44,7 +45,7 @@ class RubricEntertainmentWidget extends ConsumerWidget {
                     fontFamily: 'OpenSans',
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
-                    color: AppColors.mainColorSidigs,
+                    color: context.brand.primary,
                   ),
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/discussion/domain/entity/comment_entity.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
@@ -37,16 +38,16 @@ class CommentCard extends StatelessWidget {
                   fontFamily: 'OpenSans',
                   fontSize: 10.sp,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.mainText,
+                  color: context.brand.textMain,
                 ),
               ),
               SizedBox(width: 7.w),
               Container(
                 width: 3.h,
                 height: 3.h,
-                decoration: const BoxDecoration(
+                decoration:  BoxDecoration(
                   shape: BoxShape.circle,
-                  color: AppColors.secondaryText,
+                  color: context.brand.textSecondary,
                 ),
               ),
               SizedBox(width: 7.w),
@@ -56,7 +57,7 @@ class CommentCard extends StatelessWidget {
                   fontFamily: 'OpenSans',
                   fontSize: 10.sp,
                   fontWeight: FontWeight.w400,
-                  color: AppColors.secondaryText,
+                  color: context.brand.textSecondary,
                   fontStyle: FontStyle.italic,
                 ),
               ),
@@ -70,7 +71,7 @@ class CommentCard extends StatelessWidget {
                 fontFamily: 'OpenSans',
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w400,
-                color: AppColors.mainText,
+                color: context.brand.textMain,
               ),
             ),
           )

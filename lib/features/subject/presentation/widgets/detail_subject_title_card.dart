@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/subject/domain/entities/subject_entity.dart';
 import 'package:gaia/features/subject/presentation/providers/module_controller.dart';
 import 'package:gaia/shared/core/constant/app_colors.dart';
@@ -28,7 +29,7 @@ class DetailSubjectTitleCard extends ConsumerWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
-            boxShadow: AppColors.shadow,
+            boxShadow: context.brand.shadow,
           ),
           child: Center(
             child: SizedBox(
