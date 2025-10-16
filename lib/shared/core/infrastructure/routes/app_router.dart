@@ -13,6 +13,9 @@ import 'package:gaia/features/discussion/presentation/screen/detail_discussion_s
 import 'package:gaia/features/balances/domain/type/balance_type.dart';
 import 'package:gaia/features/balances/presentation/screens/balance_screen.dart';
 import 'package:gaia/features/balances/presentation/screens/balance_history_screen.dart';
+import 'package:gaia/features/chat/presentation/screens/chat_list_screen.dart';
+import 'package:gaia/features/chat/presentation/screens/chat_contact_picker_screen.dart';
+import 'package:gaia/features/chat/presentation/screens/chat_detail_screen.dart';
 import 'package:gaia/features/discussion/presentation/types/create_discussion_args.dart';
 import 'package:gaia/features/edutainment/presentation/screens/detail_edutainment_screen.dart';
 import 'package:gaia/features/edutainment/presentation/screens/list_edutainment_screen.dart';
@@ -234,6 +237,37 @@ GoRouter appRouter(Ref ref) {
                 name: RouteName.activity,
                 pageBuilder: (_, __) =>
                     const MaterialPage(child: ActivityScreen()),
+              ),
+            ],
+          ),
+
+          // CHAT BRANCH
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/chat',
+                name: RouteName.chat,
+                pageBuilder: (_, __) =>
+                    const MaterialPage(child: ChatScreen()),
+                routes: [
+                  GoRoute(
+                    path: 'contact-picker',
+                    name: RouteName.contactPicker,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, __) => const ChatContactPickerScreen(),
+                  ),
+                  GoRoute(
+                    path: 'detail-chat/:userId',
+                    name: RouteName.chatDetail,
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, state) {
+                      final userId = state.pathParameters['userId']!;
+                      return ChatDetailScreen(
+                        userId: int.parse(userId),
+                      );
+                    },
+                  ),
+                ],
               ),
             ],
           ),
