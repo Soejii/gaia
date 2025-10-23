@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gaia/app/theme/brand_assets.dart';
 import 'package:gaia/features/balances/domain/type/balance_type.dart';
 import 'package:gaia/features/balances/presentation/mappers/balance_type_ui_mapper.dart';
 import 'package:gaia/features/balances/presentation/widgets/balance_card_info_widget.dart';
-import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class BalanceCardWidget extends ConsumerWidget {
@@ -18,6 +18,7 @@ class BalanceCardWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final gradientColors = BalanceTypeUIMapper.getGradientColors(type);
+        final brandAssets = ref.watch(brandAssetsProvider);
     final iconAsset = BalanceTypeUIMapper.getIconAsset(type);
 
     return Container(
@@ -46,7 +47,7 @@ class BalanceCardWidget extends ConsumerWidget {
             bottom: 0,
             right: 0,
             child: Image.asset(
-              AssetsHelper.imgLogoTransparant,
+              brandAssets.image('img_logo_transparent.png'),
               width: 120.h,
               height: 140.h,
               fit: BoxFit.fill,
