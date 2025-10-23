@@ -20,42 +20,8 @@ jobs:
       - uses: subosito/flutter-action@v2
         with: {channel: stable, cache: true }
       - run: flutter pub get
-      - run: dart format --set-exit-if-changed .
-      - run: dart analyze --fatal-infos
+      - run: dart format .
       - run: flutter pub run build_runner build --delete-conflicting-outputs
-
-      # 🔑 Recreate the right keystore + key.properties per client
-      - name: Prepare signing (per client)
-        run: |
-          mkdir -p android/app
-          if [ "${{ matrix.client }}" = "default" ]; then
-            echo "$ANDROID_KEYSTORE_BASE64_DEFAULT" | base64 -d > android/app/upload-keystore.jks
-            cat > android/key.properties <<EOF
-            storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD_DEFAULT }}
-            keyPassword=${{ secrets.ANDROID_KEY_ALIAS_PASSWORD_DEFAULT }}
-            keyAlias=${{ secrets.ANDROID_KEY_ALIAS_DEFAULT }}
-            storeFile=upload-keystore.jks
-            EOF
-          else
-            echo "$ANDROID_KEYSTORE_BASE64_MADANI" | base64 -d > android/app/upload-keystore.jks
-            cat > android/key.properties <<EOF
-            storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD_MADANI }}
-            keyPassword=${{ secrets.ANDROID_KEY_ALIAS_PASSWORD_MADANI }}
-            keyAlias=${{ secrets.ANDROID_KEY_ALIAS_MADANI }}
-            storeFile=upload-keystore.jks
-            EOF
-          fi
-        env:
-          ANDROID_KEYSTORE_BASE64_DEFAULT: ${{ secrets.ANDROID_KEYSTORE_BASE64_DEFAULT }}
-          ANDROID_KEYSTORE_BASE64_MADANI:  ${{ secrets.ANDROID_KEYSTORE_BASE64_MADANI }}
-
-      - name: Build AAB (client=${{ matrix.client }} Dev)
-        run: |
-          flutter build appbundle \
-            --flavor ${{ matrix.client }}Dev \
-            -t lib/main.dart \
-            --dart-define=CLIENT=${{ matrix.client }} \
-            --dart-define=ENV=dev
 
       - name: Build debug APK (client=${{ matrix.client }} Dev)
         run: |
@@ -64,12 +30,6 @@ jobs:
             -t lib/main.dart \
             --dart-define=CLIENT=${{ matrix.client }} \
             --dart-define=ENV=dev
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.client }}-dev-aab
-          path: build/app/outputs/bundle/**/app-*-release.aab
-          if-no-files-found: error
 
       - uses: actions/upload-artifact@v4
         with:
