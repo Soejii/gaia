@@ -1,0 +1,191 @@
+name: Android Build & Release (PROD AAB + DEV APK to GitHub Release)
+
+permissions:
+  contents: write   # required to create releases
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Optional tag for the release (e.g. v1.2.3)'
+        required: false
+        default: ''
+
+jobs:
+  # -------- PROD AAB (signed) --------
+  build-prod:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        client: [default, mancaksa]   # build both prod variants
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Flutter (stable)
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Show Flutter version
+        run: flutter --version
+
+      - name: Pub get
+        run: flutter pub get
+
+      - name: Codegen
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      # 🔑 Prepare signing per client (no heredoc pitfalls)
+      - name: Prepare signing (per client)
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_BASE64_DEFAULT:  ${{ secrets.ANDROID_KEYSTORE_BASE64_DEFAULT }}
+          ANDROID_KEYSTORE_BASE64_MANCAKSA: ${{ secrets.ANDROID_KEYSTORE_BASE64_MANCAKSA }}
+        run: |
+          set -euo pipefail
+          mkdir -p android/app
+          if [[ "${{ matrix.client }}" == "default" ]]; then
+            echo "$ANDROID_KEYSTORE_BASE64_DEFAULT" | base64 -d > android/app/upload-keystore.jks
+            {
+              echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD_DEFAULT }}";
+              echo "keyPassword=${{ secrets.ANDROID_KEY_ALIAS_PASSWORD_DEFAULT }}";
+              echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS_DEFAULT }}";
+              echo "storeFile=upload-keystore.jks";
+            } > android/key.properties
+          else
+            echo "$ANDROID_KEYSTORE_BASE64_MANCAKSA" | base64 -d > android/app/upload-keystore.jks
+            {
+              echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD_MANCAKSA }}";
+              echo "keyPassword=${{ secrets.ANDROID_KEY_ALIAS_PASSWORD_MANCAKSA }}";
+              echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS_MANCAKSA }}";
+              echo "storeFile=upload-keystore.jks";
+            } > android/key.properties
+          fi
+
+      - name: Build PROD AAB (client=${{ matrix.client }})
+        run: |
+          flutter build appbundle \
+            --flavor ${{ matrix.client }}Prod \
+            -t lib/main.dart \
+            --dart-define=CLIENT=${{ matrix.client }} \
+            --dart-define=ENV=prod
+
+      - name: Upload PROD AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.client }}-prod-aab
+          path: build/app/outputs/bundle/**/app-*-release.aab
+          if-no-files-found: error
+
+  # -------- DEV debug APK (no signing needed) --------
+  build-dev-apk:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        client: [default, mancaksa]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Flutter (stable)
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Pub get
+        run: flutter pub get
+
+      - name: Codegen
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: Build debug APK (client=${{ matrix.client }} Dev)
+        run: |
+          flutter build apk --debug \
+            --flavor ${{ matrix.client }}Dev \
+            -t lib/main.dart \
+            --dart-define=CLIENT=${{ matrix.client }} \
+            --dart-define=ENV=dev
+
+      - name: Upload DEV debug APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.client }}-dev-debug-apk
+          path: build/app/outputs/flutter-apk/app-*-debug.apk
+          if-no-files-found: error
+
+  # -------- Create GitHub Release & attach everything --------
+  release:
+    needs: [build-prod, build-dev-apk]
+    runs-on: ubuntu-latest
+    steps:
+      # download AABs
+      - name: Download AAB (default)
+        uses: actions/download-artifact@v4
+        with:
+          name: default-prod-aab
+          path: release/default/
+      - name: Download AAB (mancaksa)
+        uses: actions/download-artifact@v4
+        with:
+          name: mancaksa-prod-aab
+          path: release/mancaksa/
+
+      # download APKs
+      - name: Download APK (default dev)
+        uses: actions/download-artifact@v4
+        with:
+          name: default-dev-debug-apk
+          path: release/default/
+      - name: Download APK (mancaksa dev)
+        uses: actions/download-artifact@v4
+        with:
+          name: mancaksa-dev-debug-apk
+          path: release/mancaksa/
+
+      # compute tag/name (use manual input if provided)
+      - name: Compute tag
+        id: meta
+        shell: bash
+        run: |
+          if [ -n "${{ github.event.inputs.tag }}" ]; then
+            echo "tag=${{ github.event.inputs.tag }}" >> "$GITHUB_OUTPUT"
+            echo "name=${{ github.event.inputs.tag }}" >> "$GITHUB_OUTPUT"
+          else
+            DATE=$(date -u +'%Y-%m-%d')
+            SHORTSHA=${GITHUB_SHA::7}
+            echo "tag=release-${DATE}-${SHORTSHA}" >> "$GITHUB_OUTPUT"
+            echo "name=Release ${DATE} (${SHORTSHA})" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create GitHub Release (attach AABs + APKs)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.meta.outputs.tag }}
+          name: ${{ steps.meta.outputs.name }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          files: |
+            release/default/*.aab
+            release/default/*.apk
+            release/mancaksa/*.aab
+            release/mancaksa/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
