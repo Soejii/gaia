@@ -11,9 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Build prod AABs for both client flavors.
-        # If you only want one, remove the other.
-        client: [default, madani]
+        client: [default, madani]   # build both prod variants
 
     steps:
       - uses: actions/checkout@v4
@@ -24,48 +22,53 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Set up Flutter
+      - name: Set up Flutter (stable)
         uses: subosito/flutter-action@v2
         with:
           channel: stable
           cache: true
 
+      - name: Show Flutter version
+        run: flutter --version
+
       - name: Pub get
         run: flutter pub get
 
+      # Format but don't fail the build if it changes files
       - name: Format
         run: dart format .
 
       - name: Codegen
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
-      # 🔑 Recreate keystore + key.properties for the current client
-      # Add the 8 repo secrets listed below
+      # 🔑 Prepare signing per client (no heredoc, no YAML indentation issues)
       - name: Prepare signing (per client)
-        run: |
-          mkdir -p android/app
-          if [ "${{ matrix.client }}" = "default" ]; then
-            echo "$ANDROID_KEYSTORE_BASE64_DEFAULT" | base64 -d > android/app/upload-keystore.jks
-            cat > android/key.properties <<EOF
-            storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD_DEFAULT }}
-            keyPassword=${{ secrets.ANDROID_KEY_ALIAS_PASSWORD_DEFAULT }}
-            keyAlias=${{ secrets.ANDROID_KEY_ALIAS_DEFAULT }}
-            storeFile=upload-keystore.jks
-            EOF
-          else
-            echo "$ANDROID_KEYSTORE_BASE64_MADANI" | base64 -d > android/app/upload-keystore.jks
-            cat > android/key.properties <<EOF
-            storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD_MADANI }}
-            keyPassword=${{ secrets.ANDROID_KEY_ALIAS_PASSWORD_MADANI }}
-            keyAlias=${{ secrets.ANDROID_KEY_ALIAS_MADANI }}
-            storeFile=upload-keystore.jks
-            EOF
-          fi
+        shell: bash
         env:
           ANDROID_KEYSTORE_BASE64_DEFAULT: ${{ secrets.ANDROID_KEYSTORE_BASE64_DEFAULT }}
           ANDROID_KEYSTORE_BASE64_MADANI:  ${{ secrets.ANDROID_KEYSTORE_BASE64_MADANI }}
+        run: |
+          set -euo pipefail
+          mkdir -p android/app
+          if [[ "${{ matrix.client }}" == "default" ]]; then
+            echo "$ANDROID_KEYSTORE_BASE64_DEFAULT" | base64 -d > android/app/upload-keystore.jks
+            {
+              echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD_DEFAULT }}";
+              echo "keyPassword=${{ secrets.ANDROID_KEY_ALIAS_PASSWORD_DEFAULT }}";
+              echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS_DEFAULT }}";
+              echo "storeFile=upload-keystore.jks";
+            } > android/key.properties
+          else
+            echo "$ANDROID_KEYSTORE_BASE64_MADANI" | base64 -d > android/app/upload-keystore.jks
+            {
+              echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD_MADANI }}";
+              echo "keyPassword=${{ secrets.ANDROID_KEY_ALIAS_PASSWORD_MADANI }}";
+              echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS_MADANI }}";
+              echo "storeFile=upload-keystore.jks";
+            } > android/key.properties
+          fi
 
-      # 🛠 Build signed PROD AAB (ENV=prod, flavor = <client>Prod)
+      # 🛠 Build signed PROD AAB (ENV=prod, flavor=<client>Prod)
       - name: Build PROD AAB (client=${{ matrix.client }})
         run: |
           flutter build appbundle \
@@ -74,7 +77,7 @@ jobs:
             --dart-define=CLIENT=${{ matrix.client }} \
             --dart-define=ENV=prod
 
-      # ⬆️ Upload just the AAB as a downloadable artifact
+      # ⬆️ Upload AAB as downloadable artifact
       - name: Upload PROD AAB artifact
         uses: actions/upload-artifact@v4
         with:

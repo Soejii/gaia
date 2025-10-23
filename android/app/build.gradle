@@ -1,15 +1,6 @@
-import java.util.Properties
-import java.io.FileInputStream
-
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
-if (keystorePropertiesFile.exists()) {  
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
-
 plugins {
     id "com.android.application"
-    id "kotlin-android"
+    id "kotlin-android" // ok; later you can switch to org.jetbrains.kotlin.android
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
 }
@@ -20,7 +11,7 @@ android {
   ndkVersion = flutter.ndkVersion
 
   compileOptions {
-    // If/when you upgrade AGP → 8.6+, switch these to Java 17:
+    // when you upgrade toolchain, bump to Java 17
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
   }
@@ -34,7 +25,15 @@ android {
     versionName = flutter.versionName
   }
 
-  // 🔑 read from key.properties (written locally or by CI)
+  // 🔑 Load signing props safely (no imports needed)
+  def keystoreProperties = new Properties()
+  def keystorePropertiesFile = rootProject.file('key.properties')
+  if (keystorePropertiesFile.exists()) {
+      keystorePropertiesFile.withInputStream { stream ->
+          keystoreProperties.load(stream)
+      }
+  }
+
   signingConfigs {
     release {
       if (keystorePropertiesFile.exists()) {
@@ -53,11 +52,12 @@ android {
       // proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
     debug {
-      // uses Android debug keystore (default)
+      // default debug keystore
     }
   }
 
-  flavorDimensions += ["client", "env"]
+  // define dimensions cleanly
+  flavorDimensions "client", "env"
 
   productFlavors {
     create("default") {
@@ -83,7 +83,6 @@ android {
   }
 }
 
-
 flutter {
-    source = "../.."
+  source = "../.."
 }
