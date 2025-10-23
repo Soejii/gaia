@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 
 class HeaderBackground extends StatelessWidget {
   const HeaderBackground({super.key});
@@ -10,12 +10,12 @@ class HeaderBackground extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 280.h,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
+      decoration:  BoxDecoration(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(50),
           bottomRight: Radius.circular(50),
         ),
-        gradient: AppColors.mainColorGradient,
+        gradient: context.brand.mainGradient,
       ),
     );
   }

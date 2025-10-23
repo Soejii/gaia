@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/discussion/presentation/types/create_discussion_args.dart';
 import 'package:gaia/features/profile/presentation/providers/profile_controller.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:gaia/shared/core/types/failure.dart';
@@ -49,7 +49,8 @@ class CreateDiscussionCard extends ConsumerWidget {
                 height: 48.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: AppColors.secondaryText, width: 1),
+                  border:
+                      Border.all(color: context.brand.textSecondary, width: 1),
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -62,7 +63,7 @@ class CreateDiscussionCard extends ConsumerWidget {
                       fontFamily: 'OpenSans',
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,
-                      color: AppColors.secondaryText,
+                      color: context.brand.textSecondary,
                       fontStyle: FontStyle.italic,
                     ),
                   ),

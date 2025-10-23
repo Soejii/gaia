@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:gaia/features/profile/presentation/providers/change_password_controller.dart';
 import 'package:gaia/features/profile/presentation/widgets/change_password_form_field.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 
 class ChangePasswordScreen extends HookConsumerWidget {
@@ -34,7 +34,7 @@ class ChangePasswordScreen extends HookConsumerWidget {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(message),
-                backgroundColor: AppColors.green,
+                backgroundColor: context.brand.green,
               ),
             );
             currentPasswordController.clear();
@@ -121,14 +121,14 @@ class ChangePasswordScreen extends HookConsumerWidget {
                   onChanged: (value) {
                     showPassword.value = value ?? false;
                   },
-                  activeColor: AppColors.mainColorSidigs,
+                  activeColor: context.brand.primary,
                 ),
                 Text(
                   'Tampilkan kata sandi',
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
-                    color: AppColors.secondaryText,
+                    color: context.brand.textSecondary,
                   ),
                 ),
               ],
@@ -137,7 +137,7 @@ class ChangePasswordScreen extends HookConsumerWidget {
             ElevatedButton(
               onPressed: changePasswordState.isLoading ? null : handleSubmit,
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.mainColorSidigs,
+                backgroundColor: context.brand.primary,
                 foregroundColor: Colors.white,
                 minimumSize: Size(double.infinity, 48.h),
                 shape: RoundedRectangleBorder(

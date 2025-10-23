@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import '../../domain/entities/schedule_entity.dart';
-import '../../../../shared/core/constant/app_colors.dart';
 
 class ScheduleCard extends StatelessWidget {
   final ScheduleEntity schedule;
@@ -16,9 +16,9 @@ class ScheduleCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: 12.h),
       decoration: BoxDecoration(
-        color: AppColors.mainColorSidigs,
+        color: context.brand.primary,
         borderRadius: BorderRadius.circular(20.r),
-        boxShadow: AppColors.shadow,
+        boxShadow: context.brand.shadow,
       ),
       child: Row(
         children: [
@@ -36,7 +36,7 @@ class ScheduleCard extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
-              boxShadow: AppColors.shadow,
+              boxShadow: context.brand.shadow,
             ),
             child: schedule.subjectImage.isNotEmpty
                 ? Container(
@@ -47,7 +47,7 @@ class ScheduleCard extends StatelessWidget {
                       errorBuilder: (context, error, stackTrace) {
                         return Icon(
                           Icons.book,
-                          color: AppColors.mainColorSidigs,
+                          color: context.brand.primary,
                           size: 32.sp,
                         );
                       },
@@ -57,7 +57,7 @@ class ScheduleCard extends StatelessWidget {
                     padding: EdgeInsets.all(8.r),
                     child: Icon(
                       Icons.book,
-                      color: AppColors.mainColorSidigs,
+                      color: context.brand.primary,
                       size: 32.sp,
                     ),
                   ),

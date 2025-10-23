@@ -2,26 +2,64 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "DEV",
+      "name": "Default • Dev",
       "request": "launch",
       "type": "dart",
+      "program": "lib/main.dart",
       "args": [
+        "--flavor", "defaultDev",
+        "--dart-define=CLIENT=default",
         "--dart-define=ENV=dev"
       ]
     },
     {
-      "name": "PRODUCTION",
+      "name": "Default • Prod (debug build)",
       "request": "launch",
       "type": "dart",
+      "program": "lib/main.dart",
       "args": [
+        "--flavor", "defaultProd",
+        "--dart-define=CLIENT=default",
         "--dart-define=ENV=prod"
       ]
     },
     {
-      "name": "anusapati (release mode)",
+      "name": "Madani • Dev",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "release"
+      "program": "lib/main.dart",
+      "args": [
+        "--flavor", "madaniDev",
+        "--dart-define=CLIENT=madani",
+        "--dart-define=ENV=dev"
+      ]
+    },
+    {
+      "name": "Madani • Prod (debug build)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--flavor", "madaniProd",
+        "--dart-define=CLIENT=madani",
+        "--dart-define=ENV=prod"
+      ]
+    },
+
+    { "name": "Default • Prod (release)",
+      "request": "launch", "type": "dart", "program": "lib/main.dart",
+      "flutterMode": "release",
+      "args": ["--flavor","defaultProd","--dart-define=CLIENT=default","--dart-define=ENV=prod"]
+    },
+    { "name": "Madani • Prod (release)",
+      "request": "launch", "type": "dart", "program": "lib/main.dart",
+      "flutterMode": "release",
+      "args": ["--flavor","madaniProd","--dart-define=CLIENT=madani","--dart-define=ENV=prod"]
+    },
+    { "name": "Default • Prod (profile)",
+      "request": "launch", "type": "dart", "program": "lib/main.dart",
+      "flutterMode": "profile",
+      "args": ["--flavor","defaultProd","--dart-define=CLIENT=default","--dart-define=ENV=prod"]
     }
   ]
 }

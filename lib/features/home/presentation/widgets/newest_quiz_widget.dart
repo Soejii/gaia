@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/activity/domain/type/exam_type.dart';
 import 'package:gaia/features/activity/presentation/providers/activity_providers.dart';
 import 'package:gaia/features/activity/presentation/providers/exam_controller.dart';
 import 'package:gaia/features/activity/presentation/widgets/exam_error_card.dart';
 import 'package:gaia/features/activity/presentation/widgets/exam_skeleton_card.dart';
 import 'package:gaia/features/activity/presentation/widgets/quiz_card.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -31,7 +31,7 @@ class NewestQuizWidget extends ConsumerWidget {
                   fontFamily: 'OpenSans',
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.mainText,
+                  color: context.brand.textMain,
                 ),
               ),
               TextButton(
@@ -45,7 +45,7 @@ class NewestQuizWidget extends ConsumerWidget {
                     fontFamily: 'OpenSans',
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w400,
-                    color: AppColors.mainColorSidigs,
+                    color: context.brand.primary,
                   ),
                 ),
               ),

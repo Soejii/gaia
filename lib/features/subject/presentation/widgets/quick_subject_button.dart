@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:go_router/go_router.dart';
 
@@ -20,7 +20,7 @@ class QuickSubjectButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-          context.pushNamed(
+        context.pushNamed(
           RouteName.detailSubject,
           pathParameters: {'id': id.toString()},
         );
@@ -62,7 +62,7 @@ class QuickSubjectButton extends StatelessWidget {
               fontFamily: 'OpenSans',
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
-              color: AppColors.secondaryText,
+              color: context.brand.textSecondary,
             ),
           )
         ],

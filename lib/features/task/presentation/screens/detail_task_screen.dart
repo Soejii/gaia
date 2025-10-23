@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/task/presentation/providers/detail_task_controller.dart';
 import 'package:gaia/features/task/presentation/widgets/detail_task_header_skeleton_widget.dart';
 import 'package:gaia/features/task/presentation/widgets/detail_task_header_widget.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
 import 'package:go_router/go_router.dart';
@@ -71,7 +71,7 @@ class DetailTaskScreen extends ConsumerWidget {
                     data: data.instruction ?? '',
                     style: {
                       "body": Style(
-                        color: AppColors.mainText,
+                        color: context.brand.textMain,
                         fontFamily: "Open Sans",
                         fontSize: FontSize(14.sp),
                         fontStyle: FontStyle.normal,
@@ -108,9 +108,9 @@ class DetailTaskScreen extends ConsumerWidget {
       bottomNavigationBar: Container(
         width: double.infinity,
         height: 80.h,
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
           color: Colors.white,
-          boxShadow: AppColors.invertedShadow,
+          boxShadow: context.brand.invertedShadow,
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
@@ -129,9 +129,9 @@ class DetailTaskScreen extends ConsumerWidget {
                 height: 56.h,
                 decoration: BoxDecoration(
                   color: hasSurpassedDateFromString(data.finishAt ?? '')
-                      ? AppColors.inactiveColor
-                      : AppColors.mainColorSidigs,
-                  boxShadow: AppColors.shadow,
+                      ? context.brand.inactive
+                      : context.brand.primary,
+                  boxShadow: context.brand.shadow,
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Center(

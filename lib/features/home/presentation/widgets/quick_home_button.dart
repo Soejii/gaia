@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:go_router/go_router.dart';
 
 class QuickHomeButton extends StatelessWidget {
@@ -46,11 +46,13 @@ class QuickHomeButton extends StatelessWidget {
         Text(
           label,
           textAlign: TextAlign.center,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontFamily: 'OpenSans',
             fontSize: 10.sp,
             fontWeight: FontWeight.w400,
-            color: AppColors.secondaryText,
+            color: context.brand.textSecondary,
           ),
         )
       ],

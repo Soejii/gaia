@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 
 class DetailAnnouncementContent extends StatelessWidget {
   const DetailAnnouncementContent({
@@ -21,12 +21,12 @@ class DetailAnnouncementContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-           title,
+            title,
             style: TextStyle(
               fontFamily: 'OpenSans',
               fontSize: 14.sp,
               fontWeight: FontWeight.w700,
-              color: AppColors.mainText,
+              color: context.brand.textMain,
             ),
           ),
           Text(
@@ -35,7 +35,7 @@ class DetailAnnouncementContent extends StatelessWidget {
               fontFamily: 'OpenSans',
               fontSize: 10.sp,
               fontWeight: FontWeight.w400,
-              color: AppColors.mainText,
+              color: context.brand.textMain,
             ),
           ),
           SizedBox(height: 17.h),
@@ -45,7 +45,7 @@ class DetailAnnouncementContent extends StatelessWidget {
               fontFamily: 'OpenSans',
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
-              color: AppColors.mainText,
+              color: context.brand.textMain,
             ),
           ),
         ],

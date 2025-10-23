@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/discussion/presentation/providers/create_discussion_controller.dart';
 import 'package:gaia/features/discussion/presentation/types/create_discussion_args.dart';
 import 'package:gaia/features/profile/presentation/providers/profile_controller.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:gaia/shared/core/types/failure.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
@@ -61,7 +61,7 @@ class CreateDiscussionScreen extends HookConsumerWidget {
                       fontFamily: 'OpenSans',
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w700,
-                      color: AppColors.mainText,
+                      color: context.brand.textMain,
                     ),
                   ),
                   error: (error, stackTrace) => Text(error is NetworkFailure
@@ -79,7 +79,8 @@ class CreateDiscussionScreen extends HookConsumerWidget {
               constraints: BoxConstraints(minHeight: 56.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: AppColors.secondaryText, width: 1),
+                border:
+                    Border.all(color: context.brand.textSecondary, width: 1),
               ),
               child: TextField(
                 controller: textController,
@@ -89,7 +90,7 @@ class CreateDiscussionScreen extends HookConsumerWidget {
                   fontFamily: 'OpenSans',
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
-                  color: AppColors.mainText,
+                  color: context.brand.textMain,
                 ),
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -98,7 +99,7 @@ class CreateDiscussionScreen extends HookConsumerWidget {
                     fontFamily: 'OpenSans',
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
-                    color: AppColors.mainText,
+                    color: context.brand.textMain,
                     fontStyle: FontStyle.italic,
                   ),
                   contentPadding:
@@ -132,8 +133,8 @@ class CreateDiscussionScreen extends HookConsumerWidget {
                     width: double.infinity,
                     height: 56.h,
                     decoration: BoxDecoration(
-                      color: AppColors.mainColorSidigs,
-                      boxShadow: AppColors.shadow,
+                      color: context.brand.primary,
+                      boxShadow: context.brand.shadow,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Center(

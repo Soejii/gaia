@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 
 class SchoolProfileAvatar extends StatelessWidget {
   final String photoUrl;
@@ -15,9 +15,9 @@ class SchoolProfileAvatar extends StatelessWidget {
     return Container(
       width: 144.w,
       height: 144.h,
-      decoration: BoxDecoration(
+      decoration:  BoxDecoration(
         shape: BoxShape.circle,
-        boxShadow: AppColors.shadow,
+        boxShadow: context.brand.shadow,
         color: Colors.white,
       ),
       child: ClipOval(
@@ -25,10 +25,10 @@ class SchoolProfileAvatar extends StatelessWidget {
           photoUrl,
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
-            return const Icon(
+            return Icon(
               Icons.school,
               size: 72,
-              color: AppColors.mainColorSidigs,
+              color: context.brand.primary,
             );
           },
         ),

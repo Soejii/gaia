@@ -1,3 +1,12 @@
+import java.util.Properties
+import java.io.FileInputStream
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {  
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 plugins {
     id "com.android.application"
     id "kotlin-android"
@@ -6,38 +15,74 @@ plugins {
 }
 
 android {
-    namespace = "com.example.gaia"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+  namespace = "com.example.gaia"
+  compileSdk = flutter.compileSdkVersion
+  ndkVersion = flutter.ndkVersion
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
+  compileOptions {
+    // If/when you upgrade AGP → 8.6+, switch these to Java 17:
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+  }
+  kotlinOptions { jvmTarget = JavaVersion.VERSION_1_8.toString() }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
-    }
+  defaultConfig {
+    applicationId = "com.example.gaia"
+    minSdk = flutter.minSdkVersion
+    targetSdk = flutter.targetSdkVersion
+    versionCode = flutter.versionCode
+    versionName = flutter.versionName
+  }
 
-    defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.gaia"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+  // 🔑 read from key.properties (written locally or by CI)
+  signingConfigs {
+    release {
+      if (keystorePropertiesFile.exists()) {
+        storeFile file(keystoreProperties['storeFile'] ?: 'upload-keystore.jks')
+        storePassword keystoreProperties['storePassword']
+        keyAlias keystoreProperties['keyAlias']
+        keyPassword keystoreProperties['keyPassword']
+      }
     }
+  }
 
-    buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
-        }
+  buildTypes {
+    release {
+      signingConfig signingConfigs.release   // ✅ use your release key
+      // minifyEnabled true
+      // proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
+    debug {
+      // uses Android debug keystore (default)
+    }
+  }
+
+  flavorDimensions += ["client", "env"]
+
+  productFlavors {
+    create("default") {
+      dimension "client"
+      applicationId "com.sidigs.murid"
+      resValue "string", "app_name", "Sidigs Murid"
+      manifestPlaceholders = [ appAuthRedirectScheme: "gaiaapp" ]
+    }
+    create("madani") {
+      dimension "client"
+      applicationId "com.sidigs.madani"
+      resValue "string", "app_name", "SIDIGS Madani"
+      manifestPlaceholders = [ appAuthRedirectScheme: "gaiaapp" ]
+    }
+    create("dev") {
+      dimension "env"
+      applicationIdSuffix ".dev"
+      versionNameSuffix "-dev"
+    }
+    create("prod") {
+      dimension "env"
+    }
+  }
 }
+
 
 flutter {
     source = "../.."

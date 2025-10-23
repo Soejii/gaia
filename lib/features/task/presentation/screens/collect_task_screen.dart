@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/task/presentation/providers/submit_task_controller.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
@@ -58,7 +58,7 @@ class CollectTaskScreen extends HookConsumerWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                  color: AppColors.inactiveColor,
+                  color: context.brand.inactive,
                   width: 1,
                 ),
               ),
@@ -70,7 +70,7 @@ class CollectTaskScreen extends HookConsumerWidget {
                   fontFamily: 'OpenSans',
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
-                  color: AppColors.mainText,
+                  color: context.brand.textMain,
                 ),
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -79,7 +79,7 @@ class CollectTaskScreen extends HookConsumerWidget {
                     fontFamily: 'OpenSans',
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
-                    color: AppColors.mainText,
+                    color: context.brand.textMain,
                     fontStyle: FontStyle.italic,
                   ),
                   contentPadding:
@@ -121,7 +121,7 @@ class CollectTaskScreen extends HookConsumerWidget {
                       fontFamily: 'OpenSans',
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w400,
-                      color: AppColors.secondaryColor,
+                      color: context.brand.secondary,
                       decoration: TextDecoration.underline,
                     ),
                   ),
@@ -134,9 +134,9 @@ class CollectTaskScreen extends HookConsumerWidget {
       bottomNavigationBar: Container(
         width: double.infinity,
         height: 80.h,
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
           color: Colors.white,
-          boxShadow: AppColors.invertedShadow,
+          boxShadow: context.brand.invertedShadow,
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
@@ -165,8 +165,8 @@ class CollectTaskScreen extends HookConsumerWidget {
                     width: double.infinity,
                     height: 56.h,
                     decoration: BoxDecoration(
-                      color: AppColors.mainColorSidigs,
-                      boxShadow: AppColors.shadow,
+                      color: context.brand.primary,
+                      boxShadow: context.brand.shadow,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Center(
@@ -214,7 +214,7 @@ class CollectTaskScreen extends HookConsumerWidget {
                         fontFamily: 'OpenSans',
                         fontSize: 24.sp,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.secondaryColor,
+                        color: context.brand.secondary,
                       ),
                     ),
                     SizedBox(height: 11.h),
@@ -225,7 +225,7 @@ class CollectTaskScreen extends HookConsumerWidget {
                         fontFamily: 'OpenSans',
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.secondaryText,
+                        color: context.brand.textSecondary,
                       ),
                     ),
                     SizedBox(height: 20.h),
@@ -235,8 +235,8 @@ class CollectTaskScreen extends HookConsumerWidget {
                         width: 146.w,
                         height: 56.h,
                         decoration: BoxDecoration(
-                          color: AppColors.mainColorSidigs,
-                          boxShadow: AppColors.shadow,
+                          color: context.brand.primary,
+                          boxShadow: context.brand.shadow,
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: Center(
@@ -264,7 +264,7 @@ class CollectTaskScreen extends HookConsumerWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: AppColors.mainColorSidigs,
+                    color: context.brand.primary,
                     width: 12,
                   ),
                   color: Colors.white,

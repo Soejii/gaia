@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gaia/shared/core/config.dart';
+import 'package:gaia/app/environment/app_config.dart';
 
-final configProvider =
-    Provider<Map<String, String>>((ref) => ConfigEnvironments.getEnvironments());
+final appConfigProvider = Provider<AppConfig>((_) => throw UnimplementedError('AppConfig not loaded'));

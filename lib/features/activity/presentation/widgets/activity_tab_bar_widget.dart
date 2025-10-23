@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/activity/domain/type/activity_type.dart';
 import 'package:gaia/features/activity/presentation/providers/activity_providers.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ActivityTabBarWidget extends ConsumerWidget {
@@ -16,9 +16,9 @@ class ActivityTabBarWidget extends ConsumerWidget {
     return Container(
       height: 56.h,
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
         color: Colors.white,
-        boxShadow: AppColors.shadow,
+        boxShadow: context.brand.shadow,
       ),
       child: TabBar(
         onTap: (value) =>
@@ -35,12 +35,11 @@ class ActivityTabBarWidget extends ConsumerWidget {
                 height: 28.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(11),
-                  color: isSelected ? AppColors.mainColorSidigs : Colors.white,
+                  color: isSelected ? context.brand.primary : Colors.white,
                   border: Border.all(
                     width: 1.w,
-                    color: isSelected
-                        ? Colors.transparent
-                        : AppColors.mainColorSidigs,
+                    color:
+                        isSelected ? Colors.transparent : context.brand.primary,
                   ),
                 ),
                 child: Padding(
@@ -54,7 +53,7 @@ class ActivityTabBarWidget extends ConsumerWidget {
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
                         color:
-                            isSelected ? Colors.white : AppColors.inactiveColor,
+                            isSelected ? Colors.white : context.brand.inactive,
                       ),
                     ),
                   ),

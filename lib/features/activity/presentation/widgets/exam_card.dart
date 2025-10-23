@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/activity/domain/entities/exam_entity.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:gaia/shared/core/infrastructure/exam_app_launcher.dart';
 import 'package:gaia/shared/utils/date_helper.dart';
@@ -16,8 +16,8 @@ class ExamCard extends StatelessWidget {
       height: 96.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient: AppColors.mainColorGradient,
-        boxShadow: AppColors.shadow,
+        gradient: context.brand.mainGradient,
+        boxShadow: context.brand.shadow,
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
@@ -90,7 +90,7 @@ class ExamCard extends StatelessWidget {
                 ],
               ),
             ),
-            _circle(entity.status.name)
+            _circle(entity.status.name, context)
           ],
         ),
       ),
@@ -99,6 +99,7 @@ class ExamCard extends StatelessWidget {
 
   Widget _circle(
     String status,
+    BuildContext context,
   ) {
     switch (status) {
       case 'done':
@@ -108,7 +109,7 @@ class ExamCard extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(color: Colors.white, width: 6.w),
-            color: AppColors.green,
+            color: context.brand.green,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -143,7 +144,7 @@ class ExamCard extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(color: Colors.white, width: 6.w),
-              color: AppColors.green,
+              color: context.brand.green,
             ),
             child: Center(
               child: Text(
@@ -186,7 +187,7 @@ class ExamCard extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(color: Colors.white, width: 6.w),
-            color: AppColors.green,
+            color: context.brand.green,
           ),
           child: Center(
             child: Text(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 
 class SchoolInfoBox extends StatelessWidget {
   final String value;
@@ -17,7 +17,7 @@ class SchoolInfoBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFFF9F9F9),
         borderRadius: BorderRadius.circular(10.r),
-        boxShadow: AppColors.shadow,
+        boxShadow: context.brand.shadow,
       ),
       padding: EdgeInsets.all(20.w),
       child: Column(
@@ -26,7 +26,7 @@ class SchoolInfoBox extends StatelessWidget {
           Text(
             value,
             style: TextStyle(
-              color: AppColors.mainText,
+              color: context.brand.textMain,
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
             ),

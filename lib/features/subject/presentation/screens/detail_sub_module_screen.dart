@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/subject/presentation/providers/detail_sub_module_controller.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/screens/buffer_error_view.dart';
 import 'package:gaia/shared/utils/date_helper.dart';
 import 'package:gaia/shared/widgets/custom_app_bar_widget.dart';
@@ -33,7 +33,7 @@ class DetailSubModuleScreen extends ConsumerWidget {
                   fontFamily: 'OpenSans',
                   fontSize: 24.sp,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.mainText,
+                  color: context.brand.textMain,
                 ),
               ),
             ),
@@ -45,7 +45,7 @@ class DetailSubModuleScreen extends ConsumerWidget {
                   fontFamily: 'OpenSans',
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w400,
-                  color: AppColors.secondaryText,
+                  color: context.brand.textSecondary,
                 ),
               ),
             ),
@@ -56,7 +56,7 @@ class DetailSubModuleScreen extends ConsumerWidget {
                 data: data.data ?? '',
                 style: {
                   "body": Style(
-                    color: AppColors.mainText,
+                    color: context.brand.textMain,
                     fontFamily: "Open Sans",
                     fontSize: FontSize(14.sp),
                     fontStyle: FontStyle.normal,

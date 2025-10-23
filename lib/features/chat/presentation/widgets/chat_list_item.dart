@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:gaia/features/chat/domain/entity/chat_entity.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:intl/intl.dart';
 
@@ -35,11 +35,13 @@ class ChatListItem extends ConsumerWidget {
               radius: 20.r,
               backgroundColor: Colors.grey[200],
               backgroundImage: hasPhoto ? NetworkImage(contact.photo!) : null,
-              child: hasPhoto ? null : Icon(
-                Icons.person,
-                size: 24.r,
-                color: Colors.grey[600],
-              ),
+              child: hasPhoto
+                  ? null
+                  : Icon(
+                      Icons.person,
+                      size: 24.r,
+                      color: Colors.grey[600],
+                    ),
             ),
             SizedBox(width: 12.w),
             Expanded(
@@ -51,7 +53,7 @@ class ChatListItem extends ConsumerWidget {
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.mainText,
+                      color: context.brand.textMain,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
@@ -61,7 +63,7 @@ class ChatListItem extends ConsumerWidget {
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.secondaryText,
+                      color: context.brand.textSecondary,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -73,7 +75,7 @@ class ChatListItem extends ConsumerWidget {
               _formatTime(contact.lastChatDate ?? ''),
               style: TextStyle(
                 fontSize: 14.sp,
-                color: AppColors.secondaryText,
+                color: context.brand.textSecondary,
               ),
             ),
           ],

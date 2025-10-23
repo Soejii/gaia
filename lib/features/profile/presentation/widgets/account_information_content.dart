@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 
 class AccountInfoItem {
   final String label;
@@ -30,7 +30,7 @@ class AccountInfoField extends StatelessWidget {
           Text(
             item.label,
             style: TextStyle(
-              color: AppColors.secondaryText,
+              color: context.brand.textSecondary,
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
             ),
@@ -41,13 +41,13 @@ class AccountInfoField extends StatelessWidget {
             decoration: BoxDecoration(
               color: const Color(0xFFF9F9F9),
               borderRadius: BorderRadius.circular(10.r),
-              boxShadow: AppColors.shadow,
+              boxShadow: context.brand.shadow,
             ),
             padding: EdgeInsets.all(20.w),
             child: Text(
               item.value,
               style: TextStyle(
-                color: AppColors.mainText,
+                color: context.brand.textMain,
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w600,
               ),

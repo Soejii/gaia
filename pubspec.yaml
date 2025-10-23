@@ -28,7 +28,8 @@ dependencies:
   flutter_html: ^3.0.0
   file_picker: ^10.3.3
   android_intent_plus: ^6.0.0
-  
+  flutter_launcher_icons: ^0.14.4
+    
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -44,6 +45,10 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/clients/default/
+    - assets/clients/mancaksa/
+    - assets/clients/default/images/
+    # - assets/clients/mancaksa/images
   fonts:
     - family: OpenSans
       fonts:
@@ -60,3 +65,27 @@ flutter:
         - asset: assets/fonts/Montserrat-Regular.ttf
         - asset: assets/fonts/Montserrat-Bold.ttf
           weight: 700
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  # Global fallback (if a flavor forgets to define an icon)
+  image_path: assets/clients/default/icon.png
+  remove_alpha_ios: true
+
+  # Must match your *client* flavor names
+  flavors:
+    default:
+      image_path: assets/clients/default/icon.png
+      android: "ic_launcher"
+      # If you have adaptive assets, keep these; otherwise remove them:
+      adaptive_icon_background: "#FFFFFF"                  # or assets/clients/default/icon_bg.png
+      remove_alpha_ios: true
+
+    # madani:
+    #   image_path: assets/clients/madani/icon.png
+    #   android: "ic_launcher"
+    #   adaptive_icon_background: "#FFFFFF"                  # or assets/clients/madani/icon_bg.png
+    #   adaptive_icon_foreground: assets/clients/madani/icon_fg.png
+    #   remove_alpha_ios: true
+

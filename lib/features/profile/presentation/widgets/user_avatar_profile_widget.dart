@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 
 class UserAvatarProfileWidget extends StatelessWidget {
@@ -27,7 +27,7 @@ class UserAvatarProfileWidget extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(
               width: 3.w,
-              color: AppColors.mainColorSidigs,
+              color: context.brand.primary,
             ),
           ),
           child: ClipRRect(
@@ -37,16 +37,16 @@ class UserAvatarProfileWidget extends StatelessWidget {
               errorBuilder: (context, error, stackTrace) => Image.asset(
                 AssetsHelper.imgProfilePlaceholder,
               ),
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Container(
-                    height: 200.h,
-                    color: Colors.white,
-                    child: const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                },
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Container(
+                  height: 200.h,
+                  color: Colors.white,
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              },
             ),
           ),
         ),
@@ -62,7 +62,7 @@ class UserAvatarProfileWidget extends StatelessWidget {
               fontFamily: 'OpenSans',
               fontSize: 18.sp,
               fontWeight: FontWeight.w700,
-              color: AppColors.mainText,
+              color: context.brand.textMain,
             ),
           ),
         ),
@@ -77,7 +77,7 @@ class UserAvatarProfileWidget extends StatelessWidget {
               fontFamily: 'OpenSans',
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
-              color: AppColors.secondaryText,
+              color: context.brand.textSecondary,
             ),
           ),
         ),

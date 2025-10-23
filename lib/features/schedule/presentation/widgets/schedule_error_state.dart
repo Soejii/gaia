@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:gaia/features/schedule/domain/entities/schedule_entity.dart';
 import 'package:gaia/features/schedule/presentation/providers/schedule_controller.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 
 class ScheduleErrorState extends ConsumerWidget {
   final DayOfWeek day;
@@ -30,7 +30,7 @@ class ScheduleErrorState extends ConsumerWidget {
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.w600,
-              color: AppColors.mainText,
+              color: context.brand.textMain,
             ),
           ),
           SizedBox(height: 8.h),
@@ -38,7 +38,7 @@ class ScheduleErrorState extends ConsumerWidget {
             'Silakan coba lagi',
             style: TextStyle(
               fontSize: 14.sp,
-              color: AppColors.secondaryText,
+              color: context.brand.textSecondary,
             ),
           ),
           SizedBox(height: 16.h),
@@ -47,7 +47,7 @@ class ScheduleErrorState extends ConsumerWidget {
               ref.invalidate(scheduleControllerProvider(day));
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.mainColorSidigs,
+              backgroundColor: context.brand.primary,
               foregroundColor: Colors.white,
             ),
             icon: const Icon(Icons.refresh),

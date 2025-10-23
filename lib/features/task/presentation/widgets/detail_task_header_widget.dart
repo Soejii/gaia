@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/task/domain/entities/detail_task_entity.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:intl/intl.dart';
 
 class DetailTaskHeaderWidget extends StatelessWidget {
@@ -20,9 +20,9 @@ class DetailTaskHeaderWidget extends StatelessWidget {
     }
 
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: Colors.white,
-        boxShadow: AppColors.shadow,
+        boxShadow: context.brand.shadow,
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 24.h),
@@ -33,18 +33,21 @@ class DetailTaskHeaderWidget extends StatelessWidget {
               Icons.calendar_month_rounded,
               'Batas Pengumpulan',
               formatDate(entity.finishAt),
+              context,
             ),
             SizedBox(height: 8.h),
             infoCard(
               Icons.assignment_outlined,
               'Judul Tugas',
               entity.title ?? '-',
+              context,
             ),
             SizedBox(height: 8.h),
             infoCard(
               Icons.person,
               'Guru Pengajar',
               entity.teacherName ?? '-',
+              context,
             ),
           ],
         ),
@@ -56,6 +59,7 @@ class DetailTaskHeaderWidget extends StatelessWidget {
     IconData icon,
     String title,
     String value,
+    BuildContext context,
   ) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,7 +70,7 @@ class DetailTaskHeaderWidget extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: AppColors.inactiveColor,
+              color: context.brand.inactive,
             ),
             SizedBox(width: 12.w),
             Text(
@@ -75,7 +79,7 @@ class DetailTaskHeaderWidget extends StatelessWidget {
                 fontFamily: 'OpenSans',
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w400,
-                color: AppColors.mainText,
+                color: context.brand.textMain,
               ),
             ),
           ],
@@ -91,7 +95,7 @@ class DetailTaskHeaderWidget extends StatelessWidget {
               fontFamily: 'OpenSans',
               fontSize: 12.sp,
               fontWeight: FontWeight.w700,
-              color: AppColors.mainColorSidigs,
+              color: context.brand.primary,
             ),
           ),
         ),

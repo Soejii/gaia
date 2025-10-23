@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../shared/core/constant/app_colors.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import '../../../../shared/core/constant/assets_helper.dart';
 
 class ScheduleEmptyState extends StatelessWidget {
@@ -30,7 +30,7 @@ class ScheduleEmptyState extends StatelessWidget {
               fontFamily: 'OpenSans',
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
-              color: AppColors.secondaryText,
+              color: context.brand.textSecondary,
             ),
             textAlign: TextAlign.center,
           ),
@@ -41,7 +41,7 @@ class ScheduleEmptyState extends StatelessWidget {
               fontFamily: 'OpenSans',
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
-              color: AppColors.secondaryText,
+              color: context.brand.textSecondary,
             ),
             textAlign: TextAlign.center,
           ),

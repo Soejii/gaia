@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 
 class PasswordForm extends HookWidget {
   final TextEditingController controller;
@@ -22,7 +22,7 @@ class PasswordForm extends HookWidget {
               fontFamily: 'OpenSans',
               fontSize: 14.sp,
               fontWeight: FontWeight.w400,
-              color: AppColors.secondaryText,
+              color: context.brand.textSecondary,
             ),
           ),
           SizedBox(height: 4.h),
@@ -51,7 +51,7 @@ class PasswordForm extends HookWidget {
                   child: Center(
                     child: Icon(
                       Icons.lock,
-                      color: AppColors.secondaryText,
+                      color: context.brand.textSecondary,
                     ),
                   ),
                 ),
@@ -72,7 +72,7 @@ class PasswordForm extends HookWidget {
                         fontFamily: 'OpenSans',
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w400,
-                        color: AppColors.inactiveColor,
+                        color: context.brand.inactive,
                         fontStyle: FontStyle.italic,
                       ),
                       contentPadding: EdgeInsets.symmetric(
@@ -85,7 +85,7 @@ class PasswordForm extends HookWidget {
                           isObscure.value
                               ? Icons.visibility_off
                               : Icons.visibility,
-                          color: AppColors.secondaryText,
+                          color: context.brand.textSecondary,
                         ),
                       ),
                     ),

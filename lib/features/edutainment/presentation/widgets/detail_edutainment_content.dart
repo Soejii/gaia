@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailEdutainmentContent extends StatelessWidget {
@@ -37,7 +37,7 @@ class DetailEdutainmentContent extends StatelessWidget {
               fontFamily: 'OpenSans',
               fontSize: 14.sp,
               fontWeight: FontWeight.w700,
-              color: AppColors.mainText,
+              color: context.brand.textMain,
             ),
           ),
           Text(
@@ -46,7 +46,7 @@ class DetailEdutainmentContent extends StatelessWidget {
               fontFamily: 'OpenSans',
               fontSize: 10.sp,
               fontWeight: FontWeight.w400,
-              color: AppColors.mainText,
+              color: context.brand.textMain,
             ),
           ),
           SizedBox(height: 17.h),
@@ -56,7 +56,7 @@ class DetailEdutainmentContent extends StatelessWidget {
               fontFamily: 'OpenSans',
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
-              color: AppColors.mainText,
+              color: context.brand.textMain,
             ),
           ),
           SizedBox(height: 17.h),

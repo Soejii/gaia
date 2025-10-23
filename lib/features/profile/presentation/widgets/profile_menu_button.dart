@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:go_router/go_router.dart';
 
 class ProfileMenuButton extends StatelessWidget {
@@ -37,7 +37,7 @@ class ProfileMenuButton extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                color: AppColors.inactiveColor,
+                color: context.brand.inactive,
               ),
               SizedBox(width: 20.w),
               Text(
@@ -46,7 +46,7 @@ class ProfileMenuButton extends StatelessWidget {
                   fontFamily: 'OpenSans',
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.secondaryText,
+                  color: context.brand.textSecondary,
                 ),
               ),
             ],

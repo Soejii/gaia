@@ -1,12 +1,9 @@
 class AssetsHelper {
-  static String imgLogo = img("img_logo.png");
-  static String imgLogoName = img("img_logo_name.png");
   static String imgProfilePlaceholder = img("img_profile_placeholder.png");
   static String imgAnnouncementPlaceholder =
       img('img_announcement_placeholder.png');
   static String imgTask = img("img_task.png");
   static String imgQuiz = img("img_quiz.png");
-  static String imgLogoTransparant = img("img_logo_transparant.png");
   static String imgUpload = img('img_upload.png');
 
   static String imgHomeButtonMapel = img("img_home_mapel.png");

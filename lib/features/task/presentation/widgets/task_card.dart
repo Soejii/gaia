@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gaia/app/theme/brand_palette.dart';
 import 'package:gaia/features/task/domain/entities/task_entity.dart';
-import 'package:gaia/shared/core/constant/app_colors.dart';
 import 'package:gaia/shared/core/constant/assets_helper.dart';
 import 'package:gaia/shared/core/infrastructure/routes/route_name.dart';
 import 'package:gaia/shared/utils/date_helper.dart';
@@ -25,7 +25,7 @@ class TaskCard extends StatelessWidget {
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         ),
-        boxShadow: AppColors.shadow,
+        boxShadow: context.brand.shadow,
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
@@ -114,7 +114,7 @@ class TaskCard extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(color: Colors.white, width: 6.w),
-            color: AppColors.green,
+            color: context.brand.green,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -154,7 +154,7 @@ class TaskCard extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(color: Colors.white, width: 6.w),
-              color: AppColors.green,
+              color: context.brand.green,
             ),
             child: Center(
               child: Text(
