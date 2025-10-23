@@ -82,10 +82,10 @@ flutter_launcher_icons:
       adaptive_icon_background: "#FFFFFF"                  # or assets/clients/default/icon_bg.png
       remove_alpha_ios: true
 
-    # madani:
-    #   image_path: assets/clients/madani/icon.png
+    # mancaksa:
+    #   image_path: assets/clients/mancaksa/icon.png
     #   android: "ic_launcher"
-    #   adaptive_icon_background: "#FFFFFF"                  # or assets/clients/madani/icon_bg.png
-    #   adaptive_icon_foreground: assets/clients/madani/icon_fg.png
+    #   adaptive_icon_background: "#FFFFFF"                  # or assets/clients/mancaksa/icon_bg.png
+    #   adaptive_icon_foreground: assets/clients/mancaksa/icon_fg.png
     #   remove_alpha_ios: true
 

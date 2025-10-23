@@ -66,10 +66,10 @@ android {
       resValue "string", "app_name", "Sidigs Murid"
       manifestPlaceholders = [ appAuthRedirectScheme: "gaiaapp" ]
     }
-    create("madani") {
+    create("mancaksa") {
       dimension "client"
-      applicationId "com.sidigs.madani"
-      resValue "string", "app_name", "SIDIGS Madani"
+      applicationId "com.sidigs.mancaksa.murid.app"
+      resValue "string", "app_name", "Pijar Mancaksa"
       manifestPlaceholders = [ appAuthRedirectScheme: "gaiaapp" ]
     }
     create("dev") {

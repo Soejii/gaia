@@ -24,24 +24,24 @@
       ]
     },
     {
-      "name": "Madani • Dev",
+      "name": "Mancaksa • Dev",
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
       "args": [
-        "--flavor", "madaniDev",
-        "--dart-define=CLIENT=madani",
+        "--flavor", "mancaksaDev",
+        "--dart-define=CLIENT=mancaksa",
         "--dart-define=ENV=dev"
       ]
     },
     {
-      "name": "Madani • Prod (debug build)",
+      "name": "mancaksa • Prod (debug build)",
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
       "args": [
-        "--flavor", "madaniProd",
-        "--dart-define=CLIENT=madani",
+        "--flavor", "mancaksaProd",
+        "--dart-define=CLIENT=mancaksa",
         "--dart-define=ENV=prod"
       ]
     },
@@ -51,10 +51,10 @@
       "flutterMode": "release",
       "args": ["--flavor","defaultProd","--dart-define=CLIENT=default","--dart-define=ENV=prod"]
     },
-    { "name": "Madani • Prod (release)",
+    { "name": "Mancaksa • Prod (release)",
       "request": "launch", "type": "dart", "program": "lib/main.dart",
       "flutterMode": "release",
-      "args": ["--flavor","madaniProd","--dart-define=CLIENT=madani","--dart-define=ENV=prod"]
+      "args": ["--flavor","mancaksaProd","--dart-define=CLIENT=mancaksa","--dart-define=ENV=prod"]
     },
     { "name": "Default • Prod (profile)",
       "request": "launch", "type": "dart", "program": "lib/main.dart",
