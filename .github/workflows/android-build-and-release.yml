@@ -6,6 +6,7 @@ permissions:
 on:
   push:
     branches: [ main ]
+    tags: [ 'v*' ]
   workflow_dispatch:
     inputs:
       tag:
@@ -130,62 +131,87 @@ jobs:
           path: build/app/outputs/flutter-apk/app-*-debug.apk
           if-no-files-found: error
 
-  # -------- Create GitHub Release & attach everything --------
-  release:
-    needs: [build-prod, build-dev-apk]
+  release-dev:        # <— indent under jobs
+    if: github.ref == 'refs/heads/main'
+    needs: [build-dev-apk]
     runs-on: ubuntu-latest
+    concurrency:
+      group: dev-latest
+      cancel-in-progress: true
     steps:
-      # download AABs
-      - name: Download AAB (default)
+      - name: Download APKs
         uses: actions/download-artifact@v4
         with:
-          name: default-prod-aab
-          path: release/default/
-      - name: Download AAB (mancaksa)
-        uses: actions/download-artifact@v4
-        with:
-          name: mancaksa-prod-aab
-          path: release/mancaksa/
+          pattern: "*-dev-debug-apk"
+          path: release/dev
+          merge-multiple: true
 
-      # download APKs
-      - name: Download APK (default dev)
-        uses: actions/download-artifact@v4
-        with:
-          name: default-dev-debug-apk
-          path: release/default/
-      - name: Download APK (mancaksa dev)
-        uses: actions/download-artifact@v4
-        with:
-          name: mancaksa-dev-debug-apk
-          path: release/mancaksa/
-
-      # compute tag/name (use manual input if provided)
-      - name: Compute tag
-        id: meta
+      - name: Rename APKs (extract client from filename)
         shell: bash
         run: |
-          if [ -n "${{ github.event.inputs.tag }}" ]; then
-            echo "tag=${{ github.event.inputs.tag }}" >> "$GITHUB_OUTPUT"
-            echo "name=${{ github.event.inputs.tag }}" >> "$GITHUB_OUTPUT"
-          else
-            DATE=$(date -u +'%Y-%m-%d')
-            SHORTSHA=${GITHUB_SHA::7}
-            echo "tag=release-${DATE}-${SHORTSHA}" >> "$GITHUB_OUTPUT"
-            echo "name=Release ${DATE} (${SHORTSHA})" >> "$GITHUB_OUTPUT"
-          fi
+          set -euo pipefail
+          shopt -s nullglob
+          for f in release/dev/*.apk; do
+            name="$(basename "$f")"
+            if [[ "$name" =~ -(default|mancaksa)Dev- ]]; then
+              client="${BASH_REMATCH[1]}"
+            else
+              echo "Cannot infer client from: $name"; exit 1
+            fi
+            mv "$f" "release/dev/sidigs-${client}-dev-latest.apk"
+          done
 
-      - name: Create GitHub Release (attach AABs + APKs)
+      - name: Publish/Update dev-latest pre-release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: dev-latest
+          name: "Latest Dev"
+          prerelease: true
+          allowUpdates: true
+          makeLatest: false
+          artifacts: "release/dev/*.apk"
+          artifactErrorsFailBuild: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  release-prod:       # <— indent under jobs
+    if: startsWith(github.ref, 'refs/tags/v') || github.event.inputs.tag != ''
+    needs: [build-prod]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download AABs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: "*-prod-aab"
+          path: release/prod
+          merge-multiple: true
+
+      - name: Stamp filenames with version from pubspec.yaml
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //; s/+.*//')
+          shopt -s nullglob
+          for f in release/prod/*.aab; do
+            name="$(basename "$f")"
+            if [[ "$name" =~ -(default|mancaksa)Prod- ]]; then
+              client="${BASH_REMATCH[1]}"
+            else
+              # fallback: try to detect 'default' or 'mancaksa' anywhere
+              if [[ "$name" =~ default ]]; then client=default; elif [[ "$name" =~ mancaksa ]]; then client=mancaksa; else echo "Cannot infer client from: $name"; exit 1; fi
+            fi
+            mv "$f" "release/prod/sidigs-${client}-prod-v${VERSION}.aab"
+          done
+
+      - name: Create GitHub Release (prod)
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.meta.outputs.tag }}
-          name: ${{ steps.meta.outputs.name }}
+          tag_name: ${{ github.event.inputs.tag != '' && github.event.inputs.tag || github.ref_name }}
+          name: "Release ${{ github.event.inputs.tag != '' && github.event.inputs.tag || github.ref_name }}"
           draft: false
           prerelease: false
           generate_release_notes: true
-          files: |
-            release/default/*.aab
-            release/default/*.apk
-            release/mancaksa/*.aab
-            release/mancaksa/*.apk
+          files: release/prod/*.aab
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
