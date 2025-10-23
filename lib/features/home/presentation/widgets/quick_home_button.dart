@@ -46,6 +46,8 @@ class QuickHomeButton extends StatelessWidget {
         Text(
           label,
           textAlign: TextAlign.center,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontFamily: 'OpenSans',
             fontSize: 10.sp,

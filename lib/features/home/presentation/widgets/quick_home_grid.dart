@@ -67,7 +67,7 @@ class QuickHomeGrid extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           crossAxisCount: 4,
-          mainAxisSpacing: 12,
+          mainAxisSpacing: 4,
           childAspectRatio: 0.88,
           children: listHomeButton
               .map(
