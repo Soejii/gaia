@@ -1,16 +1,16 @@
 name: Android Build & Release (PROD AAB + DEV APK to GitHub Release)
 
 permissions:
-  contents: write   # required to create releases
+  contents: write   # required to create/update releases
 
 on:
   push:
-    branches: [ main ]
-    tags: [ 'v*' ]
+    branches: [ main ]     # updates dev-latest on every push to main
+    tags: [ 'v*' ]         # creates prod releases on version tags like v1.2.3
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Optional tag for the release (e.g. v1.2.3)'
+        description: 'Optional tag for the release (e.g. v1.2.3). When set, prod release runs even without pushing the tag.'
         required: false
         default: ''
 
@@ -46,7 +46,7 @@ jobs:
       - name: Codegen
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
-      # 🔑 Prepare signing per client (no heredoc pitfalls)
+      # 🔑 Prepare signing per client
       - name: Prepare signing (per client)
         shell: bash
         env:
@@ -124,16 +124,27 @@ jobs:
             --dart-define=CLIENT=${{ matrix.client }} \
             --dart-define=ENV=dev
 
+      # Canonicalize APK filename so downstream doesn't guess
+      - name: Rename APK for client
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="build/app/outputs/flutter-apk"
+          APK="$(ls -t "$OUT"/*.apk | head -n 1)"
+          mv "$APK" "$OUT/${{ matrix.client }}-dev-debug.apk"
+          echo "Renamed to: $OUT/${{ matrix.client }}-dev-debug.apk"
+
       - name: Upload DEV debug APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.client }}-dev-debug-apk
-          path: build/app/outputs/flutter-apk/app-*-debug.apk
+          path: build/app/outputs/flutter-apk/${{ matrix.client }}-dev-debug.apk
           if-no-files-found: error
 
-  release-dev:        # <— indent under jobs
-    if: github.ref == 'refs/heads/main'
+  # -------- DEV pre-release (updated on every push to main) --------
+  release-dev:
     needs: [build-dev-apk]
+    if: ${{ always() && github.ref == 'refs/heads/main' }}   # run even if one matrix leg failed
     runs-on: ubuntu-latest
     concurrency:
       group: dev-latest
@@ -146,20 +157,25 @@ jobs:
           path: release/dev
           merge-multiple: true
 
-      - name: Rename APKs (extract client from filename)
+      - name: Guard — fail if no APKs were built
+        shell: bash
+        run: |
+          shopt -s nullglob
+          files=(release/dev/*.apk)
+          echo "Found ${#files[@]} APK(s)"
+          (( ${#files[@]} > 0 )) || { echo "No dev APK artifacts found."; exit 1; }
+
+      - name: Rename APKs to dev-latest
         shell: bash
         run: |
           set -euo pipefail
           shopt -s nullglob
-          for f in release/dev/*.apk; do
-            name="$(basename "$f")"
-            if [[ "$name" =~ -(default|mancaksa)Dev- ]]; then
-              client="${BASH_REMATCH[1]}"
-            else
-              echo "Cannot infer client from: $name"; exit 1
-            fi
+          for f in release/dev/*-dev-debug.apk; do
+            base="$(basename "$f")"               # e.g. default-dev-debug.apk
+            client="${base%%-dev-debug.apk}"      # -> default | mancaksa
             mv "$f" "release/dev/sidigs-${client}-dev-latest.apk"
           done
+          ls -l release/dev
 
       - name: Publish/Update dev-latest pre-release
         uses: ncipollo/release-action@v1
@@ -173,12 +189,13 @@ jobs:
           artifactErrorsFailBuild: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
-  release-prod:       # <— indent under jobs
-    if: startsWith(github.ref, 'refs/tags/v') || github.event.inputs.tag != ''
+  # -------- PROD release (only on version tags or manual tag input) --------
+  release-prod:
     needs: [build-prod]
+    if: startsWith(github.ref, 'refs/tags/v') || github.event.inputs.tag != ''
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4  # needed to read pubspec.yaml for version
 
       - name: Download AABs
         uses: actions/download-artifact@v4
@@ -195,14 +212,18 @@ jobs:
           shopt -s nullglob
           for f in release/prod/*.aab; do
             name="$(basename "$f")"
-            if [[ "$name" =~ -(default|mancaksa)Prod- ]]; then
-              client="${BASH_REMATCH[1]}"
+            if [[ "$name" == default* ]]; then client=default
+            elif [[ "$name" == mancaksa* ]]; then client=mancaksa
             else
-              # fallback: try to detect 'default' or 'mancaksa' anywhere
-              if [[ "$name" =~ default ]]; then client=default; elif [[ "$name" =~ mancaksa ]]; then client=mancaksa; else echo "Cannot infer client from: $name"; exit 1; fi
+              # fallback: try to detect anywhere
+              if [[ "$name" =~ default ]]; then client=default
+              elif [[ "$name" =~ mancaksa ]]; then client=mancaksa
+              else echo "Cannot infer client from: $name"; exit 1
+              fi
             fi
             mv "$f" "release/prod/sidigs-${client}-prod-v${VERSION}.aab"
           done
+          ls -l release/prod
 
       - name: Create GitHub Release (prod)
         uses: softprops/action-gh-release@v2
